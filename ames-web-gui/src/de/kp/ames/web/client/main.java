@@ -20,14 +20,8 @@ package de.kp.ames.web.client;
  *
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gwt.core.client.EntryPoint;
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
-
-import de.kp.ames.web.client.gui.search.SearchWidget;
+import de.kp.ames.web.client.gui.control.MainController;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -38,19 +32,7 @@ public class main implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-
-		String url = "http://localhost:8080";
-		
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("method", "suggest");
-		
-		DataSourceField[] fields = {
-			new DataSourceTextField("id"),
-			new DataSourceTextField("term")
-		};
-		
-		SearchWidget searchImpl = new SearchWidget(url, params, fields);
-
+		MainController.getInstance().createWelcome();
 	}
 
 }

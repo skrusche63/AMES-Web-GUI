@@ -20,10 +20,10 @@ package de.kp.ames.web.client.gui.globals;
 
 public class GUIGlobals {
 
-	// must be overwritten by specific project settings
-	public static String KP_ANONYMOUS = "Guest";
-	
-	public static String KP_LOGO   = "logo.png";
+	/*
+	 * Name of the anonymous user
+	 */
+	public static String ANONYMOUS_USER = "Guest";
 
 	/*
 	 * Main title of the application
@@ -31,7 +31,7 @@ public class GUIGlobals {
 	public static String APP_SLOGAN = "Share and visualize knowledge through the web.";
 	public static String APP_TITLE  = "AMES Web";
 	
-	public static int KP_TITLE_WIDTH = 80;
+	public static int APP_TITLE_WIDTH = 80;
 
 	/*
 	 * Disclaimer

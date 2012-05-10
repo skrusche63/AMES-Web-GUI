@@ -43,6 +43,12 @@ public class GUIStyles {
 	public static String X_BD_STYLE_1 = "x-bd-style-1";
 	public static String X_BD_STYLE_2 = "x-bd-style-2";
 
+	public static String X_CONTROL      = "x-control";
+	public static String X_CONTROL_OVER = "x-control-over";
+	public static String X_HEADER       = "x-header";
+	public static String X_HEADLINE 	= "x-headline";
+	public static String X_IMAGEHOVER   = "x-imagehover";
+	public static String X_USER         = "x-user";
 
 	/*
 	 * Font color
@@ -60,6 +66,9 @@ public class GUIStyles {
 	 * Images without project path
 	 */
 	public static String APP_BG_IMAGE = "portal_bg.gif";
+	
+	public static String LOGO_IMAGE   = "logo.png";
+	public static String SEARCH_IMAGE = "x-search.png";
 
 	
 }
