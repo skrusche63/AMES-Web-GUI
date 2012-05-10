@@ -19,9 +19,9 @@ package de.kp.ames.web.client.core.service;
  *
  */
 
-import com.google.gwt.json.client.JSONValue;
+import java.util.HashMap;
 
-import de.kp.ames.web.client.core.callback.Callback;
+import de.kp.ames.web.client.core.callback.ConnectionCallback;
 import de.kp.ames.web.client.core.connection.ConnectionManager;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 
@@ -30,29 +30,41 @@ import de.kp.ames.web.client.core.method.RequestMethodImpl;
  *
  */
 
-public class ServiceImpl implements Callback, Service {
+public class ServiceImpl implements Service {
 
 	/*
 	 * The base url necessary to invoke the
 	 * web service that refers to this service
 	 */
 	
-	private String base;
+	protected String base;
 	
 	/*
 	 * The unique service identifier
 	 */
-	private String sid;
+	protected String sid;
 	
 	/*
 	 * Reference to Connection Manager
 	 */
 	
-	private static ConnectionManager cm = ConnectionManager.getInstance();
+	protected static ConnectionManager cm = ConnectionManager.getInstance();
 	
+	/**
+	 * Constructor
+	 */
 	public ServiceImpl() {		
 	}
 
+	/**
+	 * @param base
+	 * @param sid
+	 */
+	public ServiceImpl(String base, String sid) {
+		this.base = base;
+		this.sid  = sid;
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#setId(java.lang.String)
 	 */
@@ -68,19 +80,35 @@ public class ServiceImpl implements Callback, Service {
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.service.Service#sendGetRequest(de.kp.ames.web.client.core.method.RequestMethodImpl)
+	 * @see de.kp.ames.web.client.core.service.Service#sendGetRequest(de.kp.ames.web.client.core.method.RequestMethodImpl, de.kp.ames.web.client.core.callback.Callback)
 	 */
-	public void sendGetRequest(RequestMethodImpl method) {
+	public void sendGetRequest(RequestMethodImpl method, ConnectionCallback callback) {
+		
 		String requestUrl = getRequestUrl();
-		cm.sendGetRequest(requestUrl, method, this);
+		HashMap<String,String> requestHeaders = getHeaders();
+		
+		cm.sendGetRequest(requestUrl, method, requestHeaders, callback);
+	
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.service.Service#sendPostRequest(de.kp.ames.web.client.core.method.RequestMethodImpl, java.lang.String)
+	 * @see de.kp.ames.web.client.core.service.Service#sendPostRequest(de.kp.ames.web.client.core.method.RequestMethodImpl, java.lang.String, de.kp.ames.web.client.core.callback.Callback)
 	 */
-	public void sendPostRequest(RequestMethodImpl method, String data) {
+	public void sendPostRequest(RequestMethodImpl method, String data, ConnectionCallback callback) {
+
 		String requestUrl = getRequestUrl();
-		cm.sendPostRequest(requestUrl, method, data, this);		
+		HashMap<String,String> requestHeaders = getHeaders();
+	
+		cm.sendPostRequest(requestUrl, method, requestHeaders, data, callback);		
+	
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#getHeaders()
+	 */
+	@Override
+	public HashMap<String,String> getHeaders() {
+		return null;
 	}
 	
 	/**
@@ -92,34 +120,5 @@ public class ServiceImpl implements Callback, Service {
 		return this.base + "/" + this.sid;
 		
 	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.callback.Callback#onSuccess(com.google.gwt.json.client.JSONValue)
-	 */
-	@Override
-	public void onSuccess(JSONValue jValue) {
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.callback.Callback#onError(java.lang.Throwable)
-	 */
-	@Override
-	public void onError(Throwable throwable) {
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.callback.Callback#onTimeout(java.lang.String)
-	 */
-	@Override
-	public void onTimeout(String message) {
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.callback.Callback#onFailure(java.lang.String)
-	 */
-	@Override
-	public void onFailure(String message) {
-	}
-
 	
 }

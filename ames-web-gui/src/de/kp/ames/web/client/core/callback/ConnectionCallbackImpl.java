@@ -19,16 +19,15 @@ package de.kp.ames.web.client.core.callback;
  */
 
 import com.google.gwt.http.client.RequestException;
-import com.google.gwt.json.client.JSONValue;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
  *
  */
-public class CallbackImpl implements Callback {
+public class ConnectionCallbackImpl implements ConnectionCallback {
 
 	@Override
-	public void onSuccess(JSONValue jValue) {
+	public void onSuccess(String response) {
 		// put your code in here
 	}
 

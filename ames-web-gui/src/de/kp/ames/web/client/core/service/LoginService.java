@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.callback;
+package de.kp.ames.web.client.core.service;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,31 +18,26 @@ package de.kp.ames.web.client.core.callback;
  *
  */
 
-import com.google.gwt.json.client.JSONValue;
-/**
- * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
- *
- */
-public interface Callback {
+import java.util.HashMap;
 
-	/**
-	 * @param jValue
-	 */
-	public void onSuccess(JSONValue jValue);
+import de.kp.ames.web.client.core.globals.CoreGlobals;
 
-	/**
-	 * @param throwable
-	 */
-	public void onError(Throwable throwable);
+public class LoginService extends ServiceImpl {
+
+	public LoginService() {
+		super(CoreGlobals.REG_URL, CoreGlobals.LOGIN_SERVICE_ID);
+	}
 	
-	/**
-	 * @param message
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.ServiceImpl#getHeaders()
 	 */
-	public void onTimeout(String message);
-	
-	/**
-	 * @param message
-	 */
-	public void onFailure(String message);
+	public HashMap<String,String> getHeaders() {
+		
+		HashMap<String,String> headers = new HashMap<String,String>();
+		
+		headers.put("Content-Type", "application/x-www-form-urlencoded");
+		return headers;
+
+	}
 	
 }

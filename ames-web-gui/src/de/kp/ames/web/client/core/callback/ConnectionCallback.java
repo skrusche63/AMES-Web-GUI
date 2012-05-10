@@ -1,10 +1,4 @@
-package de.kp.ames.web.client.core.service;
-
-import java.util.HashMap;
-
-import de.kp.ames.web.client.core.callback.ConnectionCallback;
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
-
+package de.kp.ames.web.client.core.callback;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -28,38 +22,26 @@ import de.kp.ames.web.client.core.method.RequestMethodImpl;
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
  *
  */
-
-public interface Service {
+public interface ConnectionCallback {
 
 	/**
-	 * Unique Service Identifier
-	 * @param sid
+	 * @param jValue
 	 */
-	public void setId(String sid);
+	public void onSuccess(String response);
+
+	/**
+	 * @param throwable
+	 */
+	public void onError(Throwable throwable);
 	
 	/**
-	 * Base Url of associated web service
-	 * @param base
+	 * @param message
 	 */
-	public void setBase(String base);
-
-	/**
-	 * Headers of the associated HTTP request
-	 * @return
-	 */
-	public HashMap<String,String> getHeaders();
+	public void onTimeout(String message);
 	
 	/**
-	 * Send GET request to web service
-	 * @param method
+	 * @param message
 	 */
-	public void sendGetRequest(RequestMethodImpl method, ConnectionCallback callback);
-
-	/**
-	 * Send POST request to web service
-	 * @param method
-	 * @param data
-	 */
-	public void sendPostRequest(RequestMethodImpl method, String data, ConnectionCallback callback);
+	public void onFailure(String message);
 	
 }

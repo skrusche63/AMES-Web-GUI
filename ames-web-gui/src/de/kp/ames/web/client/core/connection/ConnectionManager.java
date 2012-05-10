@@ -18,16 +18,18 @@ package de.kp.ames.web.client.core.connection;
  *
  */
 
+import java.util.HashMap;
+import java.util.Set;
+
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.RequestTimeoutException;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONValue;
-
-import de.kp.ames.web.client.core.callback.Callback;
+import com.google.gwt.http.client.URL;
+import de.kp.ames.web.client.core.callback.ConnectionCallback;
+import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 
 /**
@@ -50,47 +52,62 @@ public class ConnectionManager {
 	 * @param method
 	 * @param callback
 	 */
-	public void sendGetRequest(final String baseUrl, final RequestMethodImpl method, final Callback callback) {
+	public void sendGetRequest(final String baseUrl, final RequestMethodImpl method, final HashMap<String, String>headers, final ConnectionCallback callback) {
 		String url = baseUrl + method.toQuery();
-		sendGetRequest(url, callback);
+		sendGetRequest(url, headers, callback);
 	}
 	
 	/**
 	 * @param url
 	 * @param callback
 	 */
-	public void sendGetRequest(final String url, final Callback callback) {
+	public void sendGetRequest(final String url, final HashMap<String, String>headers, final ConnectionCallback callback) {
+	    		
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+		builder.setTimeoutMillis(CoreGlobals.CONNECTION_TIMEOUT);
 		
-		String requestData = null;
-	    RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
+		/*
+		 * Set header parameters
+		 */
+		if (headers.isEmpty() == false) {
+			Set<String> keys = headers.keySet();
+			for (String key:keys) {
+				builder.setHeader(key, headers.get(key));				
+			}
+		}
+
+		/*
+    	 * Set request callback
+    	 */
+    	builder.setCallback(new RequestCallback() {
+
+	        public void onResponseReceived(Request request, Response response) {
+
+				if (STATUS_CODE_OK == response.getStatusCode()) {						
+					handleSuccess(response, callback);
+				
+				} else {						
+					handleFailure(response, callback);
+				}
+
+	        }
+
+	        public void onError(Request request, Throwable exception) {
+				
+				if (exception instanceof RequestTimeoutException) {						
+					handleTimeout(exception, callback);
+				
+				} else {						
+					handleError(exception, callback);
+			    }
+
+	        }
+    	
+    	});
 
 	    try {
-	      
-	    	builder.sendRequest(requestData, new RequestCallback() {
-
-				public void onResponseReceived(Request request, Response response) {
-
-					if (STATUS_CODE_OK == response.getStatusCode()) {						
-						handleSuccess(response, callback);
-						
-					} else {						
-						handleFailure(response, callback);
-					}
-					
-				}
-
-				public void onError(Request request, Throwable exception) {
-					
-					if (exception instanceof RequestTimeoutException) {						
-						handleTimeout(exception, callback);
-					
-					} else {						
-						handleError(exception, callback);
-				    }
-					
-				}
-	    	});
-	    
+	    	builder.send();
+	    	
 	    } catch (RequestException e) {
 	      handleError(e, callback);
 	    	
@@ -104,49 +121,68 @@ public class ConnectionManager {
 	 * @param requestData
 	 * @param callback
 	 */
-	public void sendPostRequest(final String baseUrl, final RequestMethodImpl method, final String requestData, final Callback callback) {
+	public void sendPostRequest(final String baseUrl, final RequestMethodImpl method, final HashMap<String, String>headers, final String requestData, final ConnectionCallback callback) {
 		String url = baseUrl + method.toQuery();
-		sendPostRequest(url, requestData, callback);
+		sendPostRequest(url, headers, requestData, callback);
 	}
-	
-	
+		
 	/**
 	 * @param url
 	 * @param requestData
 	 * @param callback
 	 */
-	public void sendPostRequest(final String url, final String requestData, final Callback callback) {
+	public void sendPostRequest(final String url, final HashMap<String, String>headers, final String requestData, final ConnectionCallback callback) {
 	    
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, url);
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, URL.encode(url));
+		builder.setTimeoutMillis(CoreGlobals.CONNECTION_TIMEOUT);
+		
+		/*
+		 * Set header parameters
+		 */
+		if (headers.isEmpty() == false) {
+			Set<String> keys = headers.keySet();
+			for (String key:keys) {
+				builder.setHeader(key, headers.get(key));				
+			}
+		}
+
+		/*
+		 * Set request data
+		 */
+		if (requestData != null) builder.setRequestData(requestData);
+		
+    	/*
+    	 * Set request callback
+    	 */
+    	builder.setCallback(new RequestCallback() {
+
+	        public void onResponseReceived(Request request, Response response) {
+
+				if (STATUS_CODE_OK == response.getStatusCode()) {						
+					handleSuccess(response, callback);
+				
+				} else {						
+					handleFailure(response, callback);
+				}
+
+	        }
+
+	        public void onError(Request request, Throwable exception) {
+				
+				if (exception instanceof RequestTimeoutException) {						
+					handleTimeout(exception, callback);
+				
+				} else {						
+					handleError(exception, callback);
+			    }
+
+	        }
+    	
+    	});
 
 	    try {
-	    
-	    	builder.sendRequest(requestData, new RequestCallback() {
-
-		        public void onResponseReceived(Request request, Response response) {
-
-					if (STATUS_CODE_OK == response.getStatusCode()) {						
-						handleSuccess(response, callback);
-					
-					} else {						
-						handleFailure(response, callback);
-					}
-
-		        }
-
-		        public void onError(Request request, Throwable exception) {
-					
-					if (exception instanceof RequestTimeoutException) {						
-						handleTimeout(exception, callback);
-					
-					} else {						
-						handleError(exception, callback);
-				    }
-
-		        }
+	    	builder.send();
 	    	
-	    	});
-	    
 	    } catch (RequestException e) {
 		      handleError(e, callback);
 
@@ -158,18 +194,10 @@ public class ConnectionManager {
 	 * @param response
 	 * @param callback
 	 */
-	private void handleSuccess(Response response, Callback callback) {
+	private void handleSuccess(Response response, ConnectionCallback callback) {
 
 		String responseText = response.getText();
-		
-		try {
-			JSONValue jValue = JSONParser.parseStrict(responseText);
-			if (callback != null) callback.onSuccess(jValue);
-			
-		} catch (NullPointerException e) {
-			callback.onError(e);
-			
-		}
+		if (callback != null) callback.onSuccess(responseText);
 		
 	}
 	
@@ -177,7 +205,7 @@ public class ConnectionManager {
 	 * @param response
 	 * @param callback
 	 */
-	private void handleFailure(Response response, Callback callback) {
+	private void handleFailure(Response response, ConnectionCallback callback) {
 
 		String responseText = response.getText();
 		if (callback != null) callback.onFailure(responseText);
@@ -188,7 +216,7 @@ public class ConnectionManager {
 	 * @param throwable
 	 * @param callback
 	 */
-	private void handleError(Throwable throwable, Callback callback) {
+	private void handleError(Throwable throwable, ConnectionCallback callback) {
 		if (callback != null) callback.onError(throwable);
 	}
 
@@ -196,7 +224,7 @@ public class ConnectionManager {
 	 * @param exception
 	 * @param callback
 	 */
-	private void handleError(RequestException exception, Callback callback) {
+	private void handleError(RequestException exception, ConnectionCallback callback) {
 		if (callback != null) callback.onError(exception);
 	}
 
@@ -204,7 +232,7 @@ public class ConnectionManager {
 	 * @param throwable
 	 * @param callback
 	 */
-	private void handleTimeout(Throwable throwable, Callback callback) {
+	private void handleTimeout(Throwable throwable, ConnectionCallback callback) {
 
 		RequestTimeoutException exception = (RequestTimeoutException)throwable;
 		if (callback != null) callback.onTimeout(exception.getMessage());
