@@ -220,8 +220,8 @@ public class LoginDialog extends BaseDialog {
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(CoreGlobals.REGISTER_METHOD);
 		
-		requestMethod.addAttribute(CoreAttributes.RIM_ALIAS,   alias);
-		requestMethod.addAttribute(CoreAttributes.RIM_KEYPASS, keypass);
+		requestMethod.addAttribute(CoreAttributes.ALIAS,   alias);
+		requestMethod.addAttribute(CoreAttributes.KEYPASS, keypass);
 		
 		LoginService requestService = new LoginService();
 		requestService.sendPostRequest(requestMethod, null, new ConnectionCallback() {
@@ -281,7 +281,7 @@ public class LoginDialog extends BaseDialog {
 		String uid   = jObject.get("id").isString().stringValue();
 		String uname = jObject.get("name").isString().stringValue();
 		
-		boolean isAdmin = jObject.get("isadmin").isBoolean().booleanValue();
+		String urole = jObject.get("role").isString().stringValue();
 		
 		/*
 		 * Register information about current user
@@ -291,7 +291,7 @@ public class LoginDialog extends BaseDialog {
 		uctrl.setUserId(uid);
 		uctrl.setUserName(uname);
 		
-		uctrl.setIsAdmin(isAdmin);
+		uctrl.setUserRole(urole);
 	
 		/* 
 		 * Register alias and keypass

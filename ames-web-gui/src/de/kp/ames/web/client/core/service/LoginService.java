@@ -25,7 +25,7 @@ import de.kp.ames.web.client.core.globals.CoreGlobals;
 public class LoginService extends ServiceImpl {
 
 	public LoginService() {
-		super(CoreGlobals.REG_URL, CoreGlobals.LOGIN_SERVICE_ID);
+		super(CoreGlobals.REG_URL, CoreGlobals.SECURITY_SERVICE_ID);
 	}
 	
 	/* (non-Javadoc)

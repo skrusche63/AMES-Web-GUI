@@ -39,6 +39,8 @@ public class CoreGlobals {
 	public static String GUEST_ID   = "urn:de:kp:guest:user";
 	public static String GUEST_NAME = "Anonymous";
 
+	public static String GUEST_ROLE = "Registry Guest";
+	
 	/* 
 	 * Property (in index.html) that describes the URL to the
 	 * AMES Web Service
@@ -57,6 +59,6 @@ public class CoreGlobals {
 	 * Service identifier
 	 */
 	public static String DISCLAIMER_SERVICE_ID = "disclaimer";
-	public static String LOGIN_SERVICE_ID      = "login";
+	public static String SECURITY_SERVICE_ID   = "security";
 
 }

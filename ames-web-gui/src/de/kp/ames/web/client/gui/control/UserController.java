@@ -27,8 +27,8 @@ public class UserController {
 	/*
 	 * Default values for user id & name
 	 */
-	private String userId   = CoreGlobals.GUEST_ID;
-	private String userName = CoreGlobals.GUEST_NAME;
+	private String uid   = CoreGlobals.GUEST_ID;
+	private String uname = CoreGlobals.GUEST_NAME;
 	
 	/*
 	 * User credentials
@@ -37,10 +37,9 @@ public class UserController {
 	private String keypass = null;
 	
 	/*
-	 * Indicates whether caller's user
-	 * is administrator
+	 * Default value for user role
 	 */
-	private boolean isAdmin = false;
+	private String urole = CoreGlobals.GUEST_ROLE;
 
 	/**
 	 * Constructor
@@ -56,36 +55,42 @@ public class UserController {
 	 * @param uid
 	 */
 	public void setUserId(String uid) {
-		this.userId = uid;
+		this.uid = uid;
 	}
 
 	/**
 	 * @param name
 	 */
 	public void setUserName(String name) {
-		this.userName = name;
+		this.uname = name;
+	}
+	
+	/**
+	 * @param role
+	 */
+	public void setUserRole(String role) {
+		this.urole = role;
 	}
 	
 	/**
 	 * @return
 	 */
 	public String getUserId() {
-		return this.userId;
+		return this.uid;
 	}
 
 	/**
 	 * @return
 	 */
 	public String getUserName() {
-		return this.userName;
+		return this.uname;
 	}
 	
 	/**
 	 * @return
 	 */
 	public String getUserRole() {	
-		if (userId.equals(CoreGlobals.GUEST_ID)) return "Registry Guest";
-		return (isAdmin) ? "Registry Administrator" : "Registry User";		
+		return this.urole;		
 	}
 		
 	/**
@@ -96,29 +101,17 @@ public class UserController {
 		 * Reset user parameters to default
 		 * parameters
 		 */
-		userId   = CoreGlobals.GUEST_ID;
-		userName = CoreGlobals.GUEST_NAME;
-
+		uid   = CoreGlobals.GUEST_ID;
+		uname = CoreGlobals.GUEST_NAME;
+		
+		urole = CoreGlobals.GUEST_ROLE;
+		
 		/*
 		 * Reset user credentials
 		 */
 		alias   = null;
 		keypass = null;
 		
-	}
-	
-	/**
-	 * @param isAdmin
-	 */
-	public void setIsAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-	
-	/**
-	 * @return
-	 */
-	public boolean getIsAdmin() {
-		return this.isAdmin;
 	}
 	
 	/**

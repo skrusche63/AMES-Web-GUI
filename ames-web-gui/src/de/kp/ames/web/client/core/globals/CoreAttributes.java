@@ -23,11 +23,9 @@ public class CoreAttributes {
 	public static String ALIAS   = "alias";
 	public static String KEYPASS = "keypass";
 
-	public static String RIM_ALIAS     = "rimAlias";
 	public static String RIM_DESC      = "rimDescription";
 	public static String RIM_HOME 	   = "rimHome";
 	public static String RIM_ID        = "rimId";
-	public static String RIM_KEYPASS   = "rimKeypass";
 	public static String RIM_LID       = "rimLid";
 	public static String RIM_NAME      = "rimName";
 	public static String RIM_URI       = "rimExternalURI";
