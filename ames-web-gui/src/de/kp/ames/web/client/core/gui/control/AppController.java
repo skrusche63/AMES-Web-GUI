@@ -3,12 +3,14 @@ package de.kp.ames.web.client.core.gui.control;
 import java.util.ArrayList;
 
 import com.google.gwt.json.client.JSONString;
-
 import de.kp.ames.web.client.core.globals.CoreAttributes;
 import de.kp.ames.web.client.core.gui.portal.PortletConfig;
+import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 
 public class AppController {
 
+	private static String ID = CoreAttributes.RIM_ID;
+	
 	private static AppController instance = new AppController();
 	private AppController() {}
 	
@@ -26,22 +28,21 @@ public class AppController {
 	 */
 	public ArrayList<PortletConfig> getPersonalizedApps() {
 		
-		ArrayList<PortletConfig> portletConfigs  = new ArrayList<PortletConfig>();		
-		PortletConfig portletConfig = null;
+		ArrayList<PortletConfig> portlets  = new ArrayList<PortletConfig>();		
+		PortletConfig portlet = null;
 		
-		for (int i=0; i < 5; i++) {
-			
-			portletConfig = new PortletConfig();
-			portletConfig.put(CoreAttributes.RIM_ID, new JSONString("urn:de:kp:app:" + i));
+		/*
+		 * ScmSys
+		 */
 		
-			portletConfig.put(CoreAttributes.RIM_NAME, new JSONString("Portlet " + i));
-			portletConfig.put(CoreAttributes.RIM_URI,  new JSONString("http://www.smartclient.com/smartgwt/showcase/#main"));
-			
-			portletConfigs.set(i, portletConfig);
+		portlet = new PortletConfig();
+		
+		portlet.put(ID, new JSONString(FncGlobals.FNC_APP_ID_ScmSys));
+		portlet.put(CoreAttributes.RIM_NAME, new JSONString(FncGlobals.SCM_TITLE));
 
-		}
+		portlets.add(portlet);
 		
-		return portletConfigs;
+		return portlets;
 
 	}
 }

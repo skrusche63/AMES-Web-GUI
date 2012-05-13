@@ -27,8 +27,6 @@ import com.google.gwt.json.client.JSONObject;
 
 public class PortletConfig extends JSONObject {
 	
-	// PORTLET CONFIGURATION PARAMETER
-	
 	/*
 	 * A Portlet is described by a JSON object; this object has
 	 * a set of predefined parameters that 
@@ -37,6 +35,14 @@ public class PortletConfig extends JSONObject {
 	public static String PORTLET_TITLE = "title";
 
 	public PortletConfig() {	
+	}
+	
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getStringValue(String key) {
+		return this.get(key).isString().stringValue();
 	}
 	
 }

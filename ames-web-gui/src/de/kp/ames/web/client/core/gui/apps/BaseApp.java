@@ -18,11 +18,41 @@ package de.kp.ames.web.client.core.gui.apps;
  *
  */
 
-import com.smartgwt.client.widgets.layout.HLayout;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.VLayout;
 
-public class BaseApp extends HLayout {
+import de.kp.ames.web.client.core.gui.base.BaseContent;
+import de.kp.ames.web.client.core.gui.base.BaseHeadline;
 
-	public BaseApp() {		
+/**
+ * BaseApp is a vertical layout that holds
+ * a common headline and a content area
+ */
+public class BaseApp extends VLayout {
+
+	private BaseHeadline headline;
+	private BaseContent content;
+	
+	public BaseApp(String title, String slogan) {		
+		
+		headline = new BaseHeadline(title, slogan);
+		content  = new BaseContent();
+		
+		this.setWidth100();
+		this.setHeight100();
+		
+		this.setBackgroundColor("#F2F2F2");
+		
+		this.setMembers(headline, content);
+		
+	}
+	
+	public BaseContent getContent() {
+		return this.content;
+	}
+
+	public void setContent(Canvas...members) {
+		this.content.setMembers(members);
 	}
 
 }

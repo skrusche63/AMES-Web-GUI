@@ -1,10 +1,26 @@
 package de.kp.ames.web.client.core.gui.apps;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.ArrayList;
 
-import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.menu.MenuItem;
-import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
 import de.kp.ames.web.client.core.globals.CoreAttributes;
@@ -20,48 +36,37 @@ public class RegisteredPortlets {
 	}
 	
 	public static MenuItem[] getAsItems(final ControlLabel control) {
-		
+
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 		AppController actrl = AppController.getInstance();
 		
 		/* 
 		 * Personalized applications
 		 */
-		ArrayList<PortletConfig> portletConfigs = actrl.getPersonalizedApps();
-		for (int i=0; i < portletConfigs.size(); i++) {
+		ArrayList<PortletConfig> portlets = actrl.getPersonalizedApps();
+		for (int i=0; i < portlets.size(); i++) {
 			
-			final JSONObject jApp = portletConfigs.get(i).isObject();
-			MenuItem item = new MenuItem(jApp.get(CoreAttributes.RIM_NAME).isString().stringValue());		
+			final PortletConfig portlet = portlets.get(i);
+			MenuItem item = new MenuItem(portlet.getStringValue(CoreAttributes.RIM_NAME));		
 			
 			item.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 				public void onClick(MenuItemClickEvent event) {
-					/* 
+					 
+					/*
 					 * Deselect respective control
 					 */
 					control.setSelected(false);
-					/* 
+					/*
 					 * Invoke main controller to create the app
-					 */
-					MainController.getInstance().createApp(jApp);
+					 */ 
+					MainController.getInstance().createApp(portlet.getStringValue(CoreAttributes.RIM_ID));
 					
 				}				
 			});
 
 			items.add(item);
 		}
-		
-		if (items.size() > 0) items.add(new MenuItemSeparator());
-		
-		// application store
-		MenuItem store = new MenuItem("Store...");
-		store.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
-			public void onClick(MenuItemClickEvent event) {
-				control.setSelected(false);
-				// TODO
-			}				
-		});
-		
-		items.add(store);		
+
 		return (MenuItem[])items.toArray(new MenuItem[items.size()]);
 		
 	}

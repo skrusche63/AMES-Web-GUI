@@ -23,6 +23,7 @@ package de.kp.ames.web.client;
 import com.google.gwt.core.client.EntryPoint;
 
 import de.kp.ames.web.client.core.gui.control.MainController;
+import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -33,7 +34,11 @@ public class main implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		MainController.getInstance().createWelcome();
+		//MainController.getInstance().createWelcome();
+		
+		MainController.getInstance().createViewport();
+		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Bulletin);
+		
 	}
 
 }

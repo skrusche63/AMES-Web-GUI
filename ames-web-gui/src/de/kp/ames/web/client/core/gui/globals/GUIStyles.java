@@ -20,7 +20,7 @@ package de.kp.ames.web.client.core.gui.globals;
 
 public class GUIStyles {
 
-	public static String BG_COLOR = "#DADADA;";
+	public static String BG_COLOR = "#CCCCCC;";
 	
 	/*
 	 * Background color
@@ -42,12 +42,14 @@ public class GUIStyles {
 	 */
 	public static String X_BD_STYLE_1 = "x-bd-style-1";
 	public static String X_BD_STYLE_2 = "x-bd-style-2";
+	public static String X_BD_STYLE_3 = "x-bd-style-3";
 
 	public static String X_CONTROL      = "x-control";
 	public static String X_CONTROL_OVER = "x-control-over";
 	public static String X_HEADER       = "x-header";
 	public static String X_HEADLINE 	= "x-headline";
 	public static String X_IMAGEHOVER   = "x-imagehover";
+	public static String X_TOPLINE      = "x-topline";
 	public static String X_USER         = "x-user";
 
 	/*
@@ -59,8 +61,8 @@ public class GUIStyles {
 	 * Images with project path
 	 */
 	
-	public static String APP_ICON      = "images/globe64.png";   // 64 x 64
-	public static String LOADING_IMAGE = "images/x-loading.gif"; // 64 x 64
+	public static String APP_ICON      = "images/global48.png";   // 48 x 48
+	public static String LOADING_IMAGE = "images/x-loading.gif";  // 64 x 64
 	
 	/*
 	 * Images without project path

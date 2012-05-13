@@ -4,19 +4,22 @@ iframe {border:0;}
 
 /* project specific styles */
 
-.x-bd-style-1 {border:1px solid #A0A0A0;border-left:0;}
-.x-bd-style-2 {border-right:1px solid #A0A0A0;}
+.x-bd-style-1 {border:1px solid #C0C0C0;border-left:0;}
+.x-bd-style-2 {border-right:1px solid #C0C0C0;}
 
-.x-bd-style-3 {border-top:1px solid #A0A0A0;}
+.x-bd-style-3 {border-top:1px solid #C0C0C0;}
 
 .x-app-title {font:bold 10px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:center;padding-top:1px;}
 
+/*
+ * Stylesheet to render control elements in the main toolstrip
+ */
 .x-control {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:center;}
-.x-control-over {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#f2f2f2;text-align:center;cursor:pointer;background:#708491;}
+.x-control-over {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#f2f4f4;text-align:center;cursor:pointer;background:#708491;}
 
-.x-header {background-color:#C6D3D3;border:0;border-bottom:1px solid #A0A0A0;}
-.x-headline {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;}
-.x-topline {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;}
+.x-header {background-color:#C6D3D3;border:0;border-bottom:1px solid #C0C0C0;}
+.x-headline {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#708491;}
+.x-topline {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#708491;background-color:#f2f4f4;}
 
 .x-user {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:right;}
 

@@ -38,10 +38,12 @@ public class BaseHeadline extends HTMLPane {
 		this.title  = title;
 		this.slogan = slogan;
 		
+		this.setStyleName(GUIStyles.X_TOPLINE);
+		
 		this.setShowEdges(false);
 		
 		this.setWidth100();
-		this.setHeight(80);
+		this.setHeight(64);
 
 		this.setHeadline(title, slogan);
 		
@@ -83,9 +85,9 @@ public class BaseHeadline extends HTMLPane {
 	private String getHtml() {
 
 		String html = "<div class='x-topline'>";
-		html += "<img src='" + GUIStyles.APP_ICON + "' height='64' width='64' style='display:block;float:left;margin:8px 8px 8px 8px;'>";
-		html += "<div style='padding:16px 0px 0px 8px;font-size:18px;vertical-align:top;'><b>" + this.title + "</b><br/>";
-		html += "<span style='padding:8px 0px 0px 2px;font-size:11px;color:#777;'>" + this.slogan + "</span></div>";
+		html += "<img src='" + GUIStyles.APP_ICON + "' height='48' width='48' style='display:block;float:left;margin:8px 4px 4px 4px;'>";
+		html += "<div style='padding:8px 0px 0px 8px;font-size:18px;vertical-align:top;'><b>" + this.title + "</b><br/>";
+		html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
 		html += "</div";
 		
 		return html;

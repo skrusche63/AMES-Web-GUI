@@ -52,7 +52,7 @@ public class Viewport extends VLayout {
 	
 	private Label user;
 	
-	private static int TOP_HEIGHT = 20;
+	private static int TOP_HEIGHT = 32;
 	
 	public Viewport() {
 
@@ -262,7 +262,7 @@ public class Viewport extends VLayout {
 	// EVENTS ***************************************************************
 
 	private void doApplication(ClickEvent e) {
-
+		
 		apps.setSelected(true);
 
 		int x = apps.getAbsoluteLeft();

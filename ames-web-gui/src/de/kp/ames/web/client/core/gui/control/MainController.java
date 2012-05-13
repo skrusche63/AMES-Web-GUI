@@ -40,11 +40,13 @@ import de.kp.ames.web.client.core.gui.apps.RegisteredPortlets;
 import de.kp.ames.web.client.core.gui.base.Viewport;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.core.gui.handler.ISearch;
-import de.kp.ames.web.client.core.gui.portal.Portal;
+import de.kp.ames.web.client.core.gui.portal.PortalImpl;
 import de.kp.ames.web.client.core.gui.portal.PortletConfig;
 import de.kp.ames.web.client.core.gui.search.SearchWidget;
+import de.kp.ames.web.client.function.gui.bulletin.BulletinImpl;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 import de.kp.ames.web.client.function.gui.login.LoginDialog;
+import de.kp.ames.web.client.function.gui.scm.ScmSysImpl;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
@@ -98,20 +100,9 @@ public class MainController {
 		DOM.removeChild(RootPanel.getBodyElement(), splash);
 		
 		/*
-		 * Build view port of the application
+		 * Create viewport
 		 */
-		container = new VLayout();
-		container.setShowEdges(false);
-		
-		container.setWidth100();
-		container.setHeight100();
-
-		container.setOverflow(Overflow.HIDDEN);
-		
-		viewport = new Viewport();
-		container.addMember(viewport);
-		
-		container.draw();
+		createViewport();
 		
 		/*
 		 * Show Login Dialog: this dialog is used to
@@ -148,7 +139,7 @@ public class MainController {
 		 * for the caller's user
 		 */
 		ArrayList<PortletConfig> portletConfigs = RegisteredPortlets.getAsPortlets();
-		Portal app = new Portal(4, portletConfigs);
+		PortalImpl app = new PortalImpl(4, portletConfigs);
 		
 		/*
 		 * Append portal application
@@ -170,8 +161,11 @@ public class MainController {
 		 */
 		BaseApp app = null;		
 		if (profile.equals(FncGlobals.FNC_APP_ID_Bulletin)) {
-			// TODO
-			app = new BaseApp();
+			app = new BulletinImpl();
+		
+		} else if (profile.equals(FncGlobals.FNC_APP_ID_ScmSys)) {
+			app = new ScmSysImpl();
+			
 		}
 
 		if (app == null) return;
@@ -207,12 +201,35 @@ public class MainController {
 	}
 	
 	/**
+	 * A helper method to create the viewport
+	 */
+	public void createViewport() {
+
+		/*
+		 * Build view port of the application
+		 */
+		container = new VLayout();
+		container.setShowEdges(false);
+		
+		container.setWidth100();
+		container.setHeight100();
+
+		container.setOverflow(Overflow.HIDDEN);
+		
+		viewport = new Viewport();
+		container.addMember(viewport);
+		
+		container.draw();
+
+	}
+
+	/**
 	 * A helper method to append a selected app
 	 * to the main application container
 	 * 
 	 * @param app
 	 */
-	private void appendApp(BaseApp app) {
+	public void appendApp(BaseApp app) {
 
 		/*
 		 * Remove existing application 

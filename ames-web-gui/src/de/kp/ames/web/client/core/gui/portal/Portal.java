@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.kp.ames.web.client.core.gui.apps.BaseApp;
+import com.smartgwt.client.widgets.layout.HLayout;
 
-public class Portal extends BaseApp {
+public class Portal extends HLayout {
 	
 	// reference to the portlets organized by this portal
 	private Map<String, PortletImpl> portlets = new HashMap<String, PortletImpl>();
