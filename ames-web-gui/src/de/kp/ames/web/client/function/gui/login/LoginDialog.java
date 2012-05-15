@@ -41,14 +41,14 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.core.callback.ActivityCallback;
 import de.kp.ames.web.client.core.callback.ConnectionCallback;
 import de.kp.ames.web.client.core.globals.CoreAttributes;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.gui.base.BaseDialog;
 import de.kp.ames.web.client.core.gui.control.UserController;
 import de.kp.ames.web.client.core.gui.form.GUIFormFactory;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.client.core.service.DisclaimerService;
-import de.kp.ames.web.client.core.service.LoginService;
+import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.client.function.service.DisclaimerService;
+import de.kp.ames.web.client.function.service.LoginService;
 
 /**
  * The login dialog is used to retrieve user credentials
@@ -218,7 +218,7 @@ public class LoginDialog extends BaseDialog {
 		 * Login service and register method 
 		 */
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(CoreGlobals.REGISTER_METHOD);
+		requestMethod.setName(FncGlobals.REGISTER_METHOD);
 		
 		requestMethod.addAttribute(CoreAttributes.ALIAS,   alias);
 		requestMethod.addAttribute(CoreAttributes.KEYPASS, keypass);
@@ -352,7 +352,7 @@ public class LoginDialog extends BaseDialog {
 		 * Disclaimer service and show method 
 		 */
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(CoreGlobals.SHOW_METHOD);
+		requestMethod.setName(FncGlobals.SHOW_METHOD);
 
 		DisclaimerService requestService = new DisclaimerService();
 		requestService.sendGetRequest(requestMethod, new ConnectionCallback() {

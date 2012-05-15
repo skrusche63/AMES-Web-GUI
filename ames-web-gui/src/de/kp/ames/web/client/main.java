@@ -37,7 +37,7 @@ public class main implements EntryPoint {
 		//MainController.getInstance().createWelcome();
 		
 		MainController.getInstance().createViewport();
-		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Bulletin);
+		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Desktop);
 		
 	}
 

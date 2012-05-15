@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.gui.portal;
+package de.kp.ames.web.client.function.gui.portal;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

@@ -2,7 +2,14 @@ package de.kp.ames.web.client.function.gui.scm;
 
 import de.kp.ames.web.client.core.gui.apps.BaseApp;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.client.function.gui.scm.event.ScmEventManager;
 
+/**
+ * ScmSysImpl is a web application that provides access
+ * to the source code of the AMES project; this class
+ * manages all the eventa that are ncessary to communicate
+ * between the different application components
+ */
 public class ScmSysImpl extends BaseApp {
 
 	private ExplorerImpl explorer;
@@ -36,6 +43,25 @@ public class ScmSysImpl extends BaseApp {
 		 * Set members to SCMSys
 		 */
 		this.setContent(explorer, module);
+
+		/*
+		 * Register module as Explorer Listener
+		 */
+		ScmEventManager.getInstance().addExplorerListener(module);
+
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.gui.apps.BaseApp#beforeRemove()
+	 */
+	public void beforeRemove() {
+		
+		/*
+		 * The module part is an ExplorerListener and
+		 * must be removed from the respective event
+		 * manager
+		 */
+		ScmEventManager.getInstance().removeExplorerListener(module);
 		
 	}
 	
@@ -57,4 +83,5 @@ public class ScmSysImpl extends BaseApp {
 		return new ModuleImpl();
 	}
 
+	
 }

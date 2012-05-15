@@ -27,7 +27,7 @@ import de.kp.ames.web.client.core.globals.CoreAttributes;
 import de.kp.ames.web.client.core.gui.base.ControlLabel;
 import de.kp.ames.web.client.core.gui.control.AppController;
 import de.kp.ames.web.client.core.gui.control.MainController;
-import de.kp.ames.web.client.core.gui.portal.PortletConfig;
+import de.kp.ames.web.client.function.gui.portal.PortletConfig;
 
 public class RegisteredPortlets {
 

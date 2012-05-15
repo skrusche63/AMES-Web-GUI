@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.service;
+package de.kp.ames.web.client.function.gui.scm.event;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -17,27 +17,10 @@ package de.kp.ames.web.client.core.service;
  *	along with this software. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import com.smartgwt.client.widgets.tree.TreeNode;
 
-import java.util.HashMap;
+public interface ExplorerListener {
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-
-public class LoginService extends ServiceImpl {
-
-	public LoginService() {
-		super(CoreGlobals.REG_URL, CoreGlobals.SECURITY_SERVICE_ID);
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.service.ServiceImpl#getHeaders()
-	 */
-	public HashMap<String,String> getHeaders() {
-		
-		HashMap<String,String> headers = new HashMap<String,String>();
-		
-		headers.put("Content-Type", "application/x-www-form-urlencoded");
-		return headers;
-
-	}
+	public void onModuleSelected(TreeNode module);
 	
 }

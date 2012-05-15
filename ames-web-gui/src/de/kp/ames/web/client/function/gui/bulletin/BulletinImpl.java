@@ -19,6 +19,7 @@ package de.kp.ames.web.client.function.gui.bulletin;
  */
 
 import de.kp.ames.web.client.core.gui.apps.BaseApp;
+import de.kp.ames.web.client.function.gui.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 
 public class BulletinImpl extends BaseApp {
@@ -29,6 +30,9 @@ public class BulletinImpl extends BaseApp {
 	public BulletinImpl() {
 		super(FncGlobals.BULLETIN_TITLE, FncGlobals.BULLETIN_SLOGAN);
 		
+		/*
+		 * Dimensions
+		 */
 		this.setWidth100();
 		this.setHeight100();
 		
@@ -40,8 +44,7 @@ public class BulletinImpl extends BaseApp {
 		
 		/*
 		 * Set Dimensions and splitter
-		 */
-		
+		 */		
 		contacts.setWidth("25%");
 		board.setWidth("75%");
 		
@@ -55,8 +58,27 @@ public class BulletinImpl extends BaseApp {
 		 */
 		this.setContent(contacts, board);
 		
+		/*
+		 * Register board as contact listener
+		 */
+		BulletinEventManager.getInstance().addContactListener(board);
+		
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.gui.apps.BaseApp#beforeRemove()
+	 */
+	public void beforeRemove() {
+		
+		/*
+		 * The board part is a ContactListener and
+		 * must be removed from the respective event
+		 * manager
+		 */
+		BulletinEventManager.getInstance().removeContactListener(board);
+		
+	}
+
 	/**
 	 * Create contact part of bulletin board
 	 * 

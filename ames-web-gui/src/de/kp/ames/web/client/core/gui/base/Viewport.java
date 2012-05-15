@@ -29,6 +29,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
+import de.kp.ames.web.client.core.gui.apps.RegisteredHelp;
 import de.kp.ames.web.client.core.gui.apps.RegisteredPortlets;
 import de.kp.ames.web.client.core.gui.control.MainController;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
@@ -57,6 +58,7 @@ public class Viewport extends VLayout {
 	public Viewport() {
 
 		this.setShowEdges(false);
+		this.setStyleName(GUIStyles.X_BD_STYLE_0);
 		
 		this.setWidth100();
 		this.setHeight100();
@@ -280,7 +282,23 @@ public class Viewport extends VLayout {
 		
 	}
 	
+	/**
+	 * A helper method to create the help menu items
+	 * 
+	 * @param e
+	 */
 	private void doHelp(ClickEvent e) {
+
+		help.setSelected(true);
+
+		int x = help.getAbsoluteLeft();
+		int y = help.getAbsoluteTop() + TOP_HEIGHT - 1;
+		
+		Menu menu = help.getMenu();
+		menu.setItems(RegisteredHelp.getAsItems(help));
+		
+		menu.moveTo(x, y);		
+		menu.draw();
 		
 	}
 	

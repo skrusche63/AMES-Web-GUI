@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.gui.scm;
+package de.kp.ames.web.client.function.gui.portal;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,34 +18,31 @@ package de.kp.ames.web.client.function.gui.scm;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
-
-import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import com.google.gwt.json.client.JSONObject;
 
 /**
- * ExplorerImpl supports a tree-based access to hierarchically
- * organized ExternalLinks; each ExternalLink instance represents
- * a source code module managed through Git
+ * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
+ *
  */
-public class ExplorerImpl extends VLayout {
 
-	private ExplorerTree tree;
-	public ExplorerImpl() {
+public class PortletConfig extends JSONObject {
+	
+	/*
+	 * A Portlet is described by a JSON object; this object has
+	 * a set of predefined parameters that 
+	 */
+	public static String PORTLET_ID    = "id";
+	public static String PORTLET_TITLE = "title";
 
-		/*
-		 * Dimensions
-		 */
-		this.setWidth100();
-		this.setHeight100();
-
-		this.setTitle(FncGlobals.SCM_EXPLORER);
-		
-		/*
-		 * Member
-		 */
-		tree = new ExplorerTree();
-		this.setMembers(tree);
-		
+	public PortletConfig() {	
 	}
-
+	
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getStringValue(String key) {
+		return this.get(key).isString().stringValue();
+	}
+	
 }

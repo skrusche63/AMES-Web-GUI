@@ -40,12 +40,14 @@ import de.kp.ames.web.client.core.gui.apps.RegisteredPortlets;
 import de.kp.ames.web.client.core.gui.base.Viewport;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.core.gui.handler.ISearch;
-import de.kp.ames.web.client.core.gui.portal.PortalImpl;
-import de.kp.ames.web.client.core.gui.portal.PortletConfig;
 import de.kp.ames.web.client.core.gui.search.SearchWidget;
 import de.kp.ames.web.client.function.gui.bulletin.BulletinImpl;
+import de.kp.ames.web.client.function.gui.desktop.DesktopImpl;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.client.function.gui.help.HelpImpl;
 import de.kp.ames.web.client.function.gui.login.LoginDialog;
+import de.kp.ames.web.client.function.gui.portal.PortalImpl;
+import de.kp.ames.web.client.function.gui.portal.PortletConfig;
 import de.kp.ames.web.client.function.gui.scm.ScmSysImpl;
 
 /**
@@ -61,6 +63,11 @@ public class MainController {
 	 */
 	private VLayout container;
 	private Viewport viewport;
+	
+	/*
+	 * Reference to the selected application
+	 */
+	private BaseApp selectedApp;
 	
 	/*
 	 * Reference to the SearchWidget
@@ -117,34 +124,14 @@ public class MainController {
 				viewport.setUser(UserController.getInstance().getUserName());	
 				
 				/*
-				 * Create portal application as initial
+				 * Create desktop application as initial
 				 * viewport to enable the user to select
 				 * specific apps
 				 */
-				createPortalApp();
+				createApp(FncGlobals.FNC_APP_ID_Desktop);
 				
 			}
 		});
-		
-	}
-	
-	/**
-	 * A helper method to append the Portal application
-	 * to the viewport
-	 */
-	public void createPortalApp() {
-		
-		/* 
-		 * Retrieve registered portlets
-		 * for the caller's user
-		 */
-		ArrayList<PortletConfig> portletConfigs = RegisteredPortlets.getAsPortlets();
-		PortalImpl app = new PortalImpl(4, portletConfigs);
-		
-		/*
-		 * Append portal application
-		 */
-		appendApp(app);
 		
 	}
 	
@@ -162,7 +149,20 @@ public class MainController {
 		BaseApp app = null;		
 		if (profile.equals(FncGlobals.FNC_APP_ID_Bulletin)) {
 			app = new BulletinImpl();
+
+		} else if (profile.equals(FncGlobals.FNC_APP_ID_Desktop)) {
+			app = new DesktopImpl();
 		
+		} else if (profile.equals(FncGlobals.FNC_APP_ID_Help)) {
+			app = new HelpImpl();
+
+		} else if (profile.equals(FncGlobals.FNC_APP_ID_Portal)) {
+			/* 
+			 * Retrieve registered portlets for the caller's user
+			 */
+			ArrayList<PortletConfig> portletConfigs = RegisteredPortlets.getAsPortlets();
+			app = new PortalImpl(4, portletConfigs);
+
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_ScmSys)) {
 			app = new ScmSysImpl();
 			
@@ -173,7 +173,7 @@ public class MainController {
 		/*
 		 * Append selected app
 		 */
-		appendApp(app);
+		replaceApp(app);
 		
 	}
 	
@@ -224,28 +224,40 @@ public class MainController {
 	}
 
 	/**
-	 * A helper method to append a selected app
-	 * to the main application container
+	 * A helper method to replace the actual
+	 * app with a new app
 	 * 
-	 * @param app
+	 * @param newApp
 	 */
-	public void appendApp(BaseApp app) {
+	public void replaceApp(BaseApp newApp) {
 
 		/*
-		 * Remove existing application 
-		 * from viewport
+		 * Remove existing application from viewport;
+		 * take into account that apps are always
+		 * wrapped by vertical layouts
 		 */
+		
+		/*
+		 * Call application specific functionality
+		 * before it is removed from the viewport
+		 */
+		if (selectedApp != null) selectedApp.beforeRemove();
 		viewport.removeMember(viewport.getMember(1));
+		
+		/*
+		 * Register new application as selected app
+		 */
+		selectedApp = newApp;
 		
 		/* 
 		 * The wrapper is essential to get the vertical 
 		 * scrollbar right in case of many portlets
 		 */
-		VLayout wrapper = new VLayout();
-		wrapper.setOverflow(Overflow.AUTO);
+		VLayout newWrapper = new VLayout();
+		newWrapper.setOverflow(Overflow.AUTO);
 		
-		wrapper.addMember(app);		
-		viewport.addMember(wrapper);
+		newWrapper.addMember(newApp);		
+		viewport.addMember(newWrapper);
 
 		container.draw();
 

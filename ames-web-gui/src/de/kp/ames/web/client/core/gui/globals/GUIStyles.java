@@ -40,6 +40,7 @@ public class GUIStyles {
 	/*
 	 * CSS Style
 	 */
+	public static String X_BD_STYLE_0 = "x-bd-style-0";
 	public static String X_BD_STYLE_1 = "x-bd-style-1";
 	public static String X_BD_STYLE_2 = "x-bd-style-2";
 	public static String X_BD_STYLE_3 = "x-bd-style-3";
@@ -49,6 +50,7 @@ public class GUIStyles {
 	public static String X_HEADER       = "x-header";
 	public static String X_HEADLINE 	= "x-headline";
 	public static String X_IMAGEHOVER   = "x-imagehover";
+	public static String X_TILE_CELL    = "x-tile-cell";
 	public static String X_TOPLINE      = "x-topline";
 	public static String X_USER         = "x-user";
 

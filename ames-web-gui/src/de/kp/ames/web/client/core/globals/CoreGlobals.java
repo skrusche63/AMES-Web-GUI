@@ -1,7 +1,4 @@
 package de.kp.ames.web.client.core.globals;
-
-import com.google.gwt.user.client.DOM;
-
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,12 +18,16 @@ import com.google.gwt.user.client.DOM;
  *
  */
 
+import com.google.gwt.user.client.DOM;
+
 public class CoreGlobals {
 
+	public static String HISTORY_TOKEN = "historyToken";
+	
 	/*
 	 * Base Url for the AMES Web Service(s)
 	 */
-	public static String BASE_URL = "http://localhost";
+	public static String BASE_URL = "http://localhost:8080";
 
 	/*
 	 * Connection Parameters
@@ -48,17 +49,5 @@ public class CoreGlobals {
 
 	public static String REG_ID  = "urn:de:kp:reg:url";	
 	public static String REG_URL = DOM.getElementById(REG_ID).getAttribute("content");
-
-	/*
-	 * Method
-	 */
-	public static String REGISTER_METHOD = "register";
-	public static String SHOW_METHOD     = "show";
-	
-	/*
-	 * Service identifier
-	 */
-	public static String DISCLAIMER_SERVICE_ID = "disclaimer";
-	public static String SECURITY_SERVICE_ID   = "security";
 
 }

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.service;
+package de.kp.ames.web.client.function.gui.portal;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,24 +18,15 @@ package de.kp.ames.web.client.core.service;
  *
  */
 
-import java.util.HashMap;
+public class PortalConstants {
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-
-public class DisclaimerService extends ServiceImpl {
-
-	public DisclaimerService() {
-		super(CoreGlobals.REG_URL, CoreGlobals.DISCLAIMER_SERVICE_ID);
-	}
+	// LAYOUT
+	public static int DROPLINE_THICKNESS = 4;
+	public static int MEMBERS_MARGIN 	 = 5;
+	public static int MEMBER_TIME    	 = 300;
 	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.service.ServiceImpl#getHeaders()
-	 */
-	public HashMap<String,String> getHeaders() {
-		
-		HashMap<String,String> headers = new HashMap<String,String>();
-		return headers;
-
-	}
-
+	public static String DROPLINE_BACKGROUND = "#708491";
+	public static String PLACEHOLDER_BORDER  = "2px solid #708491";	
+	public static String PORTLET_BACKGROUND  = "#f0f0f0";
+	
 }

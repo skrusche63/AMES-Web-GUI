@@ -33,6 +33,28 @@ public class BaseApp extends VLayout {
 	private BaseHeadline headline;
 	private BaseContent content;
 	
+	/**
+	 * Constructor that does not provide headline
+	 */
+	public BaseApp() {
+
+		content  = new BaseContent();
+		
+		this.setWidth100();
+		this.setHeight100();
+		
+		this.setBackgroundColor("#F2F2F2");
+		
+		this.setMembers(content);
+		
+	}
+	
+	/**
+	 * Constructor that provides a headline
+	 * 
+	 * @param title
+	 * @param slogan
+	 */
 	public BaseApp(String title, String slogan) {		
 		
 		headline = new BaseHeadline(title, slogan);
@@ -47,12 +69,28 @@ public class BaseApp extends VLayout {
 		
 	}
 	
+	/**
+	 * @return
+	 */
 	public BaseContent getContent() {
 		return this.content;
 	}
 
+	/**
+	 * A wrapper method to add members to the content
+	 * 
+	 * @param members
+	 */
 	public void setContent(Canvas...members) {
 		this.content.setMembers(members);
 	}
 
+	/**
+	 * This method must be overridden to provide
+	 * specific functionality before removing an
+	 * application instance
+	 */
+	public void beforeRemove() {
+	}
+	
 }

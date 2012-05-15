@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.gui.portal;
+package de.kp.ames.web.client.function.service;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,31 +18,28 @@ package de.kp.ames.web.client.core.gui.portal;
  *
  */
 
-import com.google.gwt.json.client.JSONObject;
+import java.util.HashMap;
 
-/**
- * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
- *
- */
+import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.service.ServiceImpl;
+import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 
-public class PortletConfig extends JSONObject {
-	
-	/*
-	 * A Portlet is described by a JSON object; this object has
-	 * a set of predefined parameters that 
-	 */
-	public static String PORTLET_ID    = "id";
-	public static String PORTLET_TITLE = "title";
+public class LoginService extends ServiceImpl {
 
-	public PortletConfig() {	
+	public LoginService() {
+		super(CoreGlobals.REG_URL, FncGlobals.SECURITY_SERVICE_ID);
 	}
 	
-	/**
-	 * @param key
-	 * @return
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.ServiceImpl#getHeaders()
 	 */
-	public String getStringValue(String key) {
-		return this.get(key).isString().stringValue();
+	public HashMap<String,String> getHeaders() {
+		
+		HashMap<String,String> headers = new HashMap<String,String>();
+		
+		headers.put("Content-Type", "application/x-www-form-urlencoded");
+		return headers;
+
 	}
 	
 }
