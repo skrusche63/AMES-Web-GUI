@@ -18,11 +18,10 @@ package de.kp.ames.web.client.function.service;
  *
  */
 
+import java.util.HashMap;
+
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.connection.GetJsonCallbackImpl;
-import de.kp.ames.web.client.core.connection.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -33,6 +32,10 @@ public class AccessService extends ServiceImpl {
 		super(CoreGlobals.REG_URL, ServiceConstants.ACCESS_SERVICE_ID);
 	}
 
+	public void doDelete() {
+		// TODO
+	}
+	
 	/**
 	 * A JSON based non-widget GET request
 	 * 
@@ -43,36 +46,15 @@ public class AccessService extends ServiceImpl {
 	 */
 	public void doGet(String format, String type, String item, Activity activity) {
 	
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_GET);
+		HashMap<String,String> attributes = new HashMap<String,String>();
 
-		/*
-		 * Add method parameters and value
-		 */
-		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, format);
-		requestMethod.addAttribute(MethodConstants.ATTR_TYPE,   type);
+		attributes.put(MethodConstants.ATTR_FORMAT, format);
+		attributes.put(MethodConstants.ATTR_TYPE,   type);
 		
-		if (item != null) requestMethod.addAttribute(MethodConstants.ATTR_ITEM, item);
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		
-		GetJsonCallbackImpl callback = new GetJsonCallbackImpl(activity, this);
-		sendGetRequest(requestMethod, callback);
+		doGetJson(attributes, activity);
 		
-	}
-
-	/**
-	 * A JSON based non-widget SUBMIT request
-	 * 
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmit(String data, final Activity activity) {
-
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_SUBMIT);
-
-		SubmitCallbackImpl callback = new SubmitCallbackImpl(activity, this);
-		sendPostRequest(requestMethod, data, callback);
-	
 	}
 
 }

@@ -1,5 +1,4 @@
 package de.kp.ames.web.client.core.method;
-
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -19,10 +18,7 @@ package de.kp.ames.web.client.core.method;
  *
  */
 
-/**
- * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
- *
- */
+import java.util.HashMap;
 
 public interface RequestMethod {
 
@@ -42,6 +38,11 @@ public interface RequestMethod {
 	 * @param value
 	 */
 	public void addAttribute(String key, String value);
+	
+	/**
+	 * @param attributes
+	 */
+	public void setAttributes(HashMap<String, String> attributes);
 	
 	/**
 	 * This method returns a method and its attributes as

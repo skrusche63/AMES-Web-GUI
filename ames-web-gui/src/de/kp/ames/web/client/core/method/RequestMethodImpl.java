@@ -90,7 +90,14 @@ public class RequestMethodImpl implements RequestMethod {
 		}
 		
 		return sb.toString();
-	
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.method.RequestMethod#setAttributes(java.util.HashMap)
+	 */
+	public void setAttributes(HashMap<String, String> attributes) {
+		this.attributes.putAll(attributes);		
 	}
 	
 }

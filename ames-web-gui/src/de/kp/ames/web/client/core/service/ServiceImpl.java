@@ -23,10 +23,15 @@ import java.util.HashMap;
 
 import com.smartgwt.client.util.SC;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.connection.ConnectionCallback;
 import de.kp.ames.web.client.core.connection.ConnectionManager;
+import de.kp.ames.web.client.core.connection.DeleteCallbackImpl;
+import de.kp.ames.web.client.core.connection.GetJsonCallbackImpl;
+import de.kp.ames.web.client.core.connection.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.shared.MethodConstants;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
@@ -81,7 +86,65 @@ public class ServiceImpl implements Service {
 	public void setBase(String base) {
 		this.base = base;
 	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doDelete(java.util.HashMap, java.lang.String, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doDelete(HashMap<String,String> attributes, String data, Activity activity) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_DELETE);
+
+		requestMethod.setAttributes(attributes);
+		
+		DeleteCallbackImpl callback = new DeleteCallbackImpl(activity, this);
+		sendPostRequest(requestMethod, data, callback);
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doGetJson(java.util.HashMap, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doGetJson(HashMap<String,String> attributes, Activity activity) {
 	
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_GET);
+
+		requestMethod.setAttributes(attributes);
+		
+		GetJsonCallbackImpl callback = new GetJsonCallbackImpl(activity, this);
+		sendGetRequest(requestMethod, callback);
+		
+	}
+
+	/**
+	 * A JSON based non-widget SUBMIT request
+	 * 
+	 * @param data
+	 * @param activity
+	 */
+	public void doSubmit(String data, Activity activity) {
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		doSubmit(attributes, data, activity);
+	
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doSubmit(java.util.HashMap, java.lang.String, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doSubmit(HashMap<String,String> attributes, String data, Activity activity) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_SUBMIT);
+
+		requestMethod.setAttributes(attributes);
+		
+		SubmitCallbackImpl callback = new SubmitCallbackImpl(activity, this);
+		sendPostRequest(requestMethod, data, callback);
+
+	}
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#sendGetRequest(de.kp.ames.web.client.core.method.RequestMethodImpl, de.kp.ames.web.client.core.callback.Callback)
 	 */
