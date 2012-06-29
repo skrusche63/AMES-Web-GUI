@@ -24,6 +24,7 @@ import java.util.HashMap;
 import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.connection.ApplyCallbackImpl;
 import de.kp.ames.web.client.core.connection.ConnectionCallback;
 import de.kp.ames.web.client.core.connection.ConnectionManager;
 import de.kp.ames.web.client.core.connection.DeleteCallbackImpl;
@@ -85,6 +86,36 @@ public class ServiceImpl implements Service {
 	 */
 	public void setBase(String base) {
 		this.base = base;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doApply(java.util.HashMap, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doApply(HashMap<String,String> attributes, Activity activity) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_APPLY);
+
+		requestMethod.setAttributes(attributes);
+		
+		ApplyCallbackImpl callback = new ApplyCallbackImpl(activity, this);
+		sendGetRequest(requestMethod, callback);
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doApply(java.util.HashMap, java.lang.String, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doApply(HashMap<String,String> attributes, String data, Activity activity) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_APPLY);
+
+		requestMethod.setAttributes(attributes);
+		
+		ApplyCallbackImpl callback = new ApplyCallbackImpl(activity, this);
+		sendPostRequest(requestMethod, data, callback);
+
 	}
 
 	/* (non-Javadoc)

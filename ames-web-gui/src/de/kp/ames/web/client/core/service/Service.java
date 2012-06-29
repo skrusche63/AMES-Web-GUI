@@ -45,6 +45,23 @@ public interface Service {
 	public void setBase(String base);
 
 	/**
+	 * APPLY request
+	 * 
+	 * @param attributes
+	 * @param activity
+	 */
+	public void doApply(HashMap<String,String> attributes, Activity activity);
+
+	/**
+	 * APPLY request
+	 * 
+	 * @param attributes
+	 * @param data
+	 * @param activity
+	 */
+	public void doApply(HashMap<String,String> attributes, String data, Activity activity);
+
+	/**
 	 * A JSON based non-widget GET request
 	 * 
 	 * @param attributes
