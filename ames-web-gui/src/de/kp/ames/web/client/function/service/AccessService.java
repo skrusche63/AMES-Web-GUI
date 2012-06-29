@@ -31,10 +31,6 @@ public class AccessService extends ServiceImpl {
 	public AccessService() {
 		super(CoreGlobals.REG_URL, ServiceConstants.ACCESS_SERVICE_ID);
 	}
-
-	public void doDelete() {
-		// TODO
-	}
 	
 	/**
 	 * A JSON based non-widget GET request

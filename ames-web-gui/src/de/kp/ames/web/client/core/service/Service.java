@@ -62,6 +62,14 @@ public interface Service {
 	public void doApply(HashMap<String,String> attributes, String data, Activity activity);
 
 	/**
+	 * EXTRACT request
+	 * 
+	 * @param attributes
+	 * @param activity
+	 */
+	public void doExtract(HashMap<String,String> attributes, Activity activity);
+
+	/**
 	 * A JSON based non-widget GET request
 	 * 
 	 * @param attributes

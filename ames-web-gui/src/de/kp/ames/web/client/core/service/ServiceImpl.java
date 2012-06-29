@@ -1,5 +1,4 @@
 package de.kp.ames.web.client.core.service;
-
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -28,6 +27,7 @@ import de.kp.ames.web.client.core.connection.ApplyCallbackImpl;
 import de.kp.ames.web.client.core.connection.ConnectionCallback;
 import de.kp.ames.web.client.core.connection.ConnectionManager;
 import de.kp.ames.web.client.core.connection.DeleteCallbackImpl;
+import de.kp.ames.web.client.core.connection.ExtractCallbackImpl;
 import de.kp.ames.web.client.core.connection.GetJsonCallbackImpl;
 import de.kp.ames.web.client.core.connection.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
@@ -130,6 +130,21 @@ public class ServiceImpl implements Service {
 		
 		DeleteCallbackImpl callback = new DeleteCallbackImpl(activity, this);
 		sendPostRequest(requestMethod, data, callback);
+
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doExtract(java.util.HashMap, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doExtract(HashMap<String,String> attributes, Activity activity) {
+		
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_EXTRACT);
+
+		requestMethod.setAttributes(attributes);
+		
+		ExtractCallbackImpl callback = new ExtractCallbackImpl(activity, this);
+		sendGetRequest(requestMethod, callback);
 
 	}
 

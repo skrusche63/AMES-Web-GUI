@@ -18,42 +18,39 @@ package de.kp.ames.web.client.function.service;
  *
  */
 
+import java.util.HashMap;
+
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.connection.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
-import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class BulletinService extends ServiceImpl {
 
+	/**
+	 * Constructor
+	 */
 	public BulletinService() {
 		super(CoreGlobals.REG_URL, ServiceConstants.BULLETIN_SERVICE_ID);
 	}
-
-	public void doSubmitComment() {
-		// TODO
-	}
 	
 	/**
-	 * Submit posting method
+	 * SUBMIT request
 	 * 
-	 * @param recipient
+	 * @param type
+	 * @param target
 	 * @param data
 	 * @param activity
 	 */
-	public void doSubmitPosting(String recipient, String data, Activity activity) {
+	public void doSubmit(String type, String target, String data, Activity activity) {
 		
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_SUBMIT);
+		HashMap<String,String> attributes = new HashMap<String,String>();
 		
-		requestMethod.addAttribute(MethodConstants.ATTR_TYPE,   ClassificationConstants.FNC_ID_Posting);
-		requestMethod.addAttribute(MethodConstants.ATTR_TARGET, recipient);
+		attributes.put(MethodConstants.ATTR_TYPE,   type);
+		attributes.put(MethodConstants.ATTR_TARGET, target);
 
-		SubmitCallbackImpl callback = new SubmitCallbackImpl(activity, this);
-		sendPostRequest(requestMethod, data, callback);
+		doSubmit(attributes, data, activity);
 
 	}
 

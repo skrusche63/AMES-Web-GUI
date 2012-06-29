@@ -1,14 +1,27 @@
 package de.kp.ames.web.client.function.service;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONValue;
-
-import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.connection.ConnectionCallback;
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
@@ -16,63 +29,23 @@ import de.kp.ames.web.shared.ServiceConstants;
 
 public class DesktopService extends ServiceImpl {
 
+	/**
+	 * Constructor
+	 */
 	public DesktopService() {
 		super(CoreGlobals.REG_URL, ServiceConstants.SECURITY_SERVICE_ID);
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.service.ServiceImpl#getHeaders()
-	 */
-	public HashMap<String,String> getHeaders() {
-		
-		HashMap<String,String> headers = new HashMap<String,String>();
-		return headers;
-
 	}
 
 	/**
 	 * @param activityCallback
 	 */
-	public void doGetCallersApps(final ActivityImpl activityCallback) {
+	public void doGetCallersApps(Activity activity) {
 
-		/*
-		 * Build request method
-		 */
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_GET);
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_SECURITY_ID_App);
 		
-		requestMethod.addAttribute(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_SECURITY_ID_App);
-
-		/* 
-		 * Send request
-		 */
-		sendGetRequest(requestMethod, new ConnectionCallback() {
-
-			public void onSuccess(String response) {
-				/*
-				 * Invoke activity callback
-				 */
-				JSONValue jValue = JSONParser.parseStrict(response);
-				activityCallback.execute(jValue);
-			}
-
-			public void onError(Throwable throwable) {				
-				doGetFailed();
-			}
-
-			public void onTimeout(String message) {
-				doGetFailed();
-			}
-
-			public void onFailure(String message) {
-				doGetFailed();					
-			}
-			
-		});
+		doGetJson(attributes, activity);
 
 	}
 	
-	private void doGetFailed() {
-		
-	}
 }

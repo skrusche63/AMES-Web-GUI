@@ -20,6 +20,7 @@ package de.kp.ames.web.client.function.gui.bulletin;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
@@ -44,6 +45,7 @@ import de.kp.ames.web.client.function.gui.bulletin.event.PostingListener;
 import de.kp.ames.web.client.function.gui.globals.FncAttrs;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 import de.kp.ames.web.client.function.service.BulletinService;
+import de.kp.ames.web.shared.ClassificationConstants;
 
 /**
  * This class provides a mail-like user interface to send
@@ -171,9 +173,9 @@ public class PostingImpl extends BaseDialog {
 		final PostingImpl self = this;
 
 		BulletinService service = new BulletinService();
-		service.doSubmitPosting(this.recId, jForm.toString(), new ActivityImpl() {
+		service.doSubmit(ClassificationConstants.FNC_ID_Posting, this.recId, jForm.toString(), new ActivityImpl() {
 
-			public void execute() {
+			public void execute(JSONValue jValue) {
 				if (self.listener != null) listener.afterSubmitted(self.recId);
 				self.destroy();
 			}
