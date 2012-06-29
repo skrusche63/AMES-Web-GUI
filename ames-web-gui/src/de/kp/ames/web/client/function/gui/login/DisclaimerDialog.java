@@ -23,17 +23,17 @@ import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
-import de.kp.ames.web.client.core.callback.ActivityCallback;
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.gui.base.BaseDialog;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 
 public class DisclaimerDialog extends BaseDialog {
 
-	private ActivityCallback callback;
+	private Activity callback;
 	private HTMLFlow flow;
 	
-	public DisclaimerDialog(String html, ActivityCallback callback) {
+	public DisclaimerDialog(String html, Activity callback) {
 		super(FncGlobals.DISCLAIMER_TITLE, FncGlobals.DISCLAIMER_SLOGAN);
 		
 		// register callback

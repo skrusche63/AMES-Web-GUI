@@ -41,7 +41,7 @@ public class GUIBaseFactory {
 		 * Headline dimension
 		 */
 		vLayout.setWidth100();
-		vLayout.setHeight(80);
+		vLayout.setHeight(64);
 		
 		vLayout.setMargin(0);
 		

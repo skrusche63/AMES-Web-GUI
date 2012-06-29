@@ -18,7 +18,9 @@ package de.kp.ames.web.client.core.gui.form;
  *
  */
 
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.HTMLPane;
+import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.form.fields.CanvasItem;
 import com.smartgwt.client.widgets.form.fields.PasswordItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
@@ -157,6 +159,35 @@ public class GUIFormFactory {
 
 		textField.setWidth(width);
 		return textField;
+		
+	}
+
+	/**
+	 * A helper method to create a rich text editor
+	 * 
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public static RichTextEditor createScRichTextEditor(int width, int height) {
+		
+		RichTextEditor richTextEditor = new RichTextEditor();
+		
+		/*
+		 * Dimensions
+		 */
+		richTextEditor.setWidth(width);
+		richTextEditor.setHeight(height);
+		
+		/*
+		 * Rendering
+		 */
+	    richTextEditor.setShowEdges(false);  
+
+	    richTextEditor.setOverflow(Overflow.HIDDEN);  
+	    richTextEditor.setCanDragResize(false);  
+		
+		return richTextEditor;
 		
 	}
 

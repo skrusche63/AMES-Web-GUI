@@ -21,8 +21,11 @@ package de.kp.ames.web.client.core.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.callback.ConnectionCallback;
+import com.smartgwt.client.util.SC;
+
+import de.kp.ames.web.client.core.connection.ConnectionCallback;
 import de.kp.ames.web.client.core.connection.ConnectionManager;
+import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 
 /**
@@ -106,9 +109,10 @@ public class ServiceImpl implements Service {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#getHeaders()
 	 */
-	@Override
 	public HashMap<String,String> getHeaders() {
-		return null;
+		
+		HashMap<String,String> headers = new HashMap<String,String>();
+		return headers;
 	}
 	
 	/**
@@ -120,5 +124,14 @@ public class ServiceImpl implements Service {
 		return this.base + "/" + this.sid;
 		
 	}
-	
+
+	/**
+	 * Message box to show the request error failure
+	 * 
+	 * @param message
+	 */
+	public void doRequestError(String message) {
+		SC.say(GUIGlobals.APP_TITLE + ": Request Error", message);		
+	}
+
 }

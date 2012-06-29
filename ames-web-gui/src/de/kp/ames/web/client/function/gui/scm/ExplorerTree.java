@@ -34,7 +34,7 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
 import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 
-import de.kp.ames.web.client.core.globals.CoreAttributes;
+import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.gui.globals.GUIStyles;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
@@ -73,7 +73,7 @@ public class ExplorerTree extends TreeGrid {
         TreeGridField field = new TreeGridField();
         field.setCanFilter(false);
         
-        field.setName(CoreAttributes.RIM_NAME);
+        field.setName(CoreAttrs.RIM_NAME);
         field.setTitle("<b>" + FncGlobals.SCM_EXPLORER + "</b>");
         
         this.setFields(field);
@@ -89,12 +89,12 @@ public class ExplorerTree extends TreeGrid {
         this.setCanSort(false);
 		
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("method", "suggest");
+		params.put(FncGlobals.METHOD, FncGlobals.EXPLORE_METHOD);
 		
 		DataSourceField[] fields = {
-			new DataSourceTextField(CoreAttributes.RIM_ID),
-			new DataSourceTextField(CoreAttributes.RIM_NAME),
-			new DataSourceTextField(CoreAttributes.RIM_URI)
+			new DataSourceTextField(CoreAttrs.RIM_ID),
+			new DataSourceTextField(CoreAttrs.RIM_NAME),
+			new DataSourceTextField(CoreAttrs.RIM_URI)
 		};
 
 		ds = createDS(params, fields);

@@ -28,7 +28,6 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.RequestTimeoutException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
-import de.kp.ames.web.client.core.callback.ConnectionCallback;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 

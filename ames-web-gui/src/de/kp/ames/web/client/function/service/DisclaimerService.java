@@ -18,25 +18,32 @@ package de.kp.ames.web.client.function.service;
  *
  */
 
-import java.util.HashMap;
-
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.connection.GetTextCallbackImpl;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
-import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.ServiceConstants;
 
 public class DisclaimerService extends ServiceImpl {
 
 	public DisclaimerService() {
-		super(CoreGlobals.REG_URL, FncGlobals.DISCLAIMER_SERVICE_ID);
+		super(CoreGlobals.REG_URL, ServiceConstants.DISCLAIMER_SERVICE_ID);
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.service.ServiceImpl#getHeaders()
+
+	/**
+	 * A JSON based non-widget GET request
+	 * 
+	 * @param activity
 	 */
-	public HashMap<String,String> getHeaders() {
+	public void doGetRequest(Activity activity) {
 		
-		HashMap<String,String> headers = new HashMap<String,String>();
-		return headers;
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_GET);
+
+		GetTextCallbackImpl callback = new GetTextCallbackImpl(activity, this);
+		sendGetRequest(requestMethod, callback);
 
 	}
 

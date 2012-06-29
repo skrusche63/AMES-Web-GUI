@@ -64,9 +64,9 @@ public class BulletinEventManager {
 		contactListeners.remove(listener);
 	}
 	
-	public void onModuleSelected() {
+	public void onModuleSelected(String recipient) {
 		for (ContactListener listener:contactListeners) {
-			listener.onContactSelected();
+			listener.onContactSelected(recipient);
 		}
 	}
 	

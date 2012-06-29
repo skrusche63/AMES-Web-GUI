@@ -2,7 +2,7 @@ package de.kp.ames.web.client.core.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.callback.ConnectionCallback;
+import de.kp.ames.web.client.core.connection.ConnectionCallback;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 
 /**
@@ -48,7 +48,14 @@ public interface Service {
 	 * @return
 	 */
 	public HashMap<String,String> getHeaders();
-	
+
+	/**
+	 * Request error handling
+	 * 
+	 * @param message
+	 */
+	public void doRequestError(String message);
+
 	/**
 	 * Send GET request to web service
 	 * @param method

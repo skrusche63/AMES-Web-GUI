@@ -7,11 +7,14 @@ public class FncGlobals {
 	 */
 	public static String FNC_ID = "urn:oasis:names:tc:ebxml-regrep:FNC";
 	
-	public static String FNC_ID_App = FNC_ID + ":App";		
+	public static String FNC_ID_App = FNC_ID   + ":App";	
+	public static String FNC_ID_Field = FNC_ID + ":Field";
+	
 	/*
 	 * Classification of bulletin board
 	 */
 	public static String FNC_APP_ID_Bulletin = FNC_ID_App + ":Bulletin";	
+	public static String FNC_ID_Posting = FNC_ID + ":Posting";
 	/*
 	 * Classification of desktop
 	 */
@@ -24,7 +27,6 @@ public class FncGlobals {
 	 * Classification of portal
 	 */
 	public static String FNC_APP_ID_Portal = FNC_ID_App + ":Portal";
-	
 	/*
 	 * Classification of Source Code Management System
 	 */
@@ -33,8 +35,13 @@ public class FncGlobals {
 	/*
 	 * Method
 	 */
+	public static String METHOD = "method";
+	
+	public static String EXPLORE_METHOD  = "explore";
 	public static String REGISTER_METHOD = "register";
+	public static String SET_METHOD      = "set";
 	public static String SHOW_METHOD     = "show";
+	public static String SUBMIT_METHOD   = "submit";
 	
 	/*
 	 * Service identifier
@@ -42,7 +49,6 @@ public class FncGlobals {
 	public static String BULLETIN_SERVICE_ID   = "bulletin";
 	public static String DISCLAIMER_SERVICE_ID = "disclaimer";
 	public static String SCM_SERVICE_ID        = "scm";
-	public static String SECURITY_SERVICE_ID   = "security";
 
 	/*
 	 * Bulletin Board
@@ -61,7 +67,13 @@ public class FncGlobals {
 	 */
 	public static String DISCLAIMER_TITLE  = "Disclaimer";
 	public static String DISCLAIMER_SLOGAN = "Please read this disclaimer carefully.";
-	
+
+	/*
+	 * Posting
+	 */
+	public static String POSTING_TITLE  = "Posting";
+	public static String POSTING_SLOGAN = "Use this widget to post a certain message.";
+
 	/*
 	 * Source Code Management System
 	 */

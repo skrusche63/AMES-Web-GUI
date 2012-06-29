@@ -34,11 +34,12 @@ public class main implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		//MainController.getInstance().createWelcome();
+		
+		MainController.getInstance().createWelcome();
 		
 		MainController.getInstance().createViewport();
 		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Desktop);
-		
+
 	}
 
 }

@@ -50,4 +50,10 @@ public class CoreGlobals {
 	public static String REG_ID  = "urn:de:kp:reg:url";	
 	public static String REG_URL = DOM.getElementById(REG_ID).getAttribute("content");
 
+	/*
+	 * Property (in index.html) that describes the URL to the WMS Service
+	 */
+	public static String WMS_ID  = "urn:de:kp:wms:url";
+	public static String WMS_URL = DOM.getElementById(WMS_ID).getAttribute("content");
+
 }

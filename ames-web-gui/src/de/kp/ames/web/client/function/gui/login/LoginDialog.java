@@ -19,7 +19,6 @@ package de.kp.ames.web.client.function.gui.login;
  */
 
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 
 import com.smartgwt.client.types.Alignment;
@@ -38,15 +37,12 @@ import com.smartgwt.client.widgets.form.fields.SpacerItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.callback.ActivityCallback;
-import de.kp.ames.web.client.core.callback.ConnectionCallback;
-import de.kp.ames.web.client.core.globals.CoreAttributes;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.gui.base.BaseDialog;
 import de.kp.ames.web.client.core.gui.control.UserController;
 import de.kp.ames.web.client.core.gui.form.GUIFormFactory;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 import de.kp.ames.web.client.function.service.DisclaimerService;
 import de.kp.ames.web.client.function.service.LoginService;
 
@@ -90,20 +86,20 @@ public class LoginDialog extends BaseDialog {
 	private String alias   = null;
 	private String keypass = null;
 
-	private ActivityCallback activityCallback;
+	private ActivityImpl activityCallback;
 	
 	/**
 	 * Constructor requires callback
 	 * 
-	 * @param callback
+	 * @param activityCallbackImpl
 	 */
-	public LoginDialog(ActivityCallback callback) {
+	public LoginDialog(ActivityImpl activityCallback) {
 		super(TITLE, SLOGAN);
 		
 		/*
 		 * Register activity callback
 		 */
-		this.activityCallback = callback;
+		this.activityCallback = activityCallback;
 		
 		this.setTitle(TITLE + ": Login Form");
 		
@@ -135,8 +131,8 @@ public class LoginDialog extends BaseDialog {
 		/*
 		 * Create dynamic form items
 		 */
-		aliasItem   = GUIFormFactory.createScTextItem("Alias:", CoreAttributes.ALIAS, STYLE, 180);
-		keypassItem = GUIFormFactory.createScPasswordItem("Keypass:", CoreAttributes.KEYPASS, STYLE, 180);
+		aliasItem   = GUIFormFactory.createScTextItem("Alias:", CoreAttrs.ALIAS, STYLE, 180);
+		keypassItem = GUIFormFactory.createScPasswordItem("Keypass:", CoreAttrs.KEYPASS, STYLE, 180);
 		
 		/*
 		 * Space for rendering purpose only
@@ -161,6 +157,7 @@ public class LoginDialog extends BaseDialog {
 		});
 
 		return scForm;
+
 	}
 
 	// Dialog::createButtons
@@ -200,8 +197,8 @@ public class LoginDialog extends BaseDialog {
 			
 			String value = val.toString();
 			
-			if (CoreAttributes.ALIAS.equals(key))   alias = value;
-			if (CoreAttributes.KEYPASS.equals(key)) keypass = value;
+			if (CoreAttrs.ALIAS.equals(key))   alias = value;
+			if (CoreAttrs.KEYPASS.equals(key)) keypass = value;
 
 		}
 
@@ -214,54 +211,11 @@ public class LoginDialog extends BaseDialog {
 			
 		}
 		
-		/*
-		 * Login service and register method 
-		 */
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(FncGlobals.REGISTER_METHOD);
-		
-		requestMethod.addAttribute(CoreAttributes.ALIAS,   alias);
-		requestMethod.addAttribute(CoreAttributes.KEYPASS, keypass);
-		
-		LoginService requestService = new LoginService();
-		requestService.sendPostRequest(requestMethod, null, new ConnectionCallback() {
-
-			public void onSuccess(String response) {
-
-				try {
-
-					JSONValue jValue   = JSONParser.parseStrict(response);
-					JSONObject jObject = jValue.isObject();
-					
-					boolean result = jObject.get("result").isBoolean().booleanValue();
-					
-					if (result == true) {
-						doLoginSuccess(jObject);
-						
-					} else {
-						String message = jObject.get("message").isString().stringValue();
-						doLoginFailed(message);					
-					}
-					
-				} catch (NullPointerException e) {
-					doLoginFailed();
-					
-				}
-
+		LoginService service = new LoginService();
+		service.register(alias, keypass, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				doLoginSuccess(jValue.isObject());
 			}
-
-			public void onError(Throwable throwable) {				
-				doLoginFailed();
-			}
-
-			public void onTimeout(String message) {
-				doLoginFailed();
-			}
-
-			public void onFailure(String message) {
-				doLoginFailed();					
-			}
-			
 		});
 
 	}
@@ -315,27 +269,6 @@ public class LoginDialog extends BaseDialog {
 	}
 	
 	/**
-	 * Action due to login failure
-	 */
-	private void doLoginFailed() {
-		
-		resetIndicator();
-
-		String message = "Login failed due to an illegal combination of user name and password.";
-		doLoginFailed(message);		
-	
-	}
-
-	/**
-	 * Message box to show the login failure
-	 * 
-	 * @param message
-	 */
-	private void doLoginFailed(String message) {
-		SC.say(TITLE + ": Login failed", message);		
-	}
-
-	/**
 	 * Message box to show missing parameters
 	 * 
 	 * @param message
@@ -348,19 +281,14 @@ public class LoginDialog extends BaseDialog {
 		
 		final LoginDialog self = this;
 
-		/*
-		 * Disclaimer service and show method 
-		 */
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(FncGlobals.SHOW_METHOD);
-
-		DisclaimerService requestService = new DisclaimerService();
-		requestService.sendGetRequest(requestMethod, new ConnectionCallback() {
-
-			public void onSuccess(String response) {
-				new DisclaimerDialog(response, new ActivityCallback() {
-					public void execute() {
-						
+		DisclaimerService service = new DisclaimerService();
+		service.doGetRequest(new ActivityImpl() {
+			public void execute(String response) {
+				/*
+				 * Show Disclaimer dialog
+				 */
+				new DisclaimerDialog(response, new ActivityImpl() {
+					public void execute() {						
 						/* 
 						 * Close login window
 						 */
@@ -373,20 +301,8 @@ public class LoginDialog extends BaseDialog {
 						
 					}
 				});
+				
 			}
-
-			public void onError(Throwable throwable) {
-				doLoginFailed();
-			}
-
-			public void onTimeout(String message) {
-				doLoginFailed();
-			}
-
-			public void onFailure(String message) {
-				doLoginFailed();
-			}
-			
 		});
 		
 	}

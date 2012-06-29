@@ -22,17 +22,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.callback.ActivityCallback;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.gui.apps.BaseApp;
 import de.kp.ames.web.client.core.gui.apps.KPApplication;
@@ -49,6 +52,7 @@ import de.kp.ames.web.client.function.gui.login.LoginDialog;
 import de.kp.ames.web.client.function.gui.portal.PortalImpl;
 import de.kp.ames.web.client.function.gui.portal.PortletConfig;
 import de.kp.ames.web.client.function.gui.scm.ScmSysImpl;
+import de.kp.ames.web.client.function.service.DesktopService;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
@@ -115,7 +119,7 @@ public class MainController {
 		 * Show Login Dialog: this dialog is used to
 		 * retrieve additional user credentials
 		 */
-		new LoginDialog(new ActivityCallback() {
+		new LoginDialog(new ActivityImpl() {
 			public void execute() {				
 				/* 
 				 * Add the user to main topline, and 
@@ -151,7 +155,11 @@ public class MainController {
 			app = new BulletinImpl();
 
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_Desktop)) {
-			app = new DesktopImpl();
+			/*
+			 * Create Web Desktop
+			 */
+			createDesktop();
+			return;
 		
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_Help)) {
 			app = new HelpImpl();
@@ -198,6 +206,26 @@ public class MainController {
 		container.draw();
 
 		
+	}
+	
+	/**
+	 * A helper method to create a web desktop
+	 * from the registered apps of the callers 
+	 * user
+	 */
+	private void createDesktop() {
+
+		DesktopService service = new DesktopService();
+
+		service.doGetCallersApps(new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				
+				JSONArray jArray = jValue.isArray();
+				replaceApp(new DesktopImpl(jArray));
+
+			}
+		});
+
 	}
 	
 	/**

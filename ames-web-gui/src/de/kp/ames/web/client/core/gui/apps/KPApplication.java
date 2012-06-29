@@ -6,7 +6,7 @@ import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.CoreAttributes;
+import de.kp.ames.web.client.core.globals.CoreAttrs;
 
 public class KPApplication extends VLayout {
 	
@@ -21,8 +21,8 @@ public class KPApplication extends VLayout {
 		
 		// TITLE ************************************************************
 		
-		String name = jApp.get(CoreAttributes.RIM_NAME).isString().stringValue();
-		String uri  = jApp.get(CoreAttributes.RIM_URI).isString().stringValue();
+		String name = jApp.get(CoreAttrs.RIM_NAME).isString().stringValue();
+		String uri  = jApp.get(CoreAttrs.RIM_URI).isString().stringValue();
 		
 	    Label title = new Label(name);
 	    title.setStyleName("x-app-title");

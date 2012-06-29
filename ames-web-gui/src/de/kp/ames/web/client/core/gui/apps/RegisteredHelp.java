@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
-import de.kp.ames.web.client.core.globals.CoreAttributes;
+import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.gui.base.ControlLabel;
 import de.kp.ames.web.client.core.gui.control.AppController;
 import de.kp.ames.web.client.core.gui.control.MainController;
@@ -25,7 +25,7 @@ public class RegisteredHelp {
 		for (int i=0; i < portlets.size(); i++) {
 			
 			final PortletConfig portlet = portlets.get(i);
-			MenuItem item = new MenuItem(portlet.getStringValue(CoreAttributes.RIM_NAME));		
+			MenuItem item = new MenuItem(portlet.getStringValue(CoreAttrs.RIM_NAME));		
 			
 			item.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 				public void onClick(MenuItemClickEvent event) {
@@ -37,7 +37,7 @@ public class RegisteredHelp {
 					/*
 					 * Invoke main controller to create the app
 					 */ 
-					MainController.getInstance().createApp(portlet.getStringValue(CoreAttributes.RIM_ID));
+					MainController.getInstance().createApp(portlet.getStringValue(CoreAttrs.RIM_ID));
 					
 				}				
 			});

@@ -34,6 +34,7 @@ import de.kp.ames.web.client.core.gui.apps.RegisteredPortlets;
 import de.kp.ames.web.client.core.gui.control.MainController;
 import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
 import de.kp.ames.web.client.core.gui.globals.GUIStyles;
+import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 
 public class Viewport extends VLayout {
 	
@@ -302,8 +303,13 @@ public class Viewport extends VLayout {
 		
 	}
 	
+	/**
+	 * Reload desktop 
+	 * 
+	 * @param e
+	 */
 	private void doLogo(ClickEvent e) {
-		
+		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Desktop);		
 	}
 	
 	private void doSearch(ClickEvent e) {

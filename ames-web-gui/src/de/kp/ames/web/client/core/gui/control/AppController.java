@@ -3,14 +3,14 @@ package de.kp.ames.web.client.core.gui.control;
 import java.util.ArrayList;
 
 import com.google.gwt.json.client.JSONString;
-import de.kp.ames.web.client.core.globals.CoreAttributes;
+import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
 import de.kp.ames.web.client.function.gui.portal.PortletConfig;
 
 public class AppController {
 
-	private static String ID   = CoreAttributes.RIM_ID;
-	private static String NAME = CoreAttributes.RIM_NAME;
+	private static String ID   = CoreAttrs.RIM_ID;
+	private static String NAME = CoreAttrs.RIM_NAME;
 	
 	private static AppController instance = new AppController();
 	private AppController() {}

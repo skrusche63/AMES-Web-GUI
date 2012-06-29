@@ -30,12 +30,17 @@ public class GUIStyles {
 	public static String TOP_BG_COLOR = "#708491";
 	
 	public static String DIA_BG_COLOR = "#F0F0F0";
+	/*
+	 * The background color for the openlayers based map
+	 * is adapted from Google Map's stylesheet
+	 */
+	public static String GOOLGE_MAP_COLOR = "#F2EFE9";
 
 	
 	/*
 	 * Border
 	 */
-	public static String APP_BORDER = "1px solid aaaaaa";
+	public static String APP_BORDER = "1px solid #c0c0c0;";
 
 	/*
 	 * CSS Style

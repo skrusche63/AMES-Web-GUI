@@ -20,14 +20,24 @@ package de.kp.ames.web.client.function.service;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
+
+import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.connection.ConnectionCallback;
+import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.gui.base.ActionIndicator;
+import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.shared.ServiceConstants;
 
 public class LoginService extends ServiceImpl {
 
 	public LoginService() {
-		super(CoreGlobals.REG_URL, FncGlobals.SECURITY_SERVICE_ID);
+		super(CoreGlobals.REG_URL, ServiceConstants.SECURITY_SERVICE_ID);
 	}
 	
 	/* (non-Javadoc)
@@ -42,4 +52,75 @@ public class LoginService extends ServiceImpl {
 
 	}
 	
+	/**
+	 * Register method
+	 * 
+	 * @param alias
+	 * @param keypass
+	 * @param activityCallback
+	 */
+	public void register(final String alias, final String keypass, final ActivityImpl activityCallback) {
+		
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(FncGlobals.REGISTER_METHOD);
+		
+		requestMethod.addAttribute(CoreAttrs.ALIAS,   alias);
+		requestMethod.addAttribute(CoreAttrs.KEYPASS, keypass);
+		
+		sendPostRequest(requestMethod, null, new ConnectionCallback() {
+
+			public void onSuccess(String response) {
+
+				try {
+
+					JSONValue jValue = JSONParser.parseStrict(response);
+					JSONObject jObject = jValue.isObject();
+					
+					boolean result = jObject.get("result").isBoolean().booleanValue();
+					
+					if (result == true) {
+						activityCallback.execute(jObject);
+						
+					} else {
+						String message = jObject.get("message").isString().stringValue();
+						doRequestError(message);					
+					}
+					
+				} catch (NullPointerException e) {
+					doLoginFailed();
+					
+				}
+
+			}
+
+			public void onError(Throwable throwable) {				
+				doLoginFailed();
+			}
+
+			public void onTimeout(String message) {
+				doLoginFailed();
+			}
+
+			public void onFailure(String message) {
+				doLoginFailed();					
+			}
+			
+		});
+
+	}
+	
+	/**
+	 * Action due to login failure
+	 */
+	private void doLoginFailed() {
+		/*
+		 * Reset any action indicator
+		 */
+		ActionIndicator.getInstance().reset();	
+
+		String message = "Login failed due to an illegal combination of user name and password.";
+		doRequestError(message);		
+	
+	}
+
 }
