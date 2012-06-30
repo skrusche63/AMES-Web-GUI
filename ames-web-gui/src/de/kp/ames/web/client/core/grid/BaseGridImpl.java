@@ -145,6 +145,17 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 	}
 
 	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.BaseGrid#createFields()
+	 */
+	public DataSourceField[] createFields() {
+		/*
+		 * Must be overridden
+		 */
+		return null;
+		
+	}
+
+	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.BaseGrid#createMethod(java.util.HashMap)
 	 */
 	public RequestMethod createMethod(HashMap<String,String> attributes) {
@@ -157,6 +168,32 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.BaseGrid#createScGridDS()
+	 */
+	public void createScGridDS(HashMap<String,String> attributes) {
+		/*
+		 * Retrieve request url
+		 */
+		String requestUrl = getRequestUrl();
+		
+		/*
+		 * Retrieve request method
+		 */
+		RequestMethod requestMethod = createMethod(attributes);
+		
+		/*
+		 * Retrieve request fields
+		 */
+		DataSourceField[] requestFields = createFields();
+		
+		/*
+		 * Finally create data source
+		 */
+		createScGridDS(requestUrl, requestMethod, requestFields);
+		
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.gui.grid.BaseGrid#createScGridDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, com.smartgwt.client.data.DataSourceField[])
 	 */

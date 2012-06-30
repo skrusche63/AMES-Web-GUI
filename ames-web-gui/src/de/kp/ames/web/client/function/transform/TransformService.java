@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.transform;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -26,54 +26,55 @@ import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class RuleService extends ServiceImpl {
+public class TransformService extends ServiceImpl {
 
 	/**
 	 * Constructor
 	 */
-	public RuleService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.RULE_SERVICE_ID);
+	public TransformService() {
+		super(CoreGlobals.REG_URL, ServiceConstants.TRANSFORM_SERVICE_ID);
 	}
 
 	/**
 	 * A JSON based non-widget APPLY request
 	 * 
 	 * @param source
+	 * @param target
 	 * @param service
-	 * @param data
 	 * @param activity
 	 */
-	public void doApply(String source, String service, String data, Activity activity) {
+	public void doApply(String source, String service, String target, Activity activity) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		
 		attributes.put(MethodConstants.ATTR_SOURCE, source);
+		attributes.put(MethodConstants.ATTR_TARGET, target);
+		
 		attributes.put(MethodConstants.ATTR_SERVICE, service);
-
-		doApply(attributes, data, activity);
-
+		
+		doApply(attributes, activity);
+	
 	}
-
+	
 	/**
 	 * A JSON based non-widget GET request
 	 * 
 	 * @param format
 	 * @param type
-	 * @param item
+	 * @param source
 	 * @param activity
 	 */
 	public void doGet(String format, String type, String item, Activity activity) {
-	
+
 		HashMap<String,String> attributes = new HashMap<String,String>();
 
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
 		attributes.put(MethodConstants.ATTR_TYPE,   type);
 		
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-		
+
 		doGetJson(attributes, activity);
 		
 	}
-	
-}
 
+}

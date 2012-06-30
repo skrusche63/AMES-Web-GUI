@@ -27,6 +27,18 @@ import de.kp.ames.web.client.core.method.RequestMethod;
 public interface BaseGrid {
 
 	/**
+	 * @return
+	 */
+	public DataSourceField[] createFields();
+
+	/**
+	 * Create Data source
+	 * 
+	 * @param attributes
+	 */
+	public void createScGridDS(HashMap<String,String> attributes);
+
+	/**
 	 * @param url
 	 * @param method
 	 * @param fields
