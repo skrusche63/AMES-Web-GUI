@@ -27,6 +27,7 @@ import com.smartgwt.client.types.DSProtocol;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 
+import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 
 public class BaseTreeImpl extends TreeGrid implements BaseTree {
@@ -34,6 +35,18 @@ public class BaseTreeImpl extends TreeGrid implements BaseTree {
 	 * Reference to DataSource
 	 */
 	protected RestDataSource dataSource;
+
+	/*
+	 * The base url necessary to invoke the
+	 * web service that refers to this service
+	 */
+	
+	protected String base;
+	
+	/*
+	 * The unique service identifier
+	 */
+	protected String sid;
 
 	/*
 	 * Field
@@ -45,7 +58,28 @@ public class BaseTreeImpl extends TreeGrid implements BaseTree {
 	 */
 	protected String BASE_STYLE = "noBorderCell";
 
-	public BaseTreeImpl() {
+	/**
+	 * Constructor
+	 * 
+	 * @param sid
+	 */
+	public BaseTreeImpl(String sid) {
+		this(CoreGlobals.REG_URL, sid);
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param base
+	 * @param sid
+	 */
+	public BaseTreeImpl(String base, String sid) {
+
+		/*
+		 * Register basic connection parameters
+		 */
+		this.base = base;
+		this.sid  = sid;
 
 		/*
 		 * Borders
@@ -77,11 +111,21 @@ public class BaseTreeImpl extends TreeGrid implements BaseTree {
 	    this.setClosedIconSuffix(""); 
 		
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.BaseTree#createScTreeDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, com.smartgwt.client.data.DataSourceField[])
+	 * @see de.kp.ames.web.client.core.tree.BaseTree#getRequestUrl()
 	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final DataSourceField[] fields) {
+	public String getRequestUrl() {
+		
+		if ((this.sid == null) || (this.base == null)) return null;
+		return this.base + "/" + this.sid;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.BaseTree#createScTreeDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, java.lang.String, com.smartgwt.client.data.DataSourceField[])
+	 */
+	public void createScTreeDS(final String url, final RequestMethod method, final String title, final DataSourceField[] fields) {
 		
 		dataSource = new RestDataSource() {
 			  
@@ -100,7 +144,9 @@ public class BaseTreeImpl extends TreeGrid implements BaseTree {
 		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
 		
 		dataSource.setFetchDataURL(url);		
+		
 		dataSource.setFields(fields);
+		dataSource.setTitleField(title);
 		
 	}
 

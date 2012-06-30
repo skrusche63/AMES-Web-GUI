@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.tree;
+package de.kp.ames.web.client.core.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,23 +18,30 @@ package de.kp.ames.web.client.core.tree;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.method.RequestMethod;
 
-public interface BaseTree {
+public interface BaseGrid {
 
 	/**
 	 * @param url
 	 * @param method
-	 * @param title
 	 * @param fields
 	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final String title, final DataSourceField[] fields);
+	public void createScGridDS(final String url, final RequestMethod method, final DataSourceField[] fields);
 
 	/**
 	 * @return
 	 */
 	public String getRequestUrl();
 
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	public RequestMethod createMethod(HashMap<String,String> attributes);
+	
 }

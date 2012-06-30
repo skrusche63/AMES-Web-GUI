@@ -18,23 +18,24 @@ package de.kp.ames.web.client.core.tree;
  *
  */
 
-import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.types.SelectionAppearance;
+import com.smartgwt.client.widgets.tree.TreeGridField;
 
-import de.kp.ames.web.client.core.method.RequestMethod;
+public class CheckTreeImpl extends BaseTreeImpl {
+	
+	public CheckTreeImpl(String base, String sid) {
+		super(base, sid);
 
-public interface BaseTree {
-
-	/**
-	 * @param url
-	 * @param method
-	 * @param title
-	 * @param fields
-	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final String title, final DataSourceField[] fields);
-
-	/**
-	 * @return
-	 */
-	public String getRequestUrl();
+		/*
+		 * Checkbox appearance
+		 */
+		this.setSelectionAppearance(SelectionAppearance.CHECKBOX); 
+		
+	    /*
+	     * Set title field
+	     */
+	    this.setFields(new TreeGridField(TITLE)); 
+	 	    
+	}
 
 }

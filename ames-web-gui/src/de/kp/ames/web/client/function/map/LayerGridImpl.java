@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.tree;
+package de.kp.ames.web.client.function.map;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,24 +18,17 @@ package de.kp.ames.web.client.core.tree;
  *
  */
 
-import com.smartgwt.client.types.SelectionAppearance;
-import com.smartgwt.client.widgets.tree.TreeGridField;
+import de.kp.ames.web.client.core.grid.BaseGridImpl;
 
-public class CheckTree extends BaseTreeImpl {
-	
-	public CheckTree() {
-		super();
+public class LayerGridImpl extends BaseGridImpl {
 
-		/*
-		 * Checkbox appearance
-		 */
-		this.setSelectionAppearance(SelectionAppearance.CHECKBOX); 
-		
-	    /*
-	     * Set title field
-	     */
-	    this.setFields(new TreeGridField(TITLE)); 
-	 	    
+	public LayerGridImpl(String sid) {
+		super(sid);
 	}
+	/**
+	 * This class supports the retrieval 
+	 * and selection of WMS-based layers
+	 */
+	
 
 }
