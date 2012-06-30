@@ -19,6 +19,7 @@ package de.kp.ames.web.client.core.method;
  */
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -98,6 +99,19 @@ public class RequestMethodImpl implements RequestMethod {
 	 */
 	public void setAttributes(HashMap<String, String> attributes) {
 		this.attributes.putAll(attributes);		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.method.RequestMethod#toParams()
+	 */
+	public Map<String,String> toParams() {
+		
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("method", this.name);
+		
+		params.putAll(this.attributes);
+		return params;
+		
 	}
 	
 }

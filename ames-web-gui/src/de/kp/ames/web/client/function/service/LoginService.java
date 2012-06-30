@@ -25,13 +25,13 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.connection.ConnectionCallback;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.gui.base.ActionIndicator;
+import de.kp.ames.web.client.core.http.ConnectionCallback;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
-import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.client.core.widget.base.ActionIndicator;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class LoginService extends ServiceImpl {

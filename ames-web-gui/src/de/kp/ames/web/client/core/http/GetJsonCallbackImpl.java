@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.core.http;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,39 +18,41 @@ package de.kp.ames.web.client.function.service;
  *
  */
 
-import java.util.HashMap;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONValue;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.service.ServiceImpl;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.client.core.service.Service;
 
-public class MapService extends ServiceImpl {
-
+public class GetJsonCallbackImpl extends GetCallbackImpl {
+	
 	/**
 	 * Constructor
-	 */
-	public MapService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.MAP_SERVICE_ID);
-	}
-
-	/**
-	 * A JSON based non-widget GET request
 	 * 
-	 * @param type
-	 * @param source
 	 * @param activity
+	 * @param service
 	 */
-	public void doGet(String type, String source, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		
-		attributes.put(MethodConstants.ATTR_TYPE,   type);		
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
-
-		doGetJson(attributes, activity);
-		
+	public GetJsonCallbackImpl(Activity activity, Service service) {
+		super(activity, service);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.callback.ConnectionCallback#onSuccess(java.lang.String)
+	 */
+	public void onSuccess(String response) {
+
+		try {
+			/*
+			 * JSON response
+			 */
+			JSONValue jValue = JSONParser.parseStrict(response);
+			this.activity.execute(jValue);
+			
+		} catch (NullPointerException e) {
+			doGetFailure();
+			
+		}
+
+	}
+
 }

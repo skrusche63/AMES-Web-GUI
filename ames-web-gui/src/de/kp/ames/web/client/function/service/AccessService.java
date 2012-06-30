@@ -28,6 +28,9 @@ import de.kp.ames.web.shared.ServiceConstants;
 
 public class AccessService extends ServiceImpl {
 
+	/**
+	 * Constructor
+	 */
 	public AccessService() {
 		super(CoreGlobals.REG_URL, ServiceConstants.ACCESS_SERVICE_ID);
 	}

@@ -3,7 +3,7 @@ package de.kp.ames.web.client.core.service;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.connection.ConnectionCallback;
+import de.kp.ames.web.client.core.http.ConnectionCallback;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 
 /**
@@ -76,6 +76,15 @@ public interface Service {
 	 * @param activity
 	 */
 	public void doGetJson(HashMap<String,String> attributes, Activity activity);
+
+	/**
+	 * DELETE request
+	 * 
+	 * @param attributes
+	 * @param data
+	 * @param activity
+	 */
+	public void doDelete(HashMap<String,String> attributes, Activity activity);
 
 	/**
 	 * DELETE request

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.method;
+package de.kp.ames.web.client.function.portal;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,46 +18,31 @@ package de.kp.ames.web.client.core.method;
  *
  */
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gwt.json.client.JSONObject;
 
-public interface RequestMethod {
+/**
+ * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
+ *
+ */
 
-	/**
-	 * This method returns the name of a method
-	 * @return
-	 */
-	public String getName();
+public class PortletConfig extends JSONObject {
 	
-	/**
-	 * @param name
+	/*
+	 * A Portlet is described by a JSON object; this object has
+	 * a set of predefined parameters that 
 	 */
-	public void setName(String name);
+	public static String PORTLET_ID    = "id";
+	public static String PORTLET_TITLE = "title";
+
+	public PortletConfig() {	
+	}
 	
 	/**
 	 * @param key
-	 * @param value
-	 */
-	public void addAttribute(String key, String value);
-	
-	/**
-	 * @param attributes
-	 */
-	public void setAttributes(HashMap<String, String> attributes);
-	
-	/**
-	 * This method returns a method and its attributes as
-	 * a query for an URI
 	 * @return
 	 */
-	public String toQuery();
-
-	/**
-	 * This method returns a method and its attributes as
-	 * a Map<String,String> of url parameters
-	 * 
-	 * @return
-	 */
-	public Map<String,String> toParams();
+	public String getStringValue(String key) {
+		return this.get(key).isString().stringValue();
+	}
 	
 }

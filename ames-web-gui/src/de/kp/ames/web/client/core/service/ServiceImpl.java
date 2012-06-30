@@ -23,14 +23,14 @@ import java.util.HashMap;
 import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.connection.ApplyCallbackImpl;
-import de.kp.ames.web.client.core.connection.ConnectionCallback;
-import de.kp.ames.web.client.core.connection.ConnectionManager;
-import de.kp.ames.web.client.core.connection.DeleteCallbackImpl;
-import de.kp.ames.web.client.core.connection.ExtractCallbackImpl;
-import de.kp.ames.web.client.core.connection.GetJsonCallbackImpl;
-import de.kp.ames.web.client.core.connection.SubmitCallbackImpl;
-import de.kp.ames.web.client.core.gui.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.http.ApplyCallbackImpl;
+import de.kp.ames.web.client.core.http.ConnectionCallback;
+import de.kp.ames.web.client.core.http.ConnectionManager;
+import de.kp.ames.web.client.core.http.DeleteCallbackImpl;
+import de.kp.ames.web.client.core.http.ExtractCallbackImpl;
+import de.kp.ames.web.client.core.http.GetJsonCallbackImpl;
+import de.kp.ames.web.client.core.http.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -115,6 +115,21 @@ public class ServiceImpl implements Service {
 		
 		ApplyCallbackImpl callback = new ApplyCallbackImpl(activity, this);
 		sendPostRequest(requestMethod, data, callback);
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.service.Service#doDelete(java.util.HashMap, de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doDelete(HashMap<String,String> attributes, Activity activity) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_DELETE);
+
+		requestMethod.setAttributes(attributes);
+		
+		DeleteCallbackImpl callback = new DeleteCallbackImpl(activity, this);
+		sendGetRequest(requestMethod, callback);
 
 	}
 

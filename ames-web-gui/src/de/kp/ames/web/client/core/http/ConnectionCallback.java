@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.method;
+package de.kp.ames.web.client.core.http;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,46 +18,30 @@ package de.kp.ames.web.client.core.method;
  *
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
-public interface RequestMethod {
-
-	/**
-	 * This method returns the name of a method
-	 * @return
-	 */
-	public String getName();
-	
-	/**
-	 * @param name
-	 */
-	public void setName(String name);
-	
-	/**
-	 * @param key
-	 * @param value
-	 */
-	public void addAttribute(String key, String value);
-	
-	/**
-	 * @param attributes
-	 */
-	public void setAttributes(HashMap<String, String> attributes);
-	
-	/**
-	 * This method returns a method and its attributes as
-	 * a query for an URI
-	 * @return
-	 */
-	public String toQuery();
+/**
+ * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
+ *
+ */
+public interface ConnectionCallback {
 
 	/**
-	 * This method returns a method and its attributes as
-	 * a Map<String,String> of url parameters
-	 * 
-	 * @return
+	 * @param jValue
 	 */
-	public Map<String,String> toParams();
+	public void onSuccess(String response);
+
+	/**
+	 * @param throwable
+	 */
+	public void onError(Throwable throwable);
+	
+	/**
+	 * @param message
+	 */
+	public void onTimeout(String message);
+	
+	/**
+	 * @param message
+	 */
+	public void onFailure(String message);
 	
 }

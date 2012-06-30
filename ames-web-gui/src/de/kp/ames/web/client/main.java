@@ -22,8 +22,8 @@ package de.kp.ames.web.client;
 
 import com.google.gwt.core.client.EntryPoint;
 
-import de.kp.ames.web.client.core.gui.control.MainController;
-import de.kp.ames.web.client.function.gui.globals.FncGlobals;
+import de.kp.ames.web.client.core.apps.control.MainController;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
