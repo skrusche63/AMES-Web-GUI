@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform;
+package de.kp.ames.web.client.function.access.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -24,16 +24,16 @@ import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class TransformGridImpl extends GridImpl {
-
+public class AccessGridImpl extends GridImpl {
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param type
 	 * @param item
 	 */
-	public TransformGridImpl(String type, String item) {
-		super(ServiceConstants.TRANSFORM_SERVICE_ID);
+	public AccessGridImpl(String type, String item) {
+		super(ServiceConstants.ACCESS_SERVICE_ID);
 		
 		/*
 		 * Create data source
@@ -47,16 +47,15 @@ public class TransformGridImpl extends GridImpl {
 	 * @param item
 	 */
 	private void createGridDS(String type, String item) {
-
+		
 		HashMap<String,String> attributes = new HashMap<String,String>();
+		
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-
+		
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
 		
 	}
-	
-}
 
+}

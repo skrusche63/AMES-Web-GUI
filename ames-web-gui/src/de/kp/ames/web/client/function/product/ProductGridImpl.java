@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.product;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,60 +20,42 @@ package de.kp.ames.web.client.function.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.service.ServiceImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class ProductService extends ServiceImpl {
+public class ProductGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
-	 */
-	public ProductService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.PRODUCT_SERVICE_ID);
-	}
-
-	/**
-	 * A JSON based non-widget APPLY request
 	 * 
-	 * @param source
-	 * @param service
-	 * @param data
-	 * @param activity
-	 */
-	public void doApply(String source, String service, String data, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
-		attributes.put(MethodConstants.ATTR_SERVICE, service);
-
-		doApply(attributes, data, activity);
-
-	}
-
-	/**
-	 * A JSON based non-widget GET request
-	 * 
-	 * @param format
 	 * @param type
 	 * @param item
-	 * @param target
-	 * @param activity
 	 */
-	public void doGet(String format, String type, String item, Activity activity) {
+	public ProductGridImpl(String type, String item) {
+		super(ServiceConstants.PRODUCT_SERVICE_ID);
+
+		/*
+		 * Create data source
+		 */
+		this.createGridDS(type, item);
+
+	}
+
+	/**
+	 * @param type
+	 * @param item
+	 */
+	private void createGridDS(String type, String item) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		
-		attributes.put(MethodConstants.ATTR_FORMAT, format);
 		attributes.put(MethodConstants.ATTR_TYPE, type);
 
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
-		doGetJson(attributes, activity);
+		this.createScGridDS(attributes);
+		this.setDataSource(dataSource);
 		
 	}
-	
+
 }

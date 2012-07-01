@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.rule.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,38 +20,42 @@ package de.kp.ames.web.client.function.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.service.ServiceImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class BulletinService extends ServiceImpl {
+public class RuleGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
-	 */
-	public BulletinService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.BULLETIN_SERVICE_ID);
-	}
-	
-	/**
-	 * SUBMIT request
 	 * 
 	 * @param type
-	 * @param target
-	 * @param data
-	 * @param activity
+	 * @param item
 	 */
-	public void doSubmit(String type, String target, String data, Activity activity) {
+	public RuleGridImpl(String type, String item) {
+		super(ServiceConstants.RULE_SERVICE_ID);
 		
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		/*
+		 * Create data source
+		 */
+		this.createGridDS(type, item);
 		
-		attributes.put(MethodConstants.ATTR_TYPE,   type);
-		attributes.put(MethodConstants.ATTR_TARGET, target);
-
-		doSubmit(attributes, data, activity);
-
 	}
 
+	/**
+	 * @param type
+	 * @param item
+	 */
+	private void createGridDS(String type, String item) {
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+
+		this.createScGridDS(attributes);
+		this.setDataSource(dataSource);
+		
+	}
+	
 }

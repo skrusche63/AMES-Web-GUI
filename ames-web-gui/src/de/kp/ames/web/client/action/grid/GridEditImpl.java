@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.grid;
+package de.kp.ames.web.client.action.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,42 +18,32 @@ package de.kp.ames.web.client.core.grid;
  *
  */
 
-import java.util.HashMap;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-import com.smartgwt.client.data.DataSourceField;
+import de.kp.ames.web.client.action.ActionImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-import de.kp.ames.web.client.core.method.RequestMethod;
+public class GridEditImpl extends ActionImpl {
 
-public interface BaseGrid {
-
-	/**
-	 * @return
+	/*
+	 * Reference to Grid
 	 */
-	public DataSourceField[] createFields();
-
-	/**
-	 * Create Data source
-	 * 
-	 * @param attributes
-	 */
-	public void createScGridDS(HashMap<String,String> attributes);
-
-	/**
-	 * @param url
-	 * @param method
-	 * @param fields
-	 */
-	public void createScGridDS(final String url, final RequestMethod method, final DataSourceField[] fields);
-
-	/**
-	 * @return
-	 */
-	public String getRequestUrl();
-
-	/**
-	 * @param attributes
-	 * @return
-	 */
-	public RequestMethod createMethod(HashMap<String,String> attributes);
+	protected Grid grid;
 	
+	/*
+	 * Reference to Record
+	 */
+	protected ListGridRecord record;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param grid
+	 * @param record
+	 */
+	public GridEditImpl(Grid grid, ListGridRecord record) {	
+		this.grid = grid;
+		this.record = record;
+	}
+
 }

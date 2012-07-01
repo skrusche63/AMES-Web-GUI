@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform;
+package de.kp.ames.web.client.function.comm;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -24,7 +24,7 @@ import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class TransformGridImpl extends GridImpl {
+public class CommGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
@@ -32,8 +32,8 @@ public class TransformGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	public TransformGridImpl(String type, String item) {
-		super(ServiceConstants.TRANSFORM_SERVICE_ID);
+	public CommGridImpl(String type, String item) {
+		super(ServiceConstants.COMMUNICATION_SERVICE_ID);
 		
 		/*
 		 * Create data source
@@ -57,6 +57,5 @@ public class TransformGridImpl extends GridImpl {
 		this.setDataSource(dataSource);
 		
 	}
-	
-}
 
+}

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.product;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -19,34 +19,39 @@ package de.kp.ames.web.client.function.service;
  */
 
 import java.util.HashMap;
+
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class DmsService extends ServiceImpl {
+public class ProductService extends ServiceImpl {
 
 	/**
 	 * Constructor
 	 */
-	public DmsService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.DMS_SERVICE_ID);
+	public ProductService() {
+		super(CoreGlobals.REG_URL, ServiceConstants.PRODUCT_SERVICE_ID);
 	}
 
 	/**
-	 * EXTRACT request
+	 * A JSON based non-widget APPLY request
 	 * 
-	 * @param item
+	 * @param source
+	 * @param service
+	 * @param data
 	 * @param activity
 	 */
-	public void doExtract(String item, Activity activity) {
+	public void doApply(String source, String service, String data, Activity activity) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_ITEM, item);
 		
-		doExtract(attributes, activity);
-		
+		attributes.put(MethodConstants.ATTR_SOURCE, source);
+		attributes.put(MethodConstants.ATTR_SERVICE, service);
+
+		doApply(attributes, data, activity);
+
 	}
 
 	/**
@@ -55,35 +60,20 @@ public class DmsService extends ServiceImpl {
 	 * @param format
 	 * @param type
 	 * @param item
+	 * @param target
 	 * @param activity
 	 */
 	public void doGet(String format, String type, String item, Activity activity) {
-		
-		HashMap<String,String> attributes = new HashMap<String,String>();
 
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
-		attributes.put(MethodConstants.ATTR_TYPE,   type);
-		
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-		
+
 		doGetJson(attributes, activity);
 		
 	}
-
-	/**
-	 * SUBMIT request
-	 * 
-	 * @param type
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmit(String type, String data, Activity activity) {
-		
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-		
-		doSubmit(attributes, data, activity);
-		
-	}
-
+	
 }

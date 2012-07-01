@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.group.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,40 +20,43 @@ package de.kp.ames.web.client.function.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.service.ServiceImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.group.menu.CategoryGridMenuHandlerImpl;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class AccessService extends ServiceImpl {
-
+public class CategoryGridImpl extends GridImpl {
+	
 	/**
 	 * Constructor
 	 */
-	public AccessService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.ACCESS_SERVICE_ID);
+	public CategoryGridImpl() {
+		super(ServiceConstants.COMMUNITY_SERVICE_ID);
+		
+		/*
+		 * Create data source
+		 */
+		this.createGridDS();
+
+		/*
+		 * Add menu handler
+		 */
+		this.addMenuHandler(new CategoryGridMenuHandlerImpl(this));
+		
 	}
-	
+
 	/**
-	 * A JSON based non-widget GET request
-	 * 
-	 * @param format
-	 * @param type
-	 * @param item
-	 * @param activity
+	 * Create data source
 	 */
-	public void doGet(String format, String type, String item, Activity activity) {
-	
-		HashMap<String,String> attributes = new HashMap<String,String>();
+	private void createGridDS() {
 
-		attributes.put(MethodConstants.ATTR_FORMAT, format);
-		attributes.put(MethodConstants.ATTR_TYPE,   type);
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Category);
 		
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-		
-		doGetJson(attributes, activity);
+		this.createScGridDS(attributes);
+		this.setDataSource(dataSource);
 		
 	}
-
+	
 }

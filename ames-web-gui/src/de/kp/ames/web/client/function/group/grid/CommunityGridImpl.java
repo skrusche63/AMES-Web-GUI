@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform;
+package de.kp.ames.web.client.function.group.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,42 +21,46 @@ package de.kp.ames.web.client.function.transform;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.group.menu.CommunityGridMenuHandlerImpl;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class TransformGridImpl extends GridImpl {
+public class CommunityGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
 	 * 
-	 * @param type
-	 * @param item
+	 * @param affiliate
 	 */
-	public TransformGridImpl(String type, String item) {
-		super(ServiceConstants.TRANSFORM_SERVICE_ID);
+	public CommunityGridImpl(String affiliate) {
+		super(ServiceConstants.COMMUNITY_SERVICE_ID);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
+		this.createGridDS(affiliate);
 
+		/*
+		 * Add menu handler
+		 */
+		this.addMenuHandler(new CommunityGridMenuHandlerImpl(this));
+		
 	}
 
 	/**
-	 * @param type
-	 * @param item
+	 * @param affiliate
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String affiliate) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
 
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		if (affiliate != null) attributes.put(MethodConstants.ATTR_SOURCE, affiliate);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
 		
 	}
-	
-}
 
+}

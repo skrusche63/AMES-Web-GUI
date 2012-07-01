@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.dms;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,55 +20,42 @@ package de.kp.ames.web.client.function.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.service.ServiceImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class CommService extends ServiceImpl {
+public class DmsGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
-	 */
-	public CommService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.COMMUNICATION_SERVICE_ID);
-	}
-
-	/**
-	 * A JSON based non-widget GET request
 	 * 
-	 * @param format
 	 * @param type
 	 * @param item
-	 * @param activity
 	 */
-	public void doGet(String format, String type, String item, Activity activity) {
-	
-		HashMap<String,String> attributes = new HashMap<String,String>();
-
-		attributes.put(MethodConstants.ATTR_FORMAT, format);
-		attributes.put(MethodConstants.ATTR_TYPE,   type);
+	public DmsGridImpl(String type, String item) {
+		super(ServiceConstants.DMS_SERVICE_ID);
 		
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-		
-		doGetJson(attributes, activity);
+		/*
+		 * Create data source
+		 */
+		this.createGridDS(type, item);
 		
 	}
+
 	/**
-	 * SUBMIT request
-	 * 
 	 * @param type
-	 * @param data
-	 * @param activity
+	 * @param item
 	 */
-	public void doSubmit(String type, String data, Activity activity) {
-		
+	private void createGridDS(String type, String item) {
+
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-		
-		doSubmit(attributes, data, activity);
+
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+
+		this.createScGridDS(attributes);
+		this.setDataSource(dataSource);
 		
 	}
+	
 }
-

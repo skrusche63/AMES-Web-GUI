@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform;
+package de.kp.ames.web.client.function.access;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,43 +20,40 @@ package de.kp.ames.web.client.function.transform;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class TransformGridImpl extends GridImpl {
+public class AccessService extends ServiceImpl {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param type
-	 * @param item
 	 */
-	public TransformGridImpl(String type, String item) {
-		super(ServiceConstants.TRANSFORM_SERVICE_ID);
-		
-		/*
-		 * Create data source
-		 */
-		this.createGridDS(type, item);
-
-	}
-
-	/**
-	 * @param type
-	 * @param item
-	 */
-	private void createGridDS(String type, String item) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	public AccessService() {
+		super(CoreGlobals.REG_URL, ServiceConstants.ACCESS_SERVICE_ID);
 	}
 	
-}
+	/**
+	 * A JSON based non-widget GET request
+	 * 
+	 * @param format
+	 * @param type
+	 * @param item
+	 * @param activity
+	 */
+	public void doGet(String format, String type, String item, Activity activity) {
+	
+		HashMap<String,String> attributes = new HashMap<String,String>();
 
+		attributes.put(MethodConstants.ATTR_FORMAT, format);
+		attributes.put(MethodConstants.ATTR_TYPE,   type);
+		
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		
+		doGetJson(attributes, activity);
+		
+	}
+
+}

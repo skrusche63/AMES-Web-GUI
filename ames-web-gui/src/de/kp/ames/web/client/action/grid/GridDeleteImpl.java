@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.action.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,40 +18,32 @@ package de.kp.ames.web.client.function.bulletin;
  *
  */
 
-import java.util.HashMap;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.client.action.ActionImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-public class PostingGridImpl extends GridImpl {
+public class GridDeleteImpl extends ActionImpl {
 
+	/*
+	 * Reference to Grid
+	 */
+	protected Grid grid;
+	
+	/*
+	 * Reference to Record
+	 */
+	protected ListGridRecord record;
+	
 	/**
 	 * Constructor
 	 * 
-	 * @param recipient
+	 * @param grid
+	 * @param record
 	 */
-	public PostingGridImpl(String recipient) {
-		super(ServiceConstants.BULLETIN_SERVICE_ID);
-				
-		/*
-		 * Create data source
-		 */
-		this.createGridDS(recipient);
-
-	}
-
-	/**
-	 * @param recipient
-	 */
-	private void createGridDS(String recipient) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TARGET, recipient);
-		
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	public GridDeleteImpl(Grid grid, ListGridRecord record) {	
+		this.grid = grid;
+		this.record = record;
 	}
 
 }

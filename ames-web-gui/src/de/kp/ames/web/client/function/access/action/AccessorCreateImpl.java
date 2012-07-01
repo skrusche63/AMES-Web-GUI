@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.user;
+package de.kp.ames.web.client.function.access.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,41 +18,23 @@ package de.kp.ames.web.client.function.user;
  *
  */
 
-import java.util.HashMap;
+import de.kp.ames.web.client.action.grid.GridCreateImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-import de.kp.ames.web.client.core.grid.BaseGridImpl;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
-
-public class UserGridImpl extends BaseGridImpl {
-
+public class AccessorCreateImpl extends GridCreateImpl {
+	
 	/**
 	 * Constructor
 	 * 
-	 * @param community
+	 * @param grid
 	 */
-	public UserGridImpl(String community) {
-		super(ServiceConstants.USER_SERVICE_ID);
-		
-		/*
-		 * Create data source
-		 */
-		this.createGridDS(community);
-		
-	}
-
-	/**
-	 * @param source
-	 */
-	private void createGridDS(String source) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	public AccessorCreateImpl(Grid grid) {	
+		super(grid);
 	}
 	
-}
+	public void execute() {
+		//TODO
+	}
 
+
+}

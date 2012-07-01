@@ -30,23 +30,30 @@ import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.menu.GridMenuHandler;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
-public class BaseGridImpl extends ListGrid implements BaseGrid {
+public class GridImpl extends ListGrid implements Grid {
 	/*
 	 * Reference to DataSource
 	 */
 	protected RestDataSource dataSource;
 
+	/*
+	 * Reference to MenuHandler
+	 */
+	protected GridMenuHandler menuHandler;
+	
 	/*
 	 * The base url necessary to invoke the
 	 * web service that refers to this service
@@ -69,7 +76,7 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 	 * 
 	 * @param sid
 	 */
-	public BaseGridImpl(String sid) {
+	public GridImpl(String sid) {
 		this(CoreGlobals.REG_URL, sid);
 	}
 
@@ -79,7 +86,7 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 	 * @param base
 	 * @param sid
 	 */
-	public BaseGridImpl(String base, String sid) {
+	public GridImpl(String base, String sid) {
 
 		/*
 		 * Register basic connection parameters
@@ -112,7 +119,7 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 		/*
 		 * Event handling
 		 */
-		final BaseGridImpl self = this;
+		final GridImpl self = this;
 		
 		this.addDataArrivedHandler(new DataArrivedHandler() {
 			public void onDataArrived(DataArrivedEvent event) {								
@@ -134,6 +141,13 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.BaseGrid#addMenuHandler(de.kp.ames.web.client.core.menu.GridMenuHandler)
+	 */
+	public void addMenuHandler(GridMenuHandler menuHandler) {
+		this.menuHandler = menuHandler;
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.BaseGrid#getRequestUrl()
 	 */
@@ -225,8 +239,20 @@ public class BaseGridImpl extends ListGrid implements BaseGrid {
 	 */
 	public void afterContextMenu(RowContextClickEvent event) {
 		/*
-		 * Must be overridden
+		 * Stop event propagation
 		 */
+		event.cancel();
+		
+		/*
+		 * Retrieve affected grid record
+		 */
+		ListGridRecord record = event.getRecord();
+		
+		/*
+		 * Invoke Grid MenuHandler
+		 */
+		if (this.menuHandler != null) this.menuHandler.doOpen(record);
+		
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.rule;
+package de.kp.ames.web.client.function.user.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,38 +20,34 @@ package de.kp.ames.web.client.function.rule;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.BaseGridImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class RuleGridImpl extends BaseGridImpl {
+public class UserGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
 	 * 
-	 * @param type
-	 * @param item
+	 * @param community
 	 */
-	public RuleGridImpl(String type, String item) {
-		super(ServiceConstants.RULE_SERVICE_ID);
+	public UserGridImpl(String community) {
+		super(ServiceConstants.USER_SERVICE_ID);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
+		this.createGridDS(community);
 		
 	}
 
 	/**
-	 * @param type
-	 * @param item
+	 * @param source
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String source) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		attributes.put(MethodConstants.ATTR_SOURCE, source);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
@@ -59,3 +55,4 @@ public class RuleGridImpl extends BaseGridImpl {
 	}
 	
 }
+

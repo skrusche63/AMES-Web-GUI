@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.group.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,40 +18,22 @@ package de.kp.ames.web.client.function.bulletin;
  *
  */
 
-import java.util.HashMap;
+import de.kp.ames.web.client.action.grid.GridCreateImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
-
-public class PostingGridImpl extends GridImpl {
-
+public class CommunityCreateImpl extends GridCreateImpl {
+	
 	/**
 	 * Constructor
 	 * 
-	 * @param recipient
+	 * @param grid
 	 */
-	public PostingGridImpl(String recipient) {
-		super(ServiceConstants.BULLETIN_SERVICE_ID);
-				
-		/*
-		 * Create data source
-		 */
-		this.createGridDS(recipient);
-
+	public CommunityCreateImpl(Grid grid) {	
+		super(grid);
 	}
-
-	/**
-	 * @param recipient
-	 */
-	private void createGridDS(String recipient) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TARGET, recipient);
-		
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	
+	public void execute() {
+		//TODO
 	}
-
+	
 }

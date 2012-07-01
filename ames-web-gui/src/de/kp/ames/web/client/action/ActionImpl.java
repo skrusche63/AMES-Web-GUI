@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.map;
+package de.kp.ames.web.client.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,17 +18,12 @@ package de.kp.ames.web.client.function.map;
  *
  */
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+public class ActionImpl implements Action {
 
-public class LayerGridImpl extends GridImpl {
-
-	public LayerGridImpl(String sid) {
-		super(sid);
+	public ActionImpl() {
 	}
-	/**
-	 * This class supports the retrieval 
-	 * and selection of WMS-based layers
-	 */
 	
+	public void execute() {
+	}
 
 }

@@ -20,11 +20,11 @@ package de.kp.ames.web.client.function.role;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.BaseGridImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class RoleGridImpl extends BaseGridImpl {
+public class RoleGridImpl extends GridImpl {
 
 	/**
 	 * Constructor

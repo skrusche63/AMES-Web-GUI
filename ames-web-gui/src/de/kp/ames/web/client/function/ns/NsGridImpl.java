@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.ns;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,39 +20,41 @@ package de.kp.ames.web.client.function.service;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.service.ServiceImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class NsService extends ServiceImpl {
+public class NsGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
+	 * 
+	 * @param item
+	 * @param parent
 	 */
-	public NsService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.NAMESPACE_SERVICE_ID);
+	public NsGridImpl(String item, String parent) {
+		super(ServiceConstants.NAMESPACE_SERVICE_ID);
+
+		/*
+		 * Create data source
+		 */
+		this.createGridDS(item, parent);
+		
 	}
 
 	/**
-	 * A JSON based non-widget GET request
-	 * 
-	 * @param format
 	 * @param item
 	 * @param parent
-	 * @param activity
 	 */
-	public void doGet(String format, String item, String parent, Activity activity) {
+	private void createGridDS(String item, String parent) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		
-		attributes.put(MethodConstants.ATTR_FORMAT, format);
 
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		if (parent != null) attributes.put(MethodConstants.ATTR_PARENT, parent);
 
-		doGetJson(attributes, activity);
+		this.createScGridDS(attributes);
+		this.setDataSource(dataSource);
 		
 	}
 

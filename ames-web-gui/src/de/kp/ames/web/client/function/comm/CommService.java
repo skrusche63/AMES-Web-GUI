@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.service;
+package de.kp.ames.web.client.function.comm;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -26,67 +26,49 @@ import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class GroupService extends ServiceImpl {
+public class CommService extends ServiceImpl {
 
 	/**
 	 * Constructor
 	 */
-	public GroupService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.COMMUNITY_SERVICE_ID);
+	public CommService() {
+		super(CoreGlobals.REG_URL, ServiceConstants.COMMUNICATION_SERVICE_ID);
 	}
 
-	/**
-	 * @param type
-	 * @param data
-	 * @param activity
-	 */
-	public void doDelete(String type, String data, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-		
-		doDelete(attributes, data, activity);
-
-	}
-	
 	/**
 	 * A JSON based non-widget GET request
 	 * 
 	 * @param format
 	 * @param type
-	 * @param source
+	 * @param item
 	 * @param activity
 	 */
-	public void doGet(String format, String type, String source, Activity activity) {
-
+	public void doGet(String format, String type, String item, Activity activity) {
+	
 		HashMap<String,String> attributes = new HashMap<String,String>();
 
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
 		attributes.put(MethodConstants.ATTR_TYPE,   type);
 		
-		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
-
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		
 		doGetJson(attributes, activity);
 		
 	}
-	
 	/**
-	 * A JSON based non-widget SUBMIT request
+	 * SUBMIT request
 	 * 
 	 * @param type
-	 * @param item
 	 * @param data
 	 * @param activity
 	 */
-	public void doSubmit(String type, String item, String data, Activity activity) {
-
+	public void doSubmit(String type, String data, Activity activity) {
+		
 		HashMap<String,String> attributes = new HashMap<String,String>();
-
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		
 		doSubmit(attributes, data, activity);
-
+		
 	}
-
 }
+
