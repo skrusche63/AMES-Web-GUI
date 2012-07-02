@@ -25,7 +25,7 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.widget.base.BaseDialog;
+import de.kp.ames.web.client.core.widget.dialog.BaseDialog;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 
 public class DisclaimerDialog extends BaseDialog {

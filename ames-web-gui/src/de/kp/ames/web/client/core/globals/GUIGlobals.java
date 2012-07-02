@@ -39,6 +39,7 @@ public class GUIGlobals {
 	public static String BTN_CAN_LABEL   = "Cancel";
 	public static String BTN_LOGIN_LABEL = "Login";
 	public static String BTN_OK_LABEL    = "Ok";
+	public static String BTN_SAVE_LABEL  = "Save";
 
 	/*
 	 * DOM identifier

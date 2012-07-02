@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu;
+package de.kp.ames.web.client.function.bulletin.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,35 +20,38 @@ package de.kp.ames.web.client.core.menu;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.menu.MenuItem;
+import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.ServiceConstants;
 
-public interface GridMenuHandler {
-
-	/**
-	 * @param record
-	 */
-	public void doOpen(ListGridRecord record);
+public class PostingGridImpl extends GridImpl {
 
 	/**
-	 * @return
+	 * Constructor
+	 * 
+	 * @param recipient
 	 */
-	public MenuItem[] createMenuItems(ListGridRecord record);
+	public PostingGridImpl(String recipient) {
+		super(ServiceConstants.BULLETIN_SERVICE_ID);
+				
+		/*
+		 * Create data source
+		 */
+		this.createGridDS(recipient);
+
+	}
 
 	/**
-	 * @param key
-	 * @return
+	 * @param recipient
 	 */
-	public String getParam(String key);
+	private void createGridDS(String recipient) {
 
-	/**
-	 * @return
-	 */
-	public HashMap<String,String> getParams();
-	
-	/**
-	 * @param key
-	 * @param value
-	 */
-	public void setParam(String key, String value);
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TARGET, recipient);
+		
+		this.createScGridDS(attributes);
+		this.setDataSource(dataSource);
+		
+	}
+
 }

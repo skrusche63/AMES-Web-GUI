@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu;
+package de.kp.ames.web.client.function.dms;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,34 +21,24 @@ package de.kp.ames.web.client.core.menu;
 import java.util.HashMap;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.menu.MenuItem;
 
-public interface GridMenuHandler {
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.function.dms.widget.DmsEditDialog;
 
-	/**
-	 * @param record
-	 */
-	public void doOpen(ListGridRecord record);
+public class DmsWidget {
 
 	/**
-	 * @return
+	 * Constructor
 	 */
-	public MenuItem[] createMenuItems(ListGridRecord record);
-
-	/**
-	 * @param key
-	 * @return
-	 */
-	public String getParam(String key);
-
-	/**
-	 * @return
-	 */
-	public HashMap<String,String> getParams();
+	public DmsWidget() {
+	}
 	
 	/**
-	 * @param key
-	 * @param value
+	 * @param attributes
+	 * @param record
+	 * @param activity
 	 */
-	public void setParam(String key, String value);
+	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+		new DmsEditDialog(attributes, record, activity);
+	}
 }

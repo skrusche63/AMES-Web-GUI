@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.product;
+package de.kp.ames.web.client.function.dms.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,10 +21,11 @@ package de.kp.ames.web.client.function.product;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.dms.menu.DmsGridMenuHandlerImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class ProductGridImpl extends GridImpl {
+public class DmsGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
@@ -32,30 +33,36 @@ public class ProductGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	public ProductGridImpl(String type, String item) {
-		super(ServiceConstants.PRODUCT_SERVICE_ID);
-
+	public DmsGridImpl(String type) {
+		super(ServiceConstants.DMS_SERVICE_ID);
+		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
+		this.createGridDS(type);
+
+		/*
+		 * Add menu handler and also provide request
+		 * specific parameters for later use
+		 */
+		DmsGridMenuHandlerImpl menuHandler = new DmsGridMenuHandlerImpl(this);
+		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		
+		this.addMenuHandler(menuHandler);
 
 	}
 
 	/**
 	 * @param type
-	 * @param item
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String type) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
 		
 	}
-
+	
 }

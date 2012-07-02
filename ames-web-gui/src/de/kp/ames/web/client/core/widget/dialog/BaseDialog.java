@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.widget.base;
+package de.kp.ames.web.client.core.widget.dialog;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -30,6 +30,8 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.globals.GUIStyles;
+import de.kp.ames.web.client.core.widget.base.ActionIndicator;
+import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
 
 /**
  * This class is the base window for a modal dialog;

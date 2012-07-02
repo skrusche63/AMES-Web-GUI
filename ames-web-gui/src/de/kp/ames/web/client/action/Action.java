@@ -18,11 +18,28 @@ package de.kp.ames.web.client.action;
  *
  */
 
+import java.util.HashMap;
+
 public interface Action {
 
 	/**
 	 * Execute controlled action
 	 */
 	public void execute();
+
+	/**
+	 * Request parameters to be sent
+	 * to the server side
+	 * 
+	 * @param params
+	 */
+	public void setParams(HashMap<String,String> params);
+	
+	/**
+	 * Retrieve request parameters
+	 * 
+	 * @return
+	 */
+	public HashMap<String,String> getParams();
 	
 }

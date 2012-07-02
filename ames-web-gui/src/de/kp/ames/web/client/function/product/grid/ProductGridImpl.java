@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.dms;
+package de.kp.ames.web.client.function.product.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -24,7 +24,7 @@ import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class DmsGridImpl extends GridImpl {
+public class ProductGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
@@ -32,30 +32,28 @@ public class DmsGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	public DmsGridImpl(String type, String item) {
-		super(ServiceConstants.DMS_SERVICE_ID);
-		
+	public ProductGridImpl(String type) {
+		super(ServiceConstants.PRODUCT_SERVICE_ID);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
-		
+		this.createGridDS(type);
+
 	}
 
 	/**
 	 * @param type
 	 * @param item
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String type) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
 		
 	}
-	
+
 }

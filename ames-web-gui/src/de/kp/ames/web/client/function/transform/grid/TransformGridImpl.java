@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform;
+package de.kp.ames.web.client.function.transform.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

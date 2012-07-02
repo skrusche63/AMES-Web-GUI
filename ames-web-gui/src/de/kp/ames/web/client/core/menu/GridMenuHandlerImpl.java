@@ -18,6 +18,8 @@ package de.kp.ames.web.client.core.menu;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
@@ -30,6 +32,11 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 	 * Reference to Grid
 	 */
 	protected Grid grid;
+	
+	/*
+	 * Reference to parameters
+	 */
+	protected HashMap<String,String> params;
 	
 	public GridMenuHandlerImpl(Grid grid) {
 		this.grid = grid;
@@ -58,6 +65,29 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 		 * Must be overridden
 		 */
 		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.menu.GridMenuHandler#setParam(java.lang.String, java.lang.String)
+	 */
+	public void setParam(String key, String value) {
+		if (this.params == null) this.params = new HashMap<String,String>();
+		this.params.put(key, value);
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.menu.GridMenuHandler#getParam(java.lang.String)
+	 */
+	public String getParam(String key) {
+		if ((this.params == null) || (this.params.containsKey(key) == false)) return null;
+		return this.params.get(key);
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.menu.GridMenuHandler#getParams()
+	 */
+	public HashMap<String,String> getParams() {
+		return this.params;
 	}
 	
 }

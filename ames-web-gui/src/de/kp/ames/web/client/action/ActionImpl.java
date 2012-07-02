@@ -1,4 +1,7 @@
 package de.kp.ames.web.client.action;
+
+import java.util.HashMap;
+
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,10 +23,36 @@ package de.kp.ames.web.client.action;
 
 public class ActionImpl implements Action {
 
+	/*
+	 * Request specific parameters
+	 */
+	protected HashMap<String,String> params;
+	
 	public ActionImpl() {
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.Action#execute()
+	 */
 	public void execute() {
+		/*
+		 * Must be overridden
+		 */
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.Action#getParams()
+	 */
+	public HashMap<String,String> getParams() {
+		if (this.params == null) this.params = new HashMap<String,String>();
+		return this.params;
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.Action#setParams(java.util.HashMap)
+	 */
+	public void setParams(HashMap<String,String> params) {
+		this.params = params;
 	}
 
 }

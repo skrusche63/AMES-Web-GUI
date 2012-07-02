@@ -42,7 +42,7 @@ import de.kp.ames.web.client.core.apps.control.UserController;
 import de.kp.ames.web.client.core.form.GUIFormFactory;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.widget.base.BaseDialog;
+import de.kp.ames.web.client.core.widget.dialog.BaseDialog;
 import de.kp.ames.web.client.function.service.DisclaimerService;
 import de.kp.ames.web.client.function.service.LoginService;
 
