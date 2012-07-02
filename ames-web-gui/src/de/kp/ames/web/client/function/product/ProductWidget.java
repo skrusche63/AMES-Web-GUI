@@ -32,6 +32,14 @@ public class ProductWidget {
 	
 	/**
 	 * @param attributes
+	 * @param activity
+	 */
+	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+		// TODO
+	}
+	
+	/**
+	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */

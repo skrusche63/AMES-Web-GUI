@@ -23,9 +23,12 @@ import java.util.HashMap;
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
+/*
+ * The product grid supports the visualization of products & productors; 
+ * to distinguish these information objects, the <type> parameter is used
+ */
 
 public class ProductGridImpl extends GridImpl {
-
 	/**
 	 * Constructor
 	 * 

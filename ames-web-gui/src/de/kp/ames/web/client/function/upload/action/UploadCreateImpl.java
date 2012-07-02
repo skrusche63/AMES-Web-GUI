@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.dms.action;
+package de.kp.ames.web.client.function.upload.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -25,16 +25,16 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.function.dms.DmsWidget;
+import de.kp.ames.web.client.function.upload.UploadWidget;
 
-public class DmsCreateImpl extends GridCreateImpl {
+public class UploadCreateImpl extends GridCreateImpl {
 	
 	/**
 	 * Constructor
 	 * 
 	 * @param grid
 	 */
-	public DmsCreateImpl(Grid grid) {	
+	public UploadCreateImpl(Grid grid) {	
 		super(grid);
 	}
 	
@@ -42,22 +42,21 @@ public class DmsCreateImpl extends GridCreateImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		/*
-		 * Prepare data for create request
-		 */
-		HashMap<String,String> attributes = this.getParams();
 
+		HashMap<String,String> attributes = this.getParams();
+		
 		/*
-		 * Invoke create request
+		 * Invoke upload request
 		 */
-		DmsWidget widget = new DmsWidget();
-		widget.doCreate(attributes, new ActivityImpl() {
+		UploadWidget widget = new UploadWidget();
+		widget.doUpload(attributes, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
 				// TODO				
 			}
 			
 		});
+		
 	}
 
 }

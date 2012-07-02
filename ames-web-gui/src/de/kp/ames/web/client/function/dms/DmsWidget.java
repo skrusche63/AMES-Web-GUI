@@ -23,6 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.function.dms.widget.DmsCreateDialog;
 import de.kp.ames.web.client.function.dms.widget.DmsEditDialog;
 
 public class DmsWidget {
@@ -32,7 +33,15 @@ public class DmsWidget {
 	 */
 	public DmsWidget() {
 	}
-	
+
+	/**
+	 * @param attributes
+	 * @param activity
+	 */
+	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+		new DmsCreateDialog(attributes, activity);
+	}
+
 	/**
 	 * @param attributes
 	 * @param record
@@ -41,4 +50,5 @@ public class DmsWidget {
 	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
 		new DmsEditDialog(attributes, record, activity);
 	}
+	
 }

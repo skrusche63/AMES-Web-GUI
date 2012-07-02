@@ -21,13 +21,13 @@ package de.kp.ames.web.client.core.menu.item;
 import de.kp.ames.web.client.function.style.IconConstants;
 import de.kp.ames.web.client.function.style.MenuConstants;
 
-public class CreateMenuItem extends BaseMenuItem {
+public class AssignMenuItem extends BaseMenuItem {
 
 	/**
 	 * Constructor
 	 */
-	public CreateMenuItem() {
-		super(MenuConstants.MENU_CREATE, IconConstants.ICON_CREATE);
+	public AssignMenuItem() {
+		super(MenuConstants.MENU_ASSIGN, IconConstants.ICON_ASSIGN);
 	}
-	
+
 }
