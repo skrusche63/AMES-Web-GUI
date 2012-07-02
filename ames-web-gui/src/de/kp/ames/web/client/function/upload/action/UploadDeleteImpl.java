@@ -20,16 +20,13 @@ package de.kp.ames.web.client.function.upload.action;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.util.JsonConverter;
-import de.kp.ames.web.client.function.product.ProductService;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.client.function.upload.UploadWidget;
 
 public class UploadDeleteImpl extends GridDeleteImpl {
 
@@ -48,26 +45,15 @@ public class UploadDeleteImpl extends GridDeleteImpl {
 	 */
 	public void execute() {
 		
-		/*
-		 * Prepare data for delete request
-		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
-		
 		HashMap<String,String> attributes = this.getParams();
+
+		final UploadDeleteImpl self = this;
 		
-		/*
-		 * Invoke delete request
-		 */
-		ProductService service = new ProductService();
-		service.doDelete(attributes, data, new ActivityImpl() {
+		UploadWidget widget = new UploadWidget();
+		widget.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterDelete(jValue);		
 			}
 			
 		});

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.bulletin.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

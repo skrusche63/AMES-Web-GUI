@@ -18,25 +18,22 @@ package de.kp.ames.web.client.function.group.action;
  *
  */
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
-import de.kp.ames.web.client.action.grid.GridEditImpl;
+import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 
-public class CommunityEditImpl extends GridEditImpl {
+public class GroupCreateImpl extends GridCreateImpl {
 	
 	/**
 	 * Constructor
 	 * 
 	 * @param grid
-	 * @param record
 	 */
-	public CommunityEditImpl(Grid grid, ListGridRecord record) {	
-		super(grid, record);
+	public GroupCreateImpl(Grid grid) {	
+		super(grid);
 	}
 	
 	public void execute() {
 		//TODO
 	}
-
+	
 }

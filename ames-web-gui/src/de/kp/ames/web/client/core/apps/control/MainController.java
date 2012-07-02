@@ -44,7 +44,7 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.search.ISearch;
 import de.kp.ames.web.client.core.search.SearchWidget;
 import de.kp.ames.web.client.core.widget.base.Viewport;
-import de.kp.ames.web.client.function.bulletin.BulletinImpl;
+import de.kp.ames.web.client.function.bulletin.widget.BulletinImpl;
 import de.kp.ames.web.client.function.desktop.DesktopImpl;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.help.HelpImpl;

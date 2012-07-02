@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.bulletin.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -41,6 +41,7 @@ import de.kp.ames.web.client.core.form.GUIFormFactory;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.core.widget.dialog.BaseDialog;
+import de.kp.ames.web.client.function.bulletin.BulletinService;
 import de.kp.ames.web.client.function.bulletin.event.PostingListener;
 import de.kp.ames.web.client.function.globals.FncAttrs;
 import de.kp.ames.web.client.function.globals.FncGlobals;

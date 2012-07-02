@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.group.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,35 +18,25 @@ package de.kp.ames.web.client.function.bulletin;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-/**
- * DetailImpl is used to show a specific (and
- * selected) positing in a HTML representation
- * 
- * @author krusche
- *
- */
-public class DetailImpl extends VLayout {
+import de.kp.ames.web.client.action.grid.GridEditImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-	public DetailImpl() {
-		
-		setWidth100();
-		setHeight100();
-		
-	}
+public class GroupEditImpl extends GridEditImpl {
 	
 	/**
-	 * Set content
+	 * Constructor
+	 * 
+	 * @param grid
+	 * @param record
 	 */
-	public void set() {
-		
-	}
-	/**
-	 * Clear content
-	 */
-	public void reset() {
-		// TODO
+	public GroupEditImpl(Grid grid, ListGridRecord record) {	
+		super(grid, record);
 	}
 	
+	public void execute() {
+		//TODO
+	}
+
 }

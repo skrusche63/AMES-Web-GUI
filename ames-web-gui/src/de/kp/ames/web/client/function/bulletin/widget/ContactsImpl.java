@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.bulletin.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,12 +20,41 @@ package de.kp.ames.web.client.function.bulletin;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class GroupsImpl extends VLayout {
+public class ContactsImpl extends VLayout {
 
-	public GroupsImpl() {
+	private GroupsImpl groups;
+	private UsersImpl users;
+	
+	public ContactsImpl() {
 		
-		setWidth100();
-		setHeight100();
+		/*
+		 * Dimensions
+		 */
+		this.setWidth100();
+		this.setHeight100();
 		
+		/*
+		 * Set groups & users
+		 */
+		groups = new GroupsImpl();
+		users  = new UsersImpl();
+		
+		/*
+		 * Set Dimensions and splitter
+		 */
+		
+		groups.setHeight("50%");
+		users.setHeight("50%");
+		
+		/*
+		 * Show splitter for groups
+		 */
+		groups.setShowResizeBar(true);
+		
+		/*
+		 * Set members to contacts
+		 */
+		this.setMembers(groups, users);
+
 	}
 }

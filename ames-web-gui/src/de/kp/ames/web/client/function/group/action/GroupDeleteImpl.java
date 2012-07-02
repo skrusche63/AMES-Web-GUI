@@ -20,18 +20,15 @@ package de.kp.ames.web.client.function.group.action;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.util.JsonConverter;
-import de.kp.ames.web.client.function.group.GroupService;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.client.function.group.GroupWidget;
 
-public class CommunityDeleteImpl extends GridDeleteImpl {
+public class GroupDeleteImpl extends GridDeleteImpl {
 	
 	/**
 	 * Constructor
@@ -39,32 +36,24 @@ public class CommunityDeleteImpl extends GridDeleteImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public CommunityDeleteImpl(Grid grid, ListGridRecord record) {	
+	public GroupDeleteImpl(Grid grid, ListGridRecord record) {	
 		super(grid, record);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
-		
-		/*
-		 * Prepare data for delete request
-		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
 		
 		HashMap<String,String> attributes = this.getParams();
 		
-		/*
-		 * Invoke delete request
-		 */
-		GroupService service = new GroupService();
-		service.doDelete(attributes, data, new ActivityImpl() {
+		final GroupDeleteImpl self = this;
+		
+		GroupWidget service = new GroupWidget();
+		service.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterDelete(jValue);				
 			}
 			
 		});

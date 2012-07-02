@@ -41,6 +41,8 @@ public class DmsGridImpl extends GridImpl {
 		 */
 		this.createGridDS(type);
 
+		// TODO: May be alternate menu handlers may be assigned in different contexts
+		
 		/*
 		 * Add menu handler and also provide request
 		 * specific parameters for later use

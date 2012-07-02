@@ -27,6 +27,10 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.dms.DmsWidget;
 
+/*
+ * This action registers an already existing and transient document (cache) 
+ * in an OASIS ebXML RegRep
+ */
 public class DmsCreateImpl extends GridCreateImpl {
 	
 	/**
@@ -50,14 +54,17 @@ public class DmsCreateImpl extends GridCreateImpl {
 		/*
 		 * Invoke create request
 		 */
+		final DmsCreateImpl self = this;
+		
 		DmsWidget widget = new DmsWidget();
 		widget.doCreate(attributes, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterCreate(jValue);
 			}
 			
 		});
+
 	}
 
 }

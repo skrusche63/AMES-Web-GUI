@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.bulletin.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,41 +20,33 @@ package de.kp.ames.web.client.function.bulletin;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class ContactsImpl extends VLayout {
+/**
+ * DetailImpl is used to show a specific (and
+ * selected) positing in a HTML representation
+ * 
+ * @author krusche
+ *
+ */
+public class DetailImpl extends VLayout {
 
-	private GroupsImpl groups;
-	private UsersImpl users;
-	
-	public ContactsImpl() {
+	public DetailImpl() {
 		
-		/*
-		 * Dimensions
-		 */
-		this.setWidth100();
-		this.setHeight100();
+		setWidth100();
+		setHeight100();
 		
-		/*
-		 * Set groups & users
-		 */
-		groups = new GroupsImpl();
-		users  = new UsersImpl();
-		
-		/*
-		 * Set Dimensions and splitter
-		 */
-		
-		groups.setHeight("50%");
-		users.setHeight("50%");
-		
-		/*
-		 * Show splitter for groups
-		 */
-		groups.setShowResizeBar(true);
-		
-		/*
-		 * Set members to contacts
-		 */
-		this.setMembers(groups, users);
-
 	}
+	
+	/**
+	 * Set content
+	 */
+	public void set() {
+		
+	}
+	/**
+	 * Clear content
+	 */
+	public void reset() {
+		// TODO
+	}
+	
 }

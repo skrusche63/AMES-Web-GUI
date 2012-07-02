@@ -1,7 +1,4 @@
 package de.kp.ames.web.client.action;
-
-import java.util.HashMap;
-
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,12 +18,24 @@ import java.util.HashMap;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
+
+import de.kp.ames.web.shared.JsonConstants;
+
 public class ActionImpl implements Action {
 
 	/*
 	 * Request specific parameters
 	 */
 	protected HashMap<String,String> params;
+	
+	/*
+	 * Reference to action (server) response
+	 */
+	private JSONObject jResponse;
 	
 	public ActionImpl() {
 	}
@@ -53,6 +62,27 @@ public class ActionImpl implements Action {
 	 */
 	public void setParams(HashMap<String,String> params) {
 		this.params = params;
+	}
+
+	/**
+	 * @param jValue
+	 */
+	public void registerResponse(JSONValue jValue) {
+		this.jResponse = jValue.isObject();
+	}
+	
+	/**
+	 * @return
+	 */
+	public boolean isSuccess() {
+		return jResponse.get(JsonConstants.J_SUCCESS).isBoolean().booleanValue();
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getMessage() {
+		return jResponse.get(JsonConstants.J_MESSAGE).isString().stringValue();
 	}
 
 }

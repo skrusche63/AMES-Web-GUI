@@ -20,16 +20,13 @@ package de.kp.ames.web.client.function.dms.action;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.util.JsonConverter;
-import de.kp.ames.web.client.function.dms.DmsService;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.client.function.dms.DmsWidget;
 
 public class DmsDeleteImpl extends GridDeleteImpl {
 
@@ -48,26 +45,15 @@ public class DmsDeleteImpl extends GridDeleteImpl {
 	 */
 	public void execute() {
 		
-		/*
-		 * Prepare data for delete request
-		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
-		
 		HashMap<String,String> attributes = this.getParams();
 		
-		/*
-		 * Invoke delete request
-		 */
-		DmsService service = new DmsService();
-		service.doDelete(attributes, data, new ActivityImpl() {
+		final DmsDeleteImpl self = this;
+		
+		DmsWidget widget = new DmsWidget();
+		widget.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterDelete(jValue);				
 			}
 			
 		});

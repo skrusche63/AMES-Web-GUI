@@ -12,12 +12,12 @@ import de.kp.ames.web.client.core.menu.GridMenuHandlerImpl;
 import de.kp.ames.web.client.core.menu.item.CreateMenuItem;
 import de.kp.ames.web.client.core.menu.item.DeleteMenuItem;
 import de.kp.ames.web.client.core.menu.item.EditMenuItem;
-import de.kp.ames.web.client.function.group.action.CommunityCreateImpl;
-import de.kp.ames.web.client.function.group.action.CommunityEditImpl;
+import de.kp.ames.web.client.function.group.action.GroupCreateImpl;
+import de.kp.ames.web.client.function.group.action.GroupEditImpl;
 
-public class CommunityGridMenuHandlerImpl extends GridMenuHandlerImpl {
+public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	
-	public CommunityGridMenuHandlerImpl(Grid grid) {
+	public GroupGridMenuHandlerImpl(Grid grid) {
 		super(grid);
 	}
 
@@ -37,7 +37,7 @@ public class CommunityGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		 * Create Community
 		 */
 		CreateMenuItem create = new CreateMenuItem();
-		create.addAction(new CommunityCreateImpl(grid));
+		create.addAction(new GroupCreateImpl(grid));
 		
 		items.add(create);
 		
@@ -50,7 +50,7 @@ public class CommunityGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		 * Edit Community
 		 */
 		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(new CommunityEditImpl(grid, record));
+		edit.addAction(new GroupEditImpl(grid, record));
 		
 		items.add(edit);
 		

@@ -21,7 +21,7 @@ package de.kp.ames.web.client.function.group.grid;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
-import de.kp.ames.web.client.function.group.menu.CommunityGridMenuHandlerImpl;
+import de.kp.ames.web.client.function.group.menu.GroupGridMenuHandlerImpl;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -44,7 +44,7 @@ public class CommunityGridImpl extends GridImpl {
 		/*
 		 * Add menu handler
 		 */
-		this.addMenuHandler(new CommunityGridMenuHandlerImpl(this));
+		this.addMenuHandler(new GroupGridMenuHandlerImpl(this));
 		
 	}
 

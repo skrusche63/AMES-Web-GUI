@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin;
+package de.kp.ames.web.client.function.bulletin.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,12 +20,40 @@ package de.kp.ames.web.client.function.bulletin;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class UsersImpl extends VLayout {
+public class OverviewImpl extends VLayout {
 
-	public UsersImpl() {
+	/*
+	 * Reference to positing detail
+	 */
+	private DetailImpl details;
+	
+	/**
+	 * Constructor depends on DetailImpl
+	 * 
+	 * @param details
+	 */
+	public OverviewImpl(DetailImpl details) {
+	
+		/*
+		 * Register details
+		 */
+		this.details = details;
 		
-		this.setWidth100();
-		this.setHeight100();
+		/*
+		 * Dimensions
+		 */
+		setWidth100();
+		setHeight100();
 		
+	}
+
+	public void reload(String recipient) {
+
+		/*
+		 * Clear content of details widget
+		 */
+		details.reset();
+
+		// TODO
 	}
 }

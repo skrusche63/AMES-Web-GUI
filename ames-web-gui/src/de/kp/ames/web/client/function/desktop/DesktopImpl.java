@@ -1,26 +1,25 @@
 package de.kp.ames.web.client.function.desktop;
 /**
- * This file is part of the AMES Web GUI.
+ *	Copyright 2012 Dr. Krusche & Partner PartG
  *
- * AMES Web GUI is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
  *
- * AMES Web GUI is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
- * or FITNESS FOR A PARTICULAR PURPOSE.  
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  * 
- * See the GNU General Public License for more details.
+ *  See the GNU General Public License for more details. 
  *
- * You should have received a copy of the GNU General Public License
- * along with the AMES Web GUI.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Copyright (C) 2012 Dr. Krusche & Partner PartG <team@dr-kruscheundpartner.de>
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
 import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.types.Orientation;
@@ -31,7 +30,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.client.core.apps.BaseApp;
 import de.kp.ames.web.client.core.apps.control.MainController;
-import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.shared.JsonConstants;
 
 public class DesktopImpl extends BaseApp {
 
@@ -48,6 +47,11 @@ public class DesktopImpl extends BaseApp {
 	 */
 	private JSONArray jApps;
 	
+	/**
+	 * Contructor
+	 * 
+	 * @param jArray
+	 */
 	public DesktopImpl(JSONArray jArray) {
 
 		/*
@@ -126,12 +130,26 @@ public class DesktopImpl extends BaseApp {
 
 	}
 	
+	/**
+	 * @return
+	 */
 	private RecordList getTileRecords() {
 		
-		// TODO : retrieve records from jApps
 	    RecordList records = new RecordList();
+		if (jApps == null) return records;
 	    
-	    records.add(new TileRecord(FncGlobals.FNC_APP_ID_Bulletin, FncGlobals.BULLETIN_TITLE,  "x-bulletin96.png"));
+	    
+	    for (int i=0; i < jApps.size(); i++) {
+	    	
+	    	JSONObject jApp = jApps.get(i).isObject();
+	    	
+	    	String aid  = jApp.get(JsonConstants.J_ID).isString().stringValue();
+	    	String name = jApp.get(JsonConstants.J_NAME).isString().stringValue();
+	    	
+	    	String icon = jApp.get(JsonConstants.J_ICON).isString().stringValue();
+		    records.add(new TileRecord(aid, name,  icon));
+	    	
+	    }
 	  
 	    return records;
 	    

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.comm;
+package de.kp.ames.web.client.function.comm.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

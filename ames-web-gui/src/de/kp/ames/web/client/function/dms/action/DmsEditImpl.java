@@ -52,11 +52,13 @@ public class DmsEditImpl extends GridEditImpl {
 		/*
 		 * Invoke edit request
 		 */
+		final DmsEditImpl self = this;
+		
 		DmsWidget widget = new DmsWidget();
 		widget.doEdit(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterEdit(jValue);				
 			}
 			
 		});

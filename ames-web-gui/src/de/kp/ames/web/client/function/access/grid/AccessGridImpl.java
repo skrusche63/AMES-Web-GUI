@@ -32,13 +32,13 @@ public class AccessGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	public AccessGridImpl(String type, String item) {
+	public AccessGridImpl(String type) {
 		super(ServiceConstants.ACCESS_SERVICE_ID);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
+		this.createGridDS(type);
 
 	}
 
@@ -46,12 +46,10 @@ public class AccessGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String type) {
 		
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		
+		HashMap<String,String> attributes = new HashMap<String,String>();		
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);

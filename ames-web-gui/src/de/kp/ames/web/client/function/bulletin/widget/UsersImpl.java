@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.group.action;
+package de.kp.ames.web.client.function.bulletin.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,22 +18,14 @@ package de.kp.ames.web.client.function.group.action;
  *
  */
 
-import de.kp.ames.web.client.action.grid.GridCreateImpl;
-import de.kp.ames.web.client.core.grid.Grid;
+import com.smartgwt.client.widgets.layout.VLayout;
 
-public class CommunityCreateImpl extends GridCreateImpl {
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param grid
-	 */
-	public CommunityCreateImpl(Grid grid) {	
-		super(grid);
+public class UsersImpl extends VLayout {
+
+	public UsersImpl() {
+		
+		this.setWidth100();
+		this.setHeight100();
+		
 	}
-	
-	public void execute() {
-		//TODO
-	}
-	
 }

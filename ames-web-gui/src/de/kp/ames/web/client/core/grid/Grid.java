@@ -44,6 +44,11 @@ public interface Grid {
 	public void afterContextMenu(RowContextClickEvent event);
 
 	/**
+	 * Data Handling after grid content has changed
+	 */
+	public void reload();
+	
+	/**
 	 * @return
 	 */
 	public DataSourceField[] createFields();

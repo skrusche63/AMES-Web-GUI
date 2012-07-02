@@ -115,7 +115,13 @@ public class GridImpl extends ListGrid implements Grid {
 		 */
 		this.setCanExpandRecords(true);
 		this.setExpansionMode(ExpansionMode.DETAIL_FIELD);
-		
+
+		/*
+		 * Data handling
+		 */
+		this.setAutoFetchData(false);		
+		this.setShowAllRecords(false);
+
 		/*
 		 * Event handling
 		 */
@@ -146,6 +152,22 @@ public class GridImpl extends ListGrid implements Grid {
 	 */
 	public void addMenuHandler(GridMenuHandler menuHandler) {
 		this.menuHandler = menuHandler;
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#reload()
+	 */
+	public void reload() {
+		
+		/* 
+		 * REMARK:
+		 * 
+		 * To invalidate the cache is essential to 
+		 * retrieve data from the server again
+		 */
+		this.invalidateCache();
+		this.redraw();
+
 	}
 	
 	/* (non-Javadoc)
@@ -265,12 +287,12 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 	
 	/**
+	 * Fetch data after rendering
+	 * 
 	 * @param event
 	 */
 	public void afterDraw(DrawEvent event) {
-		/*
-		 * Must be overridden
-		 */
+		this.fetchData();
 	}
 	
 }
