@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu;
+package de.kp.ames.web.client.menu.item;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,6 +18,16 @@ package de.kp.ames.web.client.core.menu;
  *
  */
 
-public interface TreeMenuHandler {
+import de.kp.ames.web.client.function.style.IconConstants;
+import de.kp.ames.web.client.function.style.MenuConstants;
+
+public class DeleteMenuItem extends BaseMenuItem {
+
+	/**
+	 * Constructor
+	 */
+	public DeleteMenuItem() {
+		super(MenuConstants.MENU_DELETE, IconConstants.ICON_DELETE);
+	}
 
 }

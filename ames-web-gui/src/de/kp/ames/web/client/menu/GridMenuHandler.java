@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu.item;
+package de.kp.ames.web.client.menu;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,16 +18,44 @@ package de.kp.ames.web.client.core.menu.item;
  *
  */
 
-import de.kp.ames.web.client.function.style.IconConstants;
-import de.kp.ames.web.client.function.style.MenuConstants;
+import java.util.HashMap;
 
-public class ApplyMenuItem extends BaseMenuItem {
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.menu.MenuItem;
+
+import de.kp.ames.web.client.core.grid.Grid;
+
+public interface GridMenuHandler {
 
 	/**
-	 * Constructor
+	 * @param record
 	 */
-	public ApplyMenuItem() {
-		super(MenuConstants.MENU_APPLY, IconConstants.ICON_APPLY);
-	}
+	public void doOpen(ListGridRecord record);
 
+	/**
+	 * @return
+	 */
+	public MenuItem[] createMenuItems(ListGridRecord record);
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getParam(String key);
+
+	/**
+	 * @return
+	 */
+	public HashMap<String,String> getParams();
+	
+	/**
+	 * @param grid
+	 */
+	public void setGrid(Grid grid);
+	
+	/**
+	 * @param key
+	 * @param value
+	 */
+	public void setParam(String key, String value);
 }

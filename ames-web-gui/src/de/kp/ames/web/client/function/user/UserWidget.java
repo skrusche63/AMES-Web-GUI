@@ -27,7 +27,7 @@ public class UserWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doView(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doGet(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
 		// TODO
 	}
 

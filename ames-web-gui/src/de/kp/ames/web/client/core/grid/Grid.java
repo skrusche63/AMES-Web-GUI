@@ -23,8 +23,8 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 
-import de.kp.ames.web.client.core.menu.GridMenuHandler;
 import de.kp.ames.web.client.core.method.RequestMethod;
+import de.kp.ames.web.client.menu.GridMenuHandler;
 
 public interface Grid {
 	

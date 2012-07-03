@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu.item;
+package de.kp.ames.web.client.function.bulletin.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,16 +18,15 @@ package de.kp.ames.web.client.core.menu.item;
  *
  */
 
-import de.kp.ames.web.client.function.style.IconConstants;
-import de.kp.ames.web.client.function.style.MenuConstants;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-public class ViewMenuItem extends BaseMenuItem {
+import de.kp.ames.web.client.action.grid.GridPostImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-	/**
-	 * Constructor
-	 */
-	public ViewMenuItem() {
-		super(MenuConstants.MENU_VIEW, IconConstants.ICON_VIEW);
+public class PostCreateImpl extends GridPostImpl {
+
+	public PostCreateImpl(Grid grid, ListGridRecord record) {
+		super(grid, record);
 	}
 
 }

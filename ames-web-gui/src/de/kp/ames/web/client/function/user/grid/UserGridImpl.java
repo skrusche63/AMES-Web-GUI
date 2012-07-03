@@ -21,23 +21,49 @@ package de.kp.ames.web.client.function.user.grid;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.user.menu.UserGridMenuHandlerImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class UserGridImpl extends GridImpl {
 
 	/**
-	 * Constructor
+	 * Constructor is used to retrieve all
+	 * registered users
+	 */
+	public UserGridImpl() {
+		super(ServiceConstants.USER_SERVICE_ID);		
+		/*
+		 * Create data source
+		 */
+		String community = null;
+		this.createGridDS(community);
+
+		/*
+		 * This UserGridImpl must have a MenuHandler
+		 * externally provided (context-awareness)
+		 */
+		
+	}
+	
+	/**
+	 * Constructor is used to retrieve all
+	 * users that are attached to a certain
+	 * community
 	 * 
 	 * @param community
 	 */
 	public UserGridImpl(String community) {
-		super(ServiceConstants.USER_SERVICE_ID);
-		
+		super(ServiceConstants.USER_SERVICE_ID);		
 		/*
 		 * Create data source
 		 */
 		this.createGridDS(community);
+
+		/*
+		 * Add menu handler
+		 */
+		this.addMenuHandler(new UserGridMenuHandlerImpl(this));
 		
 	}
 
@@ -47,7 +73,7 @@ public class UserGridImpl extends GridImpl {
 	private void createGridDS(String source) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
+		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);

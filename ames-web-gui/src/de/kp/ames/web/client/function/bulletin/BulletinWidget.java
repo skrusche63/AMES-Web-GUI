@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin.widget;
+package de.kp.ames.web.client.function.bulletin;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,33 +18,27 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import java.util.HashMap;
 
-import de.kp.ames.web.client.function.bulletin.menu.PostGridMenuHandler;
-import de.kp.ames.web.client.function.group.grid.GroupGridImpl;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-public class GroupsImpl extends VLayout {
+import de.kp.ames.web.client.core.activity.Activity;
 
-	/*
-	 * Reference to all registered groups
+public class BulletinWidget {
+
+	/**
+	 * Constructor
 	 */
-	private GroupGridImpl grid;
-	
-	public GroupsImpl() {
-		
-		setWidth100();
-		setHeight100();
-
-		/*
-		 * Build member
-		 */
-		grid = new GroupGridImpl();
-		/*
-		 * Assign context specific menu handler
-		 */
-		grid.addMenuHandler(new PostGridMenuHandler());
-
-		this.addMember(grid);
-		
+	public BulletinWidget() {		
 	}
+	
+	/**
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doPost(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+		// TODO
+	}
+
 }

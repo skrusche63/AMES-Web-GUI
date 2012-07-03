@@ -26,16 +26,36 @@ import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class CommunityGridImpl extends GridImpl {
+public class GroupGridImpl extends GridImpl {
 
 	/**
-	 * Constructor
+	 * Constructor is used to retrieve all
+	 * registered groups
+	 */
+	public GroupGridImpl() {
+		super(ServiceConstants.COMMUNITY_SERVICE_ID);
+		/*
+		 * Create data source
+		 */
+		String affiliate = null;
+		this.createGridDS(affiliate);
+
+		/*
+		 * This GroupGridImpl must have a MenuHandler
+		 * externally provided (context-awareness)
+		 */
+
+	}
+	
+	/**
+	 * Constructor is used to retrieve all
+	 * groups that are attached to a certain
+	 * affiliate
 	 * 
 	 * @param affiliate
 	 */
-	public CommunityGridImpl(String affiliate) {
-		super(ServiceConstants.COMMUNITY_SERVICE_ID);
-		
+	public GroupGridImpl(String affiliate) {
+		super(ServiceConstants.COMMUNITY_SERVICE_ID);		
 		/*
 		 * Create data source
 		 */

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu.item;
+package de.kp.ames.web.client.menu.item;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

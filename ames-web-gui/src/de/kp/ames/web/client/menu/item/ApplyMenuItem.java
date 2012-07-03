@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin.widget;
+package de.kp.ames.web.client.menu.item;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,33 +18,16 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import de.kp.ames.web.client.function.style.IconConstants;
+import de.kp.ames.web.client.function.style.MenuConstants;
 
-import de.kp.ames.web.client.function.bulletin.menu.PostGridMenuHandler;
-import de.kp.ames.web.client.function.group.grid.GroupGridImpl;
+public class ApplyMenuItem extends BaseMenuItem {
 
-public class GroupsImpl extends VLayout {
-
-	/*
-	 * Reference to all registered groups
+	/**
+	 * Constructor
 	 */
-	private GroupGridImpl grid;
-	
-	public GroupsImpl() {
-		
-		setWidth100();
-		setHeight100();
-
-		/*
-		 * Build member
-		 */
-		grid = new GroupGridImpl();
-		/*
-		 * Assign context specific menu handler
-		 */
-		grid.addMenuHandler(new PostGridMenuHandler());
-
-		this.addMember(grid);
-		
+	public ApplyMenuItem() {
+		super(MenuConstants.MENU_APPLY, IconConstants.ICON_APPLY);
 	}
+
 }

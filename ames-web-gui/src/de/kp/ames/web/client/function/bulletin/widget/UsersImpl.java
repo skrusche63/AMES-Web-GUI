@@ -20,12 +20,36 @@ package de.kp.ames.web.client.function.bulletin.widget;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.function.bulletin.menu.PostGridMenuHandler;
+import de.kp.ames.web.client.function.user.grid.UserGridImpl;
+
 public class UsersImpl extends VLayout {
 
+	/*
+	 * Reference to registered users
+	 */
+	private UserGridImpl grid;
+	
+	/**
+	 * Constructor
+	 */
 	public UsersImpl() {
 		
 		this.setWidth100();
 		this.setHeight100();
 		
+		/*
+		 * Build member
+		 */
+		grid = new UserGridImpl();
+
+		/*
+		 * Assign context specific menu handler
+		 */
+		grid.addMenuHandler(new PostGridMenuHandler());
+		
+		this.addMember(grid);
+		
 	}
+	
 }

@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.function.group.menu;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.ArrayList;
 
@@ -6,14 +24,14 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
-import de.kp.ames.web.client.action.Action;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.menu.GridMenuHandlerImpl;
-import de.kp.ames.web.client.core.menu.item.CreateMenuItem;
-import de.kp.ames.web.client.core.menu.item.DeleteMenuItem;
-import de.kp.ames.web.client.core.menu.item.EditMenuItem;
 import de.kp.ames.web.client.function.group.action.GroupCreateImpl;
+import de.kp.ames.web.client.function.group.action.GroupDeleteImpl;
 import de.kp.ames.web.client.function.group.action.GroupEditImpl;
+import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.item.CreateMenuItem;
+import de.kp.ames.web.client.menu.item.DeleteMenuItem;
+import de.kp.ames.web.client.menu.item.EditMenuItem;
 
 public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	
@@ -58,7 +76,7 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		 * Delete Community
 		 */
 		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(CommunityDeleteImpl(grid, record));
+		delete.addAction(new GroupDeleteImpl(grid, record));
 		
 		items.add(delete);
 				
@@ -66,8 +84,4 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 
 	}
 
-	private Action CommunityDeleteImpl(Grid grid, ListGridRecord record) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

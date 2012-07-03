@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu.item;
+package de.kp.ames.web.client.menu.item;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,13 +21,13 @@ package de.kp.ames.web.client.core.menu.item;
 import de.kp.ames.web.client.function.style.IconConstants;
 import de.kp.ames.web.client.function.style.MenuConstants;
 
-public class AssignMenuItem extends BaseMenuItem {
+public class ViewMenuItem extends BaseMenuItem {
 
 	/**
 	 * Constructor
 	 */
-	public AssignMenuItem() {
-		super(MenuConstants.MENU_ASSIGN, IconConstants.ICON_ASSIGN);
+	public ViewMenuItem() {
+		super(MenuConstants.MENU_VIEW, IconConstants.ICON_VIEW);
 	}
 
 }

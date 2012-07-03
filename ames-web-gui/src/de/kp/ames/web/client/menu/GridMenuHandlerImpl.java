@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.menu;
+package de.kp.ames.web.client.menu;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -38,6 +38,17 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 	 */
 	protected HashMap<String,String> params;
 	
+	/**
+	 * Constructor
+	 */
+	public GridMenuHandlerImpl() {		
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param grid
+	 */
 	public GridMenuHandlerImpl(Grid grid) {
 		this.grid = grid;
 	}
@@ -65,6 +76,13 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 		 * Must be overridden
 		 */
 		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.menu.GridMenuHandler#setGrid(de.kp.ames.web.client.core.grid.Grid)
+	 */
+	public void setGrid(Grid grid) {
+		this.grid = grid;
 	}
 	
 	/* (non-Javadoc)

@@ -37,9 +37,9 @@ import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.menu.GridMenuHandler;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.client.menu.GridMenuHandler;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -151,7 +151,12 @@ public class GridImpl extends ListGrid implements Grid {
 	 * @see de.kp.ames.web.client.core.grid.BaseGrid#addMenuHandler(de.kp.ames.web.client.core.menu.GridMenuHandler)
 	 */
 	public void addMenuHandler(GridMenuHandler menuHandler) {
+		/*
+		 * Set Menu Handler and register grid
+		 * for later processing
+		 */
 		this.menuHandler = menuHandler;
+		this.menuHandler.setGrid(this);
 	}
 	
 	/* (non-Javadoc)

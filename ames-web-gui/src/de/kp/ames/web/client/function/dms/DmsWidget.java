@@ -24,6 +24,7 @@ import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
@@ -33,6 +34,7 @@ import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.ServiceConstants;
 
 public class DmsWidget {
 
@@ -84,6 +86,10 @@ public class DmsWidget {
 		new DmsEditDialog(attributes, record, activity);
 	}
 
+	public void doGet(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+		// TODO
+	}
+
 	/**
 	 * @param attributes
 	 * @param record
@@ -95,19 +101,33 @@ public class DmsWidget {
 		 */
 
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
+
+		/*
+		 * Redirect service
+		 */
+		attributes.put(MethodConstants.ATTR_SERVICE, ServiceConstants.DMS_SERVICE_ID);
 		
 		if (type.equals(ClassificationConstants.FNC_ID_Document)) {
 
+			/*
+			 * View Dms document
+			 */
 			String format = FormatConstants.FNC_FORMAT_ID_File;
 			attributes.put(MethodConstants.ATTR_FORMAT, format);
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Image)) {
 
+			/*
+			 * View Dms image
+			 */
 			String format = FormatConstants.FNC_FORMAT_ID_Image;
 			attributes.put(MethodConstants.ATTR_FORMAT, format);
 			
 		}
 
+		/*
+		 * Reference to the registry object to be viewed
+		 */
 		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
 		attributes.put(MethodConstants.ATTR_ITEM, item);
 
@@ -120,11 +140,8 @@ public class DmsWidget {
 		/*
 		 * Build viewer
 		 */
-		
-		// TODO
-		
-		String title  = "";
-		String slogan = "";
+		String title  = GUIGlobals.APP_TITLE + " : Dms Viewer";
+		String slogan = "Use this widget to view Dms information objects.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);
 		

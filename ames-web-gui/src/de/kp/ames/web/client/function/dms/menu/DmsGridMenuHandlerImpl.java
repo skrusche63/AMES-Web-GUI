@@ -1,7 +1,7 @@
 package de.kp.ames.web.client.function.dms.menu;
 
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.menu.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
 
 public class DmsGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	

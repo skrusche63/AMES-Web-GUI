@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin.widget;
+package de.kp.ames.web.client.action.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,33 +18,32 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-import de.kp.ames.web.client.function.bulletin.menu.PostGridMenuHandler;
-import de.kp.ames.web.client.function.group.grid.GroupGridImpl;
+import de.kp.ames.web.client.action.ActionImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-public class GroupsImpl extends VLayout {
+public class GridGetImpl extends ActionImpl {
 
 	/*
-	 * Reference to all registered groups
+	 * Reference to Grid
 	 */
-	private GroupGridImpl grid;
+	protected Grid grid;
 	
-	public GroupsImpl() {
-		
-		setWidth100();
-		setHeight100();
-
-		/*
-		 * Build member
-		 */
-		grid = new GroupGridImpl();
-		/*
-		 * Assign context specific menu handler
-		 */
-		grid.addMenuHandler(new PostGridMenuHandler());
-
-		this.addMember(grid);
-		
+	/*
+	 * Reference to Record
+	 */
+	protected ListGridRecord record;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param grid
+	 * @param record
+	 */
+	public GridGetImpl(Grid grid, ListGridRecord record) {	
+		this.grid = grid;
+		this.record = record;
 	}
+
 }
