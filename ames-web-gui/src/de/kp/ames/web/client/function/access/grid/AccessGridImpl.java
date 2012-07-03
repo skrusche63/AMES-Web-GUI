@@ -21,6 +21,7 @@ package de.kp.ames.web.client.function.access.grid;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.access.menu.AccessGridMenuHandlerImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -40,6 +41,14 @@ public class AccessGridImpl extends GridImpl {
 		 */
 		this.createGridDS(type);
 
+		/*
+		 * Add Menu Handler
+		 */
+		AccessGridMenuHandlerImpl menuHandler = new AccessGridMenuHandlerImpl(this);
+		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		
+		this.addMenuHandler(menuHandler);
+		
 	}
 
 	/**

@@ -1,10 +1,4 @@
 package de.kp.ames.web.client.function.access.action;
-
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
-import de.kp.ames.web.client.action.grid.GridDeleteImpl;
-import de.kp.ames.web.client.core.grid.Grid;
-
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -23,6 +17,11 @@ import de.kp.ames.web.client.core.grid.Grid;
  *	along with this software. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+
+import de.kp.ames.web.client.action.grid.GridDeleteImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
 public class AccessorDeleteImpl extends GridDeleteImpl {
 

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin.widget;
+package de.kp.ames.web.client.function.access.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,38 +18,25 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-import de.kp.ames.web.client.function.bulletin.menu.PostGridMenuHandlerImpl;
-import de.kp.ames.web.client.function.user.grid.UserGridImpl;
+import de.kp.ames.web.client.action.grid.GridGetImpl;
+import de.kp.ames.web.client.core.grid.Grid;
 
-public class UsersImpl extends VLayout {
+public class RemoteGetImpl  extends GridGetImpl {
 
-	/*
-	 * Reference to registered users
-	 */
-	private UserGridImpl grid;
-	
 	/**
 	 * Constructor
+	 * 
+	 * @param grid
+	 * @param record
 	 */
-	public UsersImpl() {
-		
-		this.setWidth100();
-		this.setHeight100();
-		
-		/*
-		 * Build member
-		 */
-		grid = new UserGridImpl();
-
-		/*
-		 * Assign context specific menu handler
-		 */
-		grid.addMenuHandler(new PostGridMenuHandlerImpl());
-		
-		this.addMember(grid);
-		
+	public RemoteGetImpl(Grid grid, ListGridRecord record) {
+		super(grid, record);
 	}
-	
+
+	public void execute() {
+		// TODO
+	}
+
 }

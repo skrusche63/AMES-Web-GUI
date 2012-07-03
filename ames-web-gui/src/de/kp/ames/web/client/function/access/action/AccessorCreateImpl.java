@@ -18,8 +18,14 @@ package de.kp.ames.web.client.function.access.action;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
+
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.access.AccessWidget;
 
 public class AccessorCreateImpl extends GridCreateImpl {
 	
@@ -33,7 +39,24 @@ public class AccessorCreateImpl extends GridCreateImpl {
 	}
 	
 	public void execute() {
-		//TODO
+		/*
+		 * Prepare data for create request
+		 */
+		HashMap<String,String> attributes = this.getParams();
+
+		/*
+		 * Invoke create request
+		 */
+		final AccessorCreateImpl self = this;
+		
+		AccessWidget widget = new AccessWidget();
+		widget.doCreate(attributes, new ActivityImpl() {
+
+			public void execute(JSONValue jValue) {
+				self.doAfterCreate(jValue);
+			}
+			
+		});
 	}
 
 }

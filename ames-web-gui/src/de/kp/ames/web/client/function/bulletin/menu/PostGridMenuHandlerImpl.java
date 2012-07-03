@@ -26,12 +26,12 @@ import de.kp.ames.web.client.function.bulletin.action.PostCreateImpl;
 import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.item.PostMenuItem;
 
-public class PostGridMenuHandler extends GridMenuHandlerImpl {
+public class PostGridMenuHandlerImpl extends GridMenuHandlerImpl {
 
 	/**
 	 * Constructor
 	 */
-	public PostGridMenuHandler() {
+	public PostGridMenuHandlerImpl() {
 		super();
 	}
 
