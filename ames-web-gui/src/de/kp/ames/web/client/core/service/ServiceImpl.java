@@ -242,7 +242,7 @@ public class ServiceImpl implements Service {
 	/**
 	 * @return
 	 */
-	private String getRequestUrl() {
+	protected String getRequestUrl() {
 		
 		if ((this.sid == null) || (this.base == null)) return null;
 		return this.base + "/" + this.sid;

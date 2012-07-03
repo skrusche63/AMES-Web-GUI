@@ -3,6 +3,7 @@ package de.kp.ames.web.client.function.map;
 import java.util.Collection;
 import java.util.HashMap;
 
+import de.kp.ames.map.client.MapConfig;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 
 public class RegisteredMaps {

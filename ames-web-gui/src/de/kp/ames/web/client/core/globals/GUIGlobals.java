@@ -58,5 +58,9 @@ public class GUIGlobals {
 	 * Default dimensions of a dialog
 	 */
 	public static int DIALOG_DIM = 360;
+	/*
+	 * Default dimensions of a viewer
+	 */
+	public static int VIEWER_DIM = 640;
 	
 }

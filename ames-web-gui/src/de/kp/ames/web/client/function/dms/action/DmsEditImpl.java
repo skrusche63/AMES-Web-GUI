@@ -44,14 +44,9 @@ public class DmsEditImpl extends GridEditImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		/*
-		 * Prepare data for edit request
-		 */
+
 		HashMap<String,String> attributes = this.getParams();
 
-		/*
-		 * Invoke edit request
-		 */
 		final DmsEditImpl self = this;
 		
 		DmsWidget widget = new DmsWidget();

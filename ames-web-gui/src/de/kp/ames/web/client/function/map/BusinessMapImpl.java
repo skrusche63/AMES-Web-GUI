@@ -22,10 +22,12 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.Record;
 
-import de.kp.ames.web.client.function.map.event.MapListener;
-import de.kp.ames.web.client.openlayers.LonLat;
-import de.kp.ames.web.client.openlayers.feature.VectorFeature;
-import de.kp.ames.web.client.openlayers.geometry.Point;
+import de.kp.ames.map.client.BaseMapImpl;
+import de.kp.ames.map.client.MapConfig;
+import de.kp.ames.map.client.listener.MapListener;
+import de.kp.ames.map.client.openlayers.LonLat;
+import de.kp.ames.map.client.openlayers.feature.VectorFeature;
+import de.kp.ames.map.client.openlayers.geometry.Point;
 
 public class BusinessMapImpl extends BaseMapImpl {
 

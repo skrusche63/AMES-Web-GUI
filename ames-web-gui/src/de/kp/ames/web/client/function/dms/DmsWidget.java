@@ -24,10 +24,15 @@ import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.dms.widget.DmsCreateDialog;
 import de.kp.ames.web.client.function.dms.widget.DmsEditDialog;
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class DmsWidget {
 
@@ -82,10 +87,47 @@ public class DmsWidget {
 	/**
 	 * @param attributes
 	 * @param record
-	 * @param activity
 	 */
-	public void doView(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+
+		/*
+		 * Prepare data for view request
+		 */
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		
+		if (type.equals(ClassificationConstants.FNC_ID_Document)) {
+
+			String format = FormatConstants.FNC_FORMAT_ID_File;
+			attributes.put(MethodConstants.ATTR_FORMAT, format);
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Image)) {
+
+			String format = FormatConstants.FNC_FORMAT_ID_Image;
+			attributes.put(MethodConstants.ATTR_FORMAT, format);
+			
+		}
+
+		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		attributes.put(MethodConstants.ATTR_ITEM, item);
+
+		/*
+		 * Build request uri
+		 */
+		FrameService service = new FrameService();
+		String uri = service.getUri(attributes);
+
+		/*
+		 * Build viewer
+		 */
+		
 		// TODO
+		
+		String title  = "";
+		String slogan = "";
+		
+		ViewerFactory.createFrameViewer(title, slogan, uri);
+		
 	}
 	
 }
