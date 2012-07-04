@@ -27,9 +27,9 @@ import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.user.action.UserEditImpl;
 import de.kp.ames.web.client.function.user.action.UserGetImpl;
-import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
-import de.kp.ames.web.client.menu.item.EditMenuItem;
-import de.kp.ames.web.client.menu.item.GetMenuItem;
+import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.EditMenuItem;
+import de.kp.ames.web.client.menu.GetMenuItem;
 
 public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	

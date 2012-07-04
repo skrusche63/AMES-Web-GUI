@@ -21,7 +21,7 @@ package de.kp.ames.web.client.core.tree;
 import com.smartgwt.client.types.SelectionAppearance;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
-public class CheckTreeImpl extends BaseTreeImpl {
+public class CheckTreeImpl extends TreeImpl {
 	
 	public CheckTreeImpl(String base, String sid) {
 		super(base, sid);

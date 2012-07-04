@@ -46,13 +46,13 @@ import de.kp.ames.web.client.core.search.SearchWidget;
 import de.kp.ames.web.client.core.widget.base.Viewport;
 import de.kp.ames.web.client.function.bulletin.widget.BulletinImpl;
 import de.kp.ames.web.client.function.desktop.DesktopImpl;
+import de.kp.ames.web.client.function.desktop.DesktopService;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.help.HelpImpl;
 import de.kp.ames.web.client.function.login.LoginDialog;
 import de.kp.ames.web.client.function.portal.PortalImpl;
 import de.kp.ames.web.client.function.portal.PortletConfig;
 import de.kp.ames.web.client.function.scm.ScmSysImpl;
-import de.kp.ames.web.client.function.service.DesktopService;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)

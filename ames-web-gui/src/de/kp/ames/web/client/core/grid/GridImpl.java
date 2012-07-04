@@ -33,13 +33,15 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
+import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
+import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.client.menu.GridMenuHandler;
+import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -137,6 +139,14 @@ public class GridImpl extends ListGrid implements Grid {
 			public void onDraw(DrawEvent event) {
 				self.afterDraw(event);				
 			}			
+		});
+		
+		this.addRecordClickHandler(new RecordClickHandler() {
+			public void onRecordClick(RecordClickEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
 		});
 		
 		this.addRowContextClickHandler(new RowContextClickHandler() {
@@ -261,8 +271,26 @@ public class GridImpl extends ListGrid implements Grid {
 		
 	}
 
-	/**
-	 * @param event
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterRecordClick(com.smartgwt.client.widgets.grid.events.RecordClickEvent)
+	 */
+	public void afterRecordClick(RecordClickEvent event) {
+		/*
+		 * Stop event propagation
+		 */
+		event.cancel();
+		
+		/*
+		 * Retrieve affected grid record
+		 */
+		ListGridRecord record = (ListGridRecord)event.getRecord();
+
+		// TODO
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterContextMenu(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
 	 */
 	public void afterContextMenu(RowContextClickEvent event) {
 		/*

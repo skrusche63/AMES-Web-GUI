@@ -28,8 +28,6 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
-import de.kp.ames.web.client.function.dms.widget.DmsCreateDialog;
-import de.kp.ames.web.client.function.dms.widget.DmsEditDialog;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;

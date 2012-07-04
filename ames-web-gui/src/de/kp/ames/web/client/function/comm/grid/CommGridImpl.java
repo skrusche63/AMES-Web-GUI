@@ -21,6 +21,7 @@ package de.kp.ames.web.client.function.comm.grid;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.comm.menu.CommGridMenuHandlerImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -32,26 +33,31 @@ public class CommGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	public CommGridImpl(String type, String item) {
-		super(ServiceConstants.COMMUNICATION_SERVICE_ID);
-		
+	public CommGridImpl(String type) {
+		super(ServiceConstants.COMMUNICATION_SERVICE_ID);		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
+		this.createGridDS(type);
 
+		/*
+		 * Add menu handler
+		 */
+		CommGridMenuHandlerImpl menuHandler = new CommGridMenuHandlerImpl(this);
+		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		
+		this.addMenuHandler(menuHandler);
+		
 	}
 
 	/**
 	 * @param type
 	 * @param item
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String type) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);

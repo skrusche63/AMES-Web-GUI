@@ -28,13 +28,20 @@ import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.group.action.GroupCreateImpl;
 import de.kp.ames.web.client.function.group.action.GroupDeleteImpl;
 import de.kp.ames.web.client.function.group.action.GroupEditImpl;
-import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
-import de.kp.ames.web.client.menu.item.CreateMenuItem;
-import de.kp.ames.web.client.menu.item.DeleteMenuItem;
-import de.kp.ames.web.client.menu.item.EditMenuItem;
+import de.kp.ames.web.client.function.group.action.GroupGetImpl;
+import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.CreateMenuItem;
+import de.kp.ames.web.client.menu.DeleteMenuItem;
+import de.kp.ames.web.client.menu.EditMenuItem;
+import de.kp.ames.web.client.menu.GetMenuItem;
 
 public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param grid
+	 */
 	public GroupGridMenuHandlerImpl(Grid grid) {
 		super(grid);
 	}
@@ -54,32 +61,57 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		/*
 		 * Create Community
 		 */
+		GroupCreateImpl createAction = new GroupCreateImpl(grid);
+		createAction.setParams(this.getParams());
+		
 		CreateMenuItem create = new CreateMenuItem();
-		create.addAction(new GroupCreateImpl(grid));
+		create.addAction(createAction);
 		
 		items.add(create);
 		
 		/*
-		 * Separate create from block edit & delete
+		 * Separate create from edit & delete
 		 */
 		items.add(separator);
 		
 		/*
 		 * Edit Community
 		 */
+		GroupEditImpl editAction = new GroupEditImpl(grid, record);
+		editAction.setParams(this.getParams());
+		
 		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(new GroupEditImpl(grid, record));
+		edit.addAction(editAction);
 		
 		items.add(edit);
 		
 		/*
 		 * Delete Community
 		 */
+		GroupDeleteImpl deleteAction = new GroupDeleteImpl(grid, record);
+		deleteAction.setParams(this.getParams());
+		
 		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(new GroupDeleteImpl(grid, record));
+		delete.addAction(deleteAction);
 		
 		items.add(delete);
 				
+		/*
+		 * Separate delete from get
+		 */
+		items.add(separator);
+		
+		/*
+		 * Get community
+		 */
+		GroupGetImpl getAction = new GroupGetImpl(grid, record);
+		getAction.setParams(this.getParams());
+		
+		GetMenuItem get = new GetMenuItem();
+		get.addAction(getAction);
+		
+		items.add(get);
+		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 
 	}

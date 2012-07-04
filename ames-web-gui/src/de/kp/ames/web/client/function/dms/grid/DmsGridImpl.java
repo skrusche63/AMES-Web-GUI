@@ -34,14 +34,11 @@ public class DmsGridImpl extends GridImpl {
 	 * @param item
 	 */
 	public DmsGridImpl(String type) {
-		super(ServiceConstants.DMS_SERVICE_ID);
-		
+		super(ServiceConstants.DMS_SERVICE_ID);		
 		/*
 		 * Create data source
 		 */
 		this.createGridDS(type);
-
-		// TODO: May be alternate menu handlers may be assigned in different contexts
 		
 		/*
 		 * Add menu handler and also provide request

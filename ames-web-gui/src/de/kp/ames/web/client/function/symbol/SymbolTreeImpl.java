@@ -1,18 +1,18 @@
 package de.kp.ames.web.client.function.symbol;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.client.core.tree.BaseTreeImpl;
+import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class SymbolTreeImpl extends BaseTreeImpl {
+public class SymbolTreeImpl extends TreeImpl {
 
 	/**
 	 * Constructor for either APP-6B or Icon-based
@@ -29,37 +29,16 @@ public class SymbolTreeImpl extends BaseTreeImpl {
 	    this.setFields(new TreeGridField(TITLE)); 
 	    
 	    /*
-	     * Create request method & data source
+	     * Create data source
 	     */
-	    String url = this.getRequestUrl();
-	    RequestMethodImpl method = this.createMethod(type);
+	    this.createTreeDS(type);	    
 	    
-	    DataSourceField[] fields = this.createFields();
-	    
-	    this.createScTreeDS(url, method, JsonConstants.J_NAME, fields);
-	    this.setDataSource(dataSource);
-	    
-	    
-	}
-	
-	/**
-	 * @param type
-	 * @return
-	 */
-	private RequestMethodImpl createMethod(String type) {
-		
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_KEYS);
-		
-		requestMethod.addAttribute(MethodConstants.ATTR_TYPE, type);
-		return requestMethod;
-		
 	}
 	
 	/**
 	 * @return
 	 */
-	private DataSourceField[] createFields() {
+	public DataSourceField[] createFields() {
 		
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 
@@ -76,5 +55,20 @@ public class SymbolTreeImpl extends BaseTreeImpl {
 		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
 
 	}
-	
+
+	/**
+	 * Create data source
+	 */
+	private void createTreeDS(String type) {
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		String title = JsonConstants.J_NAME;
+		
+		this.createScTreeDS(attributes, title);
+		this.setDataSource(dataSource);
+		
+	}
+
 }

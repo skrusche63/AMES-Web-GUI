@@ -21,10 +21,11 @@ package de.kp.ames.web.client.core.grid;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 
 import de.kp.ames.web.client.core.method.RequestMethod;
-import de.kp.ames.web.client.menu.GridMenuHandler;
+import de.kp.ames.web.client.handler.GridMenuHandler;
 
 public interface Grid {
 	
@@ -42,6 +43,12 @@ public interface Grid {
 	 * @param event
 	 */
 	public void afterContextMenu(RowContextClickEvent event);
+
+	/**
+	 * 
+	 * @param event
+	 */
+	public void afterRecordClick(RecordClickEvent event);
 
 	/**
 	 * Data Handling after grid content has changed

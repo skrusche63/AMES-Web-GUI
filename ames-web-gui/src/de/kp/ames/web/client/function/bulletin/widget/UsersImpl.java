@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.bulletin.widget;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.function.bulletin.menu.PostGridMenuHandlerImpl;
+import de.kp.ames.web.client.function.bulletin.menu.ContactGridMenuHandlerImpl;
 import de.kp.ames.web.client.function.user.grid.UserGridImpl;
 
 public class UsersImpl extends VLayout {
@@ -46,7 +46,7 @@ public class UsersImpl extends VLayout {
 		/*
 		 * Assign context specific menu handler
 		 */
-		grid.addMenuHandler(new PostGridMenuHandlerImpl());
+		grid.addMenuHandler(new ContactGridMenuHandlerImpl());
 		
 		this.addMember(grid);
 		

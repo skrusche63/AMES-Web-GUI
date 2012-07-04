@@ -28,10 +28,10 @@ import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.transform.action.TransformCreateImpl;
 import de.kp.ames.web.client.function.transform.action.TransformDeleteImpl;
 import de.kp.ames.web.client.function.transform.action.TransformViewImpl;
-import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
-import de.kp.ames.web.client.menu.item.CreateMenuItem;
-import de.kp.ames.web.client.menu.item.DeleteMenuItem;
-import de.kp.ames.web.client.menu.item.ViewMenuItem;
+import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.CreateMenuItem;
+import de.kp.ames.web.client.menu.DeleteMenuItem;
+import de.kp.ames.web.client.menu.ViewMenuItem;
 
 public class TransformGridMenuHandlerImpl extends GridMenuHandlerImpl {
 

@@ -31,12 +31,12 @@ import de.kp.ames.web.client.function.access.action.AccessorEditImpl;
 import de.kp.ames.web.client.function.access.action.AccessorGetImpl;
 import de.kp.ames.web.client.function.access.action.RemoteGetImpl;
 import de.kp.ames.web.client.function.access.action.RemoteViewImpl;
-import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
-import de.kp.ames.web.client.menu.item.CreateMenuItem;
-import de.kp.ames.web.client.menu.item.DeleteMenuItem;
-import de.kp.ames.web.client.menu.item.EditMenuItem;
-import de.kp.ames.web.client.menu.item.GetMenuItem;
-import de.kp.ames.web.client.menu.item.ViewMenuItem;
+import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.CreateMenuItem;
+import de.kp.ames.web.client.menu.DeleteMenuItem;
+import de.kp.ames.web.client.menu.EditMenuItem;
+import de.kp.ames.web.client.menu.GetMenuItem;
+import de.kp.ames.web.client.menu.ViewMenuItem;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -80,8 +80,11 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			/*
 			 * Create Accessor
 			 */
+			AccessorCreateImpl createAction = new AccessorCreateImpl(grid);
+			createAction.setParams(this.getParams());
+			
 			CreateMenuItem create = new CreateMenuItem();
-			create.addAction(new AccessorCreateImpl(grid));
+			create.addAction(createAction);
 			
 			items.add(create);
 			
@@ -93,16 +96,22 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			/*
 			 * Edit accessor
 			 */
+			AccessorEditImpl editAction = new AccessorEditImpl(grid, record);
+			editAction.setParams(this.getParams());
+			
 			EditMenuItem edit = new EditMenuItem();
-			edit.addAction(new AccessorEditImpl(grid, record));
+			edit.addAction(editAction);
 			
 			items.add(edit);
 			
 			/*
 			 * Delete accessor
 			 */
+			AccessorDeleteImpl deleteAction = new AccessorDeleteImpl(grid, record);
+			deleteAction.setParams(this.params);
+			
 			DeleteMenuItem delete = new DeleteMenuItem();
-			delete.addAction(new AccessorDeleteImpl(grid, record));
+			delete.addAction(deleteAction);
 			
 			items.add(delete);
 
@@ -114,8 +123,11 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			/*
 			 * Get accessor
 			 */
+			AccessorGetImpl getAction = new AccessorGetImpl(grid, record);
+			getAction.setParams(this.getParams());
+			
 			GetMenuItem get = new GetMenuItem();
-			get.addAction(new AccessorGetImpl(grid, record));
+			get.addAction(getAction);
 			
 			items.add(get);
 
@@ -131,8 +143,11 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			/*
 			 * Get remote object
 			 */
+			RemoteGetImpl getAction = new RemoteGetImpl(grid, record);
+			getAction.setParams(this.getParams());
+			
 			GetMenuItem get = new GetMenuItem();
-			get.addAction(new RemoteGetImpl(grid, record));
+			get.addAction(getAction);
 
 			/*
 			 * Separate get from view
@@ -142,9 +157,11 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			/*
 			 * View remote object
 			 */
-
+			RemoteViewImpl viewAction = new RemoteViewImpl(grid, record);
+			viewAction.setParams(this.getParams());
+			
 			ViewMenuItem view = new ViewMenuItem();
-			view.addAction(new RemoteViewImpl(grid, record));
+			view.addAction(viewAction);
 			
 			items.add(get);
 
