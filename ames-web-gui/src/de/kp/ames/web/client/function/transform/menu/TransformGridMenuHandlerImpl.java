@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.user.menu;
+package de.kp.ames.web.client.function.transform.menu;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -25,20 +25,22 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.function.user.action.UserEditImpl;
-import de.kp.ames.web.client.function.user.action.UserGetImpl;
+import de.kp.ames.web.client.function.transform.action.TransformCreateImpl;
+import de.kp.ames.web.client.function.transform.action.TransformDeleteImpl;
+import de.kp.ames.web.client.function.transform.action.TransformViewImpl;
 import de.kp.ames.web.client.menu.GridMenuHandlerImpl;
-import de.kp.ames.web.client.menu.item.EditMenuItem;
-import de.kp.ames.web.client.menu.item.GetMenuItem;
+import de.kp.ames.web.client.menu.item.CreateMenuItem;
+import de.kp.ames.web.client.menu.item.DeleteMenuItem;
+import de.kp.ames.web.client.menu.item.ViewMenuItem;
 
-public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
-	
+public class TransformGridMenuHandlerImpl extends GridMenuHandlerImpl {
+
 	/**
 	 * Constructor
 	 * 
 	 * @param grid
 	 */
-	public UserGridMenuHandlerImpl(Grid grid) {
+	public TransformGridMenuHandlerImpl(Grid grid) {
 		super(grid);
 	}
 
@@ -55,31 +57,43 @@ public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		MenuItemSeparator separator = new MenuItemSeparator();
 		
 		/*
-		 * Edit user
+		 * Create transform
 		 */
-		UserEditImpl editAction = new UserEditImpl(grid, record);
-		editAction.setParams(this.getParams());
+		TransformCreateImpl createAction = new TransformCreateImpl(grid);
+		createAction.setParams(this.getParams());
 		
-		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(editAction);
+		CreateMenuItem create = new CreateMenuItem();
+		create.addAction(createAction);
 		
-		items.add(edit);
+		items.add(create);
 
 		/*
-		 * Seperate edit from view
+		 * Separate create from delete
 		 */
 		items.add(separator);
 		
 		/*
-		 * Get user
+		 * Delete transform
 		 */
-		UserGetImpl getAction = new UserGetImpl(grid, record);
-		getAction.setParams(this.getParams());
+		TransformDeleteImpl deleteAction = new TransformDeleteImpl(grid, record);
+		deleteAction.setParams(this.getParams());
 		
-		GetMenuItem get = new GetMenuItem();
-		get.addAction(getAction);
+		DeleteMenuItem delete = new DeleteMenuItem();
+		delete.addAction(deleteAction);
+
+		/*
+		 * Separate delete from view
+		 */
+		items.add(separator);
+
+		/*
+		 * View upload
+		 */
+		TransformViewImpl viewAction = new TransformViewImpl(grid, record);
+		viewAction.setParams(this.getParams());
 		
-		items.add(get);
+		ViewMenuItem view = new ViewMenuItem();
+		view.addAction(viewAction);
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		

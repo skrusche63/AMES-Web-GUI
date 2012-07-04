@@ -45,14 +45,13 @@ public class UploadCreateImpl extends GridCreateImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		/*
-		 * Invoke upload request
-		 */
+		final UploadCreateImpl self = this;
+		
 		UploadWidget widget = new UploadWidget();
 		widget.doUpload(attributes, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterCreate(jValue);			
 			}
 			
 		});
