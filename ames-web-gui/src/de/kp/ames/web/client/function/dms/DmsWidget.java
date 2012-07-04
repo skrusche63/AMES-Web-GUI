@@ -49,7 +49,6 @@ public class DmsWidget {
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-		new DmsCreateDialog(attributes, activity);
 	}
 
 	/**
@@ -83,7 +82,6 @@ public class DmsWidget {
 	 * @param activity
 	 */
 	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
-		new DmsEditDialog(attributes, record, activity);
 	}
 
 	public void doGet(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
@@ -140,7 +138,7 @@ public class DmsWidget {
 		/*
 		 * Build viewer
 		 */
-		String title  = GUIGlobals.APP_TITLE + " : Dms Viewer";
+		String title  = GUIGlobals.APP_TITLE + ": Dms Viewer";
 		String slogan = "Use this widget to view Dms information objects.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);

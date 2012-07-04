@@ -70,10 +70,10 @@ public class UserGridImpl extends GridImpl {
 	/**
 	 * @param source
 	 */
-	private void createGridDS(String source) {
+	private void createGridDS(String item) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);

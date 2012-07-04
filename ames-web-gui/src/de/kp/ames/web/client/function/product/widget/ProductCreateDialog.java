@@ -3,6 +3,7 @@ package de.kp.ames.web.client.function.product.widget;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateDialog;
 
 public class ProductCreateDialog extends CreateDialog {

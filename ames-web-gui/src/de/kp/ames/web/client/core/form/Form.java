@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.widget.dialog;
+package de.kp.ames.web.client.core.form;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,33 +18,33 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.google.gwt.json.client.JSONValue;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
-
-public class ApplyDialog extends FormDialog {
-
-	/*
-	 * Buttons labels
-	 */
-	private static String LABEL1 = GUIGlobals.BTN_APPLY_LABEL;
-	private static String LABEL2 = GUIGlobals.BTN_CAN_LABEL;
+public interface Form {
 
 	/**
-	 * Constructor
+	 * Add form data in terms of a JSONValue
 	 * 
-	 * @param title
-	 * @param slogan
+	 * @param jValue
 	 */
-	public ApplyDialog(String title, String slogan) {
-		super(title, slogan);
-	}
+	public void addFormData(JSONValue jValue);
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.base.BaseDialog#createButtons()
+	/**
+	 * @return
 	 */
-	public VLayout createButtons() {
-		return createButtons(LABEL1, LABEL2);
-	}
-
+	public String getFormData();
+	
+	/**
+	 * Assign form handler to process (submit)
+	 * form data
+	 */
+	public void addFormHandler(FormHandler formHandler);
+	
+	/**
+	 * Indicate form to be read only or not
+	 * 
+	 * @param readOnly
+	 */
+	public void setReadOnly(boolean readOnly);
+	
 }

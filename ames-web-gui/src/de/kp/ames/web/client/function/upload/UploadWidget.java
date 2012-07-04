@@ -133,7 +133,7 @@ public class UploadWidget {
 		/*
 		 * Build viewer
 		 */
-		String title  = GUIGlobals.APP_TITLE + " : Cache Viewer";
+		String title  = GUIGlobals.APP_TITLE + ": Cache Viewer";
 		String slogan = "Use this widget to view transient information objects.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);

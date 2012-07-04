@@ -42,12 +42,12 @@ public class UserService extends ServiceImpl {
 	 * @param source
 	 * @param activity
 	 */
-	public void doGet(String format, String source, Activity activity) {
+	public void doGet(String format, String item, Activity activity) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
-		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
+		attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		doGetJson(attributes, activity);
 		

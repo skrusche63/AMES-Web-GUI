@@ -18,16 +18,17 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.core.form.FormHandler;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 
-public class ApplyDialog extends FormDialog {
-
+public class EditFormDialog extends FormDialog implements FormHandler {
 	/*
 	 * Buttons labels
 	 */
-	private static String LABEL1 = GUIGlobals.BTN_APPLY_LABEL;
+	private static String LABEL1 = GUIGlobals.BTN_SAVE_LABEL;
 	private static String LABEL2 = GUIGlobals.BTN_CAN_LABEL;
 
 	/**
@@ -36,8 +37,19 @@ public class ApplyDialog extends FormDialog {
 	 * @param title
 	 * @param slogan
 	 */
-	public ApplyDialog(String title, String slogan) {
+	public EditFormDialog(String title, String slogan) {
 		super(title, slogan);
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param slogan
+	 * @param jValue
+	 */
+	public EditFormDialog(String title, String slogan, JSONValue jValue) {
+		super(title, slogan, jValue);
 	}
 
 	/* (non-Javadoc)
@@ -46,5 +58,5 @@ public class ApplyDialog extends FormDialog {
 	public VLayout createButtons() {
 		return createButtons(LABEL1, LABEL2);
 	}
-
+	
 }

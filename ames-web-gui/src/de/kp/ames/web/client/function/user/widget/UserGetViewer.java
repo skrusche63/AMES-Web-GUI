@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.widget.dialog;
+package de.kp.ames.web.client.function.user.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,33 +18,34 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
 
-public class ApplyDialog extends FormDialog {
+public class UserGetViewer extends ViewerImpl {
 
-	/*
-	 * Buttons labels
+	private static String TITLE  = GUIGlobals.APP_TITLE + ": User Viewer";
+	private static String SLOGAN = "Use this widget to view user specific information.";
+
+	/**
+	 * Constructor
+	 * 
+	 * @param body
 	 */
-	private static String LABEL1 = GUIGlobals.BTN_APPLY_LABEL;
-	private static String LABEL2 = GUIGlobals.BTN_CAN_LABEL;
-
+	public UserGetViewer(Canvas body) {
+		super(TITLE, SLOGAN, body);
+	}
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param title
 	 * @param slogan
+	 * @param body
 	 */
-	public ApplyDialog(String title, String slogan) {
-		super(title, slogan);
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.base.BaseDialog#createButtons()
-	 */
-	public VLayout createButtons() {
-		return createButtons(LABEL1, LABEL2);
+	public UserGetViewer(String title, String slogan, Canvas body) {
+		super(title, slogan, body);
 	}
 
 }

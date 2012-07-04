@@ -44,7 +44,7 @@ public class ProductWidget {
 	 * @param activity
 	 */
 	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
-		new ProductEditDialog(attributes, record, activity);
+		// TODO
 	}
 
 }

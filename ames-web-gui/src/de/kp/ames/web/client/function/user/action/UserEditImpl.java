@@ -40,25 +40,22 @@ public class UserEditImpl extends GridEditImpl {
 		super(grid, record);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
-		/*
-		 * Prepare data for edit request
-		 */
+
 		HashMap<String,String> attributes = this.getParams();
 
-		/*
-		 * Invoke edit request
-		 */
 		final UserEditImpl self = this;
 		
 		UserWidget widget = new UserWidget();
 		widget.doEdit(attributes, record, new ActivityImpl() {
-
 			public void execute(JSONValue jValue) {
-				self.doAfterEdit(jValue);				
+				self.doAfterEdit(jValue);
 			}
-			
 		});
+
 	}
 
 }

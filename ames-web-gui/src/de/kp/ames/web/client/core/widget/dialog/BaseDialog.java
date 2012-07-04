@@ -18,6 +18,7 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -38,7 +39,16 @@ import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
  * it supports the default buttons (ok, cancel)
  */
 public class BaseDialog extends Window {
+
+	protected String title;
+	protected String slogan;
 	
+	/*
+	 * Reference to JSON based data that
+	 * are essential for building a dialog
+	 */
+	protected JSONValue jValue;
+
 	private IButton b1;
 	private IButton b2;
 	
@@ -65,31 +75,54 @@ public class BaseDialog extends Window {
 	private static int DIM = GUIGlobals.DIALOG_DIM;
 	
 	/**
-	 * Constructor requires title and slogan
+	 * Constructor
 	 * 
 	 * @param title
 	 * @param slogan
 	 */
 	public BaseDialog(String title, String slogan) {
 		
-		VLayout vLayout = new VLayout();
-		vLayout.setShowEdges(false);
+		/*
+		 * Register title & slogan
+		 */
+		this.title = title;
+		this.slogan = slogan;
+
+		this.setupDialog();
 		
-		vLayout.setWidth100();
-		vLayout.setHeight100();
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param slogan
+	 * @param jValue
+	 */
+	public BaseDialog(String title, String slogan, JSONValue jValue) {
+
+		/*
+		 * Register title & slogan
+		 */
+		this.title = title;
+		this.slogan = slogan;
+
+		/*
+		 * Register data
+		 */
+		this.jValue = jValue;
+		this.setupDialog();
 		
-		vLayout.setMembersMargin(0);
-		vLayout.setLayoutMargin(0);
+	}
+	
+	/**
+	 * Setup dialog
+	 */
+	protected void setupDialog() {
 		
 		/*
-		 * Create headline, body and buttons
+		 * Layout & style
 		 */
-		vLayout.addMember(createHeadline(title, slogan));
-		vLayout.addMember(createBody());
-		vLayout.addMember(createButtons());
-		
-		this.addItem(vLayout);
-		
 		this.setWidth(DIM);
 		this.setHeight(DIM);
 		
@@ -101,11 +134,20 @@ public class BaseDialog extends Window {
 
 		final BaseDialog self = this;		
 
+		/*
+		 * Close event
+		 */
 		this.addCloseClickHandler(new CloseClickHandler() {
 			public void onCloseClick(CloseClickEvent event) {
 				self.destroy();				
 			}			
 		});
+		
+		/*
+		 * Create main structure
+		 */
+		VLayout body = this.createBody();
+		this.addItem(body);
 
 		this.centerInPage();
 		this.draw();
@@ -113,39 +155,60 @@ public class BaseDialog extends Window {
 	}
 	
 	/**
+	 * Create main body of dialog with
+	 * predefined layout structure
+	 * 
 	 * @return
 	 */
-	public VLayout createBody() {
+	protected VLayout createBody() {
 
 		VLayout vLayout = new VLayout();
-		vLayout.setStyleName(GUIStyles.X_BD_STYLE_2);
-
-		vLayout.setWidth100();		
+		vLayout.setShowEdges(false);
+		
+		vLayout.setWidth100();
 		vLayout.setHeight100();
 		
-		vLayout.addMember(createBodyContent());
+		vLayout.setMembersMargin(0);
+		vLayout.setLayoutMargin(0);
+		
+		/*
+		 * Create headline
+		 */
+		VLayout headline = GUIBaseFactory.createHeadline(title, slogan);		
+		vLayout.addMember(headline);
+		
+		/*
+		 * Create content
+		 */
+		VLayout wrapper = new VLayout();
+		wrapper.setStyleName(GUIStyles.X_BD_STYLE_2);
+
+		wrapper.setWidth100();		
+		wrapper.setHeight100();
+		
+		wrapper.addMember(createContent());
+		vLayout.addMember(wrapper);
+		
+		/*
+		 * Create buttons
+		 */
+		VLayout buttons = createButtons();
+		vLayout.addMember(buttons);
+		
 		return vLayout;
 		
 	}
-	
+ 	
 	/**
-	 * Create body content (must be overridden)
+	 * Method to assign content to dialog
 	 * 
 	 * @return
 	 */
-	public Canvas createBodyContent() {
+	protected Canvas createContent() {
+		/*
+		 * Must be overridden
+		 */
 		return null;
-	}
-	
-	/**
-	 * Method to create headline of dialog
-	 * 
-	 * @param title
-	 * @param slogan
-	 * @return
-	 */
-	private VLayout createHeadline(String title, String slogan) {
-		return GUIBaseFactory.createHeadline(title, slogan);
 	}
 	
 	/**
@@ -153,7 +216,7 @@ public class BaseDialog extends Window {
 	 * 
 	 * @return
 	 */
-	public VLayout createButtons() {
+	protected VLayout createButtons() {
 		return createButtons(LABEL1, LABEL2);
 	}
 	
@@ -164,7 +227,7 @@ public class BaseDialog extends Window {
 	 * @param label2
 	 * @return
 	 */
-	public VLayout createButtons(String label1, String label2) {
+	protected VLayout createButtons(String label1, String label2) {
 
 		/*
 		 * First button
@@ -221,13 +284,16 @@ public class BaseDialog extends Window {
 		return vLayout;
 		
 	}
-
+	
 	/**
 	 * Click Handler for first button
 	 * 
 	 * @return
 	 */
-	public ClickHandler createB1ClickHandler() {
+	protected ClickHandler createB1ClickHandler() {
+		/*
+		 * Must be overridden
+		 */
 		return null;
 	}
 	
@@ -236,7 +302,10 @@ public class BaseDialog extends Window {
 	 * 
 	 * @return
 	 */
-	public ClickHandler createB2ClickHandler() {
+	protected ClickHandler createB2ClickHandler() {
+		/*
+		 * Must be overridden
+		 */
 		return null;
 	}
 	
@@ -246,14 +315,15 @@ public class BaseDialog extends Window {
 	 * @param mask
 	 * @param text
 	 */
-	public void setIndicator(String text) {
+	protected void setIndicator(String text) {
 		ActionIndicator.getInstance().open(text);
 	}
 
 	/**
 	 * Reset action indicator
 	 */
-	public void resetIndicator() {
+	protected void resetIndicator() {
 		ActionIndicator.getInstance().reset();		
 	}
+	
 }

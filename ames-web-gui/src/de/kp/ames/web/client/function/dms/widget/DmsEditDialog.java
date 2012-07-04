@@ -1,19 +1,15 @@
 package de.kp.ames.web.client.function.dms.widget;
 
-import java.util.HashMap;
+import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+public class DmsEditDialog extends EditFormDialog {
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.widget.dialog.EditDialog;
-
-public class DmsEditDialog extends EditDialog {
-
-	// TODO
-	private static String TITLE  = "";
-	private static String SLOGAN = "";
+	private static String TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
+	private static String SLOGAN = "Use this widget to edit a specific Dms entry.";
 	
-	public DmsEditDialog(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public DmsEditDialog() {
 		super(TITLE, SLOGAN);
 	}
 	

@@ -20,11 +20,9 @@ package de.kp.ames.web.client.function.user.action;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridGetImpl;
-import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.user.UserWidget;
 
@@ -48,12 +46,7 @@ public class UserGetImpl extends GridGetImpl {
 		HashMap<String,String> attributes = this.getParams();
 		
 		UserWidget widget = new UserWidget();
-		widget.doGet(attributes, record, new ActivityImpl() {
-			
-			public void execute(JSONValue jValue) {
-			}
-
-		});
+		widget.doGet(attributes, record);
 		
 	}
 
