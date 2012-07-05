@@ -54,12 +54,12 @@ public class ProductorCreateDialog extends CreateFormDialog {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
 	 */
-	public void doSubmit() {
+	public void doSend() {
 
 		String data = this.form.getFormData();
 		
 		ProductService service = new ProductService();
-		service.doSubmit(data, this.afterSubmitActivity);
+		service.doSubmit(data, this.sendActivity);
 
 	}	
 	

@@ -58,12 +58,12 @@ public class UserEditDialog extends EditFormDialog {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
 	 */
-	public void doSubmit() {
+	public void doSend() {
 
 		String data = this.form.getFormData();
 		
 		UserService service = new UserService();
-		service.doSubmit(data, this.afterSubmitActivity);
+		service.doSubmit(data, this.sendActivity);
 
 	}
 

@@ -22,7 +22,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 
-public class ApplyDialog extends FormDialog {
+public class ApplyFormDialog extends FormDialog {
 
 	/*
 	 * Buttons labels
@@ -36,7 +36,7 @@ public class ApplyDialog extends FormDialog {
 	 * @param title
 	 * @param slogan
 	 */
-	public ApplyDialog(String title, String slogan) {
+	public ApplyFormDialog(String title, String slogan) {
 		super(title, slogan);
 	}
 

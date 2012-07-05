@@ -7,11 +7,11 @@ public interface FormHandler {
 	/**
 	 * @param activity
 	 */
-	public void addAfterSubmitActivity(Activity activity);
+	public void addSendActivity(Activity activity);
 	
 	/**
-	 * Submit form to server
+	 * Send form to server
 	 */
-	public void doSubmit();
+	public void doSend();
 	
 }

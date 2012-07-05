@@ -35,4 +35,10 @@ public class AccessorDeleteImpl extends GridDeleteImpl {
 		super(grid, record);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
+	public void execute() {
+		// TODO
+	}
 }

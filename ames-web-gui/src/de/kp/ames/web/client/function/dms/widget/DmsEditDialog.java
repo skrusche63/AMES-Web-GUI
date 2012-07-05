@@ -24,7 +24,6 @@ import com.smartgwt.client.widgets.Canvas;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.function.dms.DmsService;
-import de.kp.ames.web.client.function.user.widget.UserFormImpl;
 import de.kp.ames.web.shared.MethodConstants;
 
 public class DmsEditDialog extends EditFormDialog {
@@ -49,7 +48,7 @@ public class DmsEditDialog extends EditFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new UserFormImpl();
+		this.form = new DmsFormImpl();
 		this.form.addFormHandler(this);
 
 		this.form.addFormData(this.jValue);		
@@ -60,13 +59,12 @@ public class DmsEditDialog extends EditFormDialog {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
 	 */
-	public void doSubmit() {
+	public void doSend() {
 
 		String data = this.form.getFormData();
 		String type = this.getParam(MethodConstants.ATTR_TYPE);
 		
-		DmsService service = new DmsService();
-		service.doSubmit(type, data, this.afterSubmitActivity);
+		new DmsService().doSubmit(type, data, this.sendActivity);
 
 	}
 	

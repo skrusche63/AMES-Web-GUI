@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.access.widget;
+package de.kp.ames.web.client.function.product.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,32 +21,30 @@ package de.kp.ames.web.client.function.access.widget;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
-import de.kp.ames.web.client.function.access.AccessService;
+import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
+import de.kp.ames.web.client.function.product.ProductService;
+import de.kp.ames.web.shared.MethodConstants;
 
-public class AccessorCreateDialog extends CreateFormDialog {
+public class ProductorApplyDialog extends ApplyFormDialog {
 
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
-	private static String SLOGAN = "Use this widget to create a new accessor.";
+	private static String TITLE  = GUIGlobals.APP_TITLE + ": Productor Engine";;
+	private static String SLOGAN = "Use this widget to apply a certain productor.";
 
 	/**
 	 * Constructor
 	 */
-	public AccessorCreateDialog() {
+	public ProductorApplyDialog() {
 		super(TITLE, SLOGAN);
 	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#createContent()
-	 */
 	public Canvas createContent() {
 
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new AccessorFormImpl();
+		this.form = new ProductorApplyFormImpl();
 		this.form.addFormHandler(this);
 
+		this.form.addFormData(this.jValue);		
 		return this.form;
 		
 	}
@@ -56,11 +54,19 @@ public class AccessorCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
+		/*
+		 * Form data
+		 */
 		String data = this.form.getFormData();
 		
-		AccessService service = new AccessService();
-		service.doSubmit(data, this.sendActivity);
+		/*
+		 * Request specific parameters
+		 */
+		String source  = this.form.getParam(MethodConstants.ATTR_SOURCE);
+		String service = this.form.getParam(MethodConstants.ATTR_SERVICE);
+
+		new ProductService().doApply(source, service, data, this.sendActivity);
 
 	}	
-	
+
 }

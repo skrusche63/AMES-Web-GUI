@@ -35,6 +35,9 @@ public class RemoteGetImpl  extends GridGetImpl {
 		super(grid, record);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
 		// TODO
 	}

@@ -1,5 +1,14 @@
 package de.kp.ames.web.client.function.transform.widget;
 
-public class TransformFormImpl {
+import de.kp.ames.web.client.core.form.FormImpl;
 
+public class TransformFormImpl extends FormImpl {
+
+	/**
+	 * Constructor
+	 */
+	public TransformFormImpl() {
+	}
+	
+	// TODO
 }

@@ -119,7 +119,7 @@ public class UserWidget {
 	private void buildEditDialog(JSONValue jValue, Activity afterSubmitActivity) {
 		
 		UserEditDialog dialog = new UserEditDialog(jValue);
-		dialog.addAfterSubmitActivity(afterSubmitActivity);
+		dialog.addSendActivity(afterSubmitActivity);
 		
 	}
 	

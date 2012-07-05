@@ -1,5 +1,7 @@
 package de.kp.ames.web.client.core.form;
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.layout.VLayout;
 
@@ -9,6 +11,11 @@ public class FormImpl extends VLayout implements Form {
 	 * Reference to Form Handler
 	 */
 	protected FormHandler formHandler;
+
+	/*
+	 * Request specific parameters
+	 */
+	protected HashMap<String,String> params;
 	
 	/*
 	 * Reference to Form Data
@@ -19,6 +26,28 @@ public class FormImpl extends VLayout implements Form {
 	 * Indicate read onyl form
 	 */
 	protected boolean readOnly;
+
+	/**
+	 * Set a certain request specific parameter
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public void setParam(String key, String value) {
+		if (this.params == null) this.params = new HashMap<String,String>();
+		this.params.put(key, value);
+	}
+	
+	/**
+	 * Get a certain request specific parameter
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public String getParam(String key) {
+		if ((this.params == null) || (this.params.containsKey(key) == false)) return null;
+		return this.params.get(key);
+	}
 	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.Form#addFormData(com.google.gwt.json.client.JSONValue)

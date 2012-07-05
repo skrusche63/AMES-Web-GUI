@@ -42,9 +42,9 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	protected HashMap<String,String> params;
 	
 	/*
-	 * Reference to after submit activity
+	 * Reference to after send activity
 	 */
-	protected Activity afterSubmitActivity;
+	protected Activity sendActivity;
 	
 	/*
 	 * Form based label style
@@ -130,19 +130,19 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.form.FormHandler#doSubmit()
+	 * @see de.kp.ames.web.client.core.form.FormHandler#doSend()
 	 */
-	public void doSubmit() {
+	public void doSend() {
 		/*
 		 * Must be overridden
 		 */
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.form.FormHandler#addAfterSubmitActivity(de.kp.ames.web.client.core.activity.Activity)
+	 * @see de.kp.ames.web.client.core.form.FormHandler#addSendActivity(de.kp.ames.web.client.core.activity.Activity)
 	 */
-	public void addAfterSubmitActivity(Activity activity) {
-		this.afterSubmitActivity = activity;
+	public void addSendActivity(Activity activity) {
+		this.sendActivity = activity;
 	}
 	
 	/* (non-Javadoc)
@@ -151,7 +151,7 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	public ClickHandler createB1ClickHandler() {
 		return new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				doSubmit();				
+				doSend();				
 			}			
 		};
 	}
