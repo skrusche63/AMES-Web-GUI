@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.dms.widget;
+package de.kp.ames.web.client.function.ns.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -23,17 +23,17 @@ import com.smartgwt.client.widgets.Canvas;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
 
-public class DmsGetViewer extends ViewerImpl {
+public class NsViewViewer extends ViewerImpl {
 
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Dms Viewer";
-	private static String SLOGAN = "Use this widget to view a certain Dms Entry.";
+	private static String TITLE  = GUIGlobals.APP_TITLE + ": NS Viewer";
+	private static String SLOGAN = "Use this widget to view a certain namespace.";
 
 	/**
 	 * Constructor
 	 * 
 	 * @param body
 	 */
-	public DmsGetViewer(Canvas body) {
+	public NsViewViewer(Canvas body) {
 		super(TITLE, SLOGAN, body);
 	}
 	
@@ -44,7 +44,7 @@ public class DmsGetViewer extends ViewerImpl {
 	 * @param slogan
 	 * @param body
 	 */
-	public DmsGetViewer(String title, String slogan, Canvas body) {
+	public NsViewViewer(String title, String slogan, Canvas body) {
 		super(title, slogan, body);
 	}
 

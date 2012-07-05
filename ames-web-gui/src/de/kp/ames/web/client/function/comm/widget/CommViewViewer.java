@@ -30,6 +30,4 @@ public class CommViewViewer extends ViewerImpl {
 		super(title, slogan, body);
 	}
 
-	// TODO
-
 }

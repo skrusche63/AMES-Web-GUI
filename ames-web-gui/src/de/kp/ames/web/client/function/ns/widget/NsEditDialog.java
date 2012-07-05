@@ -1,13 +1,13 @@
-package de.kp.ames.web.client.function.group.widget;
+package de.kp.ames.web.client.function.ns.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
- *	AMES-Web-Service is free software: you can redistribute it and/or 
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
  *	modify it under the terms of the GNU General Public License 
  *	as published by the Free Software Foundation, either version 3 of 
  *	the License, or (at your option) any later version.
  *
- *	AMES- Web-Service is distributed in the hope that it will be useful,
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
  *	but WITHOUT ANY WARRANTY; without even the implied warranty of
  *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
  * 
@@ -21,19 +21,18 @@ package de.kp.ames.web.client.function.group.widget;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
-import de.kp.ames.web.client.function.group.GroupService;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
+import de.kp.ames.web.client.function.ns.NsService;
 
-public class GroupCreateDialog extends CreateFormDialog {
+public class NsEditDialog extends EditFormDialog {
 
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
-	private static String SLOGAN = "Use this widget to create a new group.";
-	
+	private static String TITLE  = GUIGlobals.APP_TITLE + ": Ns Editor";;
+	private static String SLOGAN = "Use this widget to edit a certain namespace.";
+
 	/**
 	 * Constructor
 	 */
-	public GroupCreateDialog() {
+	public NsEditDialog() {
 		super(TITLE, SLOGAN);
 	}
 
@@ -45,9 +44,10 @@ public class GroupCreateDialog extends CreateFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new GroupFormImpl();
+		this.form = new NsFormImpl();
 		this.form.addFormHandler(this);
 
+		this.form.addFormData(jValue);
 		return this.form;
 		
 	}
@@ -57,17 +57,9 @@ public class GroupCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
-		String data = this.form.getFormData();
+		String data = this.form.getFormData();		
+		new NsService().doSubmit(data, this.sendActivity);
 
-		/*
-		 * Request specific parameters
-		 */
-		String type = this.form.getParam(MethodConstants.ATTR_TYPE);
-		String item = null;
-		
-		new GroupService().doSubmit(type, item, data, this.sendActivity);
-
-	}
-
+	}	
 
 }
