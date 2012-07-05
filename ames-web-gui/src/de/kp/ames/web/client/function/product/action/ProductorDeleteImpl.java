@@ -20,16 +20,13 @@ package de.kp.ames.web.client.function.product.action;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.util.JsonConverter;
-import de.kp.ames.web.client.function.product.ProductService;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.client.function.product.ProductWidget;
 
 public class ProductorDeleteImpl extends GridDeleteImpl {
 
@@ -47,32 +44,18 @@ public class ProductorDeleteImpl extends GridDeleteImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		
-		/*
-		 * Prepare data for delete request
-		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
-		
+
 		HashMap<String,String> attributes = this.getParams();
 		
-		/*
-		 * Invoke delete request
-		 */
-		ProductService service = new ProductService();
-		service.doDelete(attributes, data, new ActivityImpl() {
-
-			public void execute(JSONValue jValue) {
-				// TODO				
-			}
-			
-		});
+		final ProductorDeleteImpl self = this;
 		
-	}
+		ProductWidget widget = new ProductWidget();
+		widget.doDelete(attributes, record, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.doAfterDelete(jValue);				
+			}
+		});
 
+	}
 
 }

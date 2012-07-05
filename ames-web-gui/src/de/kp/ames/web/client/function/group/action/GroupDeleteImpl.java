@@ -57,6 +57,7 @@ public class GroupDeleteImpl extends GridDeleteImpl {
 			}
 			
 		});
+
 	}
 
 }

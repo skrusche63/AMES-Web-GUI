@@ -10,7 +10,18 @@ public class NsWidget {
 
 	public NsWidget() {
 	}
-	
+
+	/**
+	 * Delete namespace
+	 * 
+	 * @param attributes
+	 * @param node
+	 * @param afterSendActivity
+	 */
+	public void doDelete(HashMap<String,String> attributes, TreeNode node, final Activity afterSendActivity) {
+		// TODO
+	}
+
 	/**
 	 * Edit namespace
 	 * 

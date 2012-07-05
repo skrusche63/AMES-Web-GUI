@@ -43,6 +43,17 @@ public class AccessWidget {
 	}
 
 	/**
+	 * Delete accessor
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+		// TODO
+	}
+
+	/**
 	 * Edit accessor
 	 * 
 	 * @param attributes

@@ -7,7 +7,9 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class GroupWidget {
 	/**
@@ -27,21 +29,44 @@ public class GroupWidget {
 	 */
 	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
 		
-		/*
-		 * Prepare data for delete request
-		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Affiliation)) {
 
-		/*
-		 * Invoke delete request
-		 */
-		GroupService service = new GroupService();
-		service.doDelete(attributes, data, activity);
+			/*
+			 * Prepare data for delete request
+			 */
+			String[] keys = {
+				JaxrConstants.RIM_SOURCE,
+				JaxrConstants.RIM_TARGET
+			};
+			
+			JSONObject jRecord = JsonConverter.recordToJson(record, keys);
+			String data = jRecord.toString();
+			
+			/*
+			 * Invoke delete request
+			 */
+			GroupService service = new GroupService();
+			service.doDelete(attributes, data, activity);
+
+		} else if (type.equals(ClassificationConstants.FNC_ID_Community)) {
+			/*
+			 * Prepare data for delete request
+			 */
+			String[] keys = {
+				JaxrConstants.RIM_ID
+			};
+			
+			JSONObject jRecord = JsonConverter.recordToJson(record, keys);
+			String data = jRecord.toString();
+	
+			/*
+			 * Invoke delete request
+			 */
+			GroupService service = new GroupService();
+			service.doDelete(attributes, data, activity);
+			
+		}
 
 	}
 
