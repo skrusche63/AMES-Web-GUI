@@ -46,23 +46,16 @@ public class DmsCreateImpl extends GridCreateImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		/*
-		 * Prepare data for create request
-		 */
+
 		HashMap<String,String> attributes = this.getParams();
 
-		/*
-		 * Invoke create request
-		 */
 		final DmsCreateImpl self = this;
 		
 		DmsWidget widget = new DmsWidget();
 		widget.doCreate(attributes, new ActivityImpl() {
-
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
-			}
-			
+			}			
 		});
 
 	}

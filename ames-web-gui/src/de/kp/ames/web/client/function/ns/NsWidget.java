@@ -11,6 +11,10 @@ public class NsWidget {
 	public NsWidget() {
 	}
 
+	public void doCreate(HashMap<String,String> attributes, final Activity afterSendActivity) {
+		// TODO
+	}
+
 	/**
 	 * Delete namespace
 	 * 

@@ -36,6 +36,14 @@ public class TransformWidget {
 	}
 
 	/**
+	 * @param attributes
+	 * @param activity
+	 */
+	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+		// TODO
+	}
+
+	/**
 	 * Delete Transformator
 	 * 
 	 * @param attributes

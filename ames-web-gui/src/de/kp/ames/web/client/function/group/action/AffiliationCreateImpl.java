@@ -1,23 +1,23 @@
-package de.kp.ames.web.client.function.ns.action;
+package de.kp.ames.web.client.function.group.action;
 
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
 
-import de.kp.ames.web.client.action.tree.TreeCreateImpl;
+import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.tree.Tree;
-import de.kp.ames.web.client.function.ns.NsWidget;
+import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.group.GroupWidget;
 
-public class NsCreateImpl extends TreeCreateImpl {
+public class AffiliationCreateImpl extends GridCreateImpl {
 	
 	/**
 	 * Constructor
 	 * 
-	 * @param tree
+	 * @param grid
 	 */
-	public NsCreateImpl(Tree tree) {	
-		super(tree);
+	public AffiliationCreateImpl(Grid grid) {	
+		super(grid);
 	}
 	
 	/* (non-Javadoc)
@@ -27,14 +27,15 @@ public class NsCreateImpl extends TreeCreateImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 
-		final NsCreateImpl self = this;
+		final AffiliationCreateImpl self = this;
 		
-		NsWidget widget = new NsWidget();
+		GroupWidget widget = new GroupWidget();
 		widget.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
-			}
+			}			
 		});
+
 	}
 
 }

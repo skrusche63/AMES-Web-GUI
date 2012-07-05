@@ -18,8 +18,14 @@ package de.kp.ames.web.client.function.group.action;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
+
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.group.GroupWidget;
 
 public class GroupCreateImpl extends GridCreateImpl {
 	
@@ -32,8 +38,22 @@ public class GroupCreateImpl extends GridCreateImpl {
 		super(grid);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
-		//TODO
+
+		HashMap<String,String> attributes = this.getParams();
+
+		final GroupCreateImpl self = this;
+		
+		GroupWidget widget = new GroupWidget();
+		widget.doCreate(attributes, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.doAfterCreate(jValue);
+			}			
+		});
+
 	}
 	
 }

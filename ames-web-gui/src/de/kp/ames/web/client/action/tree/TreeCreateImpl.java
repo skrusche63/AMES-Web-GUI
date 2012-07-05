@@ -18,7 +18,11 @@ package de.kp.ames.web.client.action.tree;
  *
  */
 
+import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.action.ActionImpl;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.tree.Tree;
 
 public class TreeCreateImpl extends ActionImpl {
@@ -35,6 +39,30 @@ public class TreeCreateImpl extends ActionImpl {
 	 */
 	public TreeCreateImpl(Tree tree) {
 		this.tree = tree;
+	}
+
+	/**
+	 * A typical after create activity (may be overridden)
+	 * 
+	 * @param jValue (server response)
+	 */
+	public void doAfterCreate(JSONValue jValue) {
+
+		this.registerResponse(jValue);
+		if (this.isSuccess()) {					
+			/*
+			 * Project specific business logic
+			 */
+		
+		} else {
+			/*
+			 * Fail message
+			 */
+			String message = this.getMessage();
+			SC.say(GUIGlobals.APP_TITLE + ": Request Error", message);		
+
+		}
+
 	}
 
 }

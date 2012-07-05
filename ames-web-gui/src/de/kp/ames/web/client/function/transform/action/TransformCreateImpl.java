@@ -18,8 +18,14 @@ package de.kp.ames.web.client.function.transform.action;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
+
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.transform.TransformWidget;
 
 public class TransformCreateImpl extends GridCreateImpl {
 	
@@ -32,13 +38,22 @@ public class TransformCreateImpl extends GridCreateImpl {
 		super(grid);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
-		//TODO
+
+		HashMap<String,String> attributes = this.getParams();
+
+		final TransformCreateImpl self = this;
 		
-		/*
-		 * This method invokes the upload ui to select a certain transformator
-		 */
-		
+		TransformWidget widget = new TransformWidget();
+		widget.doCreate(attributes, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.doAfterCreate(jValue);
+			}			
+		});
+
 	}
 
 }

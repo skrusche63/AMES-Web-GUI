@@ -55,6 +55,7 @@ public class NsEditImpl extends TreeEditImpl {
 				self.doAfterEdit(jValue);
 			}
 		});
+
 	}
 	
 }

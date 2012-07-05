@@ -15,6 +15,14 @@ public class RoleWidget {
 	 */
 	public RoleWidget() {
 	}
+
+	/**
+	 * @param attributes
+	 * @param activity
+	 */
+	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+		// TODO
+	}
 	
 	/**
 	 * @param attributes
