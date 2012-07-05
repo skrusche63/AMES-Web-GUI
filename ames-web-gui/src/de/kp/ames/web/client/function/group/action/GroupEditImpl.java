@@ -18,10 +18,15 @@ package de.kp.ames.web.client.function.group.action;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridEditImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.group.GroupWidget;
 
 public class GroupEditImpl extends GridEditImpl {
 	
@@ -35,8 +40,21 @@ public class GroupEditImpl extends GridEditImpl {
 		super(grid, record);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
-		//TODO
+
+		HashMap<String,String> attributes = this.getParams();
+
+		final GroupEditImpl self = this;
+		
+		GroupWidget widget = new GroupWidget();
+		widget.doEdit(attributes, record, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.doAfterEdit(jValue);
+			}
+		});
 	}
 
 }

@@ -18,10 +18,13 @@ package de.kp.ames.web.client.function.access.action;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.access.AccessWidget;
 
 public class RemoteViewImpl extends GridViewImpl {
 
@@ -35,8 +38,16 @@ public class RemoteViewImpl extends GridViewImpl {
 		super(grid, record);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
-		// TODO
+
+		HashMap<String,String> attributes = this.getParams();
+		
+		AccessWidget widget = new AccessWidget();
+		widget.doView(attributes, record);
+
 	}
 
 }

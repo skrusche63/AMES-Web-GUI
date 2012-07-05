@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.upload.action;
+package de.kp.ames.web.client.function.transform;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -22,32 +22,16 @@ import java.util.HashMap;
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-import de.kp.ames.web.client.action.grid.GridViewImpl;
-import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.function.upload.UploadWidget;
-
-public class UploadViewImpl extends GridViewImpl {
+public class TransformWidget {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param grid
-	 * @param record
 	 */
-	public UploadViewImpl(Grid grid, ListGridRecord record) {
-		super(grid, record);
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
-	 */
-	public void execute() {
-
-		HashMap<String,String> attributes = this.getParams();
-		
-		UploadWidget widget = new UploadWidget();
-		widget.doView(attributes, record);
-		
+	public TransformWidget() {
 	}
 	
+	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+		// TODO
+	}
+
 }

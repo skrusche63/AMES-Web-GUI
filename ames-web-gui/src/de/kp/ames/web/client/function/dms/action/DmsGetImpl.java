@@ -18,10 +18,13 @@ package de.kp.ames.web.client.function.dms.action;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.dms.DmsWidget;
 
 public class DmsGetImpl extends GridEditImpl {
 
@@ -39,8 +42,11 @@ public class DmsGetImpl extends GridEditImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
+
+		HashMap<String,String> attributes = this.getParams();
 		
-		// TODO
+		DmsWidget widget = new DmsWidget();
+		widget.doGet(attributes, record);
 		
 	}
 

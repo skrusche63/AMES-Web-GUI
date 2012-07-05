@@ -54,4 +54,14 @@ public class GroupWidget {
 		// TODO
 	}
 
+	/**
+	 * Get group
+	 * 
+	 * @param attributes
+	 * @param record
+	 */
+	public void doGet(HashMap<String,String> attributes, ListGridRecord record) {
+		// TODO
+	}
+
 }

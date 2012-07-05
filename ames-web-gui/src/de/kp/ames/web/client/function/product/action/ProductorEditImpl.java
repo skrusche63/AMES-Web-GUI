@@ -27,6 +27,8 @@ import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.product.ProductWidget;
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class ProductorEditImpl extends GridEditImpl {
 
@@ -44,21 +46,17 @@ public class ProductorEditImpl extends GridEditImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		/*
-		 * Prepare data for edit request
-		 */
-		HashMap<String,String> attributes = this.getParams();
 
-		/*
-		 * Invoke edit request
-		 */
+		HashMap<String,String> attributes = this.getParams();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Productor);
+		
+		final ProductorEditImpl self = this;
+		
 		ProductWidget widget = new ProductWidget();
 		widget.doEdit(attributes, record, new ActivityImpl() {
-
 			public void execute(JSONValue jValue) {
-				// TODO				
+				self.doAfterEdit(jValue);
 			}
-			
 		});
 
 	}

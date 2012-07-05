@@ -18,10 +18,13 @@ package de.kp.ames.web.client.function.access.action;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.access.AccessWidget;
 
 public class AccessorGetImpl extends GridEditImpl {
 
@@ -39,7 +42,12 @@ public class AccessorGetImpl extends GridEditImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		// TODO
+
+		HashMap<String,String> attributes = this.getParams();
+		
+		AccessWidget widget = new AccessWidget();
+		widget.doGet(attributes, record);
+
 	}
 
 }

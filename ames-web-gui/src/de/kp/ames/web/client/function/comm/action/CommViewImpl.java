@@ -18,10 +18,13 @@ package de.kp.ames.web.client.function.comm.action;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.comm.CommWidget;
 
 public class CommViewImpl extends GridViewImpl {
 
@@ -39,7 +42,12 @@ public class CommViewImpl extends GridViewImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		// TODO
+
+		HashMap<String,String> attributes = this.getParams();
+		
+		CommWidget widget = new CommWidget();
+		widget.doView(attributes, record);
+		
 	}
 
 }

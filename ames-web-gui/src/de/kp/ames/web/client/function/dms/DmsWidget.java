@@ -82,7 +82,13 @@ public class DmsWidget {
 	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
 	}
 
-	public void doGet(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	/**
+	 * Get Dms Entry
+	 * 
+	 * @param attributes
+	 * @param record
+	 */
+	public void doGet(HashMap<String,String> attributes, ListGridRecord record) {
 		// TODO
 	}
 

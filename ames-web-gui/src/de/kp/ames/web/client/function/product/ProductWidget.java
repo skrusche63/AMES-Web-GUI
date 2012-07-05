@@ -23,7 +23,6 @@ import java.util.HashMap;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.function.product.widget.ProductEditDialog;
 
 public class ProductWidget {
 
@@ -44,6 +43,14 @@ public class ProductWidget {
 	 * @param activity
 	 */
 	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+		// TODO
+	}
+
+	public void doGet(HashMap<String,String> attributes, ListGridRecord record) {
+		// TODO
+	}
+
+	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
 		// TODO
 	}
 

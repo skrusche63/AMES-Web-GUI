@@ -44,13 +44,13 @@ public class UserWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, final Activity afterSubmitActivity) {
+	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, final Activity afterSendActivity) {
 		
 		final UserWidget self = this;
 		
 		ActivityImpl afterGetActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-				self.buildEditDialog(jValue, afterSubmitActivity);
+				self.buildEditDialog(jValue, afterSendActivity);
 			}			
 		};
 
@@ -61,7 +61,6 @@ public class UserWidget {
 	/**
 	 * @param attributes
 	 * @param record
-	 * @param activity
 	 */
 	public void doGet(HashMap<String,String> attributes, ListGridRecord record) {
 

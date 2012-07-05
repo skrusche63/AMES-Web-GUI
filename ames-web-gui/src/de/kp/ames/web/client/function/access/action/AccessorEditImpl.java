@@ -18,10 +18,15 @@ package de.kp.ames.web.client.function.access.action;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.action.grid.GridEditImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.function.access.AccessWidget;
 
 public class AccessorEditImpl extends GridEditImpl {
 
@@ -39,6 +44,17 @@ public class AccessorEditImpl extends GridEditImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		// TODO
+
+		HashMap<String,String> attributes = this.getParams();
+
+		final AccessorEditImpl self = this;
+		
+		AccessWidget widget = new AccessWidget();
+		widget.doEdit(attributes, record, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.doAfterEdit(jValue);
+			}
+		});
+	
 	}
 }
