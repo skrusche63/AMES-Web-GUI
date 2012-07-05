@@ -18,8 +18,8 @@ package de.kp.ames.web.client.menu;
  *
  */
 
-import de.kp.ames.web.client.function.style.IconConstants;
-import de.kp.ames.web.client.function.style.MenuConstants;
+import de.kp.ames.web.client.style.IconConstants;
+import de.kp.ames.web.client.style.MenuConstants;
 
 public class EditMenuItem extends BaseMenuItem {
 

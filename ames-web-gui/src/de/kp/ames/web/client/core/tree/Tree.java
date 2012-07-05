@@ -22,9 +22,11 @@ import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
+import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
+import de.kp.ames.web.client.handler.TreeNodeHandler;
 
 public interface Tree {
 
@@ -34,6 +36,11 @@ public interface Tree {
 	public void addMenuHandler(TreeMenuHandler menuHandler);
 
 	/**
+	 * @param nodeHandler
+	 */
+	public void addNodeHandler(TreeNodeHandler nodeHandler);
+	
+	/**
 	 * Event handling after right mouse click
 	 * on tree entry (row)
 	 * 
@@ -41,6 +48,11 @@ public interface Tree {
 	 */
 	public void afterContextMenu(RowContextClickEvent event);
 
+	/**
+	 * @param event
+	 */
+	public void afterNodeClick(NodeClickEvent event);
+	
 	/**
 	 * @return
 	 */

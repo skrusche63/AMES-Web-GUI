@@ -31,11 +31,14 @@ import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
+import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
+import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
+import de.kp.ames.web.client.handler.TreeNodeHandler;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -50,6 +53,11 @@ public class TreeImpl extends TreeGrid implements Tree {
 	 */
 	protected TreeMenuHandler menuHandler;
 
+	/*
+	 * Reference to NodeHandler
+	 */
+	protected TreeNodeHandler nodeHandler;
+	
 	/*
 	 * The base url necessary to invoke the
 	 * web service that refers to this service
@@ -135,6 +143,12 @@ public class TreeImpl extends TreeGrid implements Tree {
 			}		
 	    });
 
+	    this.addNodeClickHandler(new NodeClickHandler() {
+			public void onNodeClick(NodeClickEvent event) {
+				self.afterNodeClick(event);				
+			}
+	    	
+	    });
 	}
 	    
 	/* (non-Javadoc)
@@ -160,6 +174,18 @@ public class TreeImpl extends TreeGrid implements Tree {
 	}
 
 	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.Tree#addNodeHandler(de.kp.ames.web.client.handler.TreeNodeHandler)
+	 */
+	public void addNodeHandler(TreeNodeHandler nodeHandler) {
+		/*
+		 * Set Node Handler and register tree
+		 * for later processing
+		 */
+		this.nodeHandler = nodeHandler;
+		this.nodeHandler.setTree(this);		
+	}
+	
+	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.tree.Tree#afterContextMenu(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
 	 */
 	public void afterContextMenu(RowContextClickEvent event) {
@@ -174,9 +200,26 @@ public class TreeImpl extends TreeGrid implements Tree {
 		TreeNode node = (TreeNode)event.getRecord();
 		
 		/*
-		 * Invoke Grid MenuHandler
+		 * Invoke Tree MenuHandler
 		 */
 		if (this.menuHandler != null) this.menuHandler.doOpen(node);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.Tree#afterNodeClick(com.smartgwt.client.widgets.tree.events.NodeClickEvent)
+	 */
+	public void afterNodeClick(NodeClickEvent event) {
+
+		/*
+		 * Retrieve affected tree node
+		 */
+		TreeNode node = event.getNode();
+		
+		/*
+		 * Invoke Tree NodeHandler
+		 */
+		if (this.nodeHandler != null) this.nodeHandler.doSelect(node);
 		
 	}
 	

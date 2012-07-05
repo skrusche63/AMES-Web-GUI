@@ -18,6 +18,8 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -33,6 +35,11 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	 * Reference to form
 	 */
 	protected FormImpl form;
+
+	/*
+	 * Request specific parameters
+	 */
+	protected HashMap<String,String> params;
 	
 	/*
 	 * Reference to after submit activity
@@ -65,10 +72,8 @@ public class FormDialog extends BaseDialog implements FormHandler {
 		super(title, slogan, jValue);
 	}
 	
-	/**
-	 * Method to assign form to dialog
-	 * 
-	 * @return
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#createContent()
 	 */
 	public Canvas createContent() {
 
@@ -81,6 +86,47 @@ public class FormDialog extends BaseDialog implements FormHandler {
 		if (this.jValue != null) this.form.addFormData(this.jValue);		
 		return this.form;
 		
+	}
+
+	/**
+	 * Get request specific parameters
+	 * 
+	 * @return
+	 */
+	public HashMap<String,String> getParams() {
+		if (this.params == null) this.params = new HashMap<String,String>();
+		return this.params;
+	}
+	
+	/**
+	 * Set request specific parameters
+	 * 
+	 * @param params
+	 */
+	public void setParams(HashMap<String,String> params) {
+		this.params = params;
+	}
+
+	/**
+	 * Set a certain request specific parameter
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public void setParam(String key, String value) {
+		if (this.params == null) this.params = new HashMap<String,String>();
+		this.params.put(key, value);
+	}
+	
+	/**
+	 * Get a certain request specific parameter
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public String getParam(String key) {
+		if ((this.params == null) || (this.params.containsKey(key) == false)) return null;
+		return this.params.get(key);
 	}
 
 	/* (non-Javadoc)

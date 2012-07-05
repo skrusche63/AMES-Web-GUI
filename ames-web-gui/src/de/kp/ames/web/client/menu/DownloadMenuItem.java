@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.widget.dialog;
+package de.kp.ames.web.client.menu;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,33 +18,16 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
-import com.smartgwt.client.widgets.layout.VLayout;
+import de.kp.ames.web.client.style.IconConstants;
+import de.kp.ames.web.client.style.MenuConstants;
 
-import de.kp.ames.web.client.core.form.FormHandler;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+public class DownloadMenuItem extends BaseMenuItem {
 
-public class CreateDialog extends FormDialog implements FormHandler {
-	/*
-	 * Buttons labels
-	 */
-	private static String LABEL1 = GUIGlobals.BTN_CREATE_LABEL;
-	private static String LABEL2 = GUIGlobals.BTN_CAN_LABEL;
-	
 	/**
 	 * Constructor
-	 * 
-	 * @param title
-	 * @param slogan
 	 */
-	public CreateDialog(String title, String slogan) {
-		super(title, slogan);
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.base.BaseDialog#createButtons()
-	 */
-	public VLayout createButtons() {
-		return createButtons(LABEL1, LABEL2);
+	public DownloadMenuItem() {
+		super(MenuConstants.MENU_DOWNLOAD, IconConstants.ICON_DOWNLOAD);
 	}
 
 }

@@ -26,6 +26,7 @@ import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.handler.GridMenuHandler;
+import de.kp.ames.web.client.handler.GridRecordHandler;
 
 public interface Grid {
 	
@@ -35,6 +36,13 @@ public interface Grid {
 	 * @param menuHandler
 	 */
 	public void addMenuHandler(GridMenuHandler menuHandler);
+	
+	/**
+	 * Register Grid RecordHandler
+	 * 
+	 * @param recordHandler
+	 */
+	public void addRecordHandler(GridRecordHandler recordHandler);
 	
 	/**
 	 * Event handling after right mouse click

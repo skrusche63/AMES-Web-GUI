@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.role;
+package de.kp.ames.web.client.function.role.grid;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

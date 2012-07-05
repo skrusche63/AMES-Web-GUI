@@ -42,6 +42,7 @@ import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.GridMenuHandler;
+import de.kp.ames.web.client.handler.GridRecordHandler;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -55,6 +56,11 @@ public class GridImpl extends ListGrid implements Grid {
 	 * Reference to MenuHandler
 	 */
 	protected GridMenuHandler menuHandler;
+	
+	/*
+	 * Reference to RecordHandler
+	 */
+	protected GridRecordHandler recordHandler;
 	
 	/*
 	 * The base url necessary to invoke the
@@ -143,8 +149,7 @@ public class GridImpl extends ListGrid implements Grid {
 		
 		this.addRecordClickHandler(new RecordClickHandler() {
 			public void onRecordClick(RecordClickEvent event) {
-				// TODO Auto-generated method stub
-				
+				self.afterRecordClick(event);				
 			}
 			
 		});
@@ -167,6 +172,19 @@ public class GridImpl extends ListGrid implements Grid {
 		 */
 		this.menuHandler = menuHandler;
 		this.menuHandler.setGrid(this);
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#addRecordHandler(de.kp.ames.web.client.handler.GridRecordHandler)
+	 */
+	public void addRecordHandler(GridRecordHandler recordHandler) {
+		/*
+		 * Set Record Handler and register grid
+		 * for later processing
+		 */
+		this.recordHandler = recordHandler;
+		this.recordHandler.setGrid(this);
+		
 	}
 	
 	/* (non-Javadoc)
@@ -285,7 +303,10 @@ public class GridImpl extends ListGrid implements Grid {
 		 */
 		ListGridRecord record = (ListGridRecord)event.getRecord();
 
-		// TODO
+		/*
+		 * Invoke Grid RecordHandler
+		 */
+		if (this.menuHandler != null) this.menuHandler.doOpen(record);
 		
 	}
 	
