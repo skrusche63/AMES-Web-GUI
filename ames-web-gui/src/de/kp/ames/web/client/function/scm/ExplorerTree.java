@@ -36,9 +36,9 @@ import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 
 import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.scm.event.ScmEventManager;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class ExplorerTree extends TreeGrid {
 
@@ -54,7 +54,7 @@ public class ExplorerTree extends TreeGrid {
 		/*
 		 * Rendering
 		 */
-		this.setStyleName(GUIStyles.X_BD_STYLE_0);
+		this.setStyleName(GuiStyles.X_BD_STYLE_0);
 		
 		this.setShowEdges(false);
         this.setShowConnectors(true);         

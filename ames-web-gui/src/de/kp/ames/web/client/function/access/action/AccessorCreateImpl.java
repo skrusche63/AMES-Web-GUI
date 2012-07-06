@@ -38,6 +38,9 @@ public class AccessorCreateImpl extends GridCreateImpl {
 		super(grid);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	 */
 	public void execute() {
 
 		HashMap<String,String> attributes = this.getParams();

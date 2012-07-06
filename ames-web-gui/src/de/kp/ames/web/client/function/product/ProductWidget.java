@@ -21,9 +21,11 @@ package de.kp.ames.web.client.function.product;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.JaxrConstants;
@@ -77,19 +79,76 @@ public class ProductWidget {
 	}
 	
 	/**
+	 * Edit product or productor
+	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */
-	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
-		// TODO
+	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
+
+		final ProductWidget self = this;
+		
+		/*
+		 * Specify get activity
+		 */
+		ActivityImpl afterGetActivity = new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.buildEditDialog(attributes, jValue, afterSendActivity);
+			}			
+		};
+
+		/*
+		 * Retrieve actual version of product or productor
+		 */
+		doGet(attributes, record, afterGetActivity);
+		
 	}
 
-	public void doGet(HashMap<String,String> attributes, ListGridRecord record) {
-		// TODO
+	/**
+	 * Get product or productor (metadata)
+	 * 
+	 * @param attributes
+	 * @param record
+	 */
+	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
+
+		final ProductWidget self = this;
+		
+		/*
+		 * Specify get activity
+		 */
+		ActivityImpl afterGetActivity = new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.buildGetViewer(attributes, jValue);
+			}			
+		};
+
+		/*
+		 * Retrieve actual version of product or productor
+		 */
+		doGet(attributes, record, afterGetActivity);
+		
 	}
 
 	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+		// TODO
+	}
+
+	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+		// TODO
+	}
+
+	/**
+	 * Build Accessor Edit Dialog
+	 * 
+	 * @param jValue
+	 */
+	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSubmitActivity) {
+		// TODO
+	}
+
+	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
 		// TODO
 	}
 

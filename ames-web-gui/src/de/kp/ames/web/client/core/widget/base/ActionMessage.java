@@ -23,7 +23,7 @@ import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.globals.GUIStyles;
+import de.kp.ames.web.client.style.GuiStyles;
 
 /**
  * This window is used to give user feedback in case
@@ -52,9 +52,9 @@ public class ActionMessage extends Window {
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("<img style=\"margin:16px;margin-top:24px;margin-left:auto;margin-right:auto;display:block;\" ");
-		sb.append("src=\"" + GUIStyles.LOADING_IMAGE + "\" width=\"64\" height=\"64\" />");
+		sb.append("src=\"" + GuiStyles.LOADING_IMAGE + "\" width=\"64\" height=\"64\" />");
 		
-		sb.append("<p style=\"font:normal 11px tahoma, arial, helvetica, sans-serif;color:" + GUIStyles.FONT_COLOR + ";text-align:center;\">" + text + "</p>");
+		sb.append("<p style=\"font:normal 11px tahoma, arial, helvetica, sans-serif;color:" + GuiStyles.FONT_COLOR + ";text-align:center;\">" + text + "</p>");
 
 		HTMLFlow flow = new HTMLFlow();
 		flow.setContents(sb.toString());
@@ -67,7 +67,7 @@ public class ActionMessage extends Window {
 		this.setShowCloseButton(false);
 		this.setShowMinimizeButton(false);
 
-		this.setBodyColor(GUIStyles.BG_COLOR);
+		this.setBodyColor(GuiStyles.BG_COLOR);
 
 		this.setWidth(240);
 		this.setHeight(160);

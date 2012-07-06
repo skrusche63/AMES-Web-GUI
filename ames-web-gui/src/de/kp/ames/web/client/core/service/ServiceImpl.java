@@ -238,6 +238,27 @@ public class ServiceImpl implements Service {
 		HashMap<String,String> headers = new HashMap<String,String>();
 		return headers;
 	}
+
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	public String getUri(HashMap<String,String> attributes) {
+
+		/*
+		 * Build method
+		 */
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_GET);
+
+		requestMethod.setAttributes(attributes);
+		
+		/*
+		 * Build request uri
+		 */
+		return getRequestUrl() + requestMethod.toQuery();
+		
+	}
 	
 	/**
 	 * @return

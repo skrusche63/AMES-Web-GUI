@@ -21,8 +21,8 @@ package de.kp.ames.web.client.core.widget.dialog;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.form.FormHandler;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.handler.FormHandler;
 
 public class EditFormDialog extends FormDialog implements FormHandler {
 	/*

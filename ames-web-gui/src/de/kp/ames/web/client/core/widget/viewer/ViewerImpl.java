@@ -25,8 +25,8 @@ import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class ViewerImpl extends Window {
 
@@ -70,7 +70,7 @@ public class ViewerImpl extends Window {
 		this.setShadowOffset(3);
 
 		this.setShadowSoftness(10);				
-		this.setBodyColor(GUIStyles.VWR_BG_COLOR);
+		this.setBodyColor(GuiStyles.VWR_BG_COLOR);
 
 		final ViewerImpl self = this;		
 
@@ -94,7 +94,7 @@ public class ViewerImpl extends Window {
 	private VLayout createBody(Canvas canvas) {
 
 		VLayout vLayout = new VLayout();
-		vLayout.setStyleName(GUIStyles.X_BD_STYLE_2);
+		vLayout.setStyleName(GuiStyles.X_BD_STYLE_2);
 
 		vLayout.setWidth100();		
 		vLayout.setHeight100();

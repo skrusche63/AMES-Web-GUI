@@ -5,6 +5,8 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.handler.FormHandler;
+
 public class FormImpl extends VLayout implements Form {
 
 	/*

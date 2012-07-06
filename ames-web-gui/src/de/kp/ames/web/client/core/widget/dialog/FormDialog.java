@@ -26,8 +26,8 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.form.FormHandler;
 import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.handler.FormHandler;
 
 public class FormDialog extends BaseDialog implements FormHandler {
 

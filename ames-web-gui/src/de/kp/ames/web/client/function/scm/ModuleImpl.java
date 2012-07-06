@@ -29,9 +29,9 @@ import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.scm.event.ExplorerListener;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class ModuleImpl extends VLayout implements ExplorerListener {
 
@@ -93,7 +93,7 @@ public class ModuleImpl extends VLayout implements ExplorerListener {
         tabs.setWidth100();
         tabs.setHeight100();
         
-        tabs.setStyleName(GUIStyles.X_BD_STYLE_0);
+        tabs.setStyleName(GuiStyles.X_BD_STYLE_0);
         
         tabs.addTabSelectedHandler(new TabSelectedHandler() {
 			public void onTabSelected(TabSelectedEvent event) {

@@ -24,8 +24,14 @@ import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class TransformWidget {
 
@@ -70,8 +76,40 @@ public class TransformWidget {
 		
 	}
 
+	/**
+	 * View transformator (XSL file)
+	 * 
+	 * @param attributes
+	 * @param record
+	 */
 	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
-		// TODO
+
+		/*
+		 * View transformator
+		 */
+		String format = FormatConstants.FNC_FORMAT_ID_File;
+		attributes.put(MethodConstants.ATTR_FORMAT, format);
+
+		String type = ClassificationConstants.FNC_ID_Transformator;
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+		
+		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		attributes.put(MethodConstants.ATTR_ITEM, item);
+		
+		/*
+		 * Build request uri
+		 */
+		FrameService service = new FrameService();
+		String uri = service.getUri(attributes);
+
+		/*
+		 * Build viewer
+		 */
+		String title  = GUIGlobals.APP_TITLE + ": Transform Viewer";
+		String slogan = "Use this widget to view a certain transformator.";
+		
+		ViewerFactory.createFrameViewer(title, slogan, uri);
+
 	}
 
 }

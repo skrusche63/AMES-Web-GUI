@@ -57,13 +57,14 @@ public class GroupService extends ServiceImpl {
 	 * @param source
 	 * @param activity
 	 */
-	public void doGet(String format, String type, String source, Activity activity) {
+	public void doGet(String format, String type, String item, String source, Activity activity) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
 		attributes.put(MethodConstants.ATTR_TYPE,   type);
 		
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
 
 		doGetJson(attributes, activity);

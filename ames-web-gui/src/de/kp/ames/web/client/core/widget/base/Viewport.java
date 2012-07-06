@@ -33,8 +33,8 @@ import de.kp.ames.web.client.core.apps.RegisteredHelp;
 import de.kp.ames.web.client.core.apps.RegisteredPortlets;
 import de.kp.ames.web.client.core.apps.control.MainController;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class Viewport extends VLayout {
 	
@@ -59,12 +59,12 @@ public class Viewport extends VLayout {
 	public Viewport() {
 
 		this.setShowEdges(false);
-		this.setStyleName(GUIStyles.X_BD_STYLE_0);
+		this.setStyleName(GuiStyles.X_BD_STYLE_0);
 		
 		this.setWidth100();
 		this.setHeight100();
 
-		this.setBackgroundColor(GUIStyles.BG_COLOR);
+		this.setBackgroundColor(GuiStyles.BG_COLOR);
 		this.setOverflow(Overflow.HIDDEN);
 		
 		/*
@@ -111,7 +111,7 @@ public class Viewport extends VLayout {
 	private ToolStrip createToolStrip() {
 		
 		ToolStrip ts = new ToolStrip();
-		ts.setStyleName(GUIStyles.X_HEADER);
+		ts.setStyleName(GuiStyles.X_HEADER);
 		
 		ts.setWidth100();
 		ts.setHeight(TOP_HEIGHT);
@@ -123,13 +123,13 @@ public class Viewport extends VLayout {
 		 */
 		
 		ImgButton logo = new ImgButton();
-		logo.setSrc(GUIStyles.LOGO_IMAGE);
+		logo.setSrc(GuiStyles.LOGO_IMAGE);
 		
 		logo.setWidth(16);
 		logo.setHeight(16);
 
 	    logo.setPrompt(TITLE);
-	    logo.setHoverStyle(GUIStyles.X_IMAGEHOVER);
+	    logo.setHoverStyle(GuiStyles.X_IMAGEHOVER);
 	    
 	    logo.setShowRollOver(false);
 	    logo.setShowDownIcon(false);
@@ -150,7 +150,7 @@ public class Viewport extends VLayout {
 		 */
 
 	    Label title = new Label(TITLE);
-	    title.setStyleName(GUIStyles.X_HEADLINE);
+	    title.setStyleName(GuiStyles.X_HEADLINE);
 
 	    title.setWidth(GUIGlobals.APP_TITLE_WIDTH);
 	    ts.addMember(title);
@@ -173,7 +173,7 @@ public class Viewport extends VLayout {
 	     */
 
 	    user = new Label(GUIGlobals.ANONYMOUS_USER);
-	    user.setStyleName(GUIStyles.X_USER);
+	    user.setStyleName(GuiStyles.X_USER);
 
 	    user.setWidth(160);
 	    user.setOverflow(Overflow.HIDDEN);
@@ -187,7 +187,7 @@ public class Viewport extends VLayout {
 	     */
 
 	    ImgButton search = new ImgButton();
-	    search.setSrc(GUIStyles.SEARCH_IMAGE);
+	    search.setSrc(GuiStyles.SEARCH_IMAGE);
 	    
 	    search.setWidth(16);
 	    search.setHeight(16);

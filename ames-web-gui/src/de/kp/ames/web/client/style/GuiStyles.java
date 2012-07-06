@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.globals;
+package de.kp.ames.web.client.style;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,7 +18,7 @@ package de.kp.ames.web.client.core.globals;
  *
  */
 
-public class GUIStyles {
+public class GuiStyles {
 
 	public static String BG_COLOR = "#CCCCCC;";
 	

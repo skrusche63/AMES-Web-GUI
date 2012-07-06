@@ -70,6 +70,9 @@ public class DesktopImpl extends BaseApp {
 		
 	}
 	
+	/**
+	 * @return
+	 */
 	private TileGrid createDeskView() {
 		
 		TileGrid deskview = new TileGrid();

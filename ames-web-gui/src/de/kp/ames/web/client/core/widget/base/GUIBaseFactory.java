@@ -21,7 +21,7 @@ package de.kp.ames.web.client.core.widget.base;
 import com.smartgwt.client.types.BkgndRepeat;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.GUIStyles;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class GUIBaseFactory {
 	
@@ -35,7 +35,7 @@ public class GUIBaseFactory {
 	public static VLayout createHeadline(String title, String slogan) {
 
 		VLayout vLayout = new VLayout();
-		vLayout.setStyleName(GUIStyles.X_BD_STYLE_1);
+		vLayout.setStyleName(GuiStyles.X_BD_STYLE_1);
 		
 		/*
 		 * Headline dimension
@@ -45,7 +45,7 @@ public class GUIBaseFactory {
 		
 		vLayout.setMargin(0);
 		
-		vLayout.setBackgroundImage(GUIStyles.APP_BG_IMAGE);
+		vLayout.setBackgroundImage(GuiStyles.APP_BG_IMAGE);
 		vLayout.setBackgroundRepeat(BkgndRepeat.REPEAT);
 	
 		vLayout.addMember(new BaseHeadline(title, slogan));		

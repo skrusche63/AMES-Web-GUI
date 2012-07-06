@@ -2,7 +2,7 @@ package de.kp.ames.web.client.core.widget.base;
 
 import com.smartgwt.client.widgets.layout.HLayout;
 
-import de.kp.ames.web.client.core.globals.GUIStyles;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class BaseContent extends HLayout {
 
@@ -11,6 +11,6 @@ public class BaseContent extends HLayout {
 		this.setWidth100();
 		this.setHeight100();
 		
-		this.setStyleName(GUIStyles.X_BD_STYLE_3);
+		this.setStyleName(GuiStyles.X_BD_STYLE_3);
 	}
 }

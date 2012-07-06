@@ -27,7 +27,7 @@ import com.smartgwt.client.widgets.events.VisibilityChangedEvent;
 import com.smartgwt.client.widgets.events.VisibilityChangedHandler;
 import com.smartgwt.client.widgets.menu.Menu;
 
-import de.kp.ames.web.client.core.globals.GUIStyles;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class ControlLabel extends Label {
 
@@ -38,8 +38,8 @@ public class ControlLabel extends Label {
 
 	private boolean selected = false;
 
-	private static String STYLE      = GUIStyles.X_CONTROL;
-	private static String STYLE_OVER = GUIStyles.X_CONTROL_OVER;
+	private static String STYLE      = GuiStyles.X_CONTROL;
+	private static String STYLE_OVER = GuiStyles.X_CONTROL_OVER;
 	
 	public ControlLabel(String text) {
 		super(text);

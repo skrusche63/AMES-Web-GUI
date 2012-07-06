@@ -30,9 +30,9 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.core.widget.base.ActionIndicator;
 import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
+import de.kp.ames.web.client.style.GuiStyles;
 
 /**
  * This class is the base window for a modal dialog;
@@ -67,7 +67,7 @@ public class BaseDialog extends Window {
 	/*
 	 * Border styles
 	 */
-	private static String BORDER1 = GUIStyles.X_BD_STYLE_1;
+	private static String BORDER1 = GuiStyles.X_BD_STYLE_1;
 
 	/*
 	 * Default dimensions
@@ -130,7 +130,7 @@ public class BaseDialog extends Window {
 		this.setShadowOffset(3);
 
 		this.setShadowSoftness(10);				
-		this.setBodyColor(GUIStyles.DIA_BG_COLOR);
+		this.setBodyColor(GuiStyles.DIA_BG_COLOR);
 
 		final BaseDialog self = this;		
 
@@ -181,7 +181,7 @@ public class BaseDialog extends Window {
 		 * Create content
 		 */
 		VLayout wrapper = new VLayout();
-		wrapper.setStyleName(GUIStyles.X_BD_STYLE_2);
+		wrapper.setStyleName(GuiStyles.X_BD_STYLE_2);
 
 		wrapper.setWidth100();		
 		wrapper.setHeight100();
@@ -278,7 +278,7 @@ public class BaseDialog extends Window {
 		vLayout.setWidth("100%");
 		
 		vLayout.setHeight(40);
-		vLayout.setBackgroundColor(GUIStyles.BTN_BG_COLOR);
+		vLayout.setBackgroundColor(GuiStyles.BTN_BG_COLOR);
 		
 		vLayout.addMember(buttonLayout);
 		return vLayout;

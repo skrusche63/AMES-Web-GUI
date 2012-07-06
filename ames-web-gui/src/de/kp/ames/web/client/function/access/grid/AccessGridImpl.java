@@ -31,22 +31,28 @@ public class AccessGridImpl extends GridImpl {
 	 * Constructor
 	 * 
 	 * @param type
-	 * @param item
+	 * @param item (optional) references a certain accessor
 	 */
-	public AccessGridImpl(String type) {
+	public AccessGridImpl(String type, String item) {
 		super(ServiceConstants.ACCESS_SERVICE_ID);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
+		this.createGridDS(type, item);
 
 		/*
 		 * Add Menu Handler
 		 */
 		AccessGridMenuHandlerImpl menuHandler = new AccessGridMenuHandlerImpl(this);
 		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
-		
+
+		/*
+		 * An item references a certain accessor and is a MUST for
+		 * get requests to retrieve remote objects
+		 */
+		if (item != null) menuHandler.setParam(MethodConstants.ATTR_ITEM, item);
+
 		this.addMenuHandler(menuHandler);
 		
 	}
@@ -55,10 +61,16 @@ public class AccessGridImpl extends GridImpl {
 	 * @param type
 	 * @param item
 	 */
-	private void createGridDS(String type) {
+	private void createGridDS(String type, String item) {
 		
 		HashMap<String,String> attributes = new HashMap<String,String>();		
 		attributes.put(MethodConstants.ATTR_TYPE, type);
+		
+		/*
+		 * An item references a certain accessor and is a MUST for
+		 * get requests to retrieve remote objects
+		 */
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);

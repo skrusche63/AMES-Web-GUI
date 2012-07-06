@@ -20,6 +20,8 @@ package de.kp.ames.web.client.core.form;
 
 import com.google.gwt.json.client.JSONValue;
 
+import de.kp.ames.web.client.handler.FormHandler;
+
 public interface Form {
 
 	/**

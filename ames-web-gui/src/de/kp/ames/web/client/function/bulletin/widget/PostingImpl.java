@@ -39,12 +39,12 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.apps.control.UserController;
 import de.kp.ames.web.client.core.form.GUIFormFactory;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
-import de.kp.ames.web.client.core.globals.GUIStyles;
 import de.kp.ames.web.client.core.widget.dialog.BaseDialog;
 import de.kp.ames.web.client.function.bulletin.BulletinService;
 import de.kp.ames.web.client.function.bulletin.event.PostingListener;
 import de.kp.ames.web.client.function.globals.FncAttrs;
 import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.ClassificationConstants;
 
 /**
@@ -235,7 +235,7 @@ public class PostingImpl extends BaseDialog {
 		
 		body = GUIFormFactory.createScRichTextEditor(546, 230);
 		
-		body.setBorder(GUIStyles.APP_BORDER);
+		body.setBorder(GuiStyles.APP_BORDER);
 		body.setMargin(8);
 
 		/*

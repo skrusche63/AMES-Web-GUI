@@ -44,13 +44,13 @@ public class UserWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doEdit(HashMap<String,String> attributes, ListGridRecord record, final Activity afterSendActivity) {
+	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
 		
 		final UserWidget self = this;
 		
 		ActivityImpl afterGetActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-				self.buildEditDialog(jValue, afterSendActivity);
+				self.buildEditDialog(attributes, jValue, afterSendActivity);
 			}			
 		};
 
@@ -62,13 +62,13 @@ public class UserWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doGet(HashMap<String,String> attributes, ListGridRecord record) {
+	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
 
 		final UserWidget self = this;
 		
 		ActivityImpl afterGetActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-				self.buildGetViewer(jValue);
+				self.buildGetViewer(attributes, jValue);
 			}			
 		};
 
@@ -82,6 +82,7 @@ public class UserWidget {
 	 * @param afterGetActivity
 	 */
 	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+
 		/*
 		 * Prepare get request
 		 */
@@ -95,30 +96,30 @@ public class UserWidget {
 		service.doGet(format, item, afterGetActivity);
 		
 	}
-
-	/**
-	 * Build User Viewer
-	 * 
-	 * @param jValue
-	 */
-	private void buildGetViewer(JSONValue jValue) {
-
-		UserFormImpl form = new UserFormImpl();
-		form.addFormData(jValue);		
-		
-		new UserGetViewer(form);
-		
-	}
 	
 	/**
 	 * Build User Edit Dialog
 	 * 
 	 * @param jValue
 	 */
-	private void buildEditDialog(JSONValue jValue, Activity afterSubmitActivity) {
+	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSubmitActivity) {
 		
 		UserEditDialog dialog = new UserEditDialog(jValue);
 		dialog.addSendActivity(afterSubmitActivity);
+		
+	}
+
+	/**
+	 * Build User Viewer
+	 * 
+	 * @param jValue
+	 */
+	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
+
+		UserFormImpl form = new UserFormImpl();
+		form.addFormData(jValue);		
+		
+		new UserGetViewer(form);
 		
 	}
 	
