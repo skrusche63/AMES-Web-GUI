@@ -21,7 +21,7 @@ package de.kp.ames.web.client.function.bulletin.widget;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.function.bulletin.menu.ContactGridMenuHandlerImpl;
-import de.kp.ames.web.client.function.user.grid.UserGridImpl;
+import de.kp.ames.web.client.function.user.data.UserGridImpl;
 
 public class UsersImpl extends VLayout {
 

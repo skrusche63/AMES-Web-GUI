@@ -19,40 +19,33 @@ package de.kp.ames.web.client.core.apps.control;
  */
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.RecordList;
-import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.menu.MenuItem;
+import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.apps.BaseApp;
 import de.kp.ames.web.client.core.apps.KPApplication;
-import de.kp.ames.web.client.core.apps.RegisteredPortlets;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.desktop.DesktopImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.search.ISearch;
+import de.kp.ames.web.client.core.portal.PortalImpl;
+import de.kp.ames.web.client.core.search.SearchHandler;
 import de.kp.ames.web.client.core.search.SearchWidget;
+import de.kp.ames.web.client.core.widget.base.ControlLabel;
 import de.kp.ames.web.client.core.widget.base.Viewport;
 import de.kp.ames.web.client.function.bulletin.widget.BulletinImpl;
-import de.kp.ames.web.client.function.desktop.DesktopImpl;
-import de.kp.ames.web.client.function.desktop.DesktopService;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.help.HelpImpl;
 import de.kp.ames.web.client.function.login.LoginDialog;
-import de.kp.ames.web.client.function.portal.PortalImpl;
-import de.kp.ames.web.client.function.portal.PortletConfig;
 import de.kp.ames.web.client.function.scm.ScmSysImpl;
+import de.kp.ames.web.shared.JsonConstants;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
@@ -67,6 +60,12 @@ public class MainController {
 	 */
 	private VLayout container;
 	private Viewport viewport;
+	
+	/*
+	 * 
+	 * Reference to accessible apps for callers user
+	 */
+	private JSONArray jRegisteredApps;
 	
 	/*
 	 * Reference to the selected application
@@ -86,7 +85,7 @@ public class MainController {
 	/*
 	 * Search (result) handler
 	 */
-	private ISearch searchHandler;
+	private SearchHandler searchHandler;
 	
 	/**
 	 * Constructor
@@ -102,7 +101,12 @@ public class MainController {
 	 * Create introduction viewport when
 	 * starting the AMES Web application
 	 */
-	public void createWelcome() {
+	public void createWelcome(JSONArray jApps) {
+		
+		/*
+		 * Register callers apps
+		 */
+		this.jRegisteredApps = jApps;
 		
 		/* 
 		 * Remove the initial splash screen
@@ -138,7 +142,41 @@ public class MainController {
 		});
 		
 	}
-	
+
+	public MenuItem[] getRegisteredAppsAsItems(final ControlLabel control) {
+
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+		for (int i=0; i < jRegisteredApps.size(); i++) {
+			
+			JSONObject jRegisteredApp = jRegisteredApps.get(i).isObject();
+			
+			final String id    = jRegisteredApp.get(JsonConstants.J_ID).isString().stringValue();
+			final String title = jRegisteredApp.get(JsonConstants.J_NAME).isString().stringValue();
+			
+			MenuItem item = new MenuItem(title);		
+			
+			item.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
+				public void onClick(MenuItemClickEvent event) {
+					 
+					/*
+					 * Deselect respective control
+					 */
+					control.setSelected(false);
+					/*
+					 * Invoke main controller to create the app
+					 */ 
+					MainController.getInstance().createApp(id);
+					
+				}				
+			});
+
+			items.add(item);
+		}
+
+		return (MenuItem[])items.toArray(new MenuItem[items.size()]);
+		
+	}
+
 	/**
 	 * A helper method to append a selected application
 	 * to the viewport, depending on the specific profile
@@ -165,11 +203,11 @@ public class MainController {
 			app = new HelpImpl();
 
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_Portal)) {
-			/* 
-			 * Retrieve registered portlets for the caller's user
+			/*
+			 * Create Web Portal
 			 */
-			ArrayList<PortletConfig> portletConfigs = RegisteredPortlets.getAsPortlets();
-			app = new PortalImpl(4, portletConfigs);
+			createPortal();
+			return;
 
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_ScmSys)) {
 			app = new ScmSysImpl();
@@ -214,18 +252,17 @@ public class MainController {
 	 * user
 	 */
 	private void createDesktop() {
+		replaceApp(new DesktopImpl(jRegisteredApps));
 
-		DesktopService service = new DesktopService();
-
-		service.doGetCallersApps(new ActivityImpl() {
-			public void execute(JSONValue jValue) {
-				
-				JSONArray jArray = jValue.isArray();
-				replaceApp(new DesktopImpl(jArray));
-
-			}
-		});
-
+	}
+	
+	/**
+	 * A helper method to create a web portal
+	 * from the registered apps of the callers 
+	 * user
+	 */
+	private void createPortal() {
+		replaceApp(new PortalImpl(4, jRegisteredApps));
 	}
 	
 	/**
@@ -307,7 +344,7 @@ public class MainController {
 	 * 
 	 * @param handler
 	 */
-	public void setSearchHandler(ISearch handler) {
+	public void setSearchHandler(SearchHandler handler) {
 		this.searchHandler = handler;
 	}
 	
@@ -341,29 +378,12 @@ public class MainController {
 		if (searchWidget != null) closeSearch();
 		
 		/*
-		 * AMES Web Service base url
-		 */
-		String url = CoreGlobals.BASE_URL;
-		
-		/*
-		 * Interface parameters for the search
-		 * method 'suggest'
-		 */
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("method", "suggest");
-		
-		DataSourceField[] fields = {
-			new DataSourceTextField("id"),
-			new DataSourceTextField("term")
-		};
-		
-		/*
 		 * Setup search widget
 		 */
-		searchWidget = new SearchWidget(url, params, fields);
+		searchWidget = new SearchWidget();
 		
 		searchWidget.setQuery(this.searchQuery);
-		searchWidget.setHandler(this.searchHandler);
+		searchWidget.addSearchHandler(this.searchHandler);
 
 	}
 	

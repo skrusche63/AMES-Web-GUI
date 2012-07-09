@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
 import de.kp.ames.web.client.core.tree.TreeImpl;
-import de.kp.ames.web.client.function.ns.menu.NsTreeMenuHandlerImpl;
+import de.kp.ames.web.client.function.ns.handler.NsTreeMenuHandlerImpl;
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 

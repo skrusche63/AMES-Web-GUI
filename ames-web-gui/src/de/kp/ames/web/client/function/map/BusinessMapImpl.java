@@ -31,8 +31,12 @@ import de.kp.ames.map.client.openlayers.geometry.Point;
 
 public class BusinessMapImpl extends BaseMapImpl {
 
-	//private static String REGISTRY_ICON = "images/registry.34.png";
-
+	/**
+	 * Constructor
+	 * 
+	 * @param jGeoInfo
+	 * @param listener
+	 */
 	public BusinessMapImpl(MapConfig jGeoInfo, MapListener listener) {
 		super(jGeoInfo, listener);
 	}

@@ -18,15 +18,17 @@ package de.kp.ames.web.client.core.search;
  *
  */
 
-import java.util.Map;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.RestDataSource;
+import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
@@ -36,6 +38,13 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
+import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.method.RequestMethod;
+import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.ServiceConstants;
 
 public class SearchWidget extends VLayout {
 
@@ -44,13 +53,24 @@ public class SearchWidget extends VLayout {
 	/*
 	 * Rest Data Source for the search result
 	 */
-	private RestDataSource ds;
+	private RestDataSource dataSource;
+	
+	/*
+	 * The base url necessary to invoke the
+	 * web service that refers to this service
+	 */	
+	protected String base;
+	
+	/*
+	 * The unique service identifier
+	 */
+	protected String sid;
 	
 	/*
 	 * The query string sent to the search service
 	 */
 	private String query;
-	private ISearch handler;
+	private SearchHandler searchHandler;
 	
 	/*
 	 * The offset position of the search widget
@@ -64,8 +84,17 @@ public class SearchWidget extends VLayout {
 	private static int WIDGET_WIDTH  = 360;
 	private static int WIDGET_HEIGHT = 28;
 	
-	public SearchWidget(final String url, final Map<String,String> params, final DataSourceField[] fields) {
+	public SearchWidget() {
 		
+		/*
+		 * Connection parameters
+		 */
+		this.base = CoreGlobals.REG_URL;
+		this.sid  = ServiceConstants.FRAME_SERVICE_ID;
+
+		/*
+		 * Appearance & Dimensions
+		 */
 		this.setWidth(WIDGET_WIDTH);
 		this.setHeight(WIDGET_HEIGHT);
 				
@@ -73,7 +102,7 @@ public class SearchWidget extends VLayout {
 		this.setShadowSoftness(2);  
 		
 		this.setShadowOffset(1);  
-		this.addMember(createToolStrip(url, params, fields));
+		this.addMember(createToolStrip());
 		
 		/*
 		 * The search widget is applied to the root
@@ -103,8 +132,13 @@ public class SearchWidget extends VLayout {
 	
 	}
 	
-	public void setHandler(ISearch handler) {
-		this.handler = handler;
+	/**
+	 * Register search handler for search widget
+	 * 
+	 * @param searchHandler
+	 */
+	public void addSearchHandler(SearchHandler searchHandler) {
+		this.searchHandler = searchHandler;
 	}
 	
 	/**
@@ -121,7 +155,7 @@ public class SearchWidget extends VLayout {
 	 * @param fields
 	 * @return
 	 */
-	private ToolStrip createToolStrip(final String url, final Map<String,String> params, final DataSourceField[] fields) {
+	private ToolStrip createToolStrip() {
 		
 		ToolStrip ts = new ToolStrip();
 		ts.setStyleName("x-searchbox");
@@ -129,11 +163,17 @@ public class SearchWidget extends VLayout {
 		ts.setWidth100();
 		ts.setHeight(WIDGET_HEIGHT);
 		
-		searchBox = new ComboBoxItem("search");
+		/*
+		 * The combobox is used to display the name field of
+		 * the respective data source
+		 */
+		searchBox = new ComboBoxItem(JsonConstants.J_NAME);
 		searchBox.setTitle("<b>search</b>:");
 		
 		searchBox.setWidth(SEARCHBOX_WIDTH);
-		searchBox.setOptionDataSource(createDS(url, params, fields));
+		
+		createScComboBoxDS();
+		searchBox.setOptionDataSource(dataSource);
 		
 		searchBox.setShowPickerIcon(false);
 		searchBox.addChangedHandler(new ChangedHandler() {
@@ -178,43 +218,123 @@ public class SearchWidget extends VLayout {
 	 * @param record
 	 */
 	private void doSearch(ListGridRecord record) {		
-		if (this.handler == null) return;		
-		
-		// TODO
+
+		if (this.searchHandler == null) {
+			/*
+			 * The selected application is not searchable
+			 */
+			SC.say(GUIGlobals.APP_TITLE + ": Search Error", "The current application is not searchable.");		
+
+		} else {
+			/*
+			 * Initiate search request
+			 */
+			String query = record.getAttributeAsString(JsonConstants.J_TERM);
+			this.searchHandler.doSearch(query);
+			
+		}
 		
 	}
 	
 	/**
-	 * Create Rest Data Source
-	 * 
-	 * @param url
-	 * @param params
-	 * @param fields
-	 * @return
+	 * Data source
 	 */
-	private RestDataSource createDS(final String url, final Map<String,String> params, final DataSourceField[] fields) {
+	private void createScComboBoxDS() {
+		/*
+		 * Retrieve request url
+		 */
+		String requestUrl = getRequestUrl();
 		
-		ds = new RestDataSource() {
-			
-			protected Object transformRequest(DSRequest dsRequest) {
-				dsRequest.setParams(params);
-				return super.transformRequest(dsRequest);
-			}
-			
-			protected void transformResponse(DSResponse response, DSRequest request, Object data) {
-				super.transformResponse(response, request, data);
-			}
-			
-		};
+		/*
+		 * Retrieve request method
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		RequestMethod requestMethod = createMethod(attributes);
 		
-		ds.setDataFormat(DSDataFormat.JSON);
-		ds.setDataProtocol(DSProtocol.GETPARAMS);
+		/*
+		 * Retrieve request fields
+		 */
+		DataSourceField[] requestFields = createFields();
 		
-		ds.setFetchDataURL(url);
-		ds.setFields(fields);
-		
-		return ds;
+		/*
+		 * Finally create data source
+		 */
+		createScComboBoxDS(requestUrl, requestMethod, requestFields);
 		
 	}
 	
+	/**
+	 * @param url
+	 * @param method
+	 * @param fields
+	 */
+	private void createScComboBoxDS(final String url, final RequestMethod method, final DataSourceField[] fields) {
+		
+		dataSource = new RestDataSource() {
+			  
+			protected Object transformRequest(DSRequest dsRequest) {  
+				dsRequest.setParams(method.toParams());				
+				return super.transformRequest(dsRequest);  
+			}  
+
+			protected void transformResponse(DSResponse response, DSRequest request, Object data) {  
+				super.transformResponse(response, request, data);  
+			}  
+			
+		};
+		
+		dataSource.setDataFormat(DSDataFormat.JSON);
+		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
+		
+		dataSource.setFetchDataURL(url);		
+		dataSource.setFields(fields);
+		
+	}
+
+	/**
+	 * Helper method to create the request url
+	 * 
+	 * @return
+	 */
+	private String getRequestUrl() {
+		
+		if ((this.sid == null) || (this.base == null)) return null;
+		return this.base + "/" + this.sid;
+		
+	}
+
+	/**
+	 * @return
+	 */
+	private DataSourceField[] createFields() {
+		
+		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
+
+		/*
+		 * Name
+		 */
+	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, "Name"));
+
+	    /*
+		 * Term
+		 */
+	    fields.add(new DataSourceTextField(JsonConstants.J_TERM, "Term"));		
+		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
+		
+	}
+
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	public RequestMethod createMethod(HashMap<String,String> attributes) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_SUGGEST);
+		
+		requestMethod.setAttributes(attributes);
+		return requestMethod;
+		
+	}
+
 }

@@ -29,8 +29,6 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
-import de.kp.ames.web.client.core.apps.RegisteredHelp;
-import de.kp.ames.web.client.core.apps.RegisteredPortlets;
 import de.kp.ames.web.client.core.apps.control.MainController;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.function.globals.FncGlobals;
@@ -272,7 +270,7 @@ public class Viewport extends VLayout {
 		int y = apps.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = apps.getMenu();
-		menu.setItems(RegisteredPortlets.getAsItems(apps));
+		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(apps));
 		
 		menu.moveTo(x, y);		
 		menu.draw();
@@ -296,7 +294,7 @@ public class Viewport extends VLayout {
 		int y = help.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = help.getMenu();
-		menu.setItems(RegisteredHelp.getAsItems(help));
+		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(help));
 		
 		menu.moveTo(x, y);		
 		menu.draw();

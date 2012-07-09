@@ -20,6 +20,8 @@ package de.kp.ames.web.client.function.rule.grid;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.data.DataSourceField;
+
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -57,5 +59,14 @@ public class RuleGridImpl extends GridImpl {
 		this.setDataSource(dataSource);
 		
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 */
+	public DataSourceField[] createFields() {
+		// TODO
+		return null;
+		
+	}
+
 }

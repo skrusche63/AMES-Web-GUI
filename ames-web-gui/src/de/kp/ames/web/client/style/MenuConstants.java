@@ -10,6 +10,7 @@ public class MenuConstants {
 	public static String MENU_EDIT     = "edit...";
 	public static String MENU_GET      = "get...";
 	public static String MENU_POST     = "post...";
+	public static String MENU_SYMBOL   = "symbol...";
 	public static String MENU_UPLOAD   = "upload...";
 	public static String MENU_VIEW     = "view...";
 	

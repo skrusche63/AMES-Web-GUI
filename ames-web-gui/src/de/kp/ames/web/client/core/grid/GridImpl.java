@@ -65,8 +65,7 @@ public class GridImpl extends ListGrid implements Grid {
 	/*
 	 * The base url necessary to invoke the
 	 * web service that refers to this service
-	 */
-	
+	 */	
 	protected String base;
 	
 	/*
@@ -233,6 +232,8 @@ public class GridImpl extends ListGrid implements Grid {
 		requestMethod.setName(MethodConstants.METH_GET);
 		
 		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Grid);
+		requestMethod.setAttributes(attributes);
+		
 		return requestMethod;
 		
 	}

@@ -20,6 +20,8 @@ package de.kp.ames.web.client.function.transform.grid;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.data.DataSourceField;
+
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.transform.menu.TransformGridMenuHandlerImpl;
 import de.kp.ames.web.shared.MethodConstants;
@@ -62,6 +64,15 @@ public class TransformGridImpl extends GridImpl {
 		this.setDataSource(dataSource);
 		
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 */
+	public DataSourceField[] createFields() {
+		// TODO
+		return null;
+		
+	}
+
 }
 

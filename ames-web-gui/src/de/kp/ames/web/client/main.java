@@ -21,9 +21,12 @@ package de.kp.ames.web.client;
  */
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONValue;
 
+import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.apps.control.MainService;
 import de.kp.ames.web.client.core.apps.control.MainController;
-import de.kp.ames.web.client.function.globals.FncGlobals;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -34,11 +37,16 @@ public class main implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		
-		MainController.getInstance().createWelcome();
-		
-		MainController.getInstance().createViewport();
-		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Desktop);
+
+		MainService service = new MainService();
+
+		service.doGetCallersApps(new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				
+				JSONArray jArray = jValue.isArray();
+				MainController.getInstance().createWelcome(jArray);
+			}
+		});
 
 	}
 
