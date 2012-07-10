@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.apps.control;
+package de.kp.ames.web.client.core.apps;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

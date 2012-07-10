@@ -2,7 +2,7 @@ package de.kp.ames.web.client.core.portal;
 
 import com.google.gwt.json.client.JSONArray;
 
-import de.kp.ames.web.client.core.apps.BaseApp;
+import de.kp.ames.web.client.core.widget.base.BaseApp;
 
 public class PortalImpl extends BaseApp {
 

@@ -113,7 +113,6 @@ public class PortletImpl extends Window implements Portlet {
 	 * @see de.kp.ames.web.client.gui.portal.Portlet#start()
 	 */
 	public void start() {
-		//CController.getInstance().createApp(self.jObject);
-		
+		// TODO
 	}
 }

@@ -1,6 +1,6 @@
 package de.kp.ames.web.client.function.scm;
 
-import de.kp.ames.web.client.core.apps.BaseApp;
+import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.scm.event.ScmEventManager;
 

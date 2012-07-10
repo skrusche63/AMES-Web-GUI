@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.apps;
+package de.kp.ames.web.client.core.widget.base;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,8 +21,6 @@ package de.kp.ames.web.client.core.apps;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.widget.base.BaseContent;
-import de.kp.ames.web.client.core.widget.base.BaseHeadline;
 
 /**
  * BaseApp is a vertical layout that holds

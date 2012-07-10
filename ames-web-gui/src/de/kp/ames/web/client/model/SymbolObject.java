@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-
 import de.kp.ames.web.shared.JsonConstants;
 
 public class SymbolObject extends ExternalObject {
-
+	
 	public SymbolObject() {
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ExternalObject#createFields()
+	 * @see de.kp.ames.web.client.model.ExternalObject#createDataFields()
 	 */
-	public DataSourceField[] createFields() {
+	public DataSourceField[] createDataFields() {
 
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 

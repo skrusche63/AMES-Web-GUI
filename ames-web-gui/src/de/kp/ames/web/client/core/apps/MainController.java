@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.apps.control;
+package de.kp.ames.web.client.core.apps;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -31,13 +31,12 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.apps.BaseApp;
-import de.kp.ames.web.client.core.apps.KPApplication;
 import de.kp.ames.web.client.core.desktop.DesktopImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.portal.PortalImpl;
 import de.kp.ames.web.client.core.search.SearchHandler;
 import de.kp.ames.web.client.core.search.SearchWidget;
+import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.core.widget.base.ControlLabel;
 import de.kp.ames.web.client.core.widget.base.Viewport;
 import de.kp.ames.web.client.function.bulletin.widget.BulletinImpl;
@@ -220,29 +219,6 @@ public class MainController {
 		 * Append selected app
 		 */
 		replaceApp(app);
-		
-	}
-	
-	public void createApp(JSONObject jApp) {
-		
-		KPApplication app = new KPApplication(jApp);
-		
-		/* 
-		 * Remove the existing application
-		 */
-		viewport.removeMember(viewport.getMember(1));
-		
-		/* 
-		 * Create wrapper
-		 */
-		VLayout wrapper = new VLayout();
-		wrapper.setOverflow(Overflow.HIDDEN);
-		
-		wrapper.addMember(app);		
-		viewport.addMember(wrapper);
-
-		container.draw();
-
 		
 	}
 	

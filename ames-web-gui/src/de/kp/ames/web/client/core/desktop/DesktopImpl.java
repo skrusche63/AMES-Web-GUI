@@ -28,8 +28,8 @@ import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
-import de.kp.ames.web.client.core.apps.BaseApp;
-import de.kp.ames.web.client.core.apps.control.MainController;
+import de.kp.ames.web.client.core.apps.MainController;
+import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.shared.JsonConstants;
 
 public class DesktopImpl extends BaseApp {

@@ -38,7 +38,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.apps.control.UserController;
+import de.kp.ames.web.client.core.apps.UserController;
 import de.kp.ames.web.client.core.form.GUIFormFactory;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.GUIGlobals;

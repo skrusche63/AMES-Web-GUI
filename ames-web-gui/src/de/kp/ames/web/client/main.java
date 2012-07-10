@@ -25,8 +25,8 @@ import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONValue;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.apps.control.MainService;
-import de.kp.ames.web.client.core.apps.control.MainController;
+import de.kp.ames.web.client.core.apps.MainController;
+import de.kp.ames.web.client.core.apps.MainService;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
