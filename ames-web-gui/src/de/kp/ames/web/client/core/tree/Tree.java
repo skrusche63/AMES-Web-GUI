@@ -56,7 +56,13 @@ public interface Tree {
 	/**
 	 * @return
 	 */
-	public DataSourceField[] createFields();
+	public DataSourceField[] createDataFields();
+
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes);
 
 	/**
 	 * Create request method from attributes

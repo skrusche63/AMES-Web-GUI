@@ -21,6 +21,7 @@ package de.kp.ames.web.client.core.grid;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 
@@ -59,14 +60,26 @@ public interface Grid {
 	public void afterRecordClick(RecordClickEvent event);
 
 	/**
+	 * @return
+	 */
+	public String getDetailFieldName();
+	
+	/**
 	 * Data Handling after grid content has changed
 	 */
 	public void reload();
-	
+
 	/**
+	 * @param attributes
 	 * @return
 	 */
-	public DataSourceField[] createFields();
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes);
+
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	public ListGridField[] createGridFields(HashMap<String,String> attributes);
 
 	/**
 	 * Create request method from attributes
@@ -92,6 +105,13 @@ public interface Grid {
 	 */
 	public void createScGridDS(final String url, final RequestMethod method, final DataSourceField[] fields);
 
+	/**
+	 * Name of the Detail Field
+	 * 
+	 * @return
+	 */
+	//public String getDetailField();
+	
 	/**
 	 * @return
 	 */

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform.grid;
+package de.kp.ames.web.client.function.rule.data;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -23,42 +23,37 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
-import de.kp.ames.web.client.function.transform.menu.TransformGridMenuHandlerImpl;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class TransformGridImpl extends GridImpl {
+public class RuleGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
 	 * 
 	 * @param type
+	 * @param item
 	 */
-	public TransformGridImpl(String type) {
-		super(ServiceConstants.TRANSFORM_SERVICE_ID);
+	public RuleGridImpl(String type, String item) {
+		super(ServiceConstants.RULE_SERVICE_ID);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
-
-		/*
-		 * Add menu handler
-		 */
-		TransformGridMenuHandlerImpl menuHandler = new TransformGridMenuHandlerImpl(this);
-		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
-		
-		this.addMenuHandler(menuHandler);
+		this.createGridDS(type, item);
 		
 	}
 
 	/**
 	 * @param type
+	 * @param item
 	 */
-	private void createGridDS(String type) {
+	private void createGridDS(String type, String item) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
@@ -68,11 +63,10 @@ public class TransformGridImpl extends GridImpl {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
 	 */
-	public DataSourceField[] createFields() {
+	public DataSourceField[] createDataFields() {
 		// TODO
 		return null;
 		
 	}
 
 }
-

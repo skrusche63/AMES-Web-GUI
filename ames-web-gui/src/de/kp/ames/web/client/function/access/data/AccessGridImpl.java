@@ -21,13 +21,23 @@ package de.kp.ames.web.client.function.access.data;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.access.handler.AccessGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.AccessorObject;
+import de.kp.ames.web.client.model.DataObject;
+import de.kp.ames.web.client.model.RemoteObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class AccessGridImpl extends GridImpl {
+	
+	/*
+	 * Reference to data object
+	 */
+	private DataObject dataObject;
 	
 	/**
 	 * Constructor
@@ -39,32 +49,8 @@ public class AccessGridImpl extends GridImpl {
 		super(ServiceConstants.ACCESS_SERVICE_ID);
 		
 		/*
-		 * Create data source
+		 * Register data
 		 */
-		this.createGridDS(type, item);
-
-		/*
-		 * Add Menu Handler
-		 */
-		AccessGridMenuHandlerImpl menuHandler = new AccessGridMenuHandlerImpl(this);
-		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
-
-		/*
-		 * An item references a certain accessor and is a MUST for
-		 * get requests to retrieve remote objects
-		 */
-		if (item != null) menuHandler.setParam(MethodConstants.ATTR_ITEM, item);
-
-		this.addMenuHandler(menuHandler);
-		
-	}
-
-	/**
-	 * @param type
-	 * @param item
-	 */
-	private void createGridDS(String type, String item) {
-		
 		HashMap<String,String> attributes = new HashMap<String,String>();		
 		attributes.put(MethodConstants.ATTR_TYPE, type);
 		
@@ -73,6 +59,62 @@ public class AccessGridImpl extends GridImpl {
 		 * get requests to retrieve remote objects
 		 */
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
+		/*
+		 * Create data source
+		 */
+		this.createGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
+		
+		/*
+		 * Add Menu Handler
+		 */
+		AccessGridMenuHandlerImpl menuHandler = new AccessGridMenuHandlerImpl(this);
+		menuHandler.setParams(attributes);
+
+		this.addMenuHandler(menuHandler);
+		
+	}
+
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		/*
+		 * Distinguish between accessor and reomte object
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {			
+			/*
+			 * Create data fields for accessor grid
+			 */
+			return new AccessorObject();
+			
+		} else {
+			/*
+			 * Create data fields for remote object grid
+			 */
+			return new RemoteObject();
+			
+		}
+		
+	}
+	
+	/**
+	 * @param type
+	 * @param item
+	 */
+	private void createGridDS(HashMap<String,String> attributes) {
 		
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
@@ -80,12 +122,25 @@ public class AccessGridImpl extends GridImpl {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
-		return null;
-		
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return this.dataObject.createDataFields();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
+	 */
+	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
+		return this.dataObject.createGridFields();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
+		return null;
+	}
+	
 }

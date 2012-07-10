@@ -24,6 +24,7 @@ import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.group.handler.GroupGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.GroupObject;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -88,10 +89,8 @@ public class GroupGridImpl extends GridImpl {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
-		return null;
-		
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return new GroupObject().createDataFields();		
 	}
 
 }

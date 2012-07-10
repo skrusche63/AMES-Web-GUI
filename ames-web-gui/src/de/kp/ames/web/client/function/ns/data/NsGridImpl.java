@@ -23,6 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -63,10 +64,8 @@ public class NsGridImpl extends GridImpl {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
-		return null;
-		
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return new NsObject().createDataFields();
 	}
 
 }

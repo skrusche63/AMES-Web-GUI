@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.transform.menu;
+package de.kp.ames.web.client.function.transform.handler;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

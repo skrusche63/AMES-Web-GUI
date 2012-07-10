@@ -2,10 +2,12 @@ package de.kp.ames.web.client.function.ns.tree;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
 import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.function.ns.handler.NsTreeMenuHandlerImpl;
+import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -42,6 +44,13 @@ public class NsTreeImpl extends TreeImpl {
 		this.createScTreeDS(attributes, title);
 		this.setDataSource(dataSource);
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.TreeImpl#createFields(java.util.HashMap)
+	 */
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return new NsObject().createDataFields();
 	}
 
 }

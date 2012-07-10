@@ -18,15 +18,14 @@ package de.kp.ames.web.client.function.symbol.data;
  *
  */
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
 import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.function.symbol.handler.SymbolNodeHandlerImpl;
+import de.kp.ames.web.client.model.SymbolObject;
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -61,27 +60,6 @@ public class SymbolTreeImpl extends TreeImpl {
 	    this.addNodeHandler(nodeHandler);
 	    
 	}
-	
-	/**
-	 * @return
-	 */
-	public DataSourceField[] createFields() {
-		
-		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
-
-		/*
-		 * Identifier
-		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_ID, "Id"));
-
-	    /*
-		 * Name
-		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, "Name"));
-		
-		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-
-	}
 
 	/**
 	 * Create data source
@@ -98,6 +76,14 @@ public class SymbolTreeImpl extends TreeImpl {
 		this.createScTreeDS(attributes, title);
 		this.setDataSource(dataSource);
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.TreeImpl#createFields(java.util.HashMap)
+	 */
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return new SymbolObject().createFields();
+
 	}
 
 }

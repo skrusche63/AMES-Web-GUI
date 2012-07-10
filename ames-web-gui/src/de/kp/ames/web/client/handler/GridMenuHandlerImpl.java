@@ -107,5 +107,13 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 	public HashMap<String,String> getParams() {
 		return this.params;
 	}
-	
+
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.GridMenuHandler#setParams(java.util.HashMap)
+	 */
+	public void setParams(HashMap<String,String> params) {
+		this.params = params;
+	}
+
 }

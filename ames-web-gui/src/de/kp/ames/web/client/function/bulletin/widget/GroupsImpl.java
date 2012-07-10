@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.bulletin.widget;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.function.bulletin.menu.ContactGridMenuHandlerImpl;
+import de.kp.ames.web.client.function.bulletin.handler.ContactGridMenuHandlerImpl;
 import de.kp.ames.web.client.function.group.data.GroupGridImpl;
 
 public class GroupsImpl extends VLayout {

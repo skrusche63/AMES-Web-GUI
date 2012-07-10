@@ -24,6 +24,9 @@ import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.dms.handler.DmsGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DocumentObject;
+import de.kp.ames.web.client.model.ImageObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -67,10 +70,28 @@ public class DmsGridImpl extends GridImpl {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		
+		/*
+		 * Distinguish between documemts & images
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Document)) {			
+			/*
+			 * Create data fields for document grid
+			 */
+			return new DocumentObject().createDataFields();
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Image)) {
+			/*
+			 * Create data fields for image grid
+			 */
+			return new ImageObject().createDataFields();
+			
+		}
+
 		return null;
 		
 	}

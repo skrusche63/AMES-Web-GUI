@@ -23,6 +23,9 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.model.ProductObject;
+import de.kp.ames.web.client.model.ProductorObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 /*
@@ -64,8 +67,25 @@ public class ProductGridImpl extends GridImpl {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		/*
+		 * Distinguish between products & productors
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Product)) {			
+			/*
+			 * Create data fields for product grid
+			 */
+			return new ProductObject().createDataFields();
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Productor)) {
+			/*
+			 * Create data fields for productor grid
+			 */
+			return new ProductorObject().createDataFields();
+			
+		}
+
 		return null;
 		
 	}

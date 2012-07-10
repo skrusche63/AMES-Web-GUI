@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.role.grid;
+package de.kp.ames.web.client.function.transform.data;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -23,50 +23,70 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.transform.handler.TransformGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.TransformatorObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class RoleGridImpl extends GridImpl {
+public class TransformGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
 	 * 
 	 * @param type
-	 * @param source
 	 */
-	public RoleGridImpl(String type, String source) {
-		super(ServiceConstants.ROLE_SERVICE_ID);
-
+	public TransformGridImpl(String type) {
+		super(ServiceConstants.TRANSFORM_SERVICE_ID);
+		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, source);
+		this.createGridDS(type);
+
+		/*
+		 * Add menu handler
+		 */
+		TransformGridMenuHandlerImpl menuHandler = new TransformGridMenuHandlerImpl(this);
+		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		
+		this.addMenuHandler(menuHandler);
 		
 	}
 
 	/**
 	 * @param type
-	 * @param source
 	 */
-	private void createGridDS(String type, String source) {
+	private void createGridDS(String type) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
 		
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		
+		/*
+		 * Distinguish between transformators
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Transformator)) {			
+			/*
+			 * Create data fields for transformator grid
+			 */
+			return new TransformatorObject().createDataFields();
+			
+		}
+
 		return null;
 		
 	}
 
 }
+

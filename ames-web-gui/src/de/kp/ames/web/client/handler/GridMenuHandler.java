@@ -58,5 +58,10 @@ public interface GridMenuHandler {
 	 * @param value
 	 */
 	public void setParam(String key, String value);
-	
+
+	/**
+	 * @param params
+	 */
+	public void setParams(HashMap<String,String> params);
+
 }

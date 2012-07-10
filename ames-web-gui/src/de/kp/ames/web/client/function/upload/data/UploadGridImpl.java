@@ -24,6 +24,7 @@ import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.upload.handler.UploadGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.CacheObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -63,12 +64,10 @@ public class UploadGridImpl extends GridImpl {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
-		return null;
-		
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return new CacheObject().createFields();
 	}
 
 }

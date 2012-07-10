@@ -226,7 +226,17 @@ public class TreeImpl extends TreeGrid implements Tree {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.tree.Tree#createFields()
 	 */
-	public DataSourceField[] createFields() {
+	public DataSourceField[] createDataFields() {
+		/*
+		 * Must be overridden
+		 */
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.Tree#createFields(java.util.HashMap)
+	 */
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
 		/*
 		 * Must be overridden
 		 */
@@ -263,7 +273,7 @@ public class TreeImpl extends TreeGrid implements Tree {
 		/*
 		 * Retrieve request fields
 		 */
-		DataSourceField[] requestFields = createFields();
+		DataSourceField[] requestFields = createDataFields(attributes);
 		
 		/*
 		 * Finally create data source

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.bulletin.grid;
+package de.kp.ames.web.client.function.bulletin.data;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,12 +21,20 @@ package de.kp.ames.web.client.function.bulletin.grid;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.model.DataObject;
+import de.kp.ames.web.client.model.PostObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class PostGridImpl extends GridImpl {
+	
+	/*
+	 * Reference to data object
+	 */
+	private DataObject dataObject;
 
 	/**
 	 * Constructor
@@ -35,12 +43,35 @@ public class PostGridImpl extends GridImpl {
 	 */
 	public PostGridImpl(String recipient) {
 		super(ServiceConstants.BULLETIN_SERVICE_ID);
-				
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();		
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
 		this.createGridDS(recipient);
 
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
+
+	}
+
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new PostObject();
 	}
 
 	/**
@@ -57,12 +88,25 @@ public class PostGridImpl extends GridImpl {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
-	public DataSourceField[] createFields() {
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		return this.dataObject.createDataFields();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
+	 */
+	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
+		return this.dataObject.createGridFields();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
 		// TODO
 		return null;
-		
 	}
 
 }

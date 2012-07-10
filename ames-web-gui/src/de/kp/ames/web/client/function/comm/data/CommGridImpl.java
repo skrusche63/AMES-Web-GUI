@@ -24,6 +24,9 @@ import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.comm.handler.CommGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.ChatObject;
+import de.kp.ames.web.client.model.MailObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -67,10 +70,25 @@ public class CommGridImpl extends GridImpl {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Chat)) {
+			/*
+			 * Create data fields for chat grid
+			 */
+			return new ChatObject().createDataFields();
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Mail)) {
+			/*
+			 * Create data fields for document grid
+			 */
+			return new MailObject().createDataFields();
+			
+		}
+			
 		return null;
 		
 	}

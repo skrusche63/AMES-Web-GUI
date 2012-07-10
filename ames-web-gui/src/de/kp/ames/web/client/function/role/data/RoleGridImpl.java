@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.rule.grid;
+package de.kp.ames.web.client.function.role.data;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -23,50 +23,69 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.model.ResponsibilityObject;
+import de.kp.ames.web.client.model.RoleObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class RuleGridImpl extends GridImpl {
+public class RoleGridImpl extends GridImpl {
 
 	/**
 	 * Constructor
 	 * 
 	 * @param type
-	 * @param item
+	 * @param source
 	 */
-	public RuleGridImpl(String type, String item) {
-		super(ServiceConstants.RULE_SERVICE_ID);
-		
+	public RoleGridImpl(String type, String source) {
+		super(ServiceConstants.ROLE_SERVICE_ID);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type, item);
+		this.createGridDS(type, source);
 		
 	}
 
 	/**
 	 * @param type
-	 * @param item
+	 * @param source
 	 */
-	private void createGridDS(String type, String item) {
+	private void createGridDS(String type, String source) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
 
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
 
 		this.createScGridDS(attributes);
 		this.setDataSource(dataSource);
 		
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
 	 */
-	public DataSourceField[] createFields() {
-		// TODO
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+		/*
+		 * Distinguish between responsibility & role
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Responsibility)) {			
+			/*
+			 * Create data fields for responsibility grid
+			 */
+			return new ResponsibilityObject().createDataFields();
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Role)) {
+			/*
+			 * Create data fields for role grid
+			 */
+			return new RoleObject().createDataFields();
+			
+		}
+
 		return null;
-		
 	}
 
 }

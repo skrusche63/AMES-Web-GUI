@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.role.menu;
+package de.kp.ames.web.client.function.role.handler;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

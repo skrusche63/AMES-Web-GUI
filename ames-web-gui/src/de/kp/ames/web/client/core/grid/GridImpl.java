@@ -30,6 +30,7 @@ import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
@@ -44,6 +45,7 @@ import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
 import de.kp.ames.web.shared.FormatConstants;
+import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
 public class GridImpl extends ListGrid implements Grid {
@@ -77,6 +79,11 @@ public class GridImpl extends ListGrid implements Grid {
 	 * Page size
 	 */
 	protected int pageSize = 25;
+	
+	/*
+	 * Reference to name of detail field
+	 */
+	String detailFieldName;
 	
 	/**
 	 * Constructor
@@ -120,8 +127,16 @@ public class GridImpl extends ListGrid implements Grid {
 		/*
 		 * List entry may be expanded on click
 		 */
-		this.setCanExpandRecords(true);
-		this.setExpansionMode(ExpansionMode.DETAIL_FIELD);
+		String detailFieldName = getDetailFieldName();
+
+		if (detailFieldName != null) {
+
+			this.setCanExpandRecords(true);
+			this.setExpansionMode(ExpansionMode.DETAIL_FIELD);
+
+			this.setDetailField(detailFieldName);
+			
+		}
 
 		/*
 		 * Data handling
@@ -187,6 +202,13 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 	
 	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		return JsonConstants.J_DESC;
+	}
+	
+	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.Grid#reload()
 	 */
 	public void reload() {
@@ -213,14 +235,24 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.BaseGrid#createFields()
+	 * @see de.kp.ames.web.client.core.grid.Grid#createFields(java.util.HashMap)
 	 */
-	public DataSourceField[] createFields() {
+	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
 		/*
 		 * Must be overridden
 		 */
 		return null;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#createGridFields(java.util.HashMap)
+	 */
+	public ListGridField[] createGridFields(HashMap<String, String> attributes) {
+		/*
+		 * Must be overridden
+		 */
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -248,14 +280,14 @@ public class GridImpl extends ListGrid implements Grid {
 		String requestUrl = getRequestUrl();
 		
 		/*
-		 * Retrieve request method
+		 * Retrieve request method for attributes
 		 */
 		RequestMethod requestMethod = createMethod(attributes);
 		
 		/*
-		 * Retrieve request fields
+		 * Retrieve request fields from attributes
 		 */
-		DataSourceField[] requestFields = createFields();
+		DataSourceField[] requestFields = createDataFields(attributes);
 		
 		/*
 		 * Finally create data source
@@ -324,7 +356,7 @@ public class GridImpl extends ListGrid implements Grid {
 		 * Retrieve affected grid record
 		 */
 		ListGridRecord record = event.getRecord();
-		
+
 		/*
 		 * Invoke Grid MenuHandler
 		 */

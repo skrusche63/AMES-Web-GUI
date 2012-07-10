@@ -107,5 +107,12 @@ public class TreeMenuHandlerImpl implements TreeMenuHandler {
 	public HashMap<String,String> getParams() {
 		return this.params;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.TreeMenuHandler#setParams(java.util.HashMap)
+	 */
+	public void setParams(HashMap<String,String> params) {
+		this.params = params;
+	}
+
 }
