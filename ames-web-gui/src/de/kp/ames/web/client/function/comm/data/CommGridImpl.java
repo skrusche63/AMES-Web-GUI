@@ -20,11 +20,10 @@ package de.kp.ames.web.client.function.comm.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.comm.handler.CommGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.ChatObject;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.MailObject;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
@@ -36,14 +35,30 @@ public class CommGridImpl extends GridImpl {
 	 * Constructor
 	 * 
 	 * @param type
-	 * @param item
 	 */
 	public CommGridImpl(String type) {
 		super(ServiceConstants.COMMUNICATION_SERVICE_ID);		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * Add menu handler
@@ -56,36 +71,23 @@ public class CommGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param type
-	 * @param item
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String type) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+	private DataObject createDataObject(HashMap<String,String> attributes) {
 
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Chat)) {
 			/*
 			 * Create data fields for chat grid
 			 */
-			return new ChatObject().createDataFields();
+			return new ChatObject();
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Mail)) {
 			/*
 			 * Create data fields for document grid
 			 */
-			return new MailObject().createDataFields();
+			return new MailObject();
 			
 		}
 			

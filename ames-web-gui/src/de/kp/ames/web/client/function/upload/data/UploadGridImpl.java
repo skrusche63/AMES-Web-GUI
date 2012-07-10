@@ -20,11 +20,10 @@ package de.kp.ames.web.client.function.upload.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.upload.handler.UploadGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.CacheObject;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -35,10 +34,27 @@ public class UploadGridImpl extends GridImpl {
 	 */
 	public UploadGridImpl(String type) {
 		super(ServiceConstants.UPLOAD_SERVICE_ID);		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 		
 		/*
 		 * Add menu handler
@@ -51,23 +67,19 @@ public class UploadGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param type
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String type) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new CacheObject();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new CacheObject().createFields();
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

@@ -20,9 +20,6 @@ package de.kp.ames.web.client.function.bulletin.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.widgets.grid.ListGridField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.PostObject;
@@ -30,11 +27,6 @@ import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class PostGridImpl extends GridImpl {
-	
-	/*
-	 * Reference to data object
-	 */
-	private DataObject dataObject;
 
 	/**
 	 * Constructor
@@ -48,6 +40,7 @@ public class PostGridImpl extends GridImpl {
 		 * Register data
 		 */
 		HashMap<String,String> attributes = new HashMap<String,String>();		
+		attributes.put(MethodConstants.ATTR_TARGET, recipient);
 
 		/*
 		 * Create data object
@@ -57,7 +50,7 @@ public class PostGridImpl extends GridImpl {
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(recipient);
+		this.createScGridDS(attributes);
 
 		/*
 		 * Create grid fields
@@ -72,33 +65,6 @@ public class PostGridImpl extends GridImpl {
 	 */
 	private DataObject createDataObject(HashMap<String,String> attributes) {
 		return new PostObject();
-	}
-
-	/**
-	 * @param recipient
-	 */
-	private void createGridDS(String recipient) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TARGET, recipient);
-		
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return this.dataObject.createDataFields();
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
-	 */
-	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
-		return this.dataObject.createGridFields();
 	}
 
 	/* (non-Javadoc)

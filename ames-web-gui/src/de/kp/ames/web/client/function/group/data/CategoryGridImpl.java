@@ -20,11 +20,10 @@ package de.kp.ames.web.client.function.group.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.group.handler.CategoryGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.CategoryObject;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -36,11 +35,27 @@ public class CategoryGridImpl extends GridImpl {
 	 */
 	public CategoryGridImpl() {
 		super(ServiceConstants.COMMUNITY_SERVICE_ID);
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Category);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS();
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * Add menu handler
@@ -50,24 +65,19 @@ public class CategoryGridImpl extends GridImpl {
 	}
 
 	/**
-	 * Create data source
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS() {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Category);
-		
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new CategoryObject();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new CategoryObject().createDataFields();
-		
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

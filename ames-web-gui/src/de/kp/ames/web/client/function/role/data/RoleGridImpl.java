@@ -20,9 +20,9 @@ package de.kp.ames.web.client.function.role.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.role.handler.RoleGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.ResponsibilityObject;
 import de.kp.ames.web.client.model.RoleObject;
 import de.kp.ames.web.shared.ClassificationConstants;
@@ -41,32 +41,41 @@ public class RoleGridImpl extends GridImpl {
 		super(ServiceConstants.ROLE_SERVICE_ID);
 
 		/*
-		 * Create data source
+		 * Register data
 		 */
-		this.createGridDS(type, source);
-		
-	}
-
-	/**
-	 * @param type
-	 * @param source
-	 */
-	private void createGridDS(String type, String source) {
-
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
 
 		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
 
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
+		/*
+		 * Create data source
+		 */
 		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
+
+		/*
+		 * Add menu handler
+		 */
+		RoleGridMenuHandlerImpl menuHandler = new RoleGridMenuHandlerImpl(this);
+		menuHandler.setParams(attributes);
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+
+	/**
+	 * @param attributes
+	 * @return
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+
 		/*
 		 * Distinguish between responsibility & role
 		 */
@@ -75,16 +84,25 @@ public class RoleGridImpl extends GridImpl {
 			/*
 			 * Create data fields for responsibility grid
 			 */
-			return new ResponsibilityObject().createDataFields();
+			return new ResponsibilityObject();
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Role)) {
 			/*
 			 * Create data fields for role grid
 			 */
-			return new RoleObject().createDataFields();
+			return new RoleObject();
 			
 		}
 
+		return null;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
 		return null;
 	}
 

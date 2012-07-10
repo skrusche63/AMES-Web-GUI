@@ -20,10 +20,9 @@ package de.kp.ames.web.client.function.transform.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.transform.handler.TransformGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.TransformatorObject;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
@@ -38,11 +37,27 @@ public class TransformGridImpl extends GridImpl {
 	 */
 	public TransformGridImpl(String type) {
 		super(ServiceConstants.TRANSFORM_SERVICE_ID);
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
 		
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * Add menu handler
@@ -55,22 +70,10 @@ public class TransformGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param type
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String type) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+	private DataObject createDataObject(HashMap<String,String> attributes) {
 		
 		/*
 		 * Distinguish between transformators
@@ -78,14 +81,22 @@ public class TransformGridImpl extends GridImpl {
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Transformator)) {			
 			/*
-			 * Create data fields for transformator grid
+			 * Create fields for transformator grid
 			 */
-			return new TransformatorObject().createDataFields();
+			return new TransformatorObject();
 			
 		}
 
 		return null;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

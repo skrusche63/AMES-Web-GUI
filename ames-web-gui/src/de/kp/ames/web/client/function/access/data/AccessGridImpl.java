@@ -20,9 +20,6 @@ package de.kp.ames.web.client.function.access.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.widgets.grid.ListGridField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.access.handler.AccessGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.AccessorObject;
@@ -33,11 +30,6 @@ import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class AccessGridImpl extends GridImpl {
-	
-	/*
-	 * Reference to data object
-	 */
-	private DataObject dataObject;
 	
 	/**
 	 * Constructor
@@ -68,7 +60,7 @@ public class AccessGridImpl extends GridImpl {
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(attributes);
+		this.createScGridDS(attributes);
 
 		/*
 		 * Create grid fields
@@ -108,31 +100,6 @@ public class AccessGridImpl extends GridImpl {
 			
 		}
 		
-	}
-	
-	/**
-	 * @param type
-	 * @param item
-	 */
-	private void createGridDS(HashMap<String,String> attributes) {
-		
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return this.dataObject.createDataFields();
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
-	 */
-	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
-		return this.dataObject.createGridFields();
 	}
 
 	/* (non-Javadoc)

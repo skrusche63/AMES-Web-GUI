@@ -44,11 +44,18 @@ import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
 public class GridImpl extends ListGrid implements Grid {
+	
+	/*
+	 * Reference to DataObject
+	 */
+	protected DataObject dataObject;
+
 	/*
 	 * Reference to DataSource
 	 */
@@ -235,24 +242,17 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#createFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
 	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		/*
-		 * Must be overridden
-		 */
-		return null;
-		
+		return this.dataObject.createDataFields();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#createGridFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
 	 */
-	public ListGridField[] createGridFields(HashMap<String, String> attributes) {
-		/*
-		 * Must be overridden
-		 */
-		return null;
+	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
+		return this.dataObject.createGridFields();
 	}
 
 	/* (non-Javadoc)
@@ -319,7 +319,12 @@ public class GridImpl extends ListGrid implements Grid {
 		
 		dataSource.setFetchDataURL(url);		
 		dataSource.setFields(fields);
-		
+
+		/*
+		 * finally set data source
+		 */
+		setDataSource(dataSource);
+
 	}
 
 	/* (non-Javadoc)

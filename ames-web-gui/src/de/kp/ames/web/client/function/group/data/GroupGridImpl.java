@@ -20,10 +20,9 @@ package de.kp.ames.web.client.function.group.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.group.handler.GroupGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.GroupObject;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
@@ -37,11 +36,27 @@ public class GroupGridImpl extends GridImpl {
 	 */
 	public GroupGridImpl() {
 		super(ServiceConstants.COMMUNITY_SERVICE_ID);
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+		
 		/*
 		 * Create data source
 		 */
-		String affiliate = null;
-		this.createGridDS(affiliate);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * This GroupGridImpl must have a MenuHandler
@@ -59,10 +74,29 @@ public class GroupGridImpl extends GridImpl {
 	 */
 	public GroupGridImpl(String affiliate) {
 		super(ServiceConstants.COMMUNITY_SERVICE_ID);		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
+		attributes.put(MethodConstants.ATTR_SOURCE, affiliate);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(affiliate);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * Add menu handler
@@ -72,25 +106,19 @@ public class GroupGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param affiliate
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String affiliate) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
-
-		if (affiliate != null) attributes.put(MethodConstants.ATTR_SOURCE, affiliate);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new GroupObject();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new GroupObject().createDataFields();		
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

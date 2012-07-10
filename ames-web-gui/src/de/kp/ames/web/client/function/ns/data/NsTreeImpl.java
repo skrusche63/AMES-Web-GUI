@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.ns.tree;
+package de.kp.ames.web.client.function.ns.data;
 
 import java.util.HashMap;
 

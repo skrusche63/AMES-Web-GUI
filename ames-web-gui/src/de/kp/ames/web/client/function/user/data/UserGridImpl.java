@@ -20,10 +20,9 @@ package de.kp.ames.web.client.function.user.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.user.handler.UserGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.UserObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -36,11 +35,26 @@ public class UserGridImpl extends GridImpl {
 	 */
 	public UserGridImpl() {
 		super(ServiceConstants.USER_SERVICE_ID);		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+		
 		/*
 		 * Create data source
 		 */
-		String community = null;
-		this.createGridDS(community);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * This UserGridImpl must have a MenuHandler
@@ -58,10 +72,27 @@ public class UserGridImpl extends GridImpl {
 	 */
 	public UserGridImpl(String community) {
 		super(ServiceConstants.USER_SERVICE_ID);		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_ITEM, community);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(community);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * Add menu handler
@@ -71,23 +102,19 @@ public class UserGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param source
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String item) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new UserObject();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new UserObject().createDataFields();
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

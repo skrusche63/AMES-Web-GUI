@@ -20,11 +20,10 @@ package de.kp.ames.web.client.function.map.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.map.handler.LayerRecordHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.LayerObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -39,11 +38,27 @@ public class LayerGridImpl extends GridImpl {
 	 */
 	public LayerGridImpl(String endpoint, Activity activity) {
 		super(ServiceConstants.MAP_SERVICE_ID);
-		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_ENDPOINT, endpoint);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(endpoint);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 
 		/*
 		 * Add record handler
@@ -54,31 +69,21 @@ public class LayerGridImpl extends GridImpl {
 		this.addRecordHandler(recordHandler);
 		
 	}
-	
-	/**
-	 * This class supports the retrieval 
-	 * and selection of WMS-based layers
-	 */
-	
-	/**
-	 * @param endpoint
-	 * @param item
-	 */
-	private void createGridDS(String endpoint) {
 
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_ENDPOINT, endpoint);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
+	/**
+	 * @param attributes
+	 * @return
+	 */
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new LayerObject();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
-	public DataSourceField[] createDataFields() {
-		return new LayerObject().createFields();		
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

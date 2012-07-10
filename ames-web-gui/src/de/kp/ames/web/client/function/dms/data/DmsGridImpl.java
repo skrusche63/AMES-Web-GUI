@@ -20,10 +20,9 @@ package de.kp.ames.web.client.function.dms.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.dms.handler.DmsGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.DocumentObject;
 import de.kp.ames.web.client.model.ImageObject;
 import de.kp.ames.web.shared.ClassificationConstants;
@@ -40,39 +39,44 @@ public class DmsGridImpl extends GridImpl {
 	 */
 	public DmsGridImpl(String type) {
 		super(ServiceConstants.DMS_SERVICE_ID);		
+
+		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
 		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 		
 		/*
 		 * Add menu handler and also provide request
 		 * specific parameters for later use
 		 */
 		DmsGridMenuHandlerImpl menuHandler = new DmsGridMenuHandlerImpl(this);
-		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		menuHandler.setParams(attributes);
 		
 		this.addMenuHandler(menuHandler);
 
 	}
 
 	/**
-	 * @param type
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String type) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+	private DataObject createDataObject(HashMap<String,String> attributes) {
 		
 		/*
 		 * Distinguish between documemts & images
@@ -82,18 +86,26 @@ public class DmsGridImpl extends GridImpl {
 			/*
 			 * Create data fields for document grid
 			 */
-			return new DocumentObject().createDataFields();
+			return new DocumentObject();
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Image)) {
 			/*
 			 * Create data fields for image grid
 			 */
-			return new ImageObject().createDataFields();
+			return new ImageObject();
 			
 		}
 
 		return null;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

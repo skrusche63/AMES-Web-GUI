@@ -20,9 +20,9 @@ package de.kp.ames.web.client.function.product.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.function.product.handler.ProductGridMenuHandlerImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.ProductObject;
 import de.kp.ames.web.client.model.ProductorObject;
 import de.kp.ames.web.shared.ClassificationConstants;
@@ -44,30 +44,42 @@ public class ProductGridImpl extends GridImpl {
 		super(ServiceConstants.PRODUCT_SERVICE_ID);
 
 		/*
+		 * Register data
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
+		/*
 		 * Create data source
 		 */
-		this.createGridDS(type);
+		this.createScGridDS(attributes);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
+
+		/*
+		 * Add menu handler
+		 */
+		ProductGridMenuHandlerImpl menuHandler = new ProductGridMenuHandlerImpl(this);
+		menuHandler.setParams(attributes);
+		
+		this.addMenuHandler(menuHandler);
 
 	}
 
 	/**
-	 * @param type
-	 * @param item
+	 * @param attributes
+	 * @return
 	 */
-	private void createGridDS(String type) {
+	private DataObject createDataObject(HashMap<String,String> attributes) {
 
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
 		/*
 		 * Distinguish between products & productors
 		 */
@@ -76,18 +88,26 @@ public class ProductGridImpl extends GridImpl {
 			/*
 			 * Create data fields for product grid
 			 */
-			return new ProductObject().createDataFields();
+			return new ProductObject();
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Productor)) {
 			/*
 			 * Create data fields for productor grid
 			 */
-			return new ProductorObject().createDataFields();
+			return new ProductorObject();
 			
 		}
 
 		return null;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

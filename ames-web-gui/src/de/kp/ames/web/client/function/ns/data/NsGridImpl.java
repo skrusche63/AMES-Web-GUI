@@ -20,9 +20,8 @@ package de.kp.ames.web.client.function.ns.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
@@ -39,33 +38,44 @@ public class NsGridImpl extends GridImpl {
 		super(ServiceConstants.NAMESPACE_SERVICE_ID);
 
 		/*
-		 * Create data source
+		 * Register data
 		 */
-		this.createGridDS(item, parent);
-		
-	}
-
-	/**
-	 * @param item
-	 * @param parent
-	 */
-	private void createGridDS(String item, String parent) {
-
 		HashMap<String,String> attributes = new HashMap<String,String>();
 
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		if (parent != null) attributes.put(MethodConstants.ATTR_PARENT, parent);
 
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject(attributes);
+
+		/*
+		 * Create data source
+		 */
 		this.createScGridDS(attributes);
-		this.setDataSource(dataSource);
+
+		/*
+		 * Create grid fields
+		 */
+		this.setFields(createGridFields(attributes));
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields()
+	/**
+	 * @param attributes
+	 * @return
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new NsObject().createDataFields();
+	private DataObject createDataObject(HashMap<String,String> attributes) {
+		return new NsObject();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }
