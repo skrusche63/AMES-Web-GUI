@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.model.core;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -22,43 +22,64 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
-import de.kp.ames.web.client.model.core.ServiceObject;
 import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.LabelConstants;
 
-public class ProductorObject extends ServiceObject {
+public class ConceptObject implements DataObject {
 
 	/**
 	 * Constructor
 	 */
-	public ProductorObject() {
-		super();
+	public ConceptObject() {
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ServiceObject#createDataFieldsAsArray()
+	 * @see de.kp.ames.web.client.model.core.DataObject#createDataFieldsAsArray()
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
 		
 		ArrayList<DataSourceField> fields = createDataFieldsAsList();
 		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-				
+		
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createDataFieldsAsList()
+	 * @see de.kp.ames.web.client.model.core.DataObject#createDataFieldsAsList()
 	 */
 	public ArrayList<DataSourceField> createDataFieldsAsList() {
 
-		ArrayList<DataSourceField> fields = super.createDataFieldsAsList();
+		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 
 		/*
-		 * Specifications (without label)
+		 * Identifier    	
 		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_SPEC));
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL));
+		
+		/* 
+		 * Name
+		 */
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL));
 
 	    return fields;
-	    
+	
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsArray()
+	 */
+	public ListGridField[] createGridFieldsAsArray() {
+		// TODO
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+		// TODO
+		return null;
 	}
 
 }

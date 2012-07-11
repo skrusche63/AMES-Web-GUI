@@ -1,5 +1,8 @@
 /* html oriented styles */
 
+/* Important style to avoid scrollbars in Chrome */
+body {overflow:hidden;}
+
 iframe {border:0;}
 
 /* project specific styles */

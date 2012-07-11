@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.model.core;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,22 +21,17 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
 
-import de.kp.ames.web.client.model.core.ServiceObject;
-import de.kp.ames.web.shared.JaxrConstants;
-
-public class ProductorObject extends ServiceObject {
+public class RegistryPackage extends RegistryObject {
 
 	/**
 	 * Constructor
 	 */
-	public ProductorObject() {
-		super();
+	public RegistryPackage() {
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ServiceObject#createDataFieldsAsArray()
+	 * @see de.kp.ames.web.client.model.RegistryObject#createDataFieldsAsArray()
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
 		
@@ -46,19 +41,10 @@ public class ProductorObject extends ServiceObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createDataFieldsAsList()
+	 * @see de.kp.ames.web.client.model.RegistryObject#createDataFieldsAsList()
 	 */
 	public ArrayList<DataSourceField> createDataFieldsAsList() {
-
-		ArrayList<DataSourceField> fields = super.createDataFieldsAsList();
-
-		/*
-		 * Specifications (without label)
-		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_SPEC));
-
-	    return fields;
-	    
+	    return super.createDataFieldsAsList();	    
 	}
 
 }

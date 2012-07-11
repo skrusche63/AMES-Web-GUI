@@ -103,14 +103,14 @@ public class RegistryObject implements DataObject {
 	    fields.add(new DataSourceTextField(JaxrConstants.RIM_TIMESTAMP, LabelConstants.TIMESTAMP_LABEL));
 							
 		/*
-		 * Classifications
+		 * Classifications (without label)
 		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_CLAS, LabelConstants.CLAS_LABEL));
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_CLAS));
 
 		/*
-		 * Slots
+		 * Slots (without label)
 		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_SLOT, LabelConstants.SLOT_LABEL));
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_SLOT));
 		
 		return fields;
 		

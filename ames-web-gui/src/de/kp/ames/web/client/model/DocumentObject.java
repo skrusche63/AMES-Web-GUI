@@ -31,7 +31,7 @@ public class DocumentObject extends ExtrinsicObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.model.BusinessObject#createFields()
+	 * @see de.kp.ames.web.client.model.core.ExtrinsicObject#createDataFieldsAsArray()
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
 		return super.createDataFieldsAsArray();		

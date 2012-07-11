@@ -24,6 +24,9 @@ import de.kp.ames.web.client.model.core.ExtrinsicObject;
 
 public class ImageObject extends ExtrinsicObject {
 
+	/**
+	 * Constructor
+	 */
 	public ImageObject() {	
 	}
 

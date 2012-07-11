@@ -82,7 +82,6 @@ public class LayerGridImpl extends GridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
 		return null;
 	}
 
