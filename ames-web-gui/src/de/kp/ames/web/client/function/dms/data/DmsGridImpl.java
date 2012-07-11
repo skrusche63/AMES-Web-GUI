@@ -22,10 +22,11 @@ import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.function.dms.handler.DmsGridMenuHandlerImpl;
-import de.kp.ames.web.client.model.DataObject;
 import de.kp.ames.web.client.model.DocumentObject;
 import de.kp.ames.web.client.model.ImageObject;
+import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -104,8 +105,7 @@ public class DmsGridImpl extends GridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
-		return null;
+		return JaxrConstants.RIM_DESC;
 	}
 
 }

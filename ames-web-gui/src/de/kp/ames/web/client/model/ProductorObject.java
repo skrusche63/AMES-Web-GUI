@@ -11,8 +11,8 @@ public class ProductorObject extends ServiceObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.function.model.ServiceObject#createFields()
 	 */
-	public DataSourceField[] createDataFields() {
-		return super.createDataFields();
+	public DataSourceField[] createDataFieldsAsArray() {
+		return super.createDataFieldsAsArray();
 		
 	}
 

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.model.core;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,23 +18,31 @@ package de.kp.ames.web.client.model;
  *
  */
 
+import java.util.ArrayList;
+
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
-import de.kp.ames.web.client.model.core.ExtrinsicObject;
-
-public class ProductObject extends ExtrinsicObject {
+public interface DataObject {
 
 	/**
-	 * Constructor
+	 * @return
 	 */
-	public ProductObject() {	
-	}
+	public DataSourceField[] createDataFieldsAsArray();
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ExtrinsicObject#createDataFieldsAsArray()
+	/**
+	 * @return
 	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		return super.createDataFieldsAsArray();		
-	}
+	public ArrayList<DataSourceField> createDataFieldsAsList();
 
+	/**
+	 * @return
+	 */
+	public ListGridField[] createGridFieldsAsArray();
+
+	/**
+	 * @return
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList();
+	
 }

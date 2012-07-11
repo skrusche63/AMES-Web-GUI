@@ -1,21 +1,10 @@
 package de.kp.ames.web.client.model;
 
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.widgets.grid.ListGridField;
+import de.kp.ames.web.client.model.core.RegistryObject;
 
-public class BusinessObject implements DataObject {
+public class BusinessObject extends RegistryObject {
 
 	public BusinessObject() {		
-	}
-	
-	public DataSourceField[] createDataFields() {
-		// TODO
-		return null;
-	}
-
-	public ListGridField[] createGridFields() {
-		// TODO
-		return null;
 	}
 
 }

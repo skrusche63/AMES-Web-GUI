@@ -20,11 +20,14 @@ package de.kp.ames.web.client.core.search;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gwt.user.client.ui.RootPanel;
+import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
@@ -51,9 +54,9 @@ public class SearchWidget extends VLayout {
 	private ComboBoxItem searchBox;
 	
 	/*
-	 * Rest Data Source for the search result
+	 * Data Source for the search result
 	 */
-	private RestDataSource dataSource;
+	private DataSource dataSource;
 	
 	/*
 	 * The base url necessary to invoke the
@@ -90,7 +93,7 @@ public class SearchWidget extends VLayout {
 		 * Connection parameters
 		 */
 		this.base = CoreGlobals.REG_URL;
-		this.sid  = ServiceConstants.FRAME_SERVICE_ID;
+		this.sid  = ServiceConstants.SEARCH_SERVICE_ID;
 
 		/*
 		 * Appearance & Dimensions
@@ -167,35 +170,36 @@ public class SearchWidget extends VLayout {
 		 * The combobox is used to display the name field of
 		 * the respective data source
 		 */
-		searchBox = new ComboBoxItem(JsonConstants.J_NAME);
+		searchBox = new ComboBoxItem(JsonConstants.J_QUERY);
 		searchBox.setTitle("<b>search</b>:");
 		
 		searchBox.setWidth(SEARCHBOX_WIDTH);
 		
 		createScComboBoxDS();
-		searchBox.setOptionDataSource(dataSource);
 		
+		searchBox.setOptionDataSource(dataSource);
+
 		searchBox.setShowPickerIcon(false);
 		searchBox.addChangedHandler(new ChangedHandler() {
-
-			/* (non-Javadoc)
+			
+			/*
+			 * (non-Javadoc)
 			 * @see com.smartgwt.client.widgets.form.fields.events.ChangedHandler#onChanged(com.smartgwt.client.widgets.form.fields.events.ChangedEvent)
 			 */
 			public void onChanged(ChangedEvent event) {
-
-				ComboBoxItem item = (ComboBoxItem)event.getItem();
-				ListGridRecord rec = item.getSelectedRecord();
-				
 				/*
-				 * The content of the searchbox has changed, so
-				 * initiate another search
+				 * Live search feature
 				 */
-				doSearch(rec);
-
+				ComboBoxItem item = (ComboBoxItem)event.getItem();
+				String val = item.getValueAsString();
+				
+				Criteria criteria = new Criteria(JsonConstants.J_QUERY, val);
+				item.setOptionCriteria(criteria);
+				
 			}
 			
 		});
-		
+				
 		/* 
 		 * A dynamic form is used as a wrapper to get 
 		 *  the search box centered in height
@@ -244,13 +248,7 @@ public class SearchWidget extends VLayout {
 		 * Retrieve request url
 		 */
 		String requestUrl = getRequestUrl();
-		
-		/*
-		 * Retrieve request method
-		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		RequestMethod requestMethod = createMethod(attributes);
-		
+	
 		/*
 		 * Retrieve request fields
 		 */
@@ -259,7 +257,22 @@ public class SearchWidget extends VLayout {
 		/*
 		 * Finally create data source
 		 */
-		createScComboBoxDS(requestUrl, requestMethod, requestFields);
+		createScComboBoxDS(requestUrl, requestFields);
+		
+	}
+	
+	/**
+	 * @return
+	 */
+	private Map<String,String> getRequestParams() {
+		
+		/*
+		 * Retrieve request method
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		
+		RequestMethod requestMethod = createMethod(attributes);
+		return requestMethod.toParams();
 		
 	}
 	
@@ -268,12 +281,12 @@ public class SearchWidget extends VLayout {
 	 * @param method
 	 * @param fields
 	 */
-	private void createScComboBoxDS(final String url, final RequestMethod method, final DataSourceField[] fields) {
+	private void createScComboBoxDS(final String url, final DataSourceField[] fields) {
 		
-		dataSource = new RestDataSource() {
+		dataSource = new DataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
-				dsRequest.setParams(method.toParams());				
+				dsRequest.setParams(getRequestParams());				
 				return super.transformRequest(dsRequest);  
 			}  
 
@@ -286,7 +299,7 @@ public class SearchWidget extends VLayout {
 		dataSource.setDataFormat(DSDataFormat.JSON);
 		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
 		
-		dataSource.setFetchDataURL(url);		
+		dataSource.setDataURL(url);		
 		dataSource.setFields(fields);
 		
 	}

@@ -25,43 +25,42 @@ import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.LabelConstants;
 
 public class CacheObject extends ExternalObject {
-
-	private static String DESC_LABEL = "Description";
-	private static String KEY_LABEL  = "Key";
-	private static String MIME_LABEL = "Mimetype";
-	private static String NAME_LABEL = "Name";
 	
+	/**
+	 * Constructor
+	 */
 	public CacheObject() {
 	}
 	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.ExternalObject#createDataFields()
 	 */
-	public DataSourceField[] createDataFields() {
+	public DataSourceField[] createDataFieldsAsArray() {
 		
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 
 		/*
 		 * Identifier
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_KEY, KEY_LABEL));
+	    fields.add(new DataSourceTextField(JsonConstants.J_KEY, LabelConstants.KEY_LABEL));
 
 	    /*
 		 * Name
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, NAME_LABEL));
+	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, LabelConstants.NAME_LABEL));
 
 	    /*
 		 * Description
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_DESC, DESC_LABEL));
+	    fields.add(new DataSourceTextField(JsonConstants.J_DESC, LabelConstants.DESC_LABEL));
 
 	    /*
 		 * Mimetype
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_MIME, MIME_LABEL));
+	    fields.add(new DataSourceTextField(JsonConstants.J_MIME, LabelConstants.MIME_LABEL));
 
 		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
 		
@@ -70,26 +69,26 @@ public class CacheObject extends ExternalObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.ExternalObject#createGridFields()
 	 */
-	public ListGridField[] createGridFields() {
+	public ListGridField[] createGridFieldsAsArray() {
 
 		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
 
 		/*
 		 * Name
 		 */
-		ListGridField nameField = new ListGridField(JsonConstants.J_NAME, NAME_LABEL);
+		ListGridField nameField = new ListGridField(JsonConstants.J_NAME, LabelConstants.NAME_LABEL);
 		fields.add(nameField);
 
 		/*
 		 * Mimetype
 		 */
-		ListGridField mimeField = new ListGridField(JsonConstants.J_MIME, MIME_LABEL);
+		ListGridField mimeField = new ListGridField(JsonConstants.J_MIME, LabelConstants.MIME_LABEL);
 		fields.add(mimeField);
 
 		/*
 		 * Description (Detail)
 		 */
-		ListGridField descField = new ListGridField(JsonConstants.J_DESC, DESC_LABEL);
+		ListGridField descField = new ListGridField(JsonConstants.J_DESC, LabelConstants.DESC_LABEL);
 		fields.add(descField);
 
 		return (ListGridField[])fields.toArray(new ListGridField [fields.size()]);

@@ -10,7 +10,7 @@ public class ServiceObject extends BusinessObject {
 	/**
 	 * @return
 	 */
-	public DataSourceField[] createDataFields() {
+	public DataSourceField[] createDataFieldsAsArray() {
 		// TODO
 		return null;
 		

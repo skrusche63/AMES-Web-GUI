@@ -14,7 +14,7 @@ public class SymbolObject extends ExternalObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.ExternalObject#createDataFields()
 	 */
-	public DataSourceField[] createDataFields() {
+	public DataSourceField[] createDataFieldsAsArray() {
 
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 

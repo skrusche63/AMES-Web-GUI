@@ -44,7 +44,7 @@ import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
-import de.kp.ames.web.client.model.DataObject;
+import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.MethodConstants;
@@ -245,14 +245,14 @@ public class GridImpl extends ListGrid implements Grid {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
 	 */
 	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return this.dataObject.createDataFields();
+		return this.dataObject.createDataFieldsAsArray();
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
 	 */
 	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
-		return this.dataObject.createGridFields();
+		return this.dataObject.createGridFieldsAsArray();
 	}
 
 	/* (non-Javadoc)

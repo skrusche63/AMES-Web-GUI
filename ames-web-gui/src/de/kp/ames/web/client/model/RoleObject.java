@@ -10,7 +10,7 @@ public class RoleObject extends BusinessObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.function.model.BusinessObject#createFields()
 	 */
-	public DataSourceField[] createDataFields() {
+	public DataSourceField[] createDataFieldsAsArray() {
 		// TODO
 		return null;
 		

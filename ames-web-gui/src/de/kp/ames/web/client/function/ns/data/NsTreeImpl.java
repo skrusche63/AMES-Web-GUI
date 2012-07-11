@@ -50,7 +50,7 @@ public class NsTreeImpl extends TreeImpl {
 	 * @see de.kp.ames.web.client.core.tree.TreeImpl#createFields(java.util.HashMap)
 	 */
 	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new NsObject().createDataFields();
+		return new NsObject().createDataFieldsAsArray();
 	}
 
 }
