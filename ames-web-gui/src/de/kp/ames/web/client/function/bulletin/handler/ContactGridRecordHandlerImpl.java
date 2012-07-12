@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.function.bulletin.handler;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,35 +18,29 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import java.util.ArrayList;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
-import com.smartgwt.client.widgets.tree.TreeGridField;
+import de.kp.ames.web.client.function.bulletin.event.BulletinEventManager;
+import de.kp.ames.web.client.handler.GridRecordHandlerImpl;
 
-import de.kp.ames.web.client.core.tree.TreeFieldFactory;
-import de.kp.ames.web.client.model.core.RegistryPackage;
-
-public class NsObject extends RegistryPackage {
+public class ContactGridRecordHandlerImpl extends GridRecordHandlerImpl {
 
 	/**
 	 * Constructor
 	 */
-	public NsObject() {	
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createTreeGridFieldsAsList()
-	 */
-	public ArrayList<TreeGridField> createTreeGridFieldsAsList() {
-
-		ArrayList<TreeGridField> fields = new ArrayList<TreeGridField>();
-
-	    /*
-		 * Name
-		 */
-	    fields.add(TreeFieldFactory.createRimNameField());
-		
-		return fields;
-
+	public ContactGridRecordHandlerImpl() {
+		super();
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.GridRecordHandlerImpl#doSelect(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 */
+	public void doSelect(ListGridRecord record) {
+		/*
+		 * Invoke Event Handling to inform other components
+		 * about the selection of a certain contact
+		 */
+		BulletinEventManager.getInstance().onContactSelected(record);
+		
+	}
 }

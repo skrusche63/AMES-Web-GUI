@@ -41,7 +41,7 @@ public class CategoryObject extends ConceptObject {
 		return super.createDataFieldsAsArray();		
 	}
 
-	public ArrayList<ListGridField> createGridFieldsAsList() {
+	public ArrayList<ListGridField> createListGridFieldsAsList() {
 
 		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
 		

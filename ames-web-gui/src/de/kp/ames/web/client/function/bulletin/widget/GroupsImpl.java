@@ -21,15 +21,20 @@ package de.kp.ames.web.client.function.bulletin.widget;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.function.bulletin.handler.ContactGridMenuHandlerImpl;
+import de.kp.ames.web.client.function.bulletin.handler.ContactGridRecordHandlerImpl;
 import de.kp.ames.web.client.function.group.data.GroupGridImpl;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
-public class GroupsImpl extends VLayout {
+public class GroupsImpl extends VLayout implements RemoveHandler {
 
 	/*
 	 * Reference to all registered groups
 	 */
 	private GroupGridImpl grid;
 	
+	/**
+	 * Constructor
+	 */
 	public GroupsImpl() {
 		
 		setWidth100();
@@ -39,12 +44,25 @@ public class GroupsImpl extends VLayout {
 		 * Build member
 		 */
 		grid = new GroupGridImpl();
+
 		/*
 		 * Assign context specific menu handler
 		 */
 		grid.addMenuHandler(new ContactGridMenuHandlerImpl());
 
+		/*
+		 * Assign context specific record handler
+		 */
+		grid.addRecordHandler(new ContactGridRecordHandlerImpl());
+		
 		this.addMember(grid);
 		
 	}
+
+	@Override
+	public void beforeRemove() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

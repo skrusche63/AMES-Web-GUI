@@ -18,10 +18,9 @@ package de.kp.ames.web.client.core.tree;
  *
  */
 
-import java.util.HashMap;
-
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
+import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 
 import de.kp.ames.web.client.core.method.RequestMethod;
@@ -59,25 +58,21 @@ public interface Tree {
 	public DataSourceField[] createDataFields();
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes);
-
+	public TreeGridField[] createTreeGridFields();
+	
 	/**
 	 * Create request method from attributes
 	 * 
-	 * @param attributes
 	 * @return
 	 */
-	public RequestMethod createMethod(HashMap<String,String> attributes);
+	public RequestMethod createMethod();
 
 	/**
 	 * Create Data source
-	 * 
-	 * @param attributes
 	 */
-	public void createScTreeDS(HashMap<String,String> attributes, String title);
+	public void createScTreeDS();
 
 	/**
 	 * @param url
@@ -85,7 +80,7 @@ public interface Tree {
 	 * @param title
 	 * @param fields
 	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final String title, final DataSourceField[] fields);
+	public void createScTreeDS(final String url, final RequestMethod method, final DataSourceField[] fields);
 
 	/**
 	 * @return

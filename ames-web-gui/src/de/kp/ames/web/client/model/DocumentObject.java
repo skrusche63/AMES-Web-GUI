@@ -36,7 +36,7 @@ public class DocumentObject extends ExtrinsicObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
 	 */
-	public ArrayList<ListGridField> createGridFieldsAsList() {
+	public ArrayList<ListGridField> createListGridFieldsAsList() {
 
 		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
 

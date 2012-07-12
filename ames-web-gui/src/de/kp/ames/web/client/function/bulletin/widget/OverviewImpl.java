@@ -18,42 +18,75 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import java.util.HashMap;
+
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class OverviewImpl extends VLayout {
+import de.kp.ames.web.client.function.bulletin.data.PostGridImpl;
+import de.kp.ames.web.client.function.bulletin.event.BulletinEventManager;
+import de.kp.ames.web.client.function.bulletin.event.ContactListener;
+import de.kp.ames.web.client.function.bulletin.handler.PostGridRecordHandlerImpl;
+import de.kp.ames.web.client.handler.RemoveHandler;
+import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.MethodConstants;
+
+public class OverviewImpl extends VLayout implements ContactListener, RemoveHandler {
 
 	/*
-	 * Reference to positing detail
+	 * Reference to registered postings
 	 */
-	private DetailImpl details;
+	private PostGridImpl grid;
 	
 	/**
-	 * Constructor depends on DetailImpl
-	 * 
-	 * @param details
+	 * Contructor
 	 */
-	public OverviewImpl(DetailImpl details) {
-	
-		/*
-		 * Register details
-		 */
-		this.details = details;
+	public OverviewImpl() {
 		
 		/*
 		 * Dimensions
 		 */
 		setWidth100();
 		setHeight100();
+	
+		/*
+		 * Build member
+		 */
+		String recipient = null;
+		grid = new PostGridImpl(recipient);
+		
+		/*
+		 * Assign context specific record handler
+		 */
+		grid.addRecordHandler(new PostGridRecordHandlerImpl());		
+		this.addMember(grid);
+		
+		/*
+		 * Context specific event handling
+		 */
+		BulletinEventManager.getInstance().addContactListener(this);
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
+	 */
+	public void beforeRemove() {
+		BulletinEventManager.getInstance().removeContactListener(this);
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onContactSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 */
+	public void onContactSelected(ListGridRecord record) {
+		
+		String recipient = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		
+		HashMap<String,String> attributes = new HashMap<String,String>();		
+		attributes.put(MethodConstants.ATTR_TARGET, recipient);
+		
+		if (grid != null) grid.reload(attributes);
 		
 	}
-
-	public void reload(String recipient) {
-
-		/*
-		 * Clear content of details widget
-		 */
-		details.reset();
-
-		// TODO
-	}
+	
 }

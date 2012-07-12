@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.core.tree;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,35 +18,32 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import java.util.ArrayList;
-
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
-import de.kp.ames.web.client.core.tree.TreeFieldFactory;
-import de.kp.ames.web.client.model.core.RegistryPackage;
+import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.LabelConstants;
 
-public class NsObject extends RegistryPackage {
+public class TreeFieldFactory {
 
 	/**
-	 * Constructor
+	 * Create a predefined Name Field
+	 *
+	 * @return
 	 */
-	public NsObject() {	
+	public static TreeGridField createRimNameField() {
+		return createRimNameField(160);
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createTreeGridFieldsAsList()
+	/**
+	 * Create a predefined Name Field
+	 * 
+	 * @return
 	 */
-	public ArrayList<TreeGridField> createTreeGridFieldsAsList() {
-
-		ArrayList<TreeGridField> fields = new ArrayList<TreeGridField>();
-
-	    /*
-		 * Name
-		 */
-	    fields.add(TreeFieldFactory.createRimNameField());
+	public static TreeGridField createRimNameField(int width) {
 		
-		return fields;
-
+		TreeGridField nameField = new TreeGridField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL, width);
+		return nameField;
+		
 	}
-	
+
 }

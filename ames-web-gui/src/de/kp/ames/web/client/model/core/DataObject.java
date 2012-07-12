@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 public interface DataObject {
@@ -39,13 +40,23 @@ public interface DataObject {
 	/**
 	 * @return
 	 */
-	public ListGridField[] createGridFieldsAsArray();
+	public ListGridField[] createListGridFieldsAsArray();
 
 	/**
 	 * @return
 	 */
-	public ArrayList<ListGridField> createGridFieldsAsList();
+	public ArrayList<ListGridField> createListGridFieldsAsList();
 
+	/**
+	 * @return
+	 */
+	public TreeGridField[] createTreeGridFieldsAsArray();
+	
+	/**
+	 * @return
+	 */
+	public ArrayList<TreeGridField> createTreeGridFieldsAsList();
+	
 	/**
 	 * @return
 	 */

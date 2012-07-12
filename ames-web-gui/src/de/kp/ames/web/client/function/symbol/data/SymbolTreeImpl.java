@@ -20,13 +20,10 @@ package de.kp.ames.web.client.function.symbol.data;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.widgets.tree.TreeGridField;
-
 import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.function.symbol.handler.SymbolNodeHandlerImpl;
 import de.kp.ames.web.client.model.SymbolObject;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -40,16 +37,27 @@ public class SymbolTreeImpl extends TreeImpl {
 	 */
 	public SymbolTreeImpl(String type) {
 		super(ServiceConstants.SYMBOL_SERVICE_ID);
-		
-	    /*
-	     * Set title field
-	     */
-	    this.setFields(new TreeGridField(TITLE)); 
-	    
+
+		/*
+		 * Register data
+		 */
+		attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		/*
+		 * Create data object
+		 */
+		this.dataObject = createDataObject();
+
 	    /*
 	     * Create data source
 	     */
-	    this.createTreeDS(type);	    
+	    this.createScTreeDS();	    
+
+		/*
+		 * Create tree grid fields
+		 */
+		this.setFields(createTreeGridFields());
 
 	    /*
 	     * Add node handler
@@ -62,28 +70,10 @@ public class SymbolTreeImpl extends TreeImpl {
 	}
 
 	/**
-	 * Create data source
-	 * 
-	 * @param type
+	 * @return
 	 */
-	private void createTreeDS(String type) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		String title = JsonConstants.J_NAME;
-		
-		this.createScTreeDS(attributes, title);
-		this.setDataSource(dataSource);
-		
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.TreeImpl#createFields(java.util.HashMap)
-	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		return new SymbolObject().createDataFieldsAsArray();
-
+	private DataObject createDataObject() {
+		return new SymbolObject();
 	}
 
 }

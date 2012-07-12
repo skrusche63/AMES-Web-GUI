@@ -18,15 +18,36 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import java.util.ArrayList;
+
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class ContactsImpl extends VLayout {
+import de.kp.ames.web.client.handler.RemoveHandler;
 
+public class ContactsImpl extends VLayout implements RemoveHandler {
+
+	/*
+	 * Reference to groups
+	 */
 	private GroupsImpl groups;
+	
+	/*
+	 * Reference to users
+	 */
 	private UsersImpl users;
 	
+	/*
+	 * Reference to removable members
+	 */
+	private ArrayList<RemoveHandler> removables;
+
+	/**
+	 * Constructor
+	 */
 	public ContactsImpl() {
 		
+		this.removables = new ArrayList<RemoveHandler>();
+
 		/*
 		 * Dimensions
 		 */
@@ -37,7 +58,10 @@ public class ContactsImpl extends VLayout {
 		 * Set groups & users
 		 */
 		groups = new GroupsImpl();
+		removables.add(groups);
+		
 		users  = new UsersImpl();
+		removables.add(users);
 		
 		/*
 		 * Set Dimensions and splitter
@@ -57,4 +81,16 @@ public class ContactsImpl extends VLayout {
 		this.setMembers(groups, users);
 
 	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
+	 */
+	public void beforeRemove() {
+
+		for (RemoveHandler removable:removables) {
+			removable.beforeRemove();
+		}
+		
+	}
+	
 }

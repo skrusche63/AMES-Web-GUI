@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.client.model.core.DataObject;
@@ -47,7 +48,7 @@ public class ExternalObject implements DataObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsArray()
 	 */
-	public ListGridField[] createGridFieldsAsArray() {
+	public ListGridField[] createListGridFieldsAsArray() {
 		/*
 		 * Must be overridden
 		 */
@@ -67,7 +68,27 @@ public class ExternalObject implements DataObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsList()
 	 */
-	public ArrayList<ListGridField> createGridFieldsAsList() {
+	public ArrayList<ListGridField> createListGridFieldsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createTreeGridFieldsAsArray()
+	 */
+	public TreeGridField[] createTreeGridFieldsAsArray() {
+		
+		ArrayList<TreeGridField> fields = createTreeGridFieldsAsList();
+		return (TreeGridField[])fields.toArray(new ListGridField [fields.size()]);
+				
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createTreeGridFieldsAsList()
+	 */
+	public ArrayList<TreeGridField> createTreeGridFieldsAsList() {
 		/*
 		 * Must be overridden
 		 */

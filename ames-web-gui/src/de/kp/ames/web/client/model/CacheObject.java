@@ -70,7 +70,7 @@ public class CacheObject extends ExternalObject {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.ExternalObject#createGridFields()
 	 */
-	public ListGridField[] createGridFieldsAsArray() {
+	public ListGridField[] createListGridFieldsAsArray() {
 
 		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
 

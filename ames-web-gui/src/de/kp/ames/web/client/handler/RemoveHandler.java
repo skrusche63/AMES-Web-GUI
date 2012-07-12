@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.handler;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,35 +18,11 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import java.util.ArrayList;
-
-import com.smartgwt.client.widgets.tree.TreeGridField;
-
-import de.kp.ames.web.client.core.tree.TreeFieldFactory;
-import de.kp.ames.web.client.model.core.RegistryPackage;
-
-public class NsObject extends RegistryPackage {
+public interface RemoveHandler {
 
 	/**
-	 * Constructor
+	 * Process context handling before widget removal
 	 */
-	public NsObject() {	
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createTreeGridFieldsAsList()
-	 */
-	public ArrayList<TreeGridField> createTreeGridFieldsAsList() {
-
-		ArrayList<TreeGridField> fields = new ArrayList<TreeGridField>();
-
-	    /*
-		 * Name
-		 */
-	    fields.add(TreeFieldFactory.createRimNameField());
-		
-		return fields;
-
-	}
+	public void beforeRemove();
 	
 }

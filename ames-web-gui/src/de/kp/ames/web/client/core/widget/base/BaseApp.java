@@ -21,12 +21,14 @@ package de.kp.ames.web.client.core.widget.base;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.handler.RemoveHandler;
+
 
 /**
  * BaseApp is a vertical layout that holds
  * a common headline and a content area
  */
-public class BaseApp extends VLayout {
+public class BaseApp extends VLayout implements RemoveHandler {
 
 	private BaseHeadline headline;
 	private BaseContent content;
@@ -83,12 +85,13 @@ public class BaseApp extends VLayout {
 		this.content.setMembers(members);
 	}
 
-	/**
-	 * This method must be overridden to provide
-	 * specific functionality before removing an
-	 * application instance
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
 	 */
 	public void beforeRemove() {
+		/*
+		 * Must be overridden
+		 */
 	}
 	
 }

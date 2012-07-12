@@ -40,7 +40,7 @@ public class PostGridImpl extends GridImpl {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();		
-		attributes.put(MethodConstants.ATTR_TARGET, recipient);
+		if (recipient != null) attributes.put(MethodConstants.ATTR_TARGET, recipient);
 
 		/*
 		 * Create data object

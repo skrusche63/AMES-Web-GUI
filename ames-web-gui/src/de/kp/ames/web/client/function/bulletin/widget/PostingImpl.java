@@ -176,7 +176,7 @@ public class PostingImpl extends BaseDialog {
 		service.doSubmit(ClassificationConstants.FNC_ID_Posting, this.recId, jForm.toString(), new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				if (self.listener != null) listener.afterSubmitted(self.recId);
+				//if (self.listener != null) listener.afterSubmitted(self.recId);
 				self.destroy();
 			}
 			

@@ -18,16 +18,35 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import java.util.ArrayList;
+
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.function.bulletin.event.ContactListener;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
-public class BoardImpl extends VLayout implements ContactListener {
+public class BoardImpl extends VLayout implements RemoveHandler {
 
+	/*
+	 * Reference to overview
+	 */
 	private OverviewImpl overview;
+	
+	/*
+	 * Reference to details
+	 */
 	private DetailImpl details;
+	
+	/*
+	 * Reference to removable members
+	 */
+	private ArrayList<RemoveHandler> removables;
 
+	/**
+	 * Constructor
+	 */
 	public BoardImpl() {
+		
+		this.removables = new ArrayList<RemoveHandler>();
 				
 		/*
 		 * Dimensions
@@ -36,17 +55,17 @@ public class BoardImpl extends VLayout implements ContactListener {
 		this.setHeight100();
 		
 		/*
-		 * Set overview & details; note, that overview
-		 * depends on a detail widget to show a selected
-		 * posting
+		 * Build members
 		 */
-		details = new DetailImpl();
-		overview = new OverviewImpl(details);
+		overview = new OverviewImpl();
+		removables.add(overview);
+		
+		details  = new DetailImpl();
+		removables.add(details);
 		
 		/*
 		 * Set Dimensions and splitter
-		 */
-		
+		 */		
 		overview.setHeight("75%");
 		details.setHeight("25%");
 		
@@ -62,16 +81,15 @@ public class BoardImpl extends VLayout implements ContactListener {
 
 	}
 
-	/* This method loads all posting of a certain
-	 * selected recipient
-	 * 
-	 * @see de.kp.ames.web.client.function.gui.bulletin.event.ContactListener#onContactSelected(java.lang.String)
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
 	 */
-	public void onContactSelected(String recipient) {		
-		/*
-		 * Reload positing of a certain recipient
-		 */
-		overview.reload(recipient);
+	public void beforeRemove() {
 
+		for (RemoveHandler removable:removables) {
+			removable.beforeRemove();
+		}
+		
 	}
+
 }

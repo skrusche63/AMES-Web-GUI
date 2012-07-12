@@ -22,13 +22,16 @@ import java.util.HashMap;
 
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
+import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
+import com.smartgwt.client.widgets.events.DrawEvent;
+import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 import com.smartgwt.client.widgets.tree.TreeGrid;
+import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
@@ -39,6 +42,7 @@ import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
 import de.kp.ames.web.client.handler.TreeNodeHandler;
+import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
@@ -46,7 +50,12 @@ public class TreeImpl extends TreeGrid implements Tree {
 	/*
 	 * Reference to DataSource
 	 */
-	protected RestDataSource dataSource;
+	protected DataSource dataSource;
+	
+	/*
+	 * Reference to DataObject
+	 */
+	protected DataObject dataObject;
 
 	/*
 	 * Reference to MenuHandler
@@ -69,11 +78,11 @@ public class TreeImpl extends TreeGrid implements Tree {
 	 * The unique service identifier
 	 */
 	protected String sid;
-
+	
 	/*
-	 * Field
+	 * Reference to attributes
 	 */
-	protected String TITLE = "Name";
+	protected HashMap<String,String> attributes;
 	
 	/*
 	 * Style
@@ -149,6 +158,13 @@ public class TreeImpl extends TreeGrid implements Tree {
 			}
 	    	
 	    });
+	    
+		this.addDrawHandler(new DrawHandler() {
+			public void onDraw(DrawEvent event) {
+				self.afterDraw(event);				
+			}			
+		});
+
 	}
 	    
 	/* (non-Javadoc)
@@ -227,26 +243,20 @@ public class TreeImpl extends TreeGrid implements Tree {
 	 * @see de.kp.ames.web.client.core.tree.Tree#createFields()
 	 */
 	public DataSourceField[] createDataFields() {
-		/*
-		 * Must be overridden
-		 */
-		return null;
+		return this.dataObject.createDataFieldsAsArray();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.tree.Tree#createTreeGridFields()
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
-		/*
-		 * Must be overridden
-		 */
-		return null;
+	public TreeGridField[] createTreeGridFields() {
+		return this.dataObject.createTreeGridFieldsAsArray();
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.tree.Tree#createMethod(java.util.HashMap)
 	 */
-	public RequestMethod createMethod(HashMap<String,String> attributes) {
+	public RequestMethod createMethod() {
 
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_GET);
@@ -257,9 +267,9 @@ public class TreeImpl extends TreeGrid implements Tree {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS(java.util.HashMap, java.lang.String)
+	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS(java.util.HashMap)
 	 */
-	public void createScTreeDS(HashMap<String,String> attributes, String title) {
+	public void createScTreeDS() {
 		/*
 		 * Retrieve request url
 		 */
@@ -268,26 +278,26 @@ public class TreeImpl extends TreeGrid implements Tree {
 		/*
 		 * Retrieve request method
 		 */
-		RequestMethod requestMethod = createMethod(attributes);
+		RequestMethod requestMethod = createMethod();
 		
 		/*
 		 * Retrieve request fields
 		 */
-		DataSourceField[] requestFields = createDataFields(attributes);
+		DataSourceField[] requestFields = createDataFields();
 		
 		/*
 		 * Finally create data source
 		 */
-		createScTreeDS(requestUrl, requestMethod, title, requestFields);
+		createScTreeDS(requestUrl, requestMethod, requestFields);
 		
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, java.lang.String, com.smartgwt.client.data.DataSourceField[])
+	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, com.smartgwt.client.data.DataSourceField[])
 	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final String title, final DataSourceField[] fields) {
+	public void createScTreeDS(final String url, final RequestMethod method, final DataSourceField[] fields) {
 		
-		dataSource = new RestDataSource() {
+		dataSource = new DataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
 				dsRequest.setParams(method.toParams());				
@@ -303,11 +313,15 @@ public class TreeImpl extends TreeGrid implements Tree {
 		dataSource.setDataFormat(DSDataFormat.JSON);
 		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
 		
-		dataSource.setFetchDataURL(url);		
+		dataSource.setDataURL(url);		
 		
 		dataSource.setFields(fields);
-		dataSource.setTitleField(title);
 		
+		/*
+		 * finally set data source
+		 */
+		setDataSource(dataSource);
+
 	}
 
 	/**
@@ -315,6 +329,15 @@ public class TreeImpl extends TreeGrid implements Tree {
 	 */
 	protected void afterDataArrived(DataArrivedEvent event) {
 		// Must be overridden
+	}
+
+	/**
+	 * Fetch data after rendering
+	 * 
+	 * @param event
+	 */
+	public void afterDraw(DrawEvent event) {
+		this.fetchData();
 	}
 
 }  

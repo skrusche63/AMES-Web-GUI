@@ -18,17 +18,36 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import java.util.ArrayList;
+
 import de.kp.ames.web.client.core.widget.base.BaseApp;
-import de.kp.ames.web.client.function.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
 public class BulletinImpl extends BaseApp {
 
+	/*
+	 * Reference to contacts
+	 */
 	private ContactsImpl contacts;
+	
+	/*
+	 * Reference to board
+	 */
 	private BoardImpl board;
 	
+	/*
+	 * Reference to removable members
+	 */
+	private ArrayList<RemoveHandler> removables;
+	
+	/**
+	 * Constructor
+	 */
 	public BulletinImpl() {
 		super(FncGlobals.BULLETIN_TITLE, FncGlobals.BULLETIN_SLOGAN);
+		
+		this.removables = new ArrayList<RemoveHandler>();
 		
 		/*
 		 * Dimensions
@@ -39,8 +58,11 @@ public class BulletinImpl extends BaseApp {
 		/*
 		 * Construct members of bulletin board
 		 */
-		contacts = createContacts();
-		board = createBoard();
+		contacts = new ContactsImpl();
+		removables.add(contacts);
+		
+		board = new BoardImpl();
+		removables.add(board);
 		
 		/*
 		 * Set Dimensions and splitter
@@ -58,43 +80,17 @@ public class BulletinImpl extends BaseApp {
 		 */
 		this.setContent(contacts, board);
 		
-		/*
-		 * Register board as contact listener
-		 */
-		BulletinEventManager.getInstance().addContactListener(board);
-		
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.gui.apps.BaseApp#beforeRemove()
+	 * @see de.kp.ames.web.client.core.widget.base.BaseApp#beforeRemove()
 	 */
 	public void beforeRemove() {
-		
-		/*
-		 * The board part is a ContactListener and
-		 * must be removed from the respective event
-		 * manager
-		 */
-		BulletinEventManager.getInstance().removeContactListener(board);
-		
-	}
 
-	/**
-	 * Create contact part of bulletin board
-	 * 
-	 * @return
-	 */
-	private ContactsImpl createContacts() {
-		return new ContactsImpl();
-	}
-	
-	/**
-	 * Create board part of bulletin board
-	 * 
-	 * @return
-	 */
-	private BoardImpl createBoard() {
-		return new BoardImpl();
+		for (RemoveHandler removable:removables) {
+			removable.beforeRemove();
+		}
+		
 	}
 	
 }

@@ -18,21 +18,36 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-/**
- * DetailImpl is used to show a specific (and
- * selected) positing in a HTML representation
- * 
- * @author krusche
- *
- */
-public class DetailImpl extends VLayout {
+import de.kp.ames.web.client.function.bulletin.event.BulletinEventManager;
+import de.kp.ames.web.client.function.bulletin.event.PostingListener;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
+public class DetailImpl extends VLayout implements PostingListener, RemoveHandler {
+
+	/**
+	 * Constructor
+	 */
 	public DetailImpl() {
 		
+		/*
+		 * Set dimensions
+		 */
 		setWidth100();
 		setHeight100();
+		
+		/*
+		 * Build member
+		 */
+		
+		// TODO
+		
+		/*
+		 * Context specific event handling
+		 */
+		BulletinEventManager.getInstance().addPostingListener(this);
 		
 	}
 	
@@ -47,6 +62,21 @@ public class DetailImpl extends VLayout {
 	 */
 	public void reset() {
 		// TODO
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
+	 */
+	public void beforeRemove() {
+		BulletinEventManager.getInstance().removePostingListener(this);		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 */
+	public void onPostingSelected(ListGridRecord record) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

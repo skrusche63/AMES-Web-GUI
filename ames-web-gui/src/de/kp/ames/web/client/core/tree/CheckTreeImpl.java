@@ -19,7 +19,6 @@ package de.kp.ames.web.client.core.tree;
  */
 
 import com.smartgwt.client.types.SelectionAppearance;
-import com.smartgwt.client.widgets.tree.TreeGridField;
 
 public class CheckTreeImpl extends TreeImpl {
 	
@@ -30,11 +29,6 @@ public class CheckTreeImpl extends TreeImpl {
 		 * Checkbox appearance
 		 */
 		this.setSelectionAppearance(SelectionAppearance.CHECKBOX); 
-		
-	    /*
-	     * Set title field
-	     */
-	    this.setFields(new TreeGridField(TITLE)); 
 	 	    
 	}
 

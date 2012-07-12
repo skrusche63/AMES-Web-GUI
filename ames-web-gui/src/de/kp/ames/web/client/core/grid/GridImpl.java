@@ -276,7 +276,7 @@ public class GridImpl extends ListGrid implements Grid {
 	 * @see de.kp.ames.web.client.core.grid.Grid#createGridFields()
 	 */
 	public ListGridField[] createGridFields() {
-		return this.dataObject.createGridFieldsAsArray();
+		return this.dataObject.createListGridFieldsAsArray();
 	}
 
 	/* (non-Javadoc)

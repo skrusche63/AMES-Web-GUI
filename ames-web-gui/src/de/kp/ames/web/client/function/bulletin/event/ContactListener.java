@@ -1,7 +1,12 @@
 package de.kp.ames.web.client.function.bulletin.event;
 
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+
 public interface ContactListener {
 
-	public void onContactSelected(String recipient);
+	/**
+	 * @param record
+	 */
+	public void onContactSelected(ListGridRecord record);
 	
 }

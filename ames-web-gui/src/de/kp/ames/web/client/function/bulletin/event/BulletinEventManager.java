@@ -17,8 +17,10 @@ package de.kp.ames.web.client.function.bulletin.event;
  *	along with this software. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 import java.util.ArrayList;
 
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 public class BulletinEventManager {
 
@@ -28,12 +30,20 @@ public class BulletinEventManager {
 	 * List of registered contact listeners
 	 */
 	private ArrayList<ContactListener> contactListeners;
-	
+
+	/*
+	 * List of registered posting listeners
+	 */
+	private ArrayList<PostingListener> postingListeners;
+
 	/**
 	 * Constructor
 	 */
 	private BulletinEventManager() {
+		
 		contactListeners = new ArrayList<ContactListener>();
+		postingListeners = new ArrayList<PostingListener>();
+		
 	}
 	
 	/**
@@ -64,10 +74,44 @@ public class BulletinEventManager {
 		contactListeners.remove(listener);
 	}
 	
-	public void onModuleSelected(String recipient) {
+	/**
+	 * @param record
+	 */
+	public void onContactSelected(ListGridRecord record) {
+
 		for (ContactListener listener:contactListeners) {
-			listener.onContactSelected(recipient);
+			listener.onContactSelected(record);
 		}
+	
+	}
+
+	/**
+	 * Register posting listener
+	 * 
+	 * @param listener
+	 */
+	public void addPostingListener(PostingListener listener) {
+		postingListeners.add(listener);
 	}
 	
+	/**
+	 * Unregister posting listener
+	 * 
+	 * @param listener
+	 */
+	public void removePostingListener(PostingListener listener) {
+		postingListeners.remove(listener);
+	}
+	
+	/**
+	 * @param record
+	 */
+	public void onPostingSelected(ListGridRecord record) {
+
+		for (PostingListener listener:postingListeners) {
+			listener.onPostingSelected(record);
+		}
+	
+	}
+
 }

@@ -21,9 +21,11 @@ package de.kp.ames.web.client.function.bulletin.widget;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.function.bulletin.handler.ContactGridMenuHandlerImpl;
+import de.kp.ames.web.client.function.bulletin.handler.ContactGridRecordHandlerImpl;
 import de.kp.ames.web.client.function.user.data.UserGridImpl;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
-public class UsersImpl extends VLayout {
+public class UsersImpl extends VLayout implements RemoveHandler {
 
 	/*
 	 * Reference to registered users
@@ -47,8 +49,19 @@ public class UsersImpl extends VLayout {
 		 * Assign context specific menu handler
 		 */
 		grid.addMenuHandler(new ContactGridMenuHandlerImpl());
+
+		/*
+		 * Assign context specific record handler
+		 */
+		grid.addRecordHandler(new ContactGridRecordHandlerImpl());
 		
 		this.addMember(grid);
+		
+	}
+
+	@Override
+	public void beforeRemove() {
+		// TODO Auto-generated method stub
 		
 	}
 	
