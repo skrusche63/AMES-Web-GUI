@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.LabelConstants;
@@ -64,5 +66,32 @@ public class LayerObject extends ExternalObject {
 	    return fields;
 	    
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.ExternalObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+		
+		/*
+		 * Title
+		 */
+		ListGridField titleField = new ListGridField(JsonConstants.J_TITLE, LabelConstants.TITLE_LABEL, 160);
+		titleField.setType(ListGridFieldType.TEXT);
+		
+		fields.add(titleField);
+		
+		/*
+		 * Srs (Projection)
+		 */
+		ListGridField srsField = new ListGridField(JsonConstants.J_SRS, LabelConstants.SRS_LABEL, 120);
+		srsField.setType(ListGridFieldType.TEXT);
+		
+		fields.add(srsField);
+
+		return fields;
+		
+	}
+
 }

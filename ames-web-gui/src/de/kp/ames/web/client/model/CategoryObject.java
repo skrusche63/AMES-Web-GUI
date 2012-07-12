@@ -18,8 +18,12 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import com.smartgwt.client.data.DataSourceField;
+import java.util.ArrayList;
 
+import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
+
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ConceptObject;
 
 public class CategoryObject extends ConceptObject {
@@ -35,6 +39,19 @@ public class CategoryObject extends ConceptObject {
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
 		return super.createDataFieldsAsArray();		
+	}
+
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+		
+		/*
+		 * Category name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+		
+		return fields;
+		
 	}
 
 }

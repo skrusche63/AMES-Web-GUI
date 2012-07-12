@@ -18,8 +18,11 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import com.smartgwt.client.data.DataSourceField;
+import java.util.ArrayList;
 
+import com.smartgwt.client.widgets.grid.ListGridField;
+
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ExtrinsicObject;
 
 public class TransformatorObject extends ExtrinsicObject {
@@ -31,10 +34,29 @@ public class TransformatorObject extends ExtrinsicObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.ExtrinsicObject#createDataFieldsAsArray()
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
 	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		return super.createDataFieldsAsArray();		
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * Transformator icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+		
+		/*
+		 * Transformator name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+
+		/*
+		 * Transformator author
+		 */
+		fields.add(GridFieldFactory.createRimAuthorField(160));
+		
+		return fields;
+		
 	}
 
 }

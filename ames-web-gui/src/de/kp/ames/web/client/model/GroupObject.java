@@ -21,7 +21,9 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.RegistryObject;
 import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.LabelConstants;
@@ -70,6 +72,27 @@ public class GroupObject extends RegistryObject {
 	
 	    return fields;
 	    
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * User icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+
+		/*
+		 * User name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+		
+		return fields;
+		
 	}
 	
 }

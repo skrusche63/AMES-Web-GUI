@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.shared.JsonConstants;
@@ -76,20 +77,18 @@ public class CacheObject extends ExternalObject {
 		/*
 		 * Name
 		 */
-		ListGridField nameField = new ListGridField(JsonConstants.J_NAME, LabelConstants.NAME_LABEL);
+		ListGridField nameField = new ListGridField(JsonConstants.J_NAME, LabelConstants.NAME_LABEL, 160);
+		nameField.setType(ListGridFieldType.TEXT);
+		
 		fields.add(nameField);
 
 		/*
 		 * Mimetype
 		 */
-		ListGridField mimeField = new ListGridField(JsonConstants.J_MIME, LabelConstants.MIME_LABEL);
-		fields.add(mimeField);
+		ListGridField mimeField = new ListGridField(JsonConstants.J_MIME, LabelConstants.MIME_LABEL, 120);
+		mimeField.setType(ListGridFieldType.TEXT);
 
-		/*
-		 * Description (Detail)
-		 */
-		ListGridField descField = new ListGridField(JsonConstants.J_DESC, LabelConstants.DESC_LABEL);
-		fields.add(descField);
+		fields.add(mimeField);
 
 		return (ListGridField[])fields.toArray(new ListGridField [fields.size()]);
 

@@ -37,4 +37,6 @@ public class MailObject extends ExtrinsicObject {
 		return super.createDataFieldsAsArray();		
 	}
 
+	// TODO
+	
 }

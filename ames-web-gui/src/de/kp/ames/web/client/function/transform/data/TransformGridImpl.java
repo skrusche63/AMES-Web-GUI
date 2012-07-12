@@ -25,6 +25,7 @@ import de.kp.ames.web.client.function.transform.handler.TransformGridMenuHandler
 import de.kp.ames.web.client.model.TransformatorObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -95,8 +96,7 @@ public class TransformGridImpl extends GridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
-		return null;
+		return JaxrConstants.RIM_DESC;
 	}
 
 }

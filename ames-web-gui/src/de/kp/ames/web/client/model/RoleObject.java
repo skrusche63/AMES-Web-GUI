@@ -21,10 +21,14 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.data.fields.DataSourceBooleanField;
+import com.smartgwt.client.types.ListGridFieldType;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ConceptObject;
 import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.LabelConstants;
 
 public class RoleObject extends ConceptObject {
 
@@ -54,10 +58,34 @@ public class RoleObject extends ConceptObject {
 		/*
 		 * Check (without label)
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_CHECK));
+	    fields.add(new DataSourceBooleanField(JsonConstants.J_CHECK));
 
 	    return fields;
 	    
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.ConceptObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * Check field
+		 */
+		ListGridField checkField = new ListGridField(JsonConstants.J_CHECK, LabelConstants.ASSIGNED_LABEL);
+		checkField.setType(ListGridFieldType.BOOLEAN);
+		
+		fields.add(checkField);
+				
+		/*
+		 * Role name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+		
+		return fields;
+		
 	}
 
 }

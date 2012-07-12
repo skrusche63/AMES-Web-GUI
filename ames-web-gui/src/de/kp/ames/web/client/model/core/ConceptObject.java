@@ -70,15 +70,19 @@ public class ConceptObject implements DataObject {
 	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsArray()
 	 */
 	public ListGridField[] createGridFieldsAsArray() {
-		// TODO
-		return null;
+		
+		ArrayList<ListGridField> fields = createGridFieldsAsList();
+		return (ListGridField[])fields.toArray(new ListGridField [fields.size()]);
+				
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsList()
 	 */
 	public ArrayList<ListGridField> createGridFieldsAsList() {
-		// TODO
+		/*
+		 * Must be overridden
+		 */
 		return null;
 	}
 

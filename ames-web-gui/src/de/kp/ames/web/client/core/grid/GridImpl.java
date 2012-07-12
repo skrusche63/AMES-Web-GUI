@@ -38,6 +38,8 @@ import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
+import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
+import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
@@ -181,6 +183,12 @@ public class GridImpl extends ListGrid implements Grid {
 			}			
 		});
 
+		this.addSelectionChangedHandler(new SelectionChangedHandler() {
+			public void onSelectionChanged(SelectionEvent event) {
+				self.afterSelectionChanged(event);				
+			}
+		});
+		
 	}
 
 	/* (non-Javadoc)
@@ -367,6 +375,16 @@ public class GridImpl extends ListGrid implements Grid {
 		 */
 		if (this.menuHandler != null) this.menuHandler.doOpen(record);
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterSelectionChanged(com.smartgwt.client.widgets.grid.events.SelectionEvent)
+	 */
+	public void afterSelectionChanged(SelectionEvent event) {
+		/*
+		 * Must be overridden: This event is usually used to
+		 * support checkbox selection within grids
+		 */
 	}
 	
 	/**

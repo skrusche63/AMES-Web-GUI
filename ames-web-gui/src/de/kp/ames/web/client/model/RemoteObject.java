@@ -27,6 +27,8 @@ import de.kp.ames.web.client.model.core.DataObject;
 
 public class RemoteObject implements DataObject {
 
+	// TODO
+	
 	/**
 	 * Constructor
 	 */

@@ -18,8 +18,11 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import com.smartgwt.client.data.DataSourceField;
+import java.util.ArrayList;
 
+import com.smartgwt.client.widgets.grid.ListGridField;
+
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ExtrinsicObject;
 
 public class ProductObject extends ExtrinsicObject {
@@ -31,10 +34,34 @@ public class ProductObject extends ExtrinsicObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ExtrinsicObject#createDataFieldsAsArray()
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
 	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		return super.createDataFieldsAsArray();		
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * Product icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+		
+		/*
+		 * Product name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+
+		/*
+		 * Product mimetype
+		 */
+		fields.add(GridFieldFactory.createRimMimeField(120));
+
+		/*
+		 * Product author
+		 */
+		fields.add(GridFieldFactory.createRimAuthorField(160));
+		
+		return fields;
+		
 	}
 
 }

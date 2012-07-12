@@ -22,7 +22,9 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.RegistryObject;
 import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.LabelConstants;
@@ -34,17 +36,10 @@ public class UserObject extends RegistryObject {
 	 */
 	public UserObject() {
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createDataFieldsAsArray()
-	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		
-		ArrayList<DataSourceField> fields = createDataFieldsAsList();
-		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-				
-	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createDataFieldsAsList()
+	 */
 	public ArrayList<DataSourceField> createDataFieldsAsList() {
 
 		ArrayList<DataSourceField> fields = super.createDataFieldsAsList();
@@ -71,6 +66,27 @@ public class UserObject extends RegistryObject {
  	
 	    return fields;
 	    
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * User icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+
+		/*
+		 * User name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+		
+		return fields;
+		
 	}
 	
 }

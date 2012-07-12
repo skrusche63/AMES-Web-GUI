@@ -59,6 +59,11 @@ public class SearchWidget extends VLayout {
 	private DataSource dataSource;
 	
 	/*
+	 * Reference to Options Criteria
+	 */
+	private Criteria criteria;
+
+	/*
 	 * The base url necessary to invoke the
 	 * web service that refers to this service
 	 */	
@@ -170,12 +175,18 @@ public class SearchWidget extends VLayout {
 		 * The combobox is used to display the name field of
 		 * the respective data source
 		 */
-		searchBox = new ComboBoxItem(JsonConstants.J_QUERY);
+		searchBox = new ComboBoxItem();
 		searchBox.setTitle("<b>search</b>:");
 		
 		searchBox.setWidth(SEARCHBOX_WIDTH);
 		
 		createScComboBoxDS();
+		
+		/*
+		 * Criteria
+		 */
+		criteria = new Criteria();
+		searchBox.setOptionCriteria(criteria);
 		
 		searchBox.setOptionDataSource(dataSource);
 
@@ -193,8 +204,7 @@ public class SearchWidget extends VLayout {
 				ComboBoxItem item = (ComboBoxItem)event.getItem();
 				String val = item.getValueAsString();
 				
-				Criteria criteria = new Criteria(JsonConstants.J_QUERY, val);
-				item.setOptionCriteria(criteria);
+				criteria.setAttribute(JsonConstants.J_QUERY, val);
 				
 			}
 			

@@ -18,8 +18,12 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import com.smartgwt.client.data.DataSourceField;
+import java.util.ArrayList;
 
+import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
+
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ExtrinsicObject;
 
 public class ImageObject extends ExtrinsicObject {
@@ -35,6 +39,37 @@ public class ImageObject extends ExtrinsicObject {
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
 		return super.createDataFieldsAsArray();		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * Image icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+		
+		/*
+		 * Image name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+
+		/*
+		 * Image mimetype
+		 */
+		fields.add(GridFieldFactory.createRimMimeField(120));
+
+		/*
+		 * Image author
+		 */
+		fields.add(GridFieldFactory.createRimAuthorField(160));
+		
+		return fields;
+		
 	}
 
 }

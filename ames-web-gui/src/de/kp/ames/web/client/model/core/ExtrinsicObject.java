@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-
 import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.LabelConstants;
 
@@ -32,16 +31,6 @@ public class ExtrinsicObject extends RegistryObject {
 	 * Constructor
 	 */
 	public ExtrinsicObject() {
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.RegistryObject#createDataFieldsAsArray()
-	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		
-		ArrayList<DataSourceField> fields = createDataFieldsAsList();
-		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-				
 	}
 
 	/* (non-Javadoc)

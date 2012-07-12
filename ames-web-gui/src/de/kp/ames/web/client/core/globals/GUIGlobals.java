@@ -63,4 +63,10 @@ public class GUIGlobals {
 	 */
 	public static int VIEWER_DIM = 640;
 	
+	/*
+	 * Icon Directory & suffix
+	 */
+	public static String ICON_DIR    = "icons/16/";
+	public static String ICON_SUFFIX = ".png";
+	
 }

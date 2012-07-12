@@ -18,33 +18,12 @@ package de.kp.ames.web.client.model.core;
  *
  */
 
-import java.util.ArrayList;
-
-import com.smartgwt.client.data.DataSourceField;
-
 public class RegistryPackage extends RegistryObject {
 
 	/**
 	 * Constructor
 	 */
 	public RegistryPackage() {
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.RegistryObject#createDataFieldsAsArray()
-	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		
-		ArrayList<DataSourceField> fields = createDataFieldsAsList();
-		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-				
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.RegistryObject#createDataFieldsAsList()
-	 */
-	public ArrayList<DataSourceField> createDataFieldsAsList() {
-	    return super.createDataFieldsAsList();	    
 	}
 
 }

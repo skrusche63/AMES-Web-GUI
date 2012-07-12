@@ -120,10 +120,10 @@ public class RegistryObject implements DataObject {
 	 * @see de.kp.ames.web.client.model.DataObject#createGridFieldsAsArray()
 	 */
 	public ListGridField[] createGridFieldsAsArray() {
-		/*
-		 * Must be overridden
-		 */
-		return null;
+		
+		ArrayList<ListGridField> fields = createGridFieldsAsList();
+		return (ListGridField[])fields.toArray(new ListGridField [fields.size()]);
+				
 	}
 
 	/* (non-Javadoc)

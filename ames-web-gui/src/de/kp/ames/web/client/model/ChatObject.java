@@ -37,4 +37,6 @@ public class ChatObject extends ExtrinsicObject {
 		return super.createDataFieldsAsArray();		
 	}
 
+	// TODO
+	
 }

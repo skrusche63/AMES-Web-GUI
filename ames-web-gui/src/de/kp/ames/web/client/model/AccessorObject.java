@@ -22,7 +22,9 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ServiceObject;
 import de.kp.ames.web.shared.JaxrConstants;
 
@@ -33,16 +35,6 @@ public class AccessorObject extends ServiceObject {
 	 */
 	public AccessorObject() {
 		super();
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ServiceObject#createDataFieldsAsArray()
-	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		
-		ArrayList<DataSourceField> fields = createDataFieldsAsList();
-		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-				
 	}
 
 	/* (non-Javadoc)
@@ -61,4 +53,30 @@ public class AccessorObject extends ServiceObject {
 	    
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * Productor icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+
+		/*
+		 * Productor name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+
+		/*
+		 * Productor author
+		 */
+		fields.add(GridFieldFactory.createRimAuthorField(160));
+		
+		return fields;
+		
+	}
+	
 }
