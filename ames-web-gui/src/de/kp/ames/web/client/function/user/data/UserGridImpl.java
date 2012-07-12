@@ -39,22 +39,22 @@ public class UserGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 		
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 
 		/*
 		 * This UserGridImpl must have a MenuHandler
@@ -76,23 +76,23 @@ public class UserGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_ITEM, community);
 
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 
 		/*
 		 * Add menu handler
@@ -102,10 +102,9 @@ public class UserGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
-	private DataObject createDataObject(HashMap<String,String> attributes) {
+	private DataObject createDataObject() {
 		return new UserObject();
 	}
 

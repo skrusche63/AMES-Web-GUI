@@ -40,23 +40,23 @@ public class GroupGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
 
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 		
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 
 		/*
 		 * This GroupGridImpl must have a MenuHandler
@@ -78,7 +78,7 @@ public class GroupGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 		
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
 		attributes.put(MethodConstants.ATTR_SOURCE, affiliate);
@@ -86,17 +86,17 @@ public class GroupGridImpl extends GridImpl {
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 
 		/*
 		 * Add menu handler
@@ -109,7 +109,7 @@ public class GroupGridImpl extends GridImpl {
 	 * @param attributes
 	 * @return
 	 */
-	private DataObject createDataObject(HashMap<String,String> attributes) {
+	private DataObject createDataObject() {
 		return new GroupObject();
 	}
 

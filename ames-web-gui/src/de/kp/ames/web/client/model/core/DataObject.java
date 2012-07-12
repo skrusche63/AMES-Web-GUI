@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 public interface DataObject {
 
@@ -44,5 +45,15 @@ public interface DataObject {
 	 * @return
 	 */
 	public ArrayList<ListGridField> createGridFieldsAsList();
-	
+
+	/**
+	 * @return
+	 */
+	public DetailViewerField[] createViewerFieldsAsArray();
+
+	/**
+	 * @return
+	 */
+	public ArrayList<DetailViewerField> createViewerFieldsAsList();
+
 }

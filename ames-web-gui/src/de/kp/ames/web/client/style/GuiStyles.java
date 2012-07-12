@@ -55,6 +55,11 @@ public class GuiStyles {
 	public static String X_USER         = "x-user";
 
 	/*
+	 * Symbol graphic name style
+	 */
+	public static String X_SYMBOL_NAME = "x-symbol-name";
+	
+	/*
 	 * Font color
 	 */
 	public static String FONT_COLOR = "#708491";

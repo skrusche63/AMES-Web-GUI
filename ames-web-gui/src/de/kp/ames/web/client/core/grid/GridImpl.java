@@ -19,6 +19,7 @@ package de.kp.ames.web.client.core.grid;
  */
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
@@ -92,7 +93,12 @@ public class GridImpl extends ListGrid implements Grid {
 	/*
 	 * Reference to name of detail field
 	 */
-	String detailFieldName;
+	protected String detailFieldName;
+	
+	/*
+	 * Reference to attributes
+	 */
+	protected HashMap<String,String> attributes;
 	
 	/**
 	 * Constructor
@@ -240,6 +246,16 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 	
 	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#reload(java.util.HashMap)
+	 */
+	public void reload(HashMap<String,String> attributes) {
+
+		if (this.attributes != null) this.attributes.putAll(attributes);
+		this.reload();
+	
+	}
+	
+	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.BaseGrid#getRequestUrl()
 	 */
 	public String getRequestUrl() {
@@ -250,23 +266,23 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.Grid#createDataFields()
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes) {
+	public DataSourceField[] createDataFields() {
 		return this.dataObject.createDataFieldsAsArray();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.GridImpl#createGridFields(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.Grid#createGridFields()
 	 */
-	public ListGridField[] createGridFields(HashMap<String,String> attributes) {
+	public ListGridField[] createGridFields() {
 		return this.dataObject.createGridFieldsAsArray();
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.BaseGrid#createMethod(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.grid.Grid#createMethod()
 	 */
-	public RequestMethod createMethod(HashMap<String,String> attributes) {
+	public RequestMethod createMethod() {
 
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_GET);
@@ -279,40 +295,34 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.BaseGrid#createScGridDS()
+	 * @see de.kp.ames.web.client.core.grid.Grid#getRequestParams()
 	 */
-	public void createScGridDS(HashMap<String,String> attributes) {
+	public Map<String,String> getRequestParams() {
+		
+		RequestMethod requestMethod = createMethod();
+		return requestMethod.toParams();
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#createScGridDS()
+	 */
+	public void createScGridDS() {
+
 		/*
 		 * Retrieve request url
 		 */
 		String requestUrl = getRequestUrl();
-		
-		/*
-		 * Retrieve request method for attributes
-		 */
-		RequestMethod requestMethod = createMethod(attributes);
-		
+
 		/*
 		 * Retrieve request fields from attributes
 		 */
-		DataSourceField[] requestFields = createDataFields(attributes);
-		
-		/*
-		 * Finally create data source
-		 */
-		createScGridDS(requestUrl, requestMethod, requestFields);
-		
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.gui.grid.BaseGrid#createScGridDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, com.smartgwt.client.data.DataSourceField[])
-	 */
-	public void createScGridDS(final String url, final RequestMethod method, final DataSourceField[] fields) {
-		
+		DataSourceField[] requestFields = createDataFields();
+
 		dataSource = new RestDataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
-				dsRequest.setParams(method.toParams());				
+				dsRequest.setParams(getRequestParams());				
 				return super.transformRequest(dsRequest);  
 			}  
 
@@ -325,8 +335,8 @@ public class GridImpl extends ListGrid implements Grid {
 		dataSource.setDataFormat(DSDataFormat.JSON);
 		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
 		
-		dataSource.setFetchDataURL(url);		
-		dataSource.setFields(fields);
+		dataSource.setFetchDataURL(requestUrl);		
+		dataSource.setFields(requestFields);
 
 		/*
 		 * finally set data source

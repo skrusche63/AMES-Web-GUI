@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.client.model.core.DataObject;
 
@@ -67,6 +68,26 @@ public class ExternalObject implements DataObject {
 	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsList()
 	 */
 	public ArrayList<ListGridField> createGridFieldsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createViewerFieldsAsArray()
+	 */
+	public DetailViewerField[] createViewerFieldsAsArray() {
+		
+		ArrayList<DetailViewerField> fields = createViewerFieldsAsList();
+		return (DetailViewerField[])fields.toArray(new DetailViewerField [fields.size()]);
+				
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createViewerFieldsAsList()
+	 */
+	public ArrayList<DetailViewerField> createViewerFieldsAsList() {
 		/*
 		 * Must be overridden
 		 */

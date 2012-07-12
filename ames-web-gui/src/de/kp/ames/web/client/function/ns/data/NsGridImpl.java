@@ -40,7 +40,7 @@ public class NsGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 
 		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		if (parent != null) attributes.put(MethodConstants.ATTR_PARENT, parent);
@@ -48,25 +48,24 @@ public class NsGridImpl extends GridImpl {
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 		
 	}
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
-	private DataObject createDataObject(HashMap<String,String> attributes) {
+	private DataObject createDataObject() {
 		return new NsObject();
 	}
 

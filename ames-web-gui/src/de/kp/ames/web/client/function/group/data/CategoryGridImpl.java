@@ -39,23 +39,23 @@ public class CategoryGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Category);
 
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 		
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 
 		/*
 		 * Add menu handler
@@ -65,10 +65,9 @@ public class CategoryGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
-	private DataObject createDataObject(HashMap<String,String> attributes) {
+	private DataObject createDataObject() {
 		return new CategoryObject();
 	}
 

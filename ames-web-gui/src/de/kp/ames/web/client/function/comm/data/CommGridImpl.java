@@ -42,23 +42,23 @@ public class CommGridImpl extends GridImpl {
 		/*
 		 * Register data
 		 */
-		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
 
 		/*
 		 * Create data object
 		 */
-		this.dataObject = createDataObject(attributes);
+		this.dataObject = createDataObject();
 
 		/*
 		 * Create data source
 		 */
-		this.createScGridDS(attributes);
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
 		 */
-		this.setFields(createGridFields(attributes));
+		this.setFields(createGridFields());
 
 		/*
 		 * Add menu handler
@@ -71,10 +71,9 @@ public class CommGridImpl extends GridImpl {
 	}
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
-	private DataObject createDataObject(HashMap<String,String> attributes) {
+	private DataObject createDataObject() {
 
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Chat)) {
@@ -93,6 +92,14 @@ public class CommGridImpl extends GridImpl {
 			
 		return null;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
+	 */
+	public String getDetailFieldName() {
+		// TODO
+		return null;
 	}
 
 }

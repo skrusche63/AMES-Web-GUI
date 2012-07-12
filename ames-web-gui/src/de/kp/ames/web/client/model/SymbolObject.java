@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.LabelConstants;
 
 public class SymbolObject extends ExternalObject {
 	
@@ -21,12 +22,12 @@ public class SymbolObject extends ExternalObject {
 		/*
 		 * Identifier
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_ID, "Id"));
+	    fields.add(new DataSourceTextField(JsonConstants.J_ID, LabelConstants.ID_LABEL));
 
 	    /*
 		 * Name
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, "Name"));
+	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, LabelConstants.NAME_LABEL));
 		
 		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
 	

@@ -19,6 +19,7 @@ package de.kp.ames.web.client.core.grid;
  */
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -76,16 +77,23 @@ public interface Grid {
 	public void reload();
 
 	/**
+	 * Data Handling after grid content has changed
+     *
+	 * @param attributes
+	 */
+	public void reload(HashMap<String,String> attributes);
+	
+	/**
 	 * @param attributes
 	 * @return
 	 */
-	public DataSourceField[] createDataFields(HashMap<String,String> attributes);
+	public DataSourceField[] createDataFields();
 
 	/**
 	 * @param attributes
 	 * @return
 	 */
-	public ListGridField[] createGridFields(HashMap<String,String> attributes);
+	public ListGridField[] createGridFields();
 
 	/**
 	 * Create request method from attributes
@@ -93,34 +101,24 @@ public interface Grid {
 	 * @param attributes
 	 * @return
 	 */
-	public RequestMethod createMethod(HashMap<String,String> attributes);
+	public RequestMethod createMethod();
 
 	/**
 	 * Create Data source
 	 * 
 	 * @param attributes
 	 */
-	public void createScGridDS(HashMap<String,String> attributes);
-
-	/**
-	 * Create Data Source
-	 * 
-	 * @param url
-	 * @param method
-	 * @param fields
-	 */
-	public void createScGridDS(final String url, final RequestMethod method, final DataSourceField[] fields);
-
-	/**
-	 * Name of the Detail Field
-	 * 
-	 * @return
-	 */
-	//public String getDetailField();
+	public void createScGridDS();
 	
 	/**
 	 * @return
 	 */
 	public String getRequestUrl();
+
+	/**
+	 * @return
+	 */
+	public Map<String,String> getRequestParams();
+	
 	
 }
