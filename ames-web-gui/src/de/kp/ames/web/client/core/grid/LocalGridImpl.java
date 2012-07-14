@@ -1,4 +1,7 @@
-package de.kp.ames.web.client.action.grid;
+package de.kp.ames.web.client.core.grid;
+
+import com.google.gwt.json.client.JSONArray;
+
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,32 +21,32 @@ package de.kp.ames.web.client.action.grid;
  *
  */
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+public class LocalGridImpl extends GridImpl {
 
-import de.kp.ames.web.client.action.ActionImpl;
-import de.kp.ames.web.client.core.grid.Grid;
-
-public class GridSymbolImpl  extends ActionImpl {
-
-	/*
-	 * Reference to Grid
-	 */
-	protected Grid grid;
-	
-	/*
-	 * Reference to Record
-	 */
-	protected ListGridRecord record;
-	
 	/**
 	 * Constructor
-	 * 
-	 * @param grid
-	 * @param record
 	 */
-	public GridSymbolImpl(Grid grid, ListGridRecord record) {	
-		this.grid = grid;
-		this.record = record;
-	}
+	public LocalGridImpl() {
+		super();
+		
+		/*
+		 * Data handling
+		 */
 
+		this.setShowAllRecords(true);  
+        this.setCanReorderRecords(true);
+        
+	}
+	
+	/**
+	 * Retrieve grid data in JSON representation
+	 * 
+	 * @return
+	 */
+	public JSONArray getGridData() {
+		/*
+		 * Must be overridden
+		 */
+		return null;
+	}
 }

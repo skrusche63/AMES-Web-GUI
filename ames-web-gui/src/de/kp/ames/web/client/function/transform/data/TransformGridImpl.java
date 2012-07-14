@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.transform.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.transform.handler.TransformGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.TransformatorObject;
 import de.kp.ames.web.client.model.core.DataObject;
@@ -29,7 +29,7 @@ import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class TransformGridImpl extends GridImpl {
+public class TransformGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor

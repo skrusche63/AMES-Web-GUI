@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.dms.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.dms.handler.DmsGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.DocumentObject;
 import de.kp.ames.web.client.model.ImageObject;
@@ -30,7 +30,7 @@ import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class DmsGridImpl extends GridImpl {
+public class DmsGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor

@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.upload.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.upload.handler.UploadGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.CacheObject;
 import de.kp.ames.web.client.model.core.DataObject;
@@ -28,7 +28,7 @@ import de.kp.ames.web.shared.JsonConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class UploadGridImpl extends GridImpl {
+public class UploadGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor

@@ -3,12 +3,26 @@ package de.kp.ames.web.client.core.form;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.handler.FormHandler;
 
 public class FormImpl extends VLayout implements Form {
 
+	protected static String LABEL_STYLE = "x-sc-label";
+
+	/*
+	 * Reference to dynamic form
+	 */
+	protected DynamicForm scForm;
+
+	/*
+	 * Field cache
+	 */
+	protected HashMap<String, FormItem> formFields;
+	
 	/*
 	 * Reference to Form Handler
 	 */

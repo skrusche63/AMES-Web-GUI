@@ -19,15 +19,13 @@ package de.kp.ames.web.client.core.grid;
  */
 
 import java.util.HashMap;
-import java.util.Map;
-
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
-import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
 
@@ -84,41 +82,18 @@ public interface Grid {
 	public void reload(HashMap<String,String> attributes);
 	
 	/**
-	 * @param attributes
 	 * @return
 	 */
 	public DataSourceField[] createDataFields();
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
 	public ListGridField[] createGridFields();
 
 	/**
-	 * Create request method from attributes
-	 * 
-	 * @param attributes
 	 * @return
 	 */
-	public RequestMethod createMethod();
-
-	/**
-	 * Create Data source
-	 * 
-	 * @param attributes
-	 */
-	public void createScGridDS();
-	
-	/**
-	 * @return
-	 */
-	public String getRequestUrl();
-
-	/**
-	 * @return
-	 */
-	public Map<String,String> getRequestParams();
-	
+	public ListGridRecord[] createGridRecords();
 	
 }

@@ -88,5 +88,13 @@ public class OverviewImpl extends VLayout implements ContactListener, RemoveHand
 		if (grid != null) grid.reload(attributes);
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 */
+	public void onPostingSubmitted(ListGridRecord record) {
+		// TODO
+		
+	}
 	
 }

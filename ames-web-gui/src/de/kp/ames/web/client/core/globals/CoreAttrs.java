@@ -22,22 +22,6 @@ public class CoreAttrs {
 
 	public static String ALIAS   = "alias";
 	public static String KEYPASS = "keypass";
-
-	public static String RIM_DESC      = "rimDescription";
-	public static String RIM_HOME 	   = "rimHome";
-	public static String RIM_ID        = "rimId";
-	public static String RIM_LID       = "rimLid";
-	public static String RIM_NAME      = "rimName";
-	public static String RIM_URI       = "rimExternalURI";
-	
-	public static String RIM_LATITUDE  = "rimLatitude";
-	public static String RIM_LONGITUDE = "rimLongitude";
-
-	public static String RIM_SYMBOL    = "rimSymbol";
-	
-	public static String RIM_AUTHOR    = "rimAuthor";
-	public static String RIM_OWNERSHIP = "rimOwnership";
-	public static String RIM_TIMESTAMP = "rimTimestamp";
 	
 	public static String RIM_HOST = "rimHost";
 	public static String RIM_PORT = "rimPort";

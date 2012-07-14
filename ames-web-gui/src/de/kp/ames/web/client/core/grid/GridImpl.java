@@ -19,22 +19,12 @@ package de.kp.ames.web.client.core.grid;
  */
 
 import java.util.HashMap;
-import java.util.Map;
-
-import com.smartgwt.client.data.DSRequest;
-import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.RestDataSource;
-import com.smartgwt.client.types.DSDataFormat;
-import com.smartgwt.client.types.DSProtocol;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ExpansionMode;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
-import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
 import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
@@ -42,15 +32,10 @@ import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.method.RequestMethod;
-import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JsonConstants;
-import de.kp.ames.web.shared.MethodConstants;
 
 public class GridImpl extends ListGrid implements Grid {
 	
@@ -58,11 +43,6 @@ public class GridImpl extends ListGrid implements Grid {
 	 * Reference to DataObject
 	 */
 	protected DataObject dataObject;
-
-	/*
-	 * Reference to DataSource
-	 */
-	protected RestDataSource dataSource;
 
 	/*
 	 * Reference to MenuHandler
@@ -75,22 +55,6 @@ public class GridImpl extends ListGrid implements Grid {
 	protected GridRecordHandler recordHandler;
 	
 	/*
-	 * The base url necessary to invoke the
-	 * web service that refers to this service
-	 */	
-	protected String base;
-	
-	/*
-	 * The unique service identifier
-	 */
-	protected String sid;
-
-	/*
-	 * Page size
-	 */
-	protected int pageSize = 25;
-	
-	/*
 	 * Reference to name of detail field
 	 */
 	protected String detailFieldName;
@@ -99,30 +63,12 @@ public class GridImpl extends ListGrid implements Grid {
 	 * Reference to attributes
 	 */
 	protected HashMap<String,String> attributes;
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param sid
-	 */
-	public GridImpl(String sid) {
-		this(CoreGlobals.REG_URL, sid);
-	}
 
 	/**
 	 * Constructor
-	 * 
-	 * @param base
-	 * @param sid
 	 */
-	public GridImpl(String base, String sid) {
+	public GridImpl() {	
 
-		/*
-		 * Register basic connection parameters
-		 */
-		this.base = base;
-		this.sid  = sid;
-		
 		/*
 		 * No border style
 		 */
@@ -133,11 +79,6 @@ public class GridImpl extends ListGrid implements Grid {
 		 */		
 		this.setWidth100();
 		this.setHeight100();
-
-		/*
-		 * Page size support
-		 */
-		this.setDataPageSize(pageSize);
 		
 		/*
 		 * List entry may be expanded on click
@@ -152,30 +93,11 @@ public class GridImpl extends ListGrid implements Grid {
 			this.setDetailField(detailFieldName);
 			
 		}
-
-		/*
-		 * Data handling
-		 */
-		this.setAutoFetchData(false);		
-		this.setShowAllRecords(false);
-
 		/*
 		 * Event handling
 		 */
-		final GridImpl self = this;
-		
-		this.addDataArrivedHandler(new DataArrivedHandler() {
-			public void onDataArrived(DataArrivedEvent event) {								
-		    	self.afterDataArrived(event);
-			}			
-		});
-		
-		this.addDrawHandler(new DrawHandler() {
-			public void onDraw(DrawEvent event) {
-				self.afterDraw(event);				
-			}			
-		});
-		
+        final GridImpl self = this;
+ 
 		this.addRecordClickHandler(new RecordClickHandler() {
 			public void onRecordClick(RecordClickEvent event) {
 				self.afterRecordClick(event);				
@@ -194,9 +116,9 @@ public class GridImpl extends ListGrid implements Grid {
 				self.afterSelectionChanged(event);				
 			}
 		});
-		
-	}
 
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.BaseGrid#addMenuHandler(de.kp.ames.web.client.core.menu.GridMenuHandler)
 	 */
@@ -208,7 +130,7 @@ public class GridImpl extends ListGrid implements Grid {
 		this.menuHandler = menuHandler;
 		this.menuHandler.setGrid(this);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.Grid#addRecordHandler(de.kp.ames.web.client.handler.GridRecordHandler)
 	 */
@@ -221,7 +143,59 @@ public class GridImpl extends ListGrid implements Grid {
 		this.recordHandler.setGrid(this);
 		
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterContextMenu(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
+	 */
+	public void afterContextMenu(RowContextClickEvent event) {
+		/*
+		 * Stop event propagation
+		 */
+		event.cancel();
+		
+		/*
+		 * Retrieve affected grid record
+		 */
+		Record record = event.getRecord();
+
+		/*
+		 * Invoke Grid MenuHandler
+		 */
+		if (this.menuHandler != null) this.menuHandler.doOpen(record);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterRecordClick(com.smartgwt.client.widgets.grid.events.RecordClickEvent)
+	 */
+	public void afterRecordClick(RecordClickEvent event) {
+		/*
+		 * Stop event propagation
+		 */
+		event.cancel();
+		
+		/*
+		 * Retrieve affected grid record
+		 */
+		Record record = event.getRecord();
+
+		/*
+		 * Invoke Grid RecordHandler
+		 */
+		if (this.recordHandler != null) this.recordHandler.doSelect(record);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterSelectionChanged(com.smartgwt.client.widgets.grid.events.SelectionEvent)
+	 */
+	public void afterSelectionChanged(SelectionEvent event) {
+		/*
+		 * Must be overridden: This event is usually used to
+		 * support checkbox selection within grids
+		 */
+	}
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.Grid#getDetailFieldName()
 	 */
@@ -246,23 +220,13 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#reload(java.util.HashMap)
-	 */
+	* @see de.kp.ames.web.client.core.grid.Grid#reload(java.util.HashMap)
+	*/
 	public void reload(HashMap<String,String> attributes) {
-
+	
 		if (this.attributes != null) this.attributes.putAll(attributes);
 		this.reload();
 	
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.BaseGrid#getRequestUrl()
-	 */
-	public String getRequestUrl() {
-		
-		if ((this.sid == null) || (this.base == null)) return null;
-		return this.base + "/" + this.sid;
-		
 	}
 
 	/* (non-Javadoc)
@@ -280,139 +244,10 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#createMethod()
+	 * @see de.kp.ames.web.client.core.grid.Grid#createGridRecords()
 	 */
-	public RequestMethod createMethod() {
-
-		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_GET);
-		
-		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Grid);
-		requestMethod.setAttributes(attributes);
-		
-		return requestMethod;
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#getRequestParams()
-	 */
-	public Map<String,String> getRequestParams() {
-		
-		RequestMethod requestMethod = createMethod();
-		return requestMethod.toParams();
-
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#createScGridDS()
-	 */
-	public void createScGridDS() {
-
-		/*
-		 * Retrieve request url
-		 */
-		String requestUrl = getRequestUrl();
-
-		/*
-		 * Retrieve request fields from attributes
-		 */
-		DataSourceField[] requestFields = createDataFields();
-
-		dataSource = new RestDataSource() {
-			  
-			protected Object transformRequest(DSRequest dsRequest) {  
-				dsRequest.setParams(getRequestParams());				
-				return super.transformRequest(dsRequest);  
-			}  
-
-			protected void transformResponse(DSResponse response, DSRequest request, Object data) {  
-				super.transformResponse(response, request, data);  
-			}  
-			
-		};
-		
-		dataSource.setDataFormat(DSDataFormat.JSON);
-		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
-		
-		dataSource.setFetchDataURL(requestUrl);		
-		dataSource.setFields(requestFields);
-
-		/*
-		 * finally set data source
-		 */
-		setDataSource(dataSource);
-
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#afterRecordClick(com.smartgwt.client.widgets.grid.events.RecordClickEvent)
-	 */
-	public void afterRecordClick(RecordClickEvent event) {
-		/*
-		 * Stop event propagation
-		 */
-		event.cancel();
-		
-		/*
-		 * Retrieve affected grid record
-		 */
-		ListGridRecord record = (ListGridRecord)event.getRecord();
-
-		/*
-		 * Invoke Grid RecordHandler
-		 */
-		if (this.menuHandler != null) this.menuHandler.doOpen(record);
-		
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#afterContextMenu(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
-	 */
-	public void afterContextMenu(RowContextClickEvent event) {
-		/*
-		 * Stop event propagation
-		 */
-		event.cancel();
-		
-		/*
-		 * Retrieve affected grid record
-		 */
-		ListGridRecord record = event.getRecord();
-
-		/*
-		 * Invoke Grid MenuHandler
-		 */
-		if (this.menuHandler != null) this.menuHandler.doOpen(record);
-		
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#afterSelectionChanged(com.smartgwt.client.widgets.grid.events.SelectionEvent)
-	 */
-	public void afterSelectionChanged(SelectionEvent event) {
-		/*
-		 * Must be overridden: This event is usually used to
-		 * support checkbox selection within grids
-		 */
-	}
-	
-	/**
-	 * @param event
-	 */
-	public void afterDataArrived(DataArrivedEvent event) {
-		/*
-		 * Must be overridden
-		 */
-	}
-	
-	/**
-	 * Fetch data after rendering
-	 * 
-	 * @param event
-	 */
-	public void afterDraw(DrawEvent event) {
-		this.fetchData();
+	public ListGridRecord[] createGridRecords() {
+		return this.dataObject.createListGridRecordsAsArray();
 	}
 	
 }

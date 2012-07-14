@@ -26,7 +26,7 @@ import com.smartgwt.client.widgets.form.fields.PasswordItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 
-public class GUIFormFactory {
+public class GuiFormFactory {
 
 	/**
 	 * A GUI helper to create a label

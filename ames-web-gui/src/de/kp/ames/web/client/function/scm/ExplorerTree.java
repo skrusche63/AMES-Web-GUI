@@ -39,6 +39,7 @@ import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.scm.event.ScmEventManager;
 import de.kp.ames.web.client.style.GuiStyles;
+import de.kp.ames.web.shared.JaxrConstants;
 
 public class ExplorerTree extends TreeGrid {
 
@@ -73,7 +74,7 @@ public class ExplorerTree extends TreeGrid {
         TreeGridField field = new TreeGridField();
         field.setCanFilter(false);
         
-        field.setName(CoreAttrs.RIM_NAME);
+        field.setName(JaxrConstants.RIM_NAME);
         field.setTitle("<b>" + FncGlobals.SCM_EXPLORER + "</b>");
         
         this.setFields(field);
@@ -92,9 +93,9 @@ public class ExplorerTree extends TreeGrid {
 		params.put(FncGlobals.METHOD, FncGlobals.EXPLORE_METHOD);
 		
 		DataSourceField[] fields = {
-			new DataSourceTextField(CoreAttrs.RIM_ID),
-			new DataSourceTextField(CoreAttrs.RIM_NAME),
-			new DataSourceTextField(CoreAttrs.RIM_URI)
+			new DataSourceTextField(JaxrConstants.RIM_ID),
+			new DataSourceTextField(JaxrConstants.RIM_NAME),
+			new DataSourceTextField(JaxrConstants.RIM_URI)
 		};
 
 		ds = createDS(params, fields);

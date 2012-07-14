@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.role.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.role.handler.RoleGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.ResponsibilityObject;
 import de.kp.ames.web.client.model.RoleObject;
@@ -29,7 +29,7 @@ import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class RoleGridImpl extends GridImpl {
+public class RoleGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor

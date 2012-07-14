@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.product.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.product.handler.ProductGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.ProductObject;
 import de.kp.ames.web.client.model.ProductorObject;
@@ -33,7 +33,7 @@ import de.kp.ames.web.shared.ServiceConstants;
  * to distinguish these information objects, the <type> parameter is used
  */
 
-public class ProductGridImpl extends GridImpl {
+public class ProductGridImpl extends RemoteGridImpl {
 	/**
 	 * Constructor
 	 * 

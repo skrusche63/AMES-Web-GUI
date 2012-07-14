@@ -20,13 +20,13 @@ package de.kp.ames.web.client.function.bulletin.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
-import de.kp.ames.web.client.model.PostObject;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
+import de.kp.ames.web.client.model.PostingObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class PostGridImpl extends GridImpl {
+public class PostGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor
@@ -63,14 +63,13 @@ public class PostGridImpl extends GridImpl {
 	 * @return
 	 */
 	private DataObject createDataObject() {
-		return new PostObject();
+		return new PostingObject();
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
 		return null;
 	}
 

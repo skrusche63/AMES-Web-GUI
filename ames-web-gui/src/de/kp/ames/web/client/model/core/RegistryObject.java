@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
@@ -116,6 +117,26 @@ public class RegistryObject implements DataObject {
 		
 		return fields;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createListGridRecordsAsArray()
+	 */
+	public ListGridRecord[] createListGridRecordsAsArray() {
+		
+		ArrayList<ListGridRecord> records = createListGridRecordsAsList();
+		return (ListGridRecord[])records.toArray(new ListGridRecord [records.size()]);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createListGridRecordsAsList()
+	 */
+	public ArrayList<ListGridRecord> createListGridRecordsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;		
 	}
 
 	/* (non-Javadoc)

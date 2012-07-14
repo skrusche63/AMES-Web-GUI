@@ -56,7 +56,7 @@ public class UserEditDialog extends EditFormDialog {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 

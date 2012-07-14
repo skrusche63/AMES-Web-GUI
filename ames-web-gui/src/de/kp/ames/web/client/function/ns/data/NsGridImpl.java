@@ -20,13 +20,13 @@ package de.kp.ames.web.client.function.ns.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class NsGridImpl extends GridImpl {
+public class NsGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor

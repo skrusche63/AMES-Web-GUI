@@ -29,12 +29,12 @@ import de.kp.ames.web.client.model.core.ExtrinsicObject;
 import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.LabelConstants;
 
-public class MailObject extends ExtrinsicObject {
+public class PostingObject extends ExtrinsicObject {
 
 	/**
 	 * Constructor
 	 */
-	public MailObject() {	
+	public PostingObject() {
 	}
 
 	/* (non-Javadoc)
@@ -58,6 +58,11 @@ public class MailObject extends ExtrinsicObject {
 		 * From
 		 */
 		fields.add(new DataSourceTextField(JaxrConstants.RIM_FROM, LabelConstants.FROM_LABEL));
+		
+		/*
+		 * Message (without label)
+		 */
+		fields.add(new DataSourceTextField(JaxrConstants.RIM_MESSAGE));
 
 	    return fields;
 

@@ -20,7 +20,7 @@ package de.kp.ames.web.client.handler;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.grid.Grid;
 
 public interface GridRecordHandler {
@@ -28,7 +28,7 @@ public interface GridRecordHandler {
 	/**
 	 * @param record
 	 */
-	public void doSelect(ListGridRecord record);
+	public void doSelect(Record record);
 
 	/**
 	 * @param key

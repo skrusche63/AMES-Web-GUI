@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.comm.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.comm.handler.CommGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.ChatObject;
 import de.kp.ames.web.client.model.MailObject;
@@ -29,7 +29,7 @@ import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class CommGridImpl extends GridImpl {
+public class CommGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor
@@ -98,7 +98,6 @@ public class CommGridImpl extends GridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
 		return null;
 	}
 

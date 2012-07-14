@@ -9,4 +9,9 @@ public interface ContactListener {
 	 */
 	public void onContactSelected(ListGridRecord record);
 	
+	/**
+	 * @param record
+	 */
+	public void onPostingSubmitted(ListGridRecord record);
+	
 }

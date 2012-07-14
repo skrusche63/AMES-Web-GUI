@@ -20,16 +20,16 @@ package de.kp.ames.web.client.function.access.data;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.access.handler.AccessGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.AccessorObject;
-import de.kp.ames.web.client.model.RemoteObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.client.model.remote.RemoteFactory;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
-public class AccessGridImpl extends GridImpl {
+public class AccessGridImpl extends RemoteGridImpl {
 	
 	/**
 	 * Constructor
@@ -95,7 +95,7 @@ public class AccessGridImpl extends GridImpl {
 			/*
 			 * Create data fields for remote object grid
 			 */
-			return new RemoteObject();
+			return RemoteFactory.getRemoteObject(type);
 			
 		}
 		

@@ -39,7 +39,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.apps.UserController;
-import de.kp.ames.web.client.core.form.GUIFormFactory;
+import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.BaseDialog;
@@ -131,8 +131,8 @@ public class LoginDialog extends BaseDialog {
 		/*
 		 * Create dynamic form items
 		 */
-		aliasItem   = GUIFormFactory.createScTextItem("Alias:", CoreAttrs.ALIAS, STYLE, 180);
-		keypassItem = GUIFormFactory.createScPasswordItem("Keypass:", CoreAttrs.KEYPASS, STYLE, 180);
+		aliasItem   = GuiFormFactory.createScTextItem("Alias:", CoreAttrs.ALIAS, STYLE, 180);
+		keypassItem = GuiFormFactory.createScPasswordItem("Keypass:", CoreAttrs.KEYPASS, STYLE, 180);
 		
 		/*
 		 * Space for rendering purpose only

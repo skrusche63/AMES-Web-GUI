@@ -20,7 +20,7 @@ package de.kp.ames.web.client.handler;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
 
@@ -53,10 +53,7 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 		this.grid = grid;
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.menu.GridMenuHandler#doOpen(com.smartgwt.client.widgets.grid.ListGridRecord)
-	 */
-	public void doOpen(ListGridRecord record) {
+	public void doOpen(Record record) {
 		
 		/*
 		 * Show menu as context menu
@@ -71,7 +68,7 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.menu.GridMenuHandler#createMenuItems()
 	 */
-	public MenuItem[] createMenuItems(ListGridRecord record) {
+	public MenuItem[] createMenuItems(Record record) {
 		/*
 		 * Must be overridden
 		 */

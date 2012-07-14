@@ -20,7 +20,7 @@ package de.kp.ames.web.client.handler;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.menu.MenuItem;
 
 import de.kp.ames.web.client.core.grid.Grid;
@@ -30,12 +30,12 @@ public interface GridMenuHandler {
 	/**
 	 * @param record
 	 */
-	public void doOpen(ListGridRecord record);
+	public void doOpen(Record record);
 
 	/**
 	 * @return
 	 */
-	public MenuItem[] createMenuItems(ListGridRecord record);
+	public MenuItem[] createMenuItems(Record record);
 
 	/**
 	 * @param key

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.model.remote;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -22,14 +22,13 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.client.model.core.DataObject;
 
 public class RemoteObject implements DataObject {
-
-	// TODO
 	
 	/**
 	 * Constructor
@@ -65,6 +64,26 @@ public class RemoteObject implements DataObject {
 		 * Must be overridden
 		 */
 		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createListGridRecordsAsArray()
+	 */
+	public ListGridRecord[] createListGridRecordsAsArray() {
+		
+		ArrayList<ListGridRecord> records = createListGridRecordsAsList();
+		return (ListGridRecord[])records.toArray(new ListGridRecord [records.size()]);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createListGridRecordsAsList()
+	 */
+	public ArrayList<ListGridRecord> createListGridRecordsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;		
 	}
 
 	/* (non-Javadoc)
