@@ -35,6 +35,7 @@ import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.JsonConstants;
 
 public class GridImpl extends ListGrid implements Grid {
@@ -72,7 +73,7 @@ public class GridImpl extends ListGrid implements Grid {
 		/*
 		 * No border style
 		 */
-		this.setBorder("0");
+		this.setStyleName(GuiStyles.X_BD_STYLE_0);
 		
 		/*
 		 * Dimensions

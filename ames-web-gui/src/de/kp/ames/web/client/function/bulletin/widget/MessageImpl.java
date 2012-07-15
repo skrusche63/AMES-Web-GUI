@@ -23,17 +23,15 @@ import com.smartgwt.client.widgets.Canvas;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.function.bulletin.BulletinService;
-import de.kp.ames.web.client.function.globals.FncGlobals;
-import de.kp.ames.web.shared.ClassificationConstants;
 
 /**
  * This class provides a mail-like user interface to send
- * a certain posting to a selected recipient
+ * a certain comment or posting
  * 
  * @author Stefan Krusche (kruscheqdr-kruscheundpartner.de)
  * 
  */
-public class PostingImpl extends CreateFormDialog {
+public class MessageImpl extends CreateFormDialog {
 	
 	/*
 	 * Dimensions (width & height below are the result
@@ -43,11 +41,22 @@ public class PostingImpl extends CreateFormDialog {
 	private static int WIDTH  = 560;
 	private static int HEIGHT = 480;
 	
-	public PostingImpl(JSONValue jValue) {
-		super(FncGlobals.POSTING_TITLE, FncGlobals.POSTING_SLOGAN);
+	/*
+	 * Reference to message type
+	 */
+	private String type;
+	
+	public MessageImpl(String title, String slogan, String type, JSONValue jValue) {
+		super(title, slogan);
+		
+		/*
+		 * Register message type
+		 */
+		this.type = type;
 		
 		/* 
-		 * Register recipient
+		 * Register posting (for comment) or recipient
+		 * for posting
 		 */
 		this.jValue = jValue;
 		
@@ -72,7 +81,7 @@ public class PostingImpl extends CreateFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new PostingFormImpl();
+		this.form = new MessageFormImpl();
 		this.form.addFormHandler(this);
 
 		this.form.addFormData(this.jValue);		
@@ -85,15 +94,15 @@ public class PostingImpl extends CreateFormDialog {
 	 */
 	public void doSend() {
 
-		String recipient = ((PostingFormImpl)this.form).getRecipient();
+		String target = ((MessageFormImpl)this.form).getTarget();
 		
 		String data = this.form.getFormData();
-		String type = ClassificationConstants.FNC_ID_Posting;
+		String type = this.type;
 
-		final PostingImpl self = this;
+		final MessageImpl self = this;
 
 		BulletinService service = new BulletinService();
-		service.doSubmit(type, recipient, data, new ActivityImpl() {
+		service.doSubmit(type, target, data, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterSend(jValue);
 			}

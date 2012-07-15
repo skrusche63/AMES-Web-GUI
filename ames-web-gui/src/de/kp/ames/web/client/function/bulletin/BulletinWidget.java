@@ -20,9 +20,12 @@ package de.kp.ames.web.client.function.bulletin;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class BulletinWidget {
 
@@ -31,14 +34,32 @@ public class BulletinWidget {
 	 */
 	public BulletinWidget() {		
 	}
-	
+
 	/**
+	 * Create comment or posting
+	 * 
 	 * @param attributes
-	 * @param record
+	 * @param data
 	 * @param activity
 	 */
-	public void doPost(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
-		// TODO
+	public void doCreate(HashMap<String,String> attributes, Record record, Activity activity) {
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+				
+		if (type.equals(ClassificationConstants.FNC_ID_Comment)) {
+		
+			String title  = FncGlobals.COMMENT_TITLE;
+			String slogan = FncGlobals.COMMENT_SLOGAN;
+			
+			// TODO record
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Posting)) {
+
+			String title  = FncGlobals.POSTING_TITLE;
+			String slogan = FncGlobals.POSTING_SLOGAN;
+
+			// TODO record
+		}
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
@@ -31,7 +31,7 @@ public class GroupWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
 		
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Affiliation)) {
@@ -79,7 +79,7 @@ public class GroupWidget {
 	 * @param record
 	 * @param afterSendActivity
 	 */
-	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
+	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
 		final GroupWidget self = this;
 		
@@ -105,7 +105,7 @@ public class GroupWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
 		final GroupWidget self = this;
 		
@@ -132,7 +132,7 @@ public class GroupWidget {
 	 * @param record
 	 * @param afterGetActivity
 	 */
-	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
 		/*
 		 * Prepare get request
 		 */

@@ -22,8 +22,7 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
@@ -49,7 +48,7 @@ public class ProductWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
 
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Product)) {
@@ -85,7 +84,7 @@ public class ProductWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
+	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
 		final ProductWidget self = this;
 		
@@ -111,7 +110,7 @@ public class ProductWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
 		final ProductWidget self = this;
 		
@@ -131,11 +130,11 @@ public class ProductWidget {
 		
 	}
 
-	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+	public void doView(HashMap<String,String> attributes, Record record) {
 		// TODO
 	}
 
-	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
 		// TODO
 	}
 

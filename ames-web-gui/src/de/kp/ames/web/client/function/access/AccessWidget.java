@@ -21,8 +21,7 @@ package de.kp.ames.web.client.function.access;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
@@ -59,7 +58,7 @@ public class AccessWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
 		// TODO
 	}
 
@@ -70,7 +69,7 @@ public class AccessWidget {
 	 * @param record
 	 * @param afterSendActivity
 	 */
-	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
+	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
 		final AccessWidget self = this;
 		
@@ -96,7 +95,7 @@ public class AccessWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
 		final AccessWidget self = this;
 		
@@ -122,7 +121,7 @@ public class AccessWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+	public void doView(HashMap<String,String> attributes, Record record) {
 
 		/*
 		 * Reference to the remote object to be viewed
@@ -161,7 +160,7 @@ public class AccessWidget {
 	 * @param record
 	 * @param afterGetActivity
 	 */
-	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
 		/*
 		 * Prepare get request
 		 */

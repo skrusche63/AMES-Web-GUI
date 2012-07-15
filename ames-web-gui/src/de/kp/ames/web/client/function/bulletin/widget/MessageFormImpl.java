@@ -39,7 +39,7 @@ import de.kp.ames.web.client.function.globals.FncAttrs;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.JaxrConstants;
 
-public class PostingFormImpl extends FormImpl {
+public class MessageFormImpl extends FormImpl {
 	
 	private static String RIM_ID   = JaxrConstants.RIM_ID;
 	private static String RIM_NAME = JaxrConstants.RIM_NAME;
@@ -60,9 +60,9 @@ public class PostingFormImpl extends FormImpl {
 	/*
 	 * Reference to recipient data
 	 */
-	JSONValue jRecipient;
+	JSONValue jTarget;
 	
-	public PostingFormImpl() {
+	public MessageFormImpl() {
 
 		/*
 		 * Note, that width and height used below are the result
@@ -144,12 +144,12 @@ public class PostingFormImpl extends FormImpl {
 	 */
 	public void addFormData(JSONValue jValue) {
 
-		this.jRecipient = jValue;
+		this.jTarget = jValue;
 		
 		/*
 		 * Recipient name
 		 */
-		String name = jRecipient.isObject().get(RIM_NAME).isString().stringValue();
+		String name = jTarget.isObject().get(RIM_NAME).isString().stringValue();
 		to.setValue(name);
 
 	}
@@ -183,9 +183,9 @@ public class PostingFormImpl extends FormImpl {
 	 * 
 	 * @return
 	 */
-	public String getRecipient() {
+	public String getTarget() {
 
-		String recipient = jRecipient.isObject().get(RIM_ID).isString().stringValue();
+		String recipient = jTarget.isObject().get(RIM_ID).isString().stringValue();
 		return recipient;
 	
 	}

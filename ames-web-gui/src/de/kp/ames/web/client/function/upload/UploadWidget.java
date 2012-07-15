@@ -21,8 +21,7 @@ package de.kp.ames.web.client.function.upload;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
@@ -49,7 +48,7 @@ public class UploadWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
 		
 		/*
 		 * Prepare data for delete request;
@@ -81,7 +80,7 @@ public class UploadWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+	public void doView(HashMap<String,String> attributes, Record record) {
 
 		/*
 		 * Prepare data for view request

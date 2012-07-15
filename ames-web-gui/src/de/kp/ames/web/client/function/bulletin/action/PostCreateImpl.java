@@ -21,23 +21,32 @@ package de.kp.ames.web.client.function.bulletin.action;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
+import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.action.grid.GridPostImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.bulletin.BulletinWidget;
 
-public class PostCreateImpl extends GridPostImpl {
+public class PostCreateImpl extends GridCreateImpl {
+
+	/*
+	 * Reference to contact
+	 */
+	private Record contact;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param grid (contact)
-	 * @param record (contact)
+	 * @param grid
 	 */
-	public PostCreateImpl(Grid grid, ListGridRecord record) {
-		super(grid, record);
+	public PostCreateImpl(Grid grid, Record record) {
+		super(grid);
+		
+		this.contact = record;
+		
 	}
 
 	/* (non-Javadoc)
@@ -50,9 +59,9 @@ public class PostCreateImpl extends GridPostImpl {
 		final PostCreateImpl self = this;
 		
 		BulletinWidget widget = new BulletinWidget();
-		widget.doPost(attributes, record, new ActivityImpl() {
+		widget.doCreate(attributes, this.contact, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-				self.doAfterPost(jValue);
+				self.doAfterCreate(jValue);
 			}			
 		});
 

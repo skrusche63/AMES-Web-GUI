@@ -20,7 +20,7 @@ package de.kp.ames.web.client.function.comm;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
 public class CommWidget {
 
@@ -36,7 +36,7 @@ public class CommWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+	public void doView(HashMap<String,String> attributes, Record record) {
 		// TODO
 	}
 

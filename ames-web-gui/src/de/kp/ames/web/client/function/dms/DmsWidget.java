@@ -22,6 +22,7 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.activity.Activity;
@@ -56,7 +57,7 @@ public class DmsWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, ListGridRecord record, Activity activity) {
+	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
 		
 		/*
 		 * Prepare data for delete request
@@ -81,7 +82,7 @@ public class DmsWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
+	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
 		final DmsWidget self = this;
 		
@@ -107,7 +108,7 @@ public class DmsWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
 		final DmsWidget self = this;
 		
@@ -130,7 +131,7 @@ public class DmsWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doView(HashMap<String,String> attributes, ListGridRecord record) {
+	public void doView(HashMap<String,String> attributes, Record record) {
 
 		/*
 		 * Prepare data for view request
@@ -190,7 +191,7 @@ public class DmsWidget {
 	 * @param record
 	 * @param afterGetActivity
 	 */
-	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
 		// TODO
 	}
 

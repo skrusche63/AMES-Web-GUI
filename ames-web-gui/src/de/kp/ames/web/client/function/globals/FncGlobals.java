@@ -14,7 +14,6 @@ public class FncGlobals {
 	 * Classification of bulletin board
 	 */
 	public static String FNC_APP_ID_Bulletin = FNC_ID_App + ":Bulletin";	
-	public static String FNC_ID_Posting = FNC_ID + ":Posting";
 	/*
 	 * Classification of desktop
 	 */
@@ -33,28 +32,16 @@ public class FncGlobals {
 	public static String FNC_APP_ID_ScmSys = FNC_ID_App + ":ScmSys";
 
 	/*
-	 * Method
-	 */
-	public static String METHOD = "method";
-	
-	public static String EXPLORE_METHOD  = "explore";
-	public static String REGISTER_METHOD = "register";
-	public static String SET_METHOD      = "set";
-	public static String SHOW_METHOD     = "show";
-	public static String SUBMIT_METHOD   = "submit";
-	
-	/*
-	 * Service identifier
-	 */
-	public static String BULLETIN_SERVICE_ID   = "bulletin";
-	public static String DISCLAIMER_SERVICE_ID = "disclaimer";
-	public static String SCM_SERVICE_ID        = "scm";
-
-	/*
 	 * Bulletin Board
 	 */
 	public static String BULLETIN_TITLE  = "Bulletin Board";
 	public static String BULLETIN_SLOGAN = "Use the bulletin board to post information requests to other community members.";
+
+	/*
+	 * Comment
+	 */
+	public static String COMMENT_TITLE  = "Comment";
+	public static String COMMENT_SLOGAN = "Use this widget to comment a certain posting.";
 
 	/*
 	 * Help

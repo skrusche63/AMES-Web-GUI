@@ -23,6 +23,7 @@ import java.util.HashMap;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.PostingObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
@@ -40,6 +41,8 @@ public class PostGridImpl extends RemoteGridImpl {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();		
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Posting);
+
 		if (recipient != null) attributes.put(MethodConstants.ATTR_TARGET, recipient);
 
 		/*

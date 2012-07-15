@@ -21,8 +21,7 @@ package de.kp.ames.web.client.function.user;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.function.user.widget.UserEditDialog;
@@ -44,7 +43,7 @@ public class UserWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doEdit(final HashMap<String,String> attributes, final ListGridRecord record, final Activity afterSendActivity) {
+	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 		
 		final UserWidget self = this;
 		
@@ -62,7 +61,7 @@ public class UserWidget {
 	 * @param attributes
 	 * @param record
 	 */
-	public void doGet(final HashMap<String,String> attributes, final ListGridRecord record) {
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
 		final UserWidget self = this;
 		
@@ -81,7 +80,7 @@ public class UserWidget {
 	 * @param record
 	 * @param afterGetActivity
 	 */
-	private void doGet(HashMap<String,String> attributes, ListGridRecord record, ActivityImpl afterGetActivity) {
+	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
 
 		/*
 		 * Prepare get request

@@ -2,7 +2,7 @@ package de.kp.ames.web.client.core.util;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
 public class JsonConverter {
 
@@ -11,7 +11,7 @@ public class JsonConverter {
 	 * @param keys
 	 * @return
 	 */
-	public static JSONObject recordToJson(ListGridRecord record, String[] keys) {
+	public static JSONObject recordToJson(Record record, String[] keys) {
 		
 		JSONObject jRecord = new JSONObject();
 		

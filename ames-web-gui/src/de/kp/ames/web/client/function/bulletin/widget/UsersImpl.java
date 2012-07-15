@@ -18,12 +18,16 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.function.bulletin.handler.ContactGridMenuHandlerImpl;
 import de.kp.ames.web.client.function.bulletin.handler.ContactGridRecordHandlerImpl;
 import de.kp.ames.web.client.function.user.data.UserGridImpl;
 import de.kp.ames.web.client.handler.RemoveHandler;
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class UsersImpl extends VLayout implements RemoveHandler {
 
@@ -48,7 +52,13 @@ public class UsersImpl extends VLayout implements RemoveHandler {
 		/*
 		 * Assign context specific menu handler
 		 */
-		grid.addMenuHandler(new ContactGridMenuHandlerImpl());
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Posting);
+		
+		ContactGridMenuHandlerImpl menuHandler = new ContactGridMenuHandlerImpl();
+		menuHandler.setParams(attributes);
+
+		grid.addMenuHandler(menuHandler);
 
 		/*
 		 * Assign context specific record handler
