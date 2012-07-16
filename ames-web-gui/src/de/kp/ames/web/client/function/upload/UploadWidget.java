@@ -22,12 +22,17 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.product.ProductService;
+import de.kp.ames.web.client.function.upload.widget.UploadCreateDialog;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JsonConstants;
@@ -36,19 +41,48 @@ import de.kp.ames.web.shared.ServiceConstants;
 
 public class UploadWidget {
 
-	/*
+	/**
+	 * Constructor
+	 * 
 	 * The target of all the upload widget requests
-	 * is the respective transient cache
-	 */	
+	 * is the respective transient server cache
+	 */
 	public UploadWidget() {
 	}
 
 	/**
+	 * Delete cache entry
+	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
+	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
+
+		SC.confirm(FncGlobals.CONFIRM_CACHE_DELETE, new BooleanCallback() {  
+ 
+			public void execute(Boolean value) {  
+                if (value != null && value) {  
+                	/*
+                	 * Delete confirmed
+                	 */
+                	doDeleteConfirmed(attributes, record, activity);
+ 
+                }  
+            }  
+        
+		});
+		
+	}
+
+	/**
+	 * Delete cache entry
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doDeleteConfirmed(HashMap<String,String> attributes, Record record, Activity activity) {
 		
 		/*
 		 * Prepare data for delete request;
@@ -69,11 +103,24 @@ public class UploadWidget {
 	}
 	
 	/**
+	 * Upload local file into server cache
+	 * 
 	 * @param attributes
 	 * @param activity
 	 */
 	public void doUpload(HashMap<String,String> attributes, Activity activity) {
-		// TODO
+		
+		/*
+		 * Create dialog
+		 */
+		UploadCreateDialog createDialog = new UploadCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(activity);
+		
 	}
 	
 	/**

@@ -63,7 +63,7 @@ public class DmsCreateDialog extends CreateFormDialog {
 		/*
 		 * Request specific parameters
 		 */
-		String type  = this.form.getParam(MethodConstants.ATTR_TYPE);
+		String type  = this.getParam(MethodConstants.ATTR_TYPE);
 		new DmsService().doSubmit(type, data, this.sendActivity);
 
 	}

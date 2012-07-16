@@ -21,14 +21,11 @@ package de.kp.ames.web.client.function.access.widget;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.function.access.AccessService;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 
 public class AccessorEditDialog extends EditFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
-	private static String SLOGAN = "Use this widget to edit a certain accessor.";
 
 	/**
 	 * Constructor
@@ -36,7 +33,7 @@ public class AccessorEditDialog extends EditFormDialog {
 	 * @param jValue
 	 */
 	public AccessorEditDialog(JSONValue jValue) {
-		super(TITLE, SLOGAN, jValue);
+		super(FncGlobals.ACCESSOR_E_TITLE, FncGlobals.ACCESSOR_E_SLOGAN, jValue);
 	}
 
 	/* (non-Javadoc)

@@ -23,7 +23,8 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
@@ -31,6 +32,8 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.client.function.dms.widget.DmsCreateDialog;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
@@ -38,7 +41,7 @@ import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class DmsWidget {
-
+	
 	/**
 	 * Constructor
 	 */
@@ -47,9 +50,21 @@ public class DmsWidget {
 
 	/**
 	 * @param attributes
-	 * @param activity
+	 * @param afterSendActivity
 	 */
-	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+	public void doCreate(HashMap<String,String> attributes, Activity afterSendActivity) {
+		
+		/*
+		 * Create dialog
+		 */
+		DmsCreateDialog createDialog = new DmsCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(afterSendActivity);
+
 	}
 
 	/**
@@ -57,8 +72,31 @@ public class DmsWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
-		
+	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
+
+		SC.confirm(FncGlobals.CONFIRM_DMS_DELETE, new BooleanCallback() {  
+ 
+			public void execute(Boolean value) {  
+                if (value != null && value) {  
+                	/*
+                	 * Delete confirmed
+                	 */
+                	doDeleteConfirmed(attributes, record, activity);
+ 
+                }  
+            }  
+        
+		});
+
+	}
+
+	/**
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doDeleteConfirmed(HashMap<String,String> attributes, Record record, Activity activity) {
+
 		/*
 		 * Prepare data for delete request
 		 */
@@ -74,7 +112,7 @@ public class DmsWidget {
 		 */
 		DmsService service = new DmsService();
 		service.doDelete(attributes, data, activity);
-
+		
 	}
 
 	/**

@@ -147,9 +147,9 @@ public class MessageFormImpl extends FormImpl {
 		this.jTarget = jValue;
 		
 		/*
-		 * Recipient name
+		 * Recipient name or posting subject
 		 */
-		String name = jTarget.isObject().get(RIM_NAME).isString().stringValue();
+		String name = (jTarget.isObject().containsKey(RIM_NAME)) ? jTarget.isObject().get(RIM_NAME).isString().stringValue() : jTarget.isObject().get(RIM_SUBJECT).isString().stringValue();
 		to.setValue(name);
 
 	}

@@ -46,8 +46,8 @@ public class GroupCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final GroupCreateImpl self = this;
-		
 		GroupWidget widget = new GroupWidget();
+
 		widget.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);

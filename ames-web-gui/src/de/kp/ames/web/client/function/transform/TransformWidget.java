@@ -27,6 +27,7 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.client.function.transform.widget.TransformCreateDialog;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
@@ -45,7 +46,18 @@ public class TransformWidget {
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-		// TODO
+		
+		/*
+		 * Create dialog
+		 */
+		TransformCreateDialog createDialog = new TransformCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(activity);
+
 	}
 
 	/**

@@ -20,11 +20,15 @@ package de.kp.ames.web.client.function.bulletin;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.client.function.bulletin.widget.MessageImpl;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
 public class BulletinWidget {
@@ -44,22 +48,48 @@ public class BulletinWidget {
 	 */
 	public void doCreate(HashMap<String,String> attributes, Record record, Activity activity) {
 
+		String title  = null;
+		String slogan = null;
+		
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 				
+		JSONValue jValue = null;
+		
 		if (type.equals(ClassificationConstants.FNC_ID_Comment)) {
 		
-			String title  = FncGlobals.COMMENT_TITLE;
-			String slogan = FncGlobals.COMMENT_SLOGAN;
+			title  = FncGlobals.COMMENT_TITLE;
+			slogan = FncGlobals.COMMENT_SLOGAN;
 			
-			// TODO record
+			String[] keys = {
+					JaxrConstants.RIM_ID,
+					JaxrConstants.RIM_SUBJECT
+				};
+				
+				jValue = JsonConverter.recordToJson(record, keys);
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Posting)) {
 
-			String title  = FncGlobals.POSTING_TITLE;
-			String slogan = FncGlobals.POSTING_SLOGAN;
+			title  = FncGlobals.POSTING_TITLE;
+			slogan = FncGlobals.POSTING_SLOGAN;
 
-			// TODO record
+			String[] keys = {
+				JaxrConstants.RIM_ID,
+				JaxrConstants.RIM_NAME
+			};
+			
+			jValue = JsonConverter.recordToJson(record, keys);
+			
+
 		}
+
+		MessageImpl messageDialog = new MessageImpl(title, slogan, type, jValue);
+
+		/*
+		 * Provide request specific information
+		 */
+		messageDialog.setParams(attributes);
+		messageDialog.addSendActivity(activity);
+
 	}
 
 }

@@ -20,8 +20,7 @@ package de.kp.ames.web.client.function.access.action;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridGetImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.access.AccessWidget;
@@ -34,7 +33,7 @@ public class RemoteGetImpl  extends GridGetImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public RemoteGetImpl(Grid grid, ListGridRecord record) {
+	public RemoteGetImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

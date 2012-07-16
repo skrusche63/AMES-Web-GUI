@@ -36,6 +36,8 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
+import com.smartgwt.client.widgets.tree.events.NodeContextClickEvent;
+import com.smartgwt.client.widgets.tree.events.NodeContextClickHandler;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
@@ -146,8 +148,8 @@ public class TreeImpl extends TreeGrid implements Tree {
 	     */
 	    final TreeImpl self = this;
 	    
-	    this.addRowContextClickHandler(new RowContextClickHandler() {
-			public void onRowContextClick(RowContextClickEvent event) {
+	    this.addNodeContextClickHandler(new NodeContextClickHandler() {
+			public void onNodeContextClick(NodeContextClickEvent event) {
 				self.afterContextMenu(event);
 			}		
 	    });
@@ -202,9 +204,9 @@ public class TreeImpl extends TreeGrid implements Tree {
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#afterContextMenu(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
+	 * @see de.kp.ames.web.client.core.tree.Tree#afterContextMenu(com.smartgwt.client.widgets.tree.events.NodeContextClickEvent)
 	 */
-	public void afterContextMenu(RowContextClickEvent event) {
+	public void afterContextMenu(NodeContextClickEvent event) {
 		/*
 		 * Stop event propagation
 		 */
@@ -213,7 +215,7 @@ public class TreeImpl extends TreeGrid implements Tree {
 		/*
 		 * Retrieve affected tree node
 		 */
-		TreeNode node = (TreeNode)event.getRecord();
+		TreeNode node = event.getNode();
 		
 		/*
 		 * Invoke Tree MenuHandler

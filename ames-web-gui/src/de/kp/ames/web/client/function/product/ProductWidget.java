@@ -23,57 +23,94 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
-import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.function.product.widget.ProductorCreateDialog;
 import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.MethodConstants;
 
 public class ProductWidget {
 
+	/**
+	 * Constructor
+	 */
 	public ProductWidget() {
 	}
 	
 	/**
+	 * Create productor
+	 * 
 	 * @param attributes
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-		// TODO
+
+		/*
+		 * Create dialog
+		 */
+		ProductorCreateDialog createDialog = new ProductorCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(activity);
+		
 	}
 
 	/**
+	 * Delete product or productor
+	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
+	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
 
-		String type = attributes.get(MethodConstants.ATTR_TYPE);
-		if (type.equals(ClassificationConstants.FNC_ID_Product)) {
+		SC.confirm(FncGlobals.CONFIRM_ACCESSOR_DELETE, new BooleanCallback() {  
+ 
+			public void execute(Boolean value) {  
+                if (value != null && value) {  
+                	/*
+                	 * Delete confirmed
+                	 */
+                	doDeleteConfirmed(attributes, record, activity);
+ 
+                }  
+            }  
+        
+		});
+		
+	}
+
+	/**
+	 * Delete product or productor
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doDeleteConfirmed(HashMap<String,String> attributes, Record record, Activity activity) {
+
+		/*
+		 * Prepare data for delete request
+		 */
+		String[] keys = {
+			JaxrConstants.RIM_ID
+		};
+		
+		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
+		String data = jRecord.toString();
 			
-			// TODO
-			
-		} else if (type.equals(ClassificationConstants.FNC_ID_Productor)) {
-			
-			/*
-			 * Prepare data for delete request
-			 */
-			String[] keys = {
-				JaxrConstants.RIM_ID
-			};
-			
-			JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-			String data = jRecord.toString();
-			
-			/*
-			 * Invoke delete request
-			 */
-			ProductService service = new ProductService();
-			service.doDelete(attributes, data, activity);
-			
-		}
+		/*
+		 * Invoke delete request
+		 */
+		ProductService service = new ProductService();
+		service.doDelete(attributes, data, activity);
 		
 	}
 	

@@ -46,9 +46,10 @@ public class AccessorCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final AccessorCreateImpl self = this;
-		
 		AccessWidget widget = new AccessWidget();
+
 		widget.doCreate(attributes, new ActivityImpl() {
+			
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}

@@ -1,5 +1,7 @@
 package de.kp.ames.web.client.function.globals;
 
+import de.kp.ames.web.client.core.globals.GUIGlobals;
+
 public class FncGlobals {
 
 	/*
@@ -30,6 +32,16 @@ public class FncGlobals {
 	 * Classification of Source Code Management System
 	 */
 	public static String FNC_APP_ID_ScmSys = FNC_ID_App + ":ScmSys";
+
+	/*
+	 * Accessor
+	 */
+
+	public static String ACCESSOR_C_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
+	public static String ACCESSOR_C_SLOGAN = "Use this widget to create a new accessor.";
+
+	public static String ACCESSOR_E_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
+	public static String ACCESSOR_E_SLOGAN = "Use this widget to edit a certain accessor.";
 
 	/*
 	 * Bulletin Board
@@ -69,5 +81,18 @@ public class FncGlobals {
 
 	public static String SCM_EXPLORER = "Package Explorer";
 	public static String SCM_MODULE   = "Module Viewer";
-	
+
+	/*
+	 * Confirm delete messages
+	 */
+	public static String CONFIRM_DELETE_PREFIX   = "Do you really want to delete the selected ";
+
+	public static String CONFIRM_ACCESSOR_DELETE = CONFIRM_DELETE_PREFIX + "<b>Accessor</b>?";
+	public static String CONFIRM_CACHE_DELETE    = CONFIRM_DELETE_PREFIX + "<b>Cache Entry</b>?";
+	public static String CONFIRM_DMS_DELETE      = CONFIRM_DELETE_PREFIX + "<b>File</b>?";
+	public static String CONFIRM_GROUP_DELETE    = CONFIRM_DELETE_PREFIX + "<b>Group</b>?";
+	public static String CONFIRM_NS_DELETE       = CONFIRM_DELETE_PREFIX + "<b>Namespace</b>?";
+	public static String CONFIRM_PRODUCT_DELETE  = CONFIRM_DELETE_PREFIX + "<b>Product</b> or <b>Productor</b>?";
+	public static String CONFIRM_ROLE_DELETE     = CONFIRM_DELETE_PREFIX + "<b>Responsibility</b> or <b>Role</b>?";
+
 }

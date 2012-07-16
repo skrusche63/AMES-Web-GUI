@@ -28,12 +28,14 @@ public class AffiliationCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final AffiliationCreateImpl self = this;
-		
 		GroupWidget widget = new GroupWidget();
+
 		widget.doCreate(attributes, new ActivityImpl() {
+			
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			
+		
 		});
 
 	}

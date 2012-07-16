@@ -22,19 +22,24 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.client.function.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.function.access.widget.AccessorEditDialog;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.MethodConstants;
 
 public class AccessWidget {
-
+	
 	/**
 	 * Constructor
 	 */
@@ -48,7 +53,18 @@ public class AccessWidget {
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-		// TODO
+		
+		/*
+		 * Create dialog
+		 */
+		AccessorCreateDialog createDialog = new AccessorCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(activity);
+		
 	}
 
 	/**
@@ -58,7 +74,25 @@ public class AccessWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
+	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
+
+		SC.confirm(FncGlobals.CONFIRM_ACCESSOR_DELETE, new BooleanCallback() {  
+ 
+			public void execute(Boolean value) {  
+                if (value != null && value) {  
+                	/*
+                	 * Delete confirmed
+                	 */
+                	doDeleteConfirmed(attributes, record, activity);
+ 
+                }  
+            }  
+        
+		});
+		
+	}
+
+	public void doDeleteConfirmed(HashMap<String,String> attributes, Record record, Activity activity) {
 		// TODO
 	}
 
@@ -199,7 +233,7 @@ public class AccessWidget {
 			// TODO
 		
 		} else {
-			// TDO
+			// TODO
 		}
 	}
 

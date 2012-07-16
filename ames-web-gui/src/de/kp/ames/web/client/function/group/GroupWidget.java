@@ -1,14 +1,36 @@
 package de.kp.ames.web.client.function.group;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.function.group.widget.GroupCreateDialog;
 import de.kp.ames.web.client.function.group.widget.GroupEditDialog;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
@@ -22,8 +44,49 @@ public class GroupWidget {
 	public GroupWidget() {
 	}
 
+	/**
+	 * Create group
+	 * 
+	 * @param attributes
+	 * @param activity
+	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-		// TODO
+
+		/*
+		 * Create dialog
+		 */
+		GroupCreateDialog createDialog = new GroupCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(activity);
+	}
+
+	/**
+	 * Delete group
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
+
+		SC.confirm(FncGlobals.CONFIRM_GROUP_DELETE, new BooleanCallback() {  
+ 
+			public void execute(Boolean value) {  
+                if (value != null && value) {  
+                	/*
+                	 * Delete confirmed
+                	 */
+                	doDeleteConfirmed(attributes, record, activity);
+ 
+                }  
+            }  
+        
+		});
+
 	}
 
 	/**
@@ -31,7 +94,7 @@ public class GroupWidget {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
+	public void doDeleteConfirmed(HashMap<String,String> attributes, Record record, Activity activity) {
 		
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Affiliation)) {

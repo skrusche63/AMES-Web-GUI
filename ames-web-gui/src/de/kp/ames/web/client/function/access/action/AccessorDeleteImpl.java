@@ -21,8 +21,7 @@ package de.kp.ames.web.client.function.access.action;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
@@ -36,7 +35,7 @@ public class AccessorDeleteImpl extends GridDeleteImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public AccessorDeleteImpl(Grid grid, ListGridRecord record) {
+	public AccessorDeleteImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 
@@ -47,13 +46,15 @@ public class AccessorDeleteImpl extends GridDeleteImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		final AccessorDeleteImpl self = this;
-		
+		final AccessorDeleteImpl self = this;		
 		AccessWidget widget = new AccessWidget();
+		
 		widget.doDelete(attributes, record, new ActivityImpl() {
+
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				
 			}
+		
 		});
 		
 	}
