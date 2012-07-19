@@ -18,15 +18,22 @@ package de.kp.ames.web.client.function.bulletin.widget;
  *
  */
 
+import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.function.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.function.bulletin.event.PostingListener;
 import de.kp.ames.web.client.handler.RemoveHandler;
+import de.kp.ames.web.client.model.PostingObject;
 
 public class DetailImpl extends VLayout implements PostingListener, RemoveHandler {
 
+	/*
+	 * Reference to Html pane
+	 */
+	private HTMLPane pane;
+	
 	/**
 	 * Constructor
 	 */
@@ -41,27 +48,18 @@ public class DetailImpl extends VLayout implements PostingListener, RemoveHandle
 		/*
 		 * Build member
 		 */
+		pane = new HTMLPane();
 		
-		// TODO
+		pane.setWidth100();
+		pane.setHeight100();
+
+		this.setMembers(pane);
 		
 		/*
 		 * Context specific event handling
 		 */
 		BulletinEventManager.getInstance().addPostingListener(this);
 		
-	}
-	
-	/**
-	 * Set content
-	 */
-	public void set() {
-		
-	}
-	/**
-	 * Clear content
-	 */
-	public void reset() {
-		// TODO
 	}
 
 	/* (non-Javadoc)
@@ -75,7 +73,9 @@ public class DetailImpl extends VLayout implements PostingListener, RemoveHandle
 	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
 	 */
 	public void onPostingSelected(ListGridRecord record) {
-		// TODO Auto-generated method stub
+
+		String html = new PostingObject().toHtml(record);
+		pane.setContents(html);
 		
 	}
 	

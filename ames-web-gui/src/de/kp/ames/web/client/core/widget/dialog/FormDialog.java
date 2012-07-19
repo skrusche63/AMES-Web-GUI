@@ -151,7 +151,7 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	public ClickHandler createB1ClickHandler() {
 		return new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				doSend();				
+				doB1Click();				
 			}			
 		};
 	}
@@ -162,9 +162,45 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	public ClickHandler createB2ClickHandler() {
 		return new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				destroy();				
+				doB2Click();				
 			}			
 		};
 	}
 
+	/**
+	 * Dialog handling after second button (B1) clicked
+	 */
+	public void doB1Click() {		
+		/*
+		 * Send respective form content
+		 */
+		this.doSend();				
+
+		/*
+		 * Initiate before remove processing
+		 */
+		this.beforeRemove();
+		
+		/*
+		 * Destroy window
+		 */
+		this.destroy();
+		
+	}
+	
+	/**
+	 * Dialog handling after second button (B2) clicked
+	 */
+	public void doB2Click() {
+		/*
+		 * Initiate before remove processing
+		 */
+		this.beforeRemove();
+		
+		/*
+		 * Destroy window
+		 */
+		this.destroy();
+
+	}
 }

@@ -36,7 +36,14 @@ public class TransformService extends ServiceImpl {
 	}
 
 	/**
-	 * A JSON based non-widget APPLY request
+	 * A JSON based non-widget APPLY request; this request supports the
+	 * application of a certain transformator (source) against a specific
+	 * registry-object (source). The result of the transformation is
+	 * registered as repository item in a target object.
+	 * 
+	 *                 source --> service --> target
+	 * 
+	 * This functionality actually has not UI representation.
 	 * 
 	 * @param source
 	 * @param target

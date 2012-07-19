@@ -55,6 +55,9 @@ public class FncGlobals {
 	public static String COMMENT_TITLE  = "Comment";
 	public static String COMMENT_SLOGAN = "Use this widget to comment a certain posting.";
 
+	public static String COMMENT_G_TITLE  = GUIGlobals.APP_TITLE + ": Comment Viewer";
+	public static String COMMENT_G_SLOGAN = "Use this widget to view posting specific comments.";
+
 	/*
 	 * Help
 	 */
@@ -66,6 +69,12 @@ public class FncGlobals {
 	 */
 	public static String DISCLAIMER_TITLE  = "Disclaimer";
 	public static String DISCLAIMER_SLOGAN = "Please read this disclaimer carefully.";
+
+	/*
+	 * Group
+	 */
+	public static String GROUP_G_TITLE  = GUIGlobals.APP_TITLE + ": Group Viewer";
+	public static String GROUP_G_SLOGAN = "Use this widget to view group specific information.";
 
 	/*
 	 * Posting
@@ -83,6 +92,27 @@ public class FncGlobals {
 	public static String SCM_MODULE   = "Module Viewer";
 
 	/*
+	 * Transform-Layer
+	 */
+	public static String SPEC_C_TITLE  = GUIGlobals.APP_TITLE + ": Specification Editor";;
+	public static String SPEC_C_SLOGAN = "Use this widget to add a new specification.";
+
+	public static String TRANSFORM_C_TITLE  = GUIGlobals.APP_TITLE + ": Transformator Editor";;
+	public static String TRANSFORM_C_SLOGAN = "Use this widget to create a new transformator.";
+
+	/*
+	 * Upload-Layer
+	 */
+	public static String UPLOAD_C_TITLE  = GUIGlobals.APP_TITLE + ": Upload Editor";;
+	public static String UPLOAD_C_SLOGAN = "Use this widget to upload files to server cache.";
+
+	/*
+	 * User-Layer
+	 */
+	public static String USER_G_TITLE  = GUIGlobals.APP_TITLE + ": User Viewer";
+	public static String USER_G_SLOGAN = "Use this widget to view user specific information.";
+
+	/*
 	 * Confirm delete messages
 	 */
 	public static String CONFIRM_DELETE_PREFIX   = "Do you really want to delete the selected ";
@@ -95,4 +125,9 @@ public class FncGlobals {
 	public static String CONFIRM_PRODUCT_DELETE  = CONFIRM_DELETE_PREFIX + "<b>Product</b> or <b>Productor</b>?";
 	public static String CONFIRM_ROLE_DELETE     = CONFIRM_DELETE_PREFIX + "<b>Responsibility</b> or <b>Role</b>?";
 
+	/*
+	 * Form submit message
+	 */
+	public static String FORM_ERROR = "Please evaluate the provided form data.";
+	
 }

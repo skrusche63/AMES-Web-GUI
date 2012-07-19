@@ -2,19 +2,16 @@ package de.kp.ames.web.client.function.upload.widget;
 
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 
 public class UploadCreateDialog extends CreateFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Upload Editor";;
-	private static String SLOGAN = "Use this widget to upload files to server cache.";
 
 	/**
 	 * Constructor
 	 */
 	public UploadCreateDialog() {
-		super(TITLE, SLOGAN);
+		super(FncGlobals.UPLOAD_C_TITLE, FncGlobals.UPLOAD_C_SLOGAN);
 	}
 
 	/* (non-Javadoc)

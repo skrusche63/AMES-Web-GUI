@@ -63,6 +63,7 @@ public class GroupGridImpl extends RemoteGridImpl {
 		 * externally provided (context-awareness)
 		 */
 
+		
 	}
 	
 	/**

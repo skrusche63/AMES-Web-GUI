@@ -22,6 +22,9 @@ import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
 
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.MethodConstants;
+
 public class CommWidget {
 
 	/**
@@ -37,6 +40,14 @@ public class CommWidget {
 	 * @param record
 	 */
 	public void doView(HashMap<String,String> attributes, Record record) {
+		
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Chat)) {
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Mail)) {
+			
+		}
+		
 		// TODO
 	}
 

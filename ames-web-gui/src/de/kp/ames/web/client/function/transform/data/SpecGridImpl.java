@@ -8,12 +8,17 @@ import de.kp.ames.web.client.model.SpecObject;
 import de.kp.ames.web.client.model.core.DataObject;
 
 public class SpecGridImpl extends LocalGridImpl {
-
+	
 	/**
 	 * Constructor
 	 */
 	public SpecGridImpl() {
 		super();
+
+		/*
+		 * Set row numbering
+		 */
+		this.setShowRowNumbers(true);  
 		
 		/*
 		 * Register data

@@ -1,5 +1,6 @@
 package de.kp.ames.web.client.core.form;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
@@ -17,11 +18,6 @@ public class FormImpl extends VLayout implements Form {
 	 * Reference to dynamic form
 	 */
 	protected DynamicForm scForm;
-
-	/*
-	 * Field cache
-	 */
-	protected HashMap<String, FormItem> formFields;
 	
 	/*
 	 * Reference to Form Handler
@@ -70,6 +66,9 @@ public class FormImpl extends VLayout implements Form {
 	 */
 	public void addFormData(JSONValue jValue) {
 		this.jData = jValue;
+		/*
+		 * Must be overridden
+		 */
 	}
 
 	/* (non-Javadoc)
@@ -94,6 +93,26 @@ public class FormImpl extends VLayout implements Form {
 	 */
 	public void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#createFormItemsAsArray()
+	 */
+	public FormItem[] createFormItemsAsArray() {
+		
+		ArrayList<FormItem> items = createFormItemsAsList();
+		return (FormItem[])items.toArray(new FormItem [items.size()]);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#createFormItemsAsList()
+	 */
+	public ArrayList<FormItem> createFormItemsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;
 	}
 
 }

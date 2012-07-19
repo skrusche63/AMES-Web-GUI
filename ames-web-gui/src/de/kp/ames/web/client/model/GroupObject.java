@@ -19,6 +19,8 @@ package de.kp.ames.web.client.model;
  */
 
 import java.util.ArrayList;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -93,6 +95,18 @@ public class GroupObject extends RegistryObject {
 		
 		return fields;
 		
+	}
+	
+	/**
+	 * A helper method to convert a JSON representation
+	 * of a group object into a html string
+	 * 
+	 * @param jValue
+	 * @return
+	 */
+	public String toHtml(JSONValue jValue) {
+		// TODO
+		return null;
 	}
 	
 }

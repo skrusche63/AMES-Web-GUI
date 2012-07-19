@@ -34,7 +34,28 @@ public class BulletinService extends ServiceImpl {
 	public BulletinService() {
 		super(CoreGlobals.REG_URL, ServiceConstants.BULLETIN_SERVICE_ID);
 	}
-	
+
+	/**
+	 * A JSON based non-widget GET request
+	 * 
+	 * @param format
+	 * @param type
+	 * @param target
+	 * @param activity
+	 */
+	public void doGet(String format, String type, String target, Activity activity) {
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
+		attributes.put(MethodConstants.ATTR_FORMAT, format);
+		attributes.put(MethodConstants.ATTR_TYPE,   type);
+		
+		attributes.put(MethodConstants.ATTR_TARGET, target);
+
+		doGetJson(attributes, activity);
+		
+	}
+
 	/**
 	 * SUBMIT request
 	 * 

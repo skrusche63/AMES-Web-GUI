@@ -34,6 +34,7 @@ import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.dms.widget.DmsCreateDialog;
 import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.function.user.UserService;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
@@ -230,7 +231,23 @@ public class DmsWidget {
 	 * @param afterGetActivity
 	 */
 	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
+
 		// TODO
+	
+
+		/*
+		 * Prepare get request
+		 */
+		String format = FormatConstants.FNC_FORMAT_ID_Object;
+		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		
+		/*
+		 * Invoke get request
+		 */
+		UserService service = new UserService();
+		service.doGet(format, item, afterGetActivity);
+
+	
 	}
 
 	/**

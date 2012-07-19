@@ -31,7 +31,7 @@ import de.kp.ames.web.client.core.http.ConnectionCallback;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.client.core.widget.base.ActionIndicator;
-import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.shared.MethodConstants;
 import de.kp.ames.web.shared.ServiceConstants;
 
 public class LoginService extends ServiceImpl {
@@ -62,7 +62,7 @@ public class LoginService extends ServiceImpl {
 	public void register(final String alias, final String keypass, final ActivityImpl activityCallback) {
 		
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(FncGlobals.REGISTER_METHOD);
+		requestMethod.setName(MethodConstants.METH_REGISTER);
 		
 		requestMethod.addAttribute(CoreAttrs.ALIAS,   alias);
 		requestMethod.addAttribute(CoreAttrs.KEYPASS, keypass);

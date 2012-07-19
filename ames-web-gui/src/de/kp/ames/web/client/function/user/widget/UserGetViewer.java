@@ -20,13 +20,10 @@ package de.kp.ames.web.client.function.user.widget;
 
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 
 public class UserGetViewer extends ViewerImpl {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": User Viewer";
-	private static String SLOGAN = "Use this widget to view user specific information.";
 
 	/**
 	 * Constructor
@@ -34,7 +31,7 @@ public class UserGetViewer extends ViewerImpl {
 	 * @param body
 	 */
 	public UserGetViewer(Canvas body) {
-		super(TITLE, SLOGAN, body);
+		super(FncGlobals.USER_G_TITLE, FncGlobals.USER_G_SLOGAN, body);
 	}
 	
 	/**

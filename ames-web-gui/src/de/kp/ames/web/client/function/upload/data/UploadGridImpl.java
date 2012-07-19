@@ -21,7 +21,6 @@ package de.kp.ames.web.client.function.upload.data;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
-import de.kp.ames.web.client.function.upload.handler.UploadGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.CacheObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.JsonConstants;
@@ -58,12 +57,8 @@ public class UploadGridImpl extends RemoteGridImpl {
 		this.setFields(createGridFields());
 		
 		/*
-		 * Add menu handler
+		 * Menu Handler must be set context specific
 		 */
-		UploadGridMenuHandlerImpl menuHandler = new UploadGridMenuHandlerImpl(this);
-		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
-		
-		this.addMenuHandler(menuHandler);
 		
 	}
 

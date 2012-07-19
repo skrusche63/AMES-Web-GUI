@@ -29,9 +29,11 @@ import com.smartgwt.client.util.SC;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.group.widget.GroupCreateDialog;
 import de.kp.ames.web.client.function.group.widget.GroupEditDialog;
+import de.kp.ames.web.client.model.GroupObject;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
 import de.kp.ames.web.shared.JaxrConstants;
@@ -62,6 +64,7 @@ public class GroupWidget {
 		 */
 		createDialog.setParams(attributes);
 		createDialog.addSendActivity(activity);
+		
 	}
 
 	/**
@@ -235,7 +238,14 @@ public class GroupWidget {
 	 * @param jValue
 	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
-		// TODO
+
+		String html = new GroupObject().toHtml(jValue);
+		
+		String title  = FncGlobals.GROUP_G_TITLE;
+		String slogan = FncGlobals.GROUP_G_SLOGAN;
+		
+		ViewerFactory.createHtmlViewer(title, slogan, html);
+		
 	}
 
 }

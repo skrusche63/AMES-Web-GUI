@@ -18,7 +18,10 @@ package de.kp.ames.web.client.core.form;
  *
  */
 
+import java.util.ArrayList;
+
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 
 import de.kp.ames.web.client.handler.FormHandler;
 
@@ -48,5 +51,15 @@ public interface Form {
 	 * @param readOnly
 	 */
 	public void setReadOnly(boolean readOnly);
-	
+
+	/**
+	 * @return
+	 */
+	public FormItem[] createFormItemsAsArray();
+
+	/**
+	 * @return
+	 */
+	public ArrayList<FormItem> createFormItemsAsList();
+
 }

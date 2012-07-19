@@ -1,6 +1,7 @@
 package de.kp.ames.web.client.core.grid;
 
 import com.google.gwt.json.client.JSONArray;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
@@ -35,7 +36,16 @@ public class LocalGridImpl extends GridImpl {
 
 		this.setShowAllRecords(true);  
         this.setCanReorderRecords(true);
-        
+                
+	}
+	
+	/**
+	 * Add record to grid
+	 * 
+	 * @param record
+	 */
+	public void addRecord(ListGridRecord record) {
+		this.addData(record);
 	}
 	
 	/**

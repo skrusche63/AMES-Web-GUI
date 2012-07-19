@@ -18,19 +18,24 @@ package de.kp.ames.web.client.function.transform.widget;
  *
  */
 
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.transform.TransformService;
+import de.kp.ames.web.client.function.transform.event.TransformEventManager;
+import de.kp.ames.web.client.function.transform.event.TransformListener;
 
+/*
+ * This dialog is used to register a new transformator that
+ * already exists as a cache entry on the server side
+ */
 public class TransformCreateDialog extends CreateFormDialog {
 
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Transformator Editor";;
-	private static String SLOGAN = "Use this widget to create a new transformator.";
-
 	public TransformCreateDialog() {
-		super(TITLE, SLOGAN);
+		super(FncGlobals.TRANSFORM_C_TITLE, FncGlobals.TRANSFORM_C_SLOGAN);
 	}
 
 	/* (non-Javadoc)
@@ -44,6 +49,11 @@ public class TransformCreateDialog extends CreateFormDialog {
 		this.form = new TransformFormImpl();
 		this.form.addFormHandler(this);
 
+		/*
+		 * Register as transform listener
+		 */
+		TransformEventManager.getInstance().addTransformListener((TransformListener)this.form);
+		
 		return this.form;
 		
 	}
@@ -53,9 +63,32 @@ public class TransformCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
+		/*
+		 * Retrieve and validate form data
+		 */
 		String data = this.form.getFormData();
+		if (data == null) {
+			
+			String message = FncGlobals.FORM_ERROR;
+			SC.say(GUIGlobals.APP_TITLE + ": Form Error", message);		
+			
+			return;
+
+		}
+
 		new TransformService().doSubmit(data, this.sendActivity);
 
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#beforeRemove()
+	 */
+	public void beforeRemove() {
+		/*
+		 * Unregister transform listener
+		 */
+		TransformEventManager.getInstance().removeTransformListener((TransformListener)this.form);
+		
 	}	
 
 }

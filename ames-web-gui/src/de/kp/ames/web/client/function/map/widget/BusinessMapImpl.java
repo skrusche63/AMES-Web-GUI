@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.map;
+package de.kp.ames.web.client.function.map.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *

@@ -38,7 +38,6 @@ public class CommGridImpl extends RemoteGridImpl {
 	 */
 	public CommGridImpl(String type) {
 		super(ServiceConstants.COMMUNICATION_SERVICE_ID);		
-
 		/*
 		 * Register data
 		 */
@@ -64,7 +63,7 @@ public class CommGridImpl extends RemoteGridImpl {
 		 * Add menu handler
 		 */
 		CommGridMenuHandlerImpl menuHandler = new CommGridMenuHandlerImpl(this);
-		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		menuHandler.setParams(attributes);
 		
 		this.addMenuHandler(menuHandler);
 		

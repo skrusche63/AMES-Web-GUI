@@ -21,7 +21,6 @@ package de.kp.ames.web.client.function.transform.data;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
-import de.kp.ames.web.client.function.transform.handler.TransformGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.TransformatorObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.ClassificationConstants;
@@ -36,14 +35,14 @@ public class TransformGridImpl extends RemoteGridImpl {
 	 * 
 	 * @param type
 	 */
-	public TransformGridImpl(String type) {
+	public TransformGridImpl() {
 		super(ServiceConstants.TRANSFORM_SERVICE_ID);
 
 		/*
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Transformator);
 
 		/*
 		 * Create data object
@@ -61,12 +60,9 @@ public class TransformGridImpl extends RemoteGridImpl {
 		this.setFields(createGridFields());
 
 		/*
-		 * Add menu handler
+		 * Menu & record handler must be set
+		 * context specific
 		 */
-		TransformGridMenuHandlerImpl menuHandler = new TransformGridMenuHandlerImpl(this);
-		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
-		
-		this.addMenuHandler(menuHandler);
 		
 	}
 

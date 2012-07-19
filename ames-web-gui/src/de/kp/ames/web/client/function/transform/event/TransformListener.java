@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.function.user.action;
+package de.kp.ames.web.client.function.transform.event;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,35 +18,13 @@ package de.kp.ames.web.client.function.user.action;
  *
  */
 
-import java.util.HashMap;
-
 import com.smartgwt.client.data.Record;
-import de.kp.ames.web.client.action.grid.GridGetImpl;
-import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.function.user.UserWidget;
 
-public class UserGetImpl extends GridGetImpl {
+public interface TransformListener {
 
 	/**
-	 * Constructor
-	 * 
-	 * @param grid
 	 * @param record
 	 */
-	public UserGetImpl(Grid grid, Record record) {
-		super(grid, record);
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
-	 */
-	public void execute() {
-
-		HashMap<String,String> attributes = this.getParams();
-		
-		UserWidget widget = new UserWidget();
-		widget.doGet(attributes, record);
-		
-	}
-
+	public void onTransformatorSelected(Record record);
+	
 }

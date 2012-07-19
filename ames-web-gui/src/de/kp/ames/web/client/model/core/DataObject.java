@@ -21,12 +21,23 @@ package de.kp.ames.web.client.model.core;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 public interface DataObject {
+
+	/**
+	 * @return
+	 */
+	public FormItem[] createFormItemsAsArray();
+
+	/**
+	 * @return
+	 */
+	public ArrayList<FormItem> createFormItemsAsList();
 
 	/**
 	 * @return

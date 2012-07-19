@@ -24,9 +24,11 @@ import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.client.function.transform.widget.SpecCreateDialog;
 import de.kp.ames.web.client.function.transform.widget.TransformCreateDialog;
 import de.kp.ames.web.shared.ClassificationConstants;
 import de.kp.ames.web.shared.FormatConstants;
@@ -42,21 +44,43 @@ public class TransformWidget {
 	}
 
 	/**
+	 * Create (local) specification or (remote) transformator
+	 * 
 	 * @param attributes
+	 * @param grid
 	 * @param activity
 	 */
-	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+	public void doCreate(HashMap<String,String> attributes, Grid grid, Activity activity) {
 		
-		/*
-		 * Create dialog
-		 */
-		TransformCreateDialog createDialog = new TransformCreateDialog();
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Specification)) {
+			
+			/*
+			 * Create dialog: the referenced grid is the SpecGrid
+			 */
+			SpecCreateDialog createDialog = new SpecCreateDialog(grid);
+			
+			/*
+			 * Provide request specific information
+			 */
+			createDialog.setParams(attributes);
+			createDialog.addSendActivity(activity);
+			
+		}
+		if (type.equals(ClassificationConstants.FNC_ID_Transformator)) {
 		
-		/*
-		 * Provide request specific information
-		 */
-		createDialog.setParams(attributes);
-		createDialog.addSendActivity(activity);
+			/*
+			 * Create dialog
+			 */
+			TransformCreateDialog createDialog = new TransformCreateDialog();
+			
+			/*
+			 * Provide request specific information
+			 */
+			createDialog.setParams(attributes);
+			createDialog.addSendActivity(activity);
+			
+		}
 
 	}
 

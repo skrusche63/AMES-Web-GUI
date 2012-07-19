@@ -32,13 +32,14 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.base.ActionIndicator;
 import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
+import de.kp.ames.web.client.handler.RemoveHandler;
 import de.kp.ames.web.client.style.GuiStyles;
 
 /**
  * This class is the base window for a modal dialog;
  * it supports the default buttons (ok, cancel)
  */
-public class BaseDialog extends Window {
+public class BaseDialog extends Window implements RemoveHandler {
 
 	protected String title;
 	protected String slogan;
@@ -139,7 +140,7 @@ public class BaseDialog extends Window {
 		 */
 		this.addCloseClickHandler(new CloseClickHandler() {
 			public void onCloseClick(CloseClickEvent event) {
-				self.destroy();				
+				self.doBeforeClose(event);				
 			}			
 		});
 		
@@ -286,6 +287,22 @@ public class BaseDialog extends Window {
 	}
 	
 	/**
+	 * @param event
+	 */
+	protected void doBeforeClose(CloseClickEvent event) {
+		/*
+		 * Initiate before remove processing
+		 */
+		this.beforeRemove();
+		
+		/*
+		 * Destroy window
+		 */
+		this.destroy();
+		
+	}
+	
+	/**
 	 * Click Handler for first button
 	 * 
 	 * @return
@@ -324,6 +341,15 @@ public class BaseDialog extends Window {
 	 */
 	protected void resetIndicator() {
 		ActionIndicator.getInstance().reset();		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
+	 */
+	public void beforeRemove() {
+		/*
+		 * Must be overridden
+		 */		
 	}
 	
 }

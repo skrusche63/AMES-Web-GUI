@@ -22,8 +22,9 @@ import java.util.HashMap;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
-import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
+import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
 import de.kp.ames.web.client.handler.GridMenuHandler;
@@ -46,18 +47,25 @@ public interface Grid {
 	public void addRecordHandler(GridRecordHandler recordHandler);
 	
 	/**
-	 * Event handling after right mouse click
-	 * on grid entry (row)
+	 * Event handling after left mouse click
+	 * on grid entry (cell)
 	 * 
 	 * @param event
 	 */
-	public void afterContextMenu(RowContextClickEvent event);
+	public void afterCellClick(CellClickEvent event);
+	
+	/**
+	 * Event handling after right mouse click
+	 * on grid entry (cell)
+	 * 
+	 * @param event
+	 */
+	public void afterCellContextMenu(CellContextClickEvent event);
 
 	/**
-	 * 
 	 * @param event
 	 */
-	public void afterRecordClick(RecordClickEvent event);
+	public void afterRecordDoubleClick(RecordDoubleClickEvent event);
 
 	/**
 	 * @param event

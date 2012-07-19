@@ -21,6 +21,7 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -103,4 +104,8 @@ public class PostingObject extends ExtrinsicObject {
 	
 	}
 	
+	public String toHtml(Record record) {
+		// TODO
+		return null;
+	}
 }

@@ -90,7 +90,7 @@ public class ExplorerTree extends TreeGrid {
         this.setCanSort(false);
 		
 		Map<String, String> params = new HashMap<String, String>();
-		params.put(FncGlobals.METHOD, FncGlobals.EXPLORE_METHOD);
+		//params.put(FncGlobals.METHOD, FncGlobals.EXPLORE_METHOD);
 		
 		DataSourceField[] fields = {
 			new DataSourceTextField(JaxrConstants.RIM_ID),
@@ -121,7 +121,7 @@ public class ExplorerTree extends TreeGrid {
 	 * @return
 	 */
 	private String getServiceUrl() {
-		return CoreGlobals.BASE_URL + "/" + FncGlobals.SCM_SERVICE_ID;
+		return null;
 	}
 	
 	private RestDataSource createDS(final Map<String,String> params, final DataSourceField[] fields) {

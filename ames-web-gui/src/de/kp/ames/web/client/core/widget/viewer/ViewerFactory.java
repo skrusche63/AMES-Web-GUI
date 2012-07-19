@@ -34,4 +34,29 @@ public class ViewerFactory {
 	    
 	}
 	
+	/**
+	 * @param title
+	 * @param slogan
+	 * @param html
+	 */
+	public static void createHtmlViewer(String title, String slogan, String html) {
+
+		/*
+		 * Build html pane
+		 */
+		HTMLPane htmlPane = new HTMLPane();
+	    htmlPane.setShowEdges(false);
+	    
+	    htmlPane.setWidth100();
+	    htmlPane.setHeight100();
+
+	    htmlPane.setContents(html);
+
+	    /*
+	     * Instantiate viewer
+	     */
+	    new ViewerImpl(title, slogan, htmlPane);
+	    
+	}
+	
 }

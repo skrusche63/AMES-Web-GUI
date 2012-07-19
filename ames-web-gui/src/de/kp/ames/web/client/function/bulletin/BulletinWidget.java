@@ -22,9 +22,10 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
-
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.util.JsonConverter;
+import de.kp.ames.web.client.function.bulletin.data.CommentGridImpl;
+import de.kp.ames.web.client.function.bulletin.widget.CommentsViewer;
 import de.kp.ames.web.client.function.bulletin.widget.MessageImpl;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.shared.ClassificationConstants;
@@ -89,6 +90,26 @@ public class BulletinWidget {
 		 */
 		messageDialog.setParams(attributes);
 		messageDialog.addSendActivity(activity);
+
+	}
+
+	/**
+	 * Get comments
+	 * 
+	 * @param attributes
+	 * @param record
+	 */
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Comment)) {
+
+			String posting = record.getAttributeAsString(JaxrConstants.RIM_ID);
+			CommentGridImpl grid = new CommentGridImpl(posting);
+
+			new CommentsViewer(grid);
+			
+		}
 
 	}
 

@@ -22,10 +22,7 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
-import de.kp.ames.web.client.action.grid.GridPostImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.bulletin.BulletinWidget;

@@ -20,10 +20,16 @@ package de.kp.ames.web.client.model;
 
 import java.util.ArrayList;
 
+import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.SpacerItem;
+import com.smartgwt.client.widgets.form.fields.TextAreaItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
+import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ExtrinsicObject;
+import de.kp.ames.web.shared.JaxrConstants;
 
 public class TransformatorObject extends ExtrinsicObject {
 
@@ -31,6 +37,43 @@ public class TransformatorObject extends ExtrinsicObject {
 	 * Constructor
 	 */
 	public TransformatorObject() {	
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.RegistryObject#createFormItemsAsList()
+	 */
+	public ArrayList<FormItem> createFormItemsAsList() {
+		
+		ArrayList<FormItem> items = new ArrayList<FormItem>();
+
+		/*
+		 * Space for rendering purpose only
+		 */
+		SpacerItem spacer = new SpacerItem();
+		spacer.setHeight(2);
+
+		/*
+		 * Build name
+		 */
+		TextItem nameItem = GuiFormFactory.createScTextItem("<b>Name</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		items.add(nameItem);
+		
+		items.add(spacer);
+		items.add(spacer);
+		
+		/*
+		 * Build description
+		 */
+		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
+		items.add(descItem);
+
+		// TODO
+		
+		/*
+		 * Must be overridden
+		 */
+		return items;
+		
 	}
 
 	/* (non-Javadoc)

@@ -20,17 +20,18 @@ package de.kp.ames.web.client.function.access.widget;
 
 import com.smartgwt.client.widgets.Canvas;
 
+import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.function.access.AccessService;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 
 public class AccessorCreateDialog extends CreateFormDialog {
-
+	
 	/**
 	 * Constructor
 	 */
-	public AccessorCreateDialog() {
-		super(FncGlobals.ACCESSOR_C_TITLE, FncGlobals.ACCESSOR_C_SLOGAN);
+	public AccessorCreateDialog(Grid grid) {
+		super(FncGlobals.ACCESSOR_C_TITLE, FncGlobals.ACCESSOR_C_SLOGAN);		
 	}
 
 	/* (non-Javadoc)
@@ -58,6 +59,11 @@ public class AccessorCreateDialog extends CreateFormDialog {
 		AccessService service = new AccessService();
 		service.doSubmit(data, this.sendActivity);
 
+		/*
+		 * REMARK: This is a remote grid; the after submit
+		 * activity is used to reload the content of the grid
+		 */
+		
 	}	
 	
 }

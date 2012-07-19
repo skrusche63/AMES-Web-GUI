@@ -62,6 +62,11 @@ public class AccessorEditDialog extends EditFormDialog {
 		AccessService service = new AccessService();
 		service.doSubmit(data, this.sendActivity);
 
+		/*
+		 * REMARK: This is a remote grid; the after submit
+		 * activity is used to reload the content of the grid
+		 */
+
 	}	
 	
 }

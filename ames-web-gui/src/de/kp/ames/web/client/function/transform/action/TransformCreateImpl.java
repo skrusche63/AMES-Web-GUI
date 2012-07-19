@@ -45,10 +45,13 @@ public class TransformCreateImpl extends GridCreateImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 
-		final TransformCreateImpl self = this;
-		
+		final TransformCreateImpl self = this;		
 		TransformWidget widget = new TransformWidget();
-		widget.doCreate(attributes, new ActivityImpl() {
+		
+		widget.doCreate(attributes, grid, new ActivityImpl() {
+			/* (non-Javadoc)
+			 * @see de.kp.ames.web.client.core.activity.ActivityImpl#execute(com.google.gwt.json.client.JSONValue)
+			 */
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			

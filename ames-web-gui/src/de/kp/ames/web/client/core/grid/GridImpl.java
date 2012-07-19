@@ -25,10 +25,12 @@ import com.smartgwt.client.types.ExpansionMode;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.RecordClickEvent;
-import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
-import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
-import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellClickHandler;
+import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;
+import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
+import com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
@@ -99,20 +101,50 @@ public class GridImpl extends ListGrid implements Grid {
 		 */
         final GridImpl self = this;
  
-		this.addRecordClickHandler(new RecordClickHandler() {
-			public void onRecordClick(RecordClickEvent event) {
-				self.afterRecordClick(event);				
+        /*
+         * This event is used to respond to a click 
+         * to any cell of the grid with the left mouse
+         */
+		this.addCellClickHandler(new CellClickHandler() {
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.widgets.grid.events.CellClickHandler#onCellClick(com.smartgwt.client.widgets.grid.events.CellClickEvent)
+			 */
+			public void onCellClick(CellClickEvent event) {
+				self.afterCellClick(event);				
 			}
 			
 		});
 		
-		this.addRowContextClickHandler(new RowContextClickHandler() {
-			public void onRowContextClick(RowContextClickEvent event) {
-				self.afterContextMenu(event);
+		/*
+		 * This event is used to respond to a click
+		 * to any cell of the grid with the right mouse
+		 */
+		this.addCellContextClickHandler(new CellContextClickHandler() {
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.widgets.grid.events.CellContextClickHandler#onCellContextClick(com.smartgwt.client.widgets.grid.events.CellContextClickEvent)
+			 */
+			public void onCellContextClick(CellContextClickEvent event) {
+				self.afterCellContextMenu(event);
 			}			
 		});
 
+		/*
+		 * This event is used to respond to a keypress <enter>
+		 * or record double click event; actually the same
+		 */
+		this.addRecordDoubleClickHandler(new RecordDoubleClickHandler() {
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler#onRecordDoubleClick(com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent)
+			 */
+			public void onRecordDoubleClick(RecordDoubleClickEvent event) {
+				self.afterRecordDoubleClick(event);
+			}			
+		});
+		
 		this.addSelectionChangedHandler(new SelectionChangedHandler() {
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.widgets.grid.events.SelectionChangedHandler#onSelectionChanged(com.smartgwt.client.widgets.grid.events.SelectionEvent)
+			 */
 			public void onSelectionChanged(SelectionEvent event) {
 				self.afterSelectionChanged(event);				
 			}
@@ -146,9 +178,9 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#afterContextMenu(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterCellContextMenu(com.smartgwt.client.widgets.grid.events.CellContextClickEvent)
 	 */
-	public void afterContextMenu(RowContextClickEvent event) {
+	public void afterCellContextMenu(CellContextClickEvent event) {
 		/*
 		 * Stop event propagation
 		 */
@@ -167,9 +199,9 @@ public class GridImpl extends ListGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.grid.Grid#afterRecordClick(com.smartgwt.client.widgets.grid.events.RecordClickEvent)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterCellClick(com.smartgwt.client.widgets.grid.events.CellClickEvent)
 	 */
-	public void afterRecordClick(RecordClickEvent event) {
+	public void afterCellClick(CellClickEvent event) {
 		/*
 		 * Stop event propagation
 		 */
@@ -187,6 +219,26 @@ public class GridImpl extends ListGrid implements Grid {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterRecordDoubleClick(com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent)
+	 */
+	public void afterRecordDoubleClick(RecordDoubleClickEvent event) {
+
+		/*
+		 * REMARK: There is no cancel event
+		 */
+		
+		/*
+		 * Retrieve affected grid record
+		 */
+		Record record = event.getRecord();
+
+		/*
+		 * Invoke Grid RecordHandler
+		 */
+		if (this.recordHandler != null) this.recordHandler.doSelect(record);
+		
+	}
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.Grid#afterSelectionChanged(com.smartgwt.client.widgets.grid.events.SelectionEvent)
 	 */

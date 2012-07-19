@@ -2,6 +2,7 @@ package de.kp.ames.web.client.model;
 
 import java.util.ArrayList;
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.ListGridFieldType;
@@ -85,4 +86,8 @@ public class CommentObject extends ExtrinsicObject {
 	
 	}
 	
+	public String toHtml(JSONValue jValue) {
+		// TODO
+		return null;
+	}
 }

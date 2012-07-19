@@ -20,6 +20,7 @@ package de.kp.ames.web.client.function.access;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.BooleanCallback;
@@ -28,7 +29,9 @@ import com.smartgwt.client.util.SC;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.service.FrameService;
+import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.function.access.widget.AccessorEditDialog;
@@ -52,12 +55,12 @@ public class AccessWidget {
 	 * @param attributes
 	 * @param activity
 	 */
-	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+	public void doCreate(HashMap<String,String> attributes, Grid grid, Activity activity) {
 		
 		/*
 		 * Create dialog
 		 */
-		AccessorCreateDialog createDialog = new AccessorCreateDialog();
+		AccessorCreateDialog createDialog = new AccessorCreateDialog(grid);
 		
 		/*
 		 * Provide request specific information
@@ -92,8 +95,31 @@ public class AccessWidget {
 		
 	}
 
+	/**
+	 * Delete accessor
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
 	public void doDeleteConfirmed(HashMap<String,String> attributes, Record record, Activity activity) {
-		// TODO
+
+		/*
+		 * Prepare data for delete request
+		 */
+		String[] keys = {
+			JaxrConstants.RIM_ID
+		};
+		
+		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
+		String data = jRecord.toString();
+		
+		/*
+		 * Invoke delete request
+		 */
+		AccessService service = new AccessService();
+		service.doDelete(attributes, data, activity);
+
 	}
 
 	/**
@@ -183,7 +209,6 @@ public class AccessWidget {
 		String slogan = "Use this widget to view a certain remote object.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);
-
 	
 	}
 

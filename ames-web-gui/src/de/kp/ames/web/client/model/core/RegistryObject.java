@@ -21,6 +21,7 @@ package de.kp.ames.web.client.model.core;
 import java.util.ArrayList;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -30,13 +31,38 @@ import de.kp.ames.web.shared.JaxrConstants;
 import de.kp.ames.web.shared.LabelConstants;
 
 public class RegistryObject implements DataObject {
-	
+
+	/*
+	 * Reference to label style for form items
+	 */
+	protected static String LABEL_STYLE = "x-sc-label";
+
 	/**
 	 * Constructor
 	 */
 	public RegistryObject() {
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createFormItemsAsArray()
+	 */
+	public FormItem[] createFormItemsAsArray() {
+		
+		ArrayList<FormItem> items = createFormItemsAsList();
+		return (FormItem[])items.toArray(new FormItem [items.size()]);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createFormItemsAsList()
+	 */
+	public ArrayList<FormItem> createFormItemsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;		
+	}
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.DataObject#createDataFieldsAsArray()
 	 */

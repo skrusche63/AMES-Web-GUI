@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.model.external;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,6 +21,7 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -35,7 +36,27 @@ public class ExternalObject implements DataObject {
 	 */
 	public ExternalObject() {
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createFormItemsAsArray()
+	 */
+	public FormItem[] createFormItemsAsArray() {
+		
+		ArrayList<FormItem> items = createFormItemsAsList();
+		return (FormItem[])items.toArray(new FormItem [items.size()]);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.DataObject#createFormItemsAsList()
+	 */
+	public ArrayList<FormItem> createFormItemsAsList() {
+		/*
+		 * Must be overridden
+		 */
+		return null;		
+	}
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.DataObject#createDataFieldsAsArray()
 	 */
