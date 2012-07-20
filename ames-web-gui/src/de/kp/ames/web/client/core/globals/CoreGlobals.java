@@ -56,4 +56,10 @@ public class CoreGlobals {
 	public static String WMS_ID  = "urn:de:kp:wms:url";
 	public static String WMS_URL = DOM.getElementById(WMS_ID).getAttribute("content");
 
+	/*
+	 * Property (in index.html) to distinguish between showcase or operational use
+	 */
+	public static String SHOWCASE_FLAG_ID  = "urn:de:kp:showcase";
+	public static boolean SHOWCASE_FLAG = Boolean.valueOf(DOM.getElementById(SHOWCASE_FLAG_ID).getAttribute("content"));
+
 }

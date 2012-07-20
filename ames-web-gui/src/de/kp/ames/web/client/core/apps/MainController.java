@@ -44,6 +44,7 @@ import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.help.HelpImpl;
 import de.kp.ames.web.client.function.login.LoginDialog;
 import de.kp.ames.web.client.function.scm.ScmSysImpl;
+import de.kp.ames.web.client.test.ShowCaseImpl;
 import de.kp.ames.web.shared.JsonConstants;
 
 /**
@@ -96,11 +97,32 @@ public class MainController {
 		return instance;
 	}
 	
+	public void createShowCase() {
+		
+		/* 
+		 * Remove the initial splash screen
+		 */
+		Element splash = DOM.getElementById(GUIGlobals.SPLASH_ID);
+		DOM.removeChild(RootPanel.getBodyElement(), splash);
+
+		/*
+		 * Create viewport
+		 */
+		createViewport();
+
+		/*
+		 * Create ShowCase
+		 */
+		createApp(FncGlobals.FNC_APP_ID_ShowCase);
+
+	}
+	
+	
 	/**
 	 * Create introduction viewport when
 	 * starting the AMES Web application
 	 */
-	public void createWelcome(JSONArray jApps) {
+	public void createOpsCase(JSONArray jApps) {
 		
 		/*
 		 * Register callers apps
@@ -145,33 +167,40 @@ public class MainController {
 	public MenuItem[] getRegisteredAppsAsItems(final ControlLabel control) {
 
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-		for (int i=0; i < jRegisteredApps.size(); i++) {
-			
-			JSONObject jRegisteredApp = jRegisteredApps.get(i).isObject();
-			
-			final String id    = jRegisteredApp.get(JsonConstants.J_ID).isString().stringValue();
-			final String title = jRegisteredApp.get(JsonConstants.J_NAME).isString().stringValue();
-			
-			MenuItem item = new MenuItem(title);		
-			
-			item.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
-				public void onClick(MenuItemClickEvent event) {
-					 
-					/*
-					 * Deselect respective control
-					 */
-					control.setSelected(false);
-					/*
-					 * Invoke main controller to create the app
-					 */ 
-					MainController.getInstance().createApp(id);
-					
-				}				
-			});
+		if (jRegisteredApps != null) {
 
-			items.add(item);
+			/*
+			 * In case of the ShowCase application no registered apps are provided
+			 */
+			for (int i=0; i < jRegisteredApps.size(); i++) {
+			
+				JSONObject jRegisteredApp = jRegisteredApps.get(i).isObject();
+				
+				final String id    = jRegisteredApp.get(JsonConstants.J_ID).isString().stringValue();
+				final String title = jRegisteredApp.get(JsonConstants.J_NAME).isString().stringValue();
+				
+				MenuItem item = new MenuItem(title);		
+				
+				item.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
+					public void onClick(MenuItemClickEvent event) {
+						 
+						/*
+						 * Deselect respective control
+						 */
+						control.setSelected(false);
+						/*
+						 * Invoke main controller to create the app
+						 */ 
+						MainController.getInstance().createApp(id);
+						
+					}				
+				});
+	
+				items.add(item);
+			}
+
 		}
-
+		
 		return (MenuItem[])items.toArray(new MenuItem[items.size()]);
 		
 	}
@@ -189,6 +218,9 @@ public class MainController {
 		 */
 		BaseApp app = null;		
 		if (profile.equals(FncGlobals.FNC_APP_ID_Bulletin)) {
+			/*
+			 * Create Bulletin Board application
+			 */
 			app = new BulletinImpl();
 
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_Desktop)) {
@@ -209,8 +241,18 @@ public class MainController {
 			return;
 
 		} else if (profile.equals(FncGlobals.FNC_APP_ID_ScmSys)) {
+			/*
+			 * Create Source Code Discovery application
+			 */
 			app = new ScmSysImpl();
-			
+
+		} else if (profile.equals(FncGlobals.FNC_APP_ID_ShowCase)) {
+			/*
+			 * Create ShowCase application for testing
+			 * and presentation purpose
+			 */
+			app = new ShowCaseImpl();
+
 		}
 
 		if (app == null) return;

@@ -32,6 +32,10 @@ public class FncGlobals {
 	 * Classification of Source Code Management System
 	 */
 	public static String FNC_APP_ID_ScmSys = FNC_ID_App + ":ScmSys";
+	/*
+	 * Classification of ShowCase
+	 */
+	public static String FNC_APP_ID_ShowCase = FNC_ID_App + ":ShowCase";
 
 	/*
 	 * Accessor

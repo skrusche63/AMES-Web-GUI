@@ -27,6 +27,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.client.core.apps.MainService;
+import de.kp.ames.web.client.core.globals.CoreGlobals;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -38,15 +39,29 @@ public class main implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 
-		MainService service = new MainService();
+		if (CoreGlobals.SHOWCASE_FLAG == true) {
+			
+			/*
+			 * Showcase use of ADF
+			 */
+			MainController.getInstance().createShowCase();
+			
+		} else {
+			
+			/*
+			 * Operational use of ADF
+			 */
+			MainService service = new MainService();
 
-		service.doGetCallersApps(new ActivityImpl() {
-			public void execute(JSONValue jValue) {
-				
-				JSONArray jArray = jValue.isArray();
-				MainController.getInstance().createWelcome(jArray);
-			}
-		});
+			service.doGetCallersApps(new ActivityImpl() {
+				public void execute(JSONValue jValue) {
+					
+					JSONArray jArray = jValue.isArray();
+					MainController.getInstance().createOpsCase(jArray);
+				}
+			});
+			
+		}
 
 	}
 
