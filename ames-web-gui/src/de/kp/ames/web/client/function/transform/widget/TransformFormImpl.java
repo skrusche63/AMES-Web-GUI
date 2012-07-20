@@ -161,7 +161,7 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 		JSONArray jClas = new JSONArray();
 		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Transformator));
 		
-		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
+		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));
 		return jForm.toString();
 	
 	}

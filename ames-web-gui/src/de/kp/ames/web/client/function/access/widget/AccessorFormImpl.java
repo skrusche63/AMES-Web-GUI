@@ -2,6 +2,9 @@ package de.kp.ames.web.client.function.access.widget;
 
 import java.util.ArrayList;
 
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
@@ -10,11 +13,21 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.core.slot.SlotGridImpl;
 import de.kp.ames.web.client.function.transform.data.SpecGridImpl;
 import de.kp.ames.web.client.model.AccessorObject;
+import de.kp.ames.web.client.model.SlotObject;
+import de.kp.ames.web.client.model.SpecObject;
+import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.JaxrConstants;
 
 public class AccessorFormImpl extends FormImpl {
 
+	/*
+	 * Reference to SlotGrid
+	 */
+	private SlotGridImpl slotGrid;
+	
 	/*
 	 * Reference to the SpecGrid
 	 */
@@ -53,20 +66,18 @@ public class AccessorFormImpl extends FormImpl {
 		
 		scForm.setAutoFocus(true);
 		scForm.setLayoutAlign(Alignment.CENTER);
-
+		
 		/*
-		 * Build classification
-		 * 
-		 * This is prepared for future versions; actually
-		 * classification of transformators is not supported
+		 * Build SlotGrid
 		 */
+		slotGrid = new SlotGridImpl();
 		
 		/*
 		 * Build SpecGrid
 		 */
 		specGrid = new SpecGridImpl();
 		
-		wrapper.setMembers(scForm, specGrid);
+		wrapper.setMembers(scForm, slotGrid, specGrid);
 		this.setMembers(wrapper);
 
 	}
@@ -81,8 +92,68 @@ public class AccessorFormImpl extends FormImpl {
 		 * Assign form data
 		 */
 		
-		// TODO
+		/*
+		 * Assign slot data
+		 */
 		
+		/*
+		 * Assign specification data
+		 */
+		
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#getFormData()
+	 */
+	public String getFormData() {
+
+		JSONObject jForm = new JSONObject();
+		
+		/*
+		 * Name & description
+		 */
+		String name = "";
+		String desc = "";
+		
+		FormItem[] items = scForm.getFields();
+		for (FormItem item:items) {
+			
+			if (JaxrConstants.RIM_NAME.equals(item.getName())) {
+				name = (String)item.getValue();
+				
+			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
+				desc = (String)item.getValue();
+				
+			}
+			
+		}
+		
+		jForm.put(JaxrConstants.RIM_NAME, new JSONString(name));
+		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
+		
+		/*
+		 * Classification
+		 */
+		JSONArray jClas = new JSONArray();
+		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Accessor));
+		
+		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
+				
+		/*
+		 * Slots
+		 */
+		JSONObject jSlot = new SlotObject().toJObject(specGrid.getRecords());
+		jForm.put(JaxrConstants.RIM_SPEC, jSlot);
+		
+		/*
+		 * Specifications
+		 */
+		JSONArray jSpecs = new SpecObject().toJArray(specGrid.getRecords());
+		jForm.put(JaxrConstants.RIM_SPEC, new JSONString(jSpecs.toString()));
+		
+		return jForm.toString();
+	
 	}
 
 	/* (non-Javadoc)

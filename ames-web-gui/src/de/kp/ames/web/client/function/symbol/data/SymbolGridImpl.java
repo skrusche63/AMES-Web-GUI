@@ -58,7 +58,7 @@ public class SymbolGridImpl extends TileGrid {
 	/**
 	 * Constructor
 	 */
-	public SymbolGridImpl(String type, String item) {
+	public SymbolGridImpl() {
 		
 		/*
 		 * Register connection parameter
@@ -110,9 +110,7 @@ public class SymbolGridImpl extends TileGrid {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
 
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 		/*
 		 * Create data object
 		 */
@@ -129,7 +127,7 @@ public class SymbolGridImpl extends TileGrid {
 		this.setFields(createViewerFields(attributes));
 
 	}
-	
+
 	public void afterRecordClick(RecordClickEvent event) {
 		// TODO
 	}

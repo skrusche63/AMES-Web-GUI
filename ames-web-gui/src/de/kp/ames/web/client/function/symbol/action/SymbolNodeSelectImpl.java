@@ -18,10 +18,15 @@ package de.kp.ames.web.client.function.symbol.action;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.tree.TreeNodeSelectImpl;
 import de.kp.ames.web.client.core.tree.Tree;
+import de.kp.ames.web.client.function.symbol.event.SymbolEventManager;
+import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.MethodConstants;
 
 public class SymbolNodeSelectImpl extends TreeNodeSelectImpl {
 
@@ -39,7 +44,12 @@ public class SymbolNodeSelectImpl extends TreeNodeSelectImpl {
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-		// TODO
+
+		HashMap<String,String> attributes = this.getParams();
+		attributes.put(MethodConstants.ATTR_ITEM, node.getAttributeAsString(JsonConstants.J_ID));
+
+		SymbolEventManager.getInstance().onSymbolSelected(attributes);
+		
 	}
 	
 }

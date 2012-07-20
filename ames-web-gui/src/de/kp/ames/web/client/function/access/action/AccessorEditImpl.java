@@ -47,7 +47,7 @@ public class AccessorEditImpl extends GridEditImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final AccessorEditImpl self = this;		
-		AccessWidget widget = new AccessWidget();
+		AccessWidget widget = new AccessWidget();		
 		
 		widget.doEdit(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {

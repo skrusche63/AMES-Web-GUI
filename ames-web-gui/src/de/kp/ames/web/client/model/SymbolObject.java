@@ -26,9 +26,9 @@ public class SymbolObject extends ExternalObject {
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 
 		/*
-		 * Identifier
+		 * Identifier (without label)
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_ID, LabelConstants.ID_LABEL));
+	    fields.add(new DataSourceTextField(JsonConstants.J_ID));
 
 	    /*
 		 * Name

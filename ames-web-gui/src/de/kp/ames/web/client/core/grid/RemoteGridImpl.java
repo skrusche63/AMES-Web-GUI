@@ -93,7 +93,7 @@ public class RemoteGridImpl extends GridImpl {
 		 */
 		this.setAutoFetchData(false);		
 		this.setShowAllRecords(false);
-
+		
 		/*
 		 * Event handling
 		 */
@@ -175,11 +175,11 @@ public class RemoteGridImpl extends GridImpl {
 		dataSource = new RestDataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
-				dsRequest.setParams(getRequestParams());				
+				dsRequest.setParams(getRequestParams());	
 				return super.transformRequest(dsRequest);  
 			}  
 
-			protected void transformResponse(DSResponse response, DSRequest request, Object data) {  
+			protected void transformResponse(DSResponse response, DSRequest request, Object data) { 
 				super.transformResponse(response, request, data);  
 			}  
 			
@@ -190,7 +190,7 @@ public class RemoteGridImpl extends GridImpl {
 		
 		dataSource.setFetchDataURL(requestUrl);		
 		dataSource.setFields(requestFields);
-
+		
 		/*
 		 * finally set data source
 		 */
@@ -214,7 +214,7 @@ public class RemoteGridImpl extends GridImpl {
 	 * 
 	 * @param event
 	 */
-	public void afterDraw(DrawEvent event) {
+	public void afterDraw(DrawEvent event) {		
 		this.fetchData();
 	}
 	
