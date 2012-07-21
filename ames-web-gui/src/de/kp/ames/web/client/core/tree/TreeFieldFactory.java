@@ -20,8 +20,8 @@ package de.kp.ames.web.client.core.tree;
 
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.LabelConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class TreeFieldFactory {
 

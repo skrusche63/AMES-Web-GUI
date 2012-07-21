@@ -33,11 +33,11 @@ import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.product.ProductService;
 import de.kp.ames.web.client.function.upload.widget.UploadCreateDialog;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.FormatConstants;
-import de.kp.ames.web.shared.JsonConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class UploadWidget {
 

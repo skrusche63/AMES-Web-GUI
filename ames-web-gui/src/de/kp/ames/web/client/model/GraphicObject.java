@@ -27,7 +27,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.client.model.external.ExternalObject;
 import de.kp.ames.web.client.style.GuiStyles;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class GraphicObject extends ExternalObject {
 

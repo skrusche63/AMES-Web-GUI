@@ -27,8 +27,8 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.function.user.widget.UserEditDialog;
 import de.kp.ames.web.client.function.user.widget.UserFormImpl;
 import de.kp.ames.web.client.function.user.widget.UserGetViewer;
-import de.kp.ames.web.shared.FormatConstants;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class UserWidget {
 

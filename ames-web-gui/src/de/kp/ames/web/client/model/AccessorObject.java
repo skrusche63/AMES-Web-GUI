@@ -31,7 +31,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ServiceObject;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class AccessorObject extends ServiceObject {
 

@@ -24,7 +24,7 @@ import com.smartgwt.client.widgets.Canvas;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.function.dms.DmsService;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsEditDialog extends EditFormDialog {
 

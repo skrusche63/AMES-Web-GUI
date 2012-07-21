@@ -45,7 +45,7 @@ import de.kp.ames.web.client.function.help.HelpImpl;
 import de.kp.ames.web.client.function.login.LoginDialog;
 import de.kp.ames.web.client.function.scm.ScmSysImpl;
 import de.kp.ames.web.client.test.ShowCaseImpl;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)

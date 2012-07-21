@@ -27,8 +27,8 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.RegistryObject;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.LabelConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class GroupObject extends RegistryObject {
 

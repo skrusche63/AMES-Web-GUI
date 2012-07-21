@@ -30,10 +30,10 @@ import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.transform.widget.SpecCreateDialog;
 import de.kp.ames.web.client.function.transform.widget.TransformCreateDialog;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.FormatConstants;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class TransformWidget {
 

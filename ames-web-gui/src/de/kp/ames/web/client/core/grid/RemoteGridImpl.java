@@ -33,8 +33,8 @@ import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.shared.FormatConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class RemoteGridImpl extends GridImpl {
 

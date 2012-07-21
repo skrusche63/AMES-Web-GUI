@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class ActionImpl implements Action {
 

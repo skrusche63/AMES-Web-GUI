@@ -45,8 +45,8 @@ import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
 import de.kp.ames.web.client.handler.TreeNodeHandler;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.FormatConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class TreeImpl extends TreeGrid implements Tree {
 	/*

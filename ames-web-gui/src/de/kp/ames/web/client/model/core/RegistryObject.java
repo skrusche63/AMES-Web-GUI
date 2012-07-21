@@ -21,8 +21,9 @@ package de.kp.ames.web.client.model.core;
 import java.util.ArrayList;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.LabelConstants;
+
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class RegistryObject extends ExtensibleObject {
 

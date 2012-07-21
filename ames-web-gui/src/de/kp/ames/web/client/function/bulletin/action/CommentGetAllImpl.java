@@ -24,8 +24,8 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridGetAllImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.bulletin.BulletinWidget;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class CommentGetAllImpl extends GridGetAllImpl {
 

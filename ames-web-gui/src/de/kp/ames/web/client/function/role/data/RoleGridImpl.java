@@ -25,9 +25,9 @@ import de.kp.ames.web.client.function.role.handler.RoleGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.ResponsibilityObject;
 import de.kp.ames.web.client.model.RoleObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class RoleGridImpl extends RemoteGridImpl {
 

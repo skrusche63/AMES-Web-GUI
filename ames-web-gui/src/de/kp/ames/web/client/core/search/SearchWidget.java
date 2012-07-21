@@ -45,9 +45,9 @@ import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.shared.JsonConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class SearchWidget extends VLayout {
 

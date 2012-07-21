@@ -23,7 +23,7 @@ import com.smartgwt.client.widgets.Canvas;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.function.group.GroupService;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class GroupCreateDialog extends CreateFormDialog {
 

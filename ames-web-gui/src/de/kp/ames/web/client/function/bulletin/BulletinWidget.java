@@ -28,9 +28,9 @@ import de.kp.ames.web.client.function.bulletin.data.CommentGridImpl;
 import de.kp.ames.web.client.function.bulletin.widget.CommentsViewer;
 import de.kp.ames.web.client.function.bulletin.widget.MessageImpl;
 import de.kp.ames.web.client.function.globals.FncGlobals;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class BulletinWidget {
 

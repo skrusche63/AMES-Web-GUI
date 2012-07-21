@@ -28,8 +28,8 @@ import de.kp.ames.web.client.function.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.function.bulletin.event.ContactListener;
 import de.kp.ames.web.client.function.bulletin.handler.PostGridRecordHandlerImpl;
 import de.kp.ames.web.client.handler.RemoveHandler;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class OverviewImpl extends VLayout implements ContactListener, RemoveHandler {
 

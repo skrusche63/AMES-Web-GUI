@@ -30,7 +30,7 @@ import de.kp.ames.web.client.function.transform.data.TransformGridImpl;
 import de.kp.ames.web.client.function.transform.event.TransformEventManager;
 import de.kp.ames.web.client.function.transform.event.TransformListener;
 import de.kp.ames.web.client.function.transform.handler.TransformGridRecordHandlerImpl;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 /*
  * This dialog is used to populate the SpecGridImpl

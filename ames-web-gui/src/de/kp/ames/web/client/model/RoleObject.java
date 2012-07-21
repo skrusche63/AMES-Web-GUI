@@ -27,8 +27,8 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.ConceptObject;
-import de.kp.ames.web.shared.JsonConstants;
-import de.kp.ames.web.shared.LabelConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class RoleObject extends ConceptObject {
 

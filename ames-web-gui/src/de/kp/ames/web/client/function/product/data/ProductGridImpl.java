@@ -25,13 +25,9 @@ import de.kp.ames.web.client.function.product.handler.ProductGridMenuHandlerImpl
 import de.kp.ames.web.client.model.ProductObject;
 import de.kp.ames.web.client.model.ProductorObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
-/*
- * The product grid supports the visualization of products & productors; 
- * to distinguish these information objects, the <type> parameter is used
- */
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class ProductGridImpl extends RemoteGridImpl {
 	/**

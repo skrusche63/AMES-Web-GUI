@@ -23,9 +23,9 @@ import java.util.HashMap;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.PostingObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class PostGridImpl extends RemoteGridImpl {
 

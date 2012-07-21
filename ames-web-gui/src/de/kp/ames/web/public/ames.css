@@ -10,8 +10,8 @@ iframe {border:0;}
 .x-bd-style-0 {border:0;}
 .x-bd-style-1 {border:1px solid #C0C0C0;border-left:0;}
 .x-bd-style-2 {border-right:1px solid #C0C0C0;}
-
 .x-bd-style-3 {border-top:1px solid #C0C0C0;}
+.x-bd-style-4 {border:1px solid #C0C0C0;}
 
 .x-app-title {font:bold 10px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:center;padding-top:1px;}
 
@@ -38,3 +38,9 @@ iframe {border:0;}
 
 .x-tile-cell {font:normal 11px tahoma,arial,sans-serif;color:#f2f2f4;white-space:nowrap;cursor:pointer;}
 
+/*
+ * Showcase styles
+ */
+ .x-sc-header {background-color:#191920;border:0;border-bottom:1px solid #C0C0C0;}
+ .x-sc-teaser {font:normal 11px tahoma, arial, helvetica, sans-serif;color:#708491;margin-top:24px;margin-left:24px;} 
+ 

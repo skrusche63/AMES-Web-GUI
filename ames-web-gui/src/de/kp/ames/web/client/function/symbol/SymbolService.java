@@ -2,7 +2,7 @@ package de.kp.ames.web.client.function.symbol;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.service.ServiceImpl;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class SymbolService extends ServiceImpl {
 

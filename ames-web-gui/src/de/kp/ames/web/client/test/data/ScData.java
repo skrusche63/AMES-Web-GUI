@@ -2,11 +2,11 @@ package de.kp.ames.web.client.test.data;
 
 public class ScData {
 
-    private String idSuffix;
+	private static String PREFIX = "function:";
+	
     private ScNode[] data;
 
-    public ScData(String idSuffix) {
-        this.idSuffix = idSuffix;
+    public ScData() {
     }
 
     private ScNode[] getData() {
@@ -14,59 +14,49 @@ public class ScData {
     	if (data == null) {
             data = new ScNode[] {
             		
-                new ScNode("Access", "new-category", "root", "silk/house.png", true, idSuffix),
-                
+        		/*
+        		 * Access-Layer
+        		 */
+                new ScNode("<b>Access</b>",        PREFIX + "access:folder", "root", "silk/folder.png"),
+                new ScNode("Data",                 PREFIX + "access:data:folder",                      PREFIX + "access:folder", "silk/folder.png"),
+                new ScNode("AccessGridImpl",       PREFIX + "access:data:AccessGridImpl:leaf",         PREFIX + "access:data:folder", "silk/table.png"),
+                new ScNode("Widget",               PREFIX + "access:widget:folder",                    PREFIX + "access:folder", "silk/folder.png"),
+                new ScNode("AccessorCreateDialog", PREFIX + "access:widget:AccessorCreateDialog:leaf", PREFIX + "access:widget:folder", "silk/widget.png"),
+                new ScNode("AccessorEditDialog",   PREFIX + "access:widget:AccessorEditDialog:leaf",   PREFIX + "access:widget:folder", "silk/widget.png"),
+                new ScNode("AccessorFormImpl",     PREFIX + "access:widget:AccessorFormImpl:leaf",     PREFIX + "access:widget:folder", "silk/widget.png"),
+                new ScNode("AccessorGetViewer",    PREFIX + "access:widget:AccessorGetViewer:leaf",    PREFIX + "access:widget:folder", "silk/widget.png"),
+                new ScNode("RemoteGetViewer",      PREFIX + "access:widget:RemoteGetViewer:leaf",      PREFIX + "access:widget:folder", "silk/widget.png"),
+               
                 /*
-                    new ExplorerTreeNode("Demo Application", "featured-complete-app", "featured-category", "silk/layout_content.png", new MiniAppSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Smart GWT MVC", "featured-smartgwt-mvc", "featured-category", "silk/arrow_join.png", new TreeEditingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Cell Widgets", "featured-grid-cell-widgets", "featured-category", null, new GridCellWidgetsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Miller Columns", "featured-miller-columns", "featured-category", "silk/ipod.png", new MillerColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Nested Grid", "featured-nested-grid", "featured-category", "crystal/16/mimetypes/widget_doc.png", new GridRowExpansionRelatedRecordsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tile Sort &amp; Filtering", "featured-tile-filtering", "featured-category", "silk/application_view_tile.png", new FilterSortTilingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Print Grid", "featured-print-grid", "featured-category", "silk/printer.png", new PrintingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Tree Grid", "featured-tree-grid", "featured-category", "silk/chart_organisation.png", new FrozenColumnsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Header Spans", "featured-grid-header-span", "featured-category", null, new GridHeaderSpansSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Live Grid", "featured-grid-live", "featured-category", "silk/application_put.png", new LiveGridFetchSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Vertical Tabs", "featured-vertical-tabs", "featured-category", "silk/tab.png", new OrientationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Databound Calendar", "featured-databound-calendar-category", "featured-category", "crystal/16/apps/cal.png", new DataBoundCalendarSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dropdown Grid", "featured-dropdown-grid-category", "featured-category", "crystal/16/actions/completion.png", new DropdownListGridSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Dynamic Grouping", "featured-dynamic-grouping", "featured-category", "silk/application_side_tree.png", new GridDynamicGroupingSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Animation Playpen", "featured-animation-playpen", "featured-category", "silk/layers.png", new AnimationPlaypenSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Master Detail", "featured-master-detail", "featured-category", "silk/application_split.png", new GridFormUpdateSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("RestDataSource", "featured-restfulds", "featured-category", "silk/arrow_refresh_small.png", new RestfulDataSourceSample.Factory(), true, idSuffix),
-                    //new ExplorerTreeNode("Yahoo! JSON Service", "featured-json-integration-category-yahoo", "featured-category", "crystal/16/apps/yahoo_protocol.png", new YahooJsonServicesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Pattern Reuse", "featured-pattern-reuse", "featured-category", "silk/database_table.png", new PatternReuseSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("XSD DataSource", "featured-xsd-ds", "featured-category", "silk/database_gear.png", new XsdDataSourceSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("GWT Integration", "featured-gwt-integration", "featured-category", "gwt/icon16.png", new GwtShowcaseSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Portal", "featured-portal", "featured-category", "silk/application_view_tile.png", new SimplePortalSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Databound Dragging", "grid-db-dragging-featured-category", "featured-category", "silk/database_link.png", new GridDataBoundDragDropSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Adaptive Filter", "grid-adaptive-filter-featured-category", "featured-category", "crystal/16/actions/show_table_row.png", new AdaptiveFilterSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Formula &amp; Summary Builder", "formula-sumamry-builder-featured-category", "featured-category", "crystal/oo/sc_insertformula.png", new FormulaSummaryBuilderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Summaries", "grid-summaries-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new GridSummariesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Offline Preferences", "grid-offline-pref-featured-category", "featured-category", "crystal/16/apps/tooloptions.png", new OfflinePreferencesSample.Factory(), true, idSuffix),
-				*/
-                
-                new ScNode("Bulletin", "new-category", "root", "silk/new.png", true, idSuffix)
-                
+                 * Bulletin-Layer
+                 */
+                new ScNode("<b>Bulletin</b>", PREFIX + "bulletin:folder", "root", "silk/folder.png"),
+                new ScNode("Data",            PREFIX + "bulletin:data:folder",               PREFIX + "bulletin:folder", "silk/folder.png"),
+                new ScNode("CommentGridImpl", PREFIX + "bulletin:data:CommentGridImpl:leaf", PREFIX + "bulletin:data:folder", "silk/table.png"),
+                new ScNode("PostGridImpl",    PREFIX + "bulletin:data:PostGridImpl:leaf",    PREFIX + "bulletin:data:folder", "silk/table.png"),
+                new ScNode("Widget",          PREFIX + "bulletin:widget:folder",             PREFIX + "bulletin:folder", "silk/folder.png"),
+
+                new ScNode("BoardImpl",       PREFIX + "bulletin:widget:BoardImpl:leaf",       PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("BulletinImpl",    PREFIX + "bulletin:widget:BulletinImpl:leaf",    PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("CommentsViewer",  PREFIX + "bulletin:widget:CommentsViewer:leaf",  PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("ContactsImpl",    PREFIX + "bulletin:widget:ContactsImpl:leaf",    PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("DetailImpl",      PREFIX + "bulletin:widget:DetailImpl:leaf",      PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("GroupsImpl",      PREFIX + "bulletin:widget:GroupsImpl:leaf",      PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("MessageFormImpl", PREFIX + "bulletin:widget:MessageFormImpl:leaf", PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("OverviewImpl",    PREFIX + "bulletin:widget:OverviewImpl:leaf",    PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("UsersImpl",       PREFIX + "bulletin:widget:UsersImpl:leaf",       PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+ 
                 /*
-                    new ExplorerTreeNode("Custom Cell Editors", "grid-custom-editing-cell-new", "new-category", null, new GridCellEditorCustomizerSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Multiline Summaries", "grid-ml-summaries-new", "new-category", "crystal/16/apps/tooloptions.png", new GridMultiLineSummariesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Grid Header Summaries", "grid-header-summaries-new", "new-category", "crystal/16/apps/tooloptions.png", new GridSummariesInHeaderSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Expression Filter", "grid-exp-filter-new", "new-category", null, new GridExpressionFilter.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Custom ListGrid Layout", "grid-components-new", "new-category", null, new GridComponentsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Preferences", "grid-appearance-preferences-new", "new-category", null, new GridPreferencesSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Shape Gallery", "shape-gallery-new", "new-category", null, new ShapeGallerySample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Rotation", "rotation-new", "new-category", null, new RotationSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Zoom and Pan", "zoom-and-pan-new", "new-category", null, new ZoomAndPanSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Lines and Arrowheads", "lines-and-arrowheads-new", "new-category", null, new LinesAndArrowheadsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Mouse Events", "mouse-events-new", "new-category", null, new DrawingMouseEventsSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Simple Gradient", "simple-gradient-new", "new-category", null, new SimpleGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Linear Gradient", "linear-gradient-new", "new-category", null, new LinearGradientSample.Factory(), true, idSuffix),
-                    new ExplorerTreeNode("Radial Gradient", "radial-gradient-new", "new-category", null, new RadialGradientSample.Factory(), true, idSuffix),
-                    
-                */
+                 * Upload-Layer
+                 */
+                new ScNode("<b>Upload</b>",  PREFIX + "upload:folder", "root", "silk/folder.png"),
+                new ScNode("Data",           PREFIX + "upload:data:folder",              PREFIX + "upload:folder", "silk/folder.png"),
+                new ScNode("UploadGridImpl", PREFIX + "upload:data:UploadGridImpl:leaf", PREFIX + "upload:data:folder", "silk/table.png"),
+                new ScNode("Widget",         PREFIX + "upload:widget:folder",            PREFIX + "upload:folder", "silk/folder.png"),
+
+                new ScNode("UploadCreateDialog", PREFIX + "upload:widget:UploadCreateDialog:leaf", PREFIX + "upload:widget:folder", "silk/widget.png"),
+                new ScNode("UploadFormImpl",     PREFIX + "upload:widget:UploadFormImpl:leaf",     PREFIX + "upload:widget:folder", "silk/widget.png"),
+
                 
             };
         }
@@ -74,8 +64,8 @@ public class ScData {
 
     }
 
-    public static ScNode[] getData(String idSuffix) {
-        return new ScData(idSuffix).getData();
+    public static ScNode[] getScData() {
+        return new ScData().getData();
     }
     
 }

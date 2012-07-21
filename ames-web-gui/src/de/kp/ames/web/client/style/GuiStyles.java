@@ -44,6 +44,7 @@ public class GuiStyles {
 	public static String X_BD_STYLE_1 = "x-bd-style-1";
 	public static String X_BD_STYLE_2 = "x-bd-style-2";
 	public static String X_BD_STYLE_3 = "x-bd-style-3";
+	public static String X_BD_STYLE_4 = "x-bd-style-4";
 
 	public static String X_CONTROL      = "x-control";
 	public static String X_CONTROL_OVER = "x-control-over";
@@ -55,6 +56,12 @@ public class GuiStyles {
 	public static String X_USER         = "x-user";
 
 	/*
+	 * Showcase styles
+	 */
+	public static String X_SC_HEADER = "x-sc-header";
+	public static String X_SC_TEASER = "x-sc-teaser";
+
+	/*
 	 * Symbol graphic name style
 	 */
 	public static String X_SYMBOL_NAME = "x-symbol-name";
@@ -64,20 +71,13 @@ public class GuiStyles {
 	 */
 	public static String FONT_COLOR = "#708491";
 	
-	/*
-	 * Images with project path
-	 */
-	
 	public static String APP_ICON      = "images/global48.png";   // 48 x 48
+	public static String ADF_IMAGE     = "adf.png";
+	public static String APP_BG_IMAGE  = "portal_bg.gif";
 	public static String LOADING_IMAGE = "images/x-loading.gif";  // 64 x 64
 	
-	/*
-	 * Images without project path
-	 */
-	public static String APP_BG_IMAGE = "portal_bg.gif";
-	
 	public static String LOGO_IMAGE   = "logo.png";
-	public static String SEARCH_IMAGE = "x-search.png";
+	public static String SEARCH_IMAGE = "silk/search.png";
 
 	
 }

@@ -22,8 +22,8 @@ import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.LabelConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class GridFieldFactory {
 

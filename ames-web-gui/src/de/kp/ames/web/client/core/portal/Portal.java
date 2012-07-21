@@ -25,7 +25,7 @@ import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.layout.HLayout;
 
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class Portal extends HLayout {
 	

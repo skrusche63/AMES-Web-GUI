@@ -24,7 +24,7 @@ import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.function.ns.handler.NsTreeMenuHandlerImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class NsTreeImpl extends TreeImpl {
 

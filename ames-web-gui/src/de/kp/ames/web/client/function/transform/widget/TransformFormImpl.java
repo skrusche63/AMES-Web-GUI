@@ -35,9 +35,9 @@ import de.kp.ames.web.client.function.transform.event.TransformListener;
 import de.kp.ames.web.client.function.transform.handler.TransformGridRecordHandlerImpl;
 import de.kp.ames.web.client.function.upload.data.UploadGridImpl;
 import de.kp.ames.web.client.model.TransformatorObject;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class TransformFormImpl extends FormImpl implements TransformListener {
 

@@ -22,8 +22,8 @@ import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
 
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class CommWidget {
 

@@ -31,7 +31,7 @@ import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 /**
  * A Portlet is a placeholder for a certain application;

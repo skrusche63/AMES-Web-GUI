@@ -24,28 +24,32 @@ import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
+import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
 import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 
 import de.kp.ames.web.client.core.widget.base.BaseApp;
+import de.kp.ames.web.client.style.GuiStyles;
+import de.kp.ames.web.client.test.data.ScNode;
 
 public class ShowCaseImpl extends BaseApp {
+	
+	/*
+	 * Reference to MainTabs
+	 */
+	private TabSet mainTabs;
+	
 	/**
 	 * Constructor
 	 */
 	public ShowCaseImpl() {
-		super("ADF Showcase", "Use this application to discovery the Application Development Framework");
+		super("ADF Showcase", "Discover the Application Development Framework");
 		
 		/*
 		 * Dimensions
 		 */
 		this.setWidth100();
 		this.setHeight100();
-
-		/*
-		 * Set style (TODO)
-		 */
-		this.setStyleName("tabSetContainer");
 
 		/*
 		 * Side navigation
@@ -71,16 +75,21 @@ public class ShowCaseImpl extends BaseApp {
         /*
          * Dimensions
          */
-        sideNavLayout.setWidth(185);
+        sideNavLayout.setWidth(240);
         sideNavLayout.setHeight100();
 
+        /*
+         * Style
+         */
+        sideNavLayout.setStyleName(GuiStyles.X_BD_STYLE_0);
+        
         sideNavLayout.setShowResizeBar(true);
 
         SideNavTree sideNav = new SideNavTree();
         sideNav.addLeafClickHandler(new LeafClickHandler() {
             public void onLeafClick(LeafClickEvent event) {
-                //TreeNode node = event.getLeaf();
-                //showSample(node);
+                TreeNode node = event.getLeaf();
+                showTestCase(node);
             }
         });
 
@@ -92,13 +101,18 @@ public class ShowCaseImpl extends BaseApp {
  
 	private Canvas createMainTabs() {
 		
-		TabSet mainTabs = new TabSet();
+		mainTabs = new TabSet();
 		
 		/*
 		 * Dimensions
 		 */
 	    mainTabs.setWidth100();
 	    mainTabs.setHeight100();
+
+	    /*
+         * Style
+         */
+        mainTabs.setStyleName(GuiStyles.X_BD_STYLE_0);
 	 
 		/*
 		 * TabSet layout settings
@@ -129,7 +143,8 @@ public class ShowCaseImpl extends BaseApp {
         /*
          * Initial tab (Home)
          */
-        Tab tab = new Tab();
+        Tab tab = new Tab();   	
+	    tab.setIcon("silk/house.png", 16);
  
         tab.setTitle("Home&nbsp;&nbsp;");
         tab.setWidth(80);
@@ -147,11 +162,47 @@ public class ShowCaseImpl extends BaseApp {
         
         canvas.setWidth100();
         canvas.setHeight100();
+        /*
+         * Style
+         */
+        canvas.setStyleName(GuiStyles.X_BD_STYLE_0);
         
         canvas.addChild(mainTabs);
         return canvas;
         
 	}
-	
+
+   protected void showTestCase(TreeNode node) {
+	   
+        ScNode scNode = (ScNode)node;
+        
+        /*
+         * Retrieve node identifier
+         */
+        String nid = scNode.getNodeID();
+        
+        /*
+         * Tab
+         */
+        String tid = nid + ":tab";
+        Tab tab = mainTabs.getTab(tid);
+        
+        if (tab == null) {
+        	/*
+        	 * Create new tab
+        	 */
+        	tab = ScFactory.getTab(nid);
+        	tab.setWidth(80);
+        	
+        	mainTabs.addTab(tab);
+        	mainTabs.selectTab(tab);
+        	
+        } else {
+        	mainTabs.selectTab(tab);
+        	
+        }
+        
+    }
+
 }
 

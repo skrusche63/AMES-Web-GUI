@@ -24,8 +24,8 @@ import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.function.user.handler.UserGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.UserObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class UserGridImpl extends RemoteGridImpl {
 

@@ -21,8 +21,8 @@ import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.model.GraphicObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class SymbolGridImpl extends TileGrid {
 

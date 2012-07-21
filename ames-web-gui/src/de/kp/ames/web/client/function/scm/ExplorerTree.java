@@ -39,7 +39,7 @@ import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.scm.event.ScmEventManager;
 import de.kp.ames.web.client.style.GuiStyles;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class ExplorerTree extends TreeGrid {
 

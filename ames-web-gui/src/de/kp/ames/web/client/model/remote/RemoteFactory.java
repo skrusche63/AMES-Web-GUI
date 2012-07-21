@@ -1,7 +1,7 @@
 package de.kp.ames.web.client.model.remote;
 
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.ClassificationConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 
 public class RemoteFactory {
 

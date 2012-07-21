@@ -32,7 +32,7 @@ import de.kp.ames.web.client.core.http.ExtractCallbackImpl;
 import de.kp.ames.web.client.core.http.GetJsonCallbackImpl;
 import de.kp.ames.web.client.core.http.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 /**
  * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)

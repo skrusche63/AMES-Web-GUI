@@ -27,8 +27,8 @@ import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.function.product.ProductWidget;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class ProductorEditImpl extends GridEditImpl {
 

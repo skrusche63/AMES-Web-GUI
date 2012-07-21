@@ -4,26 +4,25 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 
 public class ScNode extends TreeNode {
 
-    public ScNode(String name, String nodeID, String parentNodeID, String icon, boolean enabled, String idSuffix) {
+    public ScNode(String name, String nid, String pid, String icon) {
  
-    	if (enabled) {
-            setName(name);
-        
-    	} else {
-            setName("<span style='color:808080'>" + name + "</span>");
-        }
-        
-    	setNodeID(nodeID.replace("-", "_") + idSuffix);
-        setThumbnail("thumbnails/" + nodeID.replace("-", "_") + ".gif");
-        
-        setParentNodeID(parentNodeID.replace("-", "_") + idSuffix);
+    	/*
+    	 * Appearance
+    	 */
+        setName(name);
         setIcon(icon);
-       
-        if(nodeID.equals("featured-category") || nodeID.equals("new-category")) {
-            setIsOpen(true);
-        }
+        
+        /*
+         * Identifier
+         */
+    	setNodeID(nid);
+        setParentNodeID(pid);
 
+      
+        if (nid.endsWith("folder")) setIsOpen(true);
+ 
     }
+
 
     public void setNodeID(String value) {
         setAttribute("nodeID", value);
@@ -53,24 +52,8 @@ public class ScNode extends TreeNode {
         return getAttributeAsString("icon");
     }
 
-    public void setThumbnail(String thumbnail) {
-        setAttribute("thumbnail", thumbnail);
-    }
-
-    public String getThumbnail() {
-        return getAttributeAsString("thumbnail");
-    }
-
     public void setIsOpen(boolean isOpen) {
         setAttribute("isOpen", isOpen);
-    }
-
-    public void setIconSrc(String iconSrc) {
-        setAttribute("iconSrc", iconSrc);
-    }
-
-    public String getIconSrc() {
-        return getAttributeAsString("iconSrc");
     }
 
     public boolean equals(Object o) {

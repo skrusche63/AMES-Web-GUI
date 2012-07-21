@@ -25,10 +25,10 @@ import de.kp.ames.web.client.function.dms.handler.DmsGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.DocumentObject;
 import de.kp.ames.web.client.model.ImageObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class DmsGridImpl extends RemoteGridImpl {
 

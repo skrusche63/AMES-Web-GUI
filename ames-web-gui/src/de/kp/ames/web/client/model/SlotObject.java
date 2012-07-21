@@ -11,8 +11,8 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.model.core.ExtensibleObject;
-import de.kp.ames.web.shared.JaxrConstants;
-import de.kp.ames.web.shared.LabelConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class SlotObject extends ExtensibleObject {
 

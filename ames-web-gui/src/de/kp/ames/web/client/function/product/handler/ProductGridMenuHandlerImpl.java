@@ -42,8 +42,8 @@ import de.kp.ames.web.client.menu.DownloadMenuItem;
 import de.kp.ames.web.client.menu.EditMenuItem;
 import de.kp.ames.web.client.menu.GetMenuItem;
 import de.kp.ames.web.client.menu.ViewMenuItem;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class ProductGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	

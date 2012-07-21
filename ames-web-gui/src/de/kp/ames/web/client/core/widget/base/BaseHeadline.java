@@ -20,6 +20,7 @@ package de.kp.ames.web.client.core.widget.base;
 
 import com.smartgwt.client.widgets.HTMLPane;
 
+import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class BaseHeadline extends HTMLPane {
@@ -84,11 +85,30 @@ public class BaseHeadline extends HTMLPane {
 	 */
 	private String getHtml() {
 
-		String html = "<div class='x-topline'>";
-		html += "<img src='" + GuiStyles.APP_ICON + "' height='48' width='48' style='display:block;float:left;margin:8px 4px 4px 4px;'>";
-		html += "<div style='padding:8px 0px 0px 8px;font-size:18px;vertical-align:top;'><b>" + this.title + "</b><br/>";
-		html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
-		html += "</div";
+		String html = "";
+		
+		if (CoreGlobals.SHOWCASE_FLAG) {
+
+			/*
+			 * Showcase
+			 */
+			html = "<div class='x-topline'>";
+			html += "<div style='padding:8px 0px 0px 8px;font-size:20px;vertical-align:top;'><b>" + this.title + "</b><br/>";
+			html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
+			html += "</div";
+		
+		} else {
+			
+			/*
+			 * Operational use case
+			 */
+			html = "<div class='x-topline'>";
+			html += "<img src='" + GuiStyles.APP_ICON + "' height='48' width='48' style='display:block;float:left;margin:8px 4px 4px 4px;'>";
+			html += "<div style='padding:8px 0px 0px 8px;font-size:20px;vertical-align:top;'><b>" + this.title + "</b><br/>";
+			html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
+			html += "</div";
+		
+		}
 		
 		return html;
 

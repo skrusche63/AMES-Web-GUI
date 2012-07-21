@@ -38,7 +38,7 @@ import de.kp.ames.web.client.handler.GridMenuHandler;
 import de.kp.ames.web.client.handler.GridRecordHandler;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.client.style.GuiStyles;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class GridImpl extends ListGrid implements Grid {
 	

@@ -23,9 +23,9 @@ import java.util.HashMap;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.CacheObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.JsonConstants;
-import de.kp.ames.web.shared.MethodConstants;
-import de.kp.ames.web.shared.ServiceConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class UploadGridImpl extends RemoteGridImpl {
 

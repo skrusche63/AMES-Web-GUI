@@ -26,8 +26,8 @@ import de.kp.ames.web.client.function.bulletin.handler.ContactGridMenuHandlerImp
 import de.kp.ames.web.client.function.bulletin.handler.ContactGridRecordHandlerImpl;
 import de.kp.ames.web.client.function.group.data.GroupGridImpl;
 import de.kp.ames.web.client.handler.RemoveHandler;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class GroupsImpl extends VLayout implements RemoveHandler {
 

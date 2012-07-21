@@ -37,7 +37,7 @@ import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.function.globals.FncAttrs;
 import de.kp.ames.web.client.style.GuiStyles;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class MessageFormImpl extends FormImpl {
 	

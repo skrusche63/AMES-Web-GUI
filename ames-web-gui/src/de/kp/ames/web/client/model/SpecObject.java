@@ -11,7 +11,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.model.external.ExternalObject;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class SpecObject extends ExternalObject {
 	

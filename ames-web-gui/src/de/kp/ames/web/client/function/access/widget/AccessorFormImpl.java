@@ -18,8 +18,8 @@ import de.kp.ames.web.client.function.transform.data.SpecGridImpl;
 import de.kp.ames.web.client.model.AccessorObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.client.model.SpecObject;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class AccessorFormImpl extends FormImpl {
 

@@ -30,6 +30,7 @@ import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
 import de.kp.ames.web.client.core.apps.MainController;
+import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
@@ -65,11 +66,19 @@ public class Viewport extends VLayout {
 		this.setBackgroundColor(GuiStyles.BG_COLOR);
 		this.setOverflow(Overflow.HIDDEN);
 		
-		/*
-		 * Create toolstrip
-		 */
-		this.addMember(createToolStrip());
-		
+		if (CoreGlobals.SHOWCASE_FLAG) {
+			/*
+			 * Create showcase header
+			 */
+			this.addMember(createScToolStrip());
+			
+		} else {
+			/*
+			 * Create toolstrip in case of operational use
+			 */
+			this.addMember(createOpsToolStrip());
+			
+		}
 		/*
 		 * Create place holder
 		 */
@@ -101,12 +110,44 @@ public class Viewport extends VLayout {
 
 	}
 
+	private ToolStrip createScToolStrip() {
+		
+		ToolStrip ts = new ToolStrip();
+		ts.setStyleName(GuiStyles.X_SC_HEADER);
+		
+		ts.setWidth100();
+		ts.setHeight(TOP_HEIGHT);
+		
+		ts.addFill();
+		
+		ts.addSpacer(5);
+				
+		ImgButton logo = new ImgButton();
+		logo.setSrc(GuiStyles.LOGO_IMAGE);
+		
+		logo.setWidth(256);
+		logo.setHeight(56);
+
+	    logo.setHoverStyle(GuiStyles.X_IMAGEHOVER);
+	    
+	    logo.setShowRollOver(false);
+	    logo.setShowDownIcon(false);
+
+	    logo.setShowDown(false);
+		
+		ts.addMember(logo);
+		ts.addSpacer(5);
+
+		return ts;
+		
+	}
+
 	/**
 	 * Create Toolstrip
 	 * 
 	 * @return
 	 */
-	private ToolStrip createToolStrip() {
+	private ToolStrip createOpsToolStrip() {
 		
 		ToolStrip ts = new ToolStrip();
 		ts.setStyleName(GuiStyles.X_HEADER);
@@ -121,7 +162,7 @@ public class Viewport extends VLayout {
 		 */
 		
 		ImgButton logo = new ImgButton();
-		logo.setSrc(GuiStyles.LOGO_IMAGE);
+		logo.setSrc(GuiStyles.ADF_IMAGE);
 		
 		logo.setWidth(16);
 		logo.setHeight(16);

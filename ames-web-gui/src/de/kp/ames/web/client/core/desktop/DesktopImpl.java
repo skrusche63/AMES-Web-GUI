@@ -30,7 +30,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class DesktopImpl extends BaseApp {
 

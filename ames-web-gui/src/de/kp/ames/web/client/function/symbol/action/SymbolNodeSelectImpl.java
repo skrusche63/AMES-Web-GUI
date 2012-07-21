@@ -25,8 +25,8 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import de.kp.ames.web.client.action.tree.TreeNodeSelectImpl;
 import de.kp.ames.web.client.core.tree.Tree;
 import de.kp.ames.web.client.function.symbol.event.SymbolEventManager;
-import de.kp.ames.web.shared.JsonConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class SymbolNodeSelectImpl extends TreeNodeSelectImpl {
 

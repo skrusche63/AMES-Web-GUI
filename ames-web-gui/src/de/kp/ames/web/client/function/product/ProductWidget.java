@@ -31,7 +31,7 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.product.widget.ProductorCreateDialog;
-import de.kp.ames.web.shared.JaxrConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class ProductWidget {
 

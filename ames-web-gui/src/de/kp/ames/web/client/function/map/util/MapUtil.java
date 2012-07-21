@@ -24,7 +24,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.map.client.MapConfig;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.shared.JsonConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class MapUtil {
 

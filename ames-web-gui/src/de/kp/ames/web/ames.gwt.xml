@@ -19,6 +19,9 @@
   <!-- Other module inherits                                      -->
   <inherits name="com.smartgwt.SmartGwt"/>
   <!-- <inherits name="com.smartclient.theme.fleet.Fleet"/> -->
+ 
+  <inherits name='de.kp.ames.web.shared.constants'/> 
+  <inherits name='de.kp.ames.map.openlayers'/> 
   
   <!-- Specify the app entry point class.                         -->
   <entry-point class='de.kp.ames.web.client.main'/>

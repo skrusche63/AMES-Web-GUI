@@ -32,8 +32,8 @@ import de.kp.ames.web.client.function.role.action.RoleDeleteImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.CreateMenuItem;
 import de.kp.ames.web.client.menu.DeleteMenuItem;
-import de.kp.ames.web.shared.ClassificationConstants;
-import de.kp.ames.web.shared.MethodConstants;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class RoleGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	/**
