@@ -6,12 +6,19 @@ import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
-
 import de.kp.ames.web.client.function.upload.widget.UploadCreateDialog;
 import de.kp.ames.web.client.function.upload.widget.UploadFormImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class UploadFactory {
+
+	public static VLayout createUploadGridImpl() {
+
+        VLayout layout = new VLayout();
+        // TODO
+		return layout;
+
+	}
 
 	public static VLayout createUploadCreateDialog() {
 

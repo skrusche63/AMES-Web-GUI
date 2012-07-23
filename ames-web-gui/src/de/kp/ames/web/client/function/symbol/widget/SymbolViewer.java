@@ -11,7 +11,7 @@ import de.kp.ames.web.client.function.symbol.event.SymbolEventManager;
 import de.kp.ames.web.client.function.symbol.event.SymbolListener;
 import de.kp.ames.web.client.handler.RemoveHandler;
 
-public class SymbolViewerImpl extends VLayout implements RemoveHandler, SymbolListener {
+public class SymbolViewer extends VLayout implements RemoveHandler, SymbolListener {
 
 	/*
 	 * Reference to SymbolGrid
@@ -21,7 +21,7 @@ public class SymbolViewerImpl extends VLayout implements RemoveHandler, SymbolLi
 	/**
 	 * Contructor
 	 */
-	public SymbolViewerImpl() {
+	public SymbolViewer() {
 		
 		/*
 		 * Dimensions

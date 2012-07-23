@@ -117,7 +117,51 @@ public class ScData {
                 new ScNode("ProductorEditDialog",   PREFIX + "product:widget:ProductorEditDialog:leaf",   PREFIX + "product:widget:folder", "silk/widget.png"),
                 new ScNode("ProductorFormImpl",     PREFIX + "product:widget:ProductorFormImpl:leaf",     PREFIX + "product:widget:folder", "silk/widget.png"),
 
+                /*
+                 * Role-Layer
+                 */
+                new ScNode("<b>Role</b>",                PREFIX + "role:folder", "root", "silk/folder.png"),
+                new ScNode("Data",                       PREFIX + "role:data:folder",                            PREFIX + "role:folder", "silk/folder.png"),
+                new ScNode("RoleGridImpl",               PREFIX + "role:data:RoleGridImpl:leaf",                 PREFIX + "role:data:folder", "silk/table.png"),
+                new ScNode("Widget",                     PREFIX + "role:widget:folder",                          PREFIX + "role:folder", "silk/folder.png"),
+
+                new ScNode("ResponsibilityCreateDialog", PREFIX + "role:widget:ResponsibilityCreateDialog:leaf", PREFIX + "role:widget:folder", "silk/widget.png"),
+                new ScNode("ResponsibilityFormImpl",     PREFIX + "role:widget:ResponsibilityFormImpl:leaf",     PREFIX + "role:widget:folder", "silk/widget.png"),
+                new ScNode("RoleCreateDialog",           PREFIX + "role:widget:RoleCreateDialog:leaf",           PREFIX + "role:widget:folder", "silk/widget.png"),
+                new ScNode("RoleFormImpl",               PREFIX + "role:widget:RoleFormImpl:leaf",               PREFIX + "role:widget:folder", "silk/widget.png"),
+
+                /*
+                 * Rule-Layer
+                 */
+                new ScNode("<b>Rule</b>",                PREFIX + "rule:folder", "root", "silk/folder.png"),
+                new ScNode("Data",                       PREFIX + "rule:data:folder",                            PREFIX + "rule:folder", "silk/folder.png"),
+                new ScNode("RuleGridImpl",               PREFIX + "rule:data:RuleGridImpl:leaf",                 PREFIX + "rule:data:folder", "silk/table.png"),
+                new ScNode("Widget",                     PREFIX + "rule:widget:folder",                          PREFIX + "rule:folder", "silk/folder.png"),
+
                 // TODO
+
+                /*
+                 * Symbol-Layer
+                 */
+                new ScNode("<b>Smbol</b>",   PREFIX + "symbol:folder", "root", "silk/folder.png"),
+                new ScNode("Data",           PREFIX + "symbol:data:folder",              PREFIX + "symbol:folder", "silk/folder.png"),
+                new ScNode("SymbolGridImpl", PREFIX + "symbol:data:SymbolGridImpl:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
+                new ScNode("SymbolTreeImpl", PREFIX + "symbol:data:SymbolTreeImpl:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
+                new ScNode("Widget",         PREFIX + "symbol:widget:folder",            PREFIX + "symbol:folder", "silk/folder.png"),
+                new ScNode("SymbolViewer",   PREFIX + "symbol:widget:SymbolViewer:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
+
+                /*
+                 * Transform-Layer
+                 */
+                new ScNode("<b>Transform</b>",      PREFIX + "transform:folder", "root", "silk/folder.png"),
+                new ScNode("Data",                  PREFIX + "transform:data:folder",                       PREFIX + "transform:folder", "silk/folder.png"),
+                new ScNode("SpecGridImpl",          PREFIX + "transform:data:SpecGridImpl:leaf",            PREFIX + "transform:data:folder", "silk/table.png"),
+                new ScNode("TransformGridImpl",     PREFIX + "transform:data:TransformGridImpl:leaf",       PREFIX + "transform:data:folder", "silk/table.png"),
+                new ScNode("Widget",                PREFIX + "transform:widget:folder",                     PREFIX + "transform:folder", "silk/folder.png"),
+
+                new ScNode("SpecCreateDialog",      PREFIX + "transform:widget:SpecCreateDialog:leaf",      PREFIX + "transform:widget:folder", "silk/widget.png"),
+                new ScNode("TransformCreateDialog", PREFIX + "transform:widget:TransformCreateDialog:leaf", PREFIX + "transform:widget:folder", "silk/widget.png"),
+                new ScNode("TransformFormImpl",     PREFIX + "transform:widget:TransformFormImpl:leaf",     PREFIX + "transform:widget:folder", "silk/widget.png"),
                 
                 /*
                  * Upload-Layer
