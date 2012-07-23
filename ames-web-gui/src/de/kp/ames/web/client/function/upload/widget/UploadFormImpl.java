@@ -109,6 +109,7 @@ public class UploadFormImpl extends FormImpl {
 		 * Upload uses the native form-based mechanism
 		 * to transport a certain file to the server
 		 */
+		
 		scForm.setAction(getUri());	
 		scForm.submit(new DSCallback() {
 

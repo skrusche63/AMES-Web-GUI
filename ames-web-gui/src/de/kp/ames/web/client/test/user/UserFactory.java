@@ -2,7 +2,10 @@ package de.kp.ames.web.client.test.user;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class UserFactory {
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+
+public class UserFactory extends FncFactory {
 
 	public static VLayout createUserGridImpl() {
 
@@ -14,9 +17,13 @@ public class UserFactory {
 
 	public static VLayout createUserEditDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the UserEditDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
@@ -30,9 +37,13 @@ public class UserFactory {
 
 	public static VLayout createUserGetViewer() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the UserGetViewer.";
+		return createDialog(message, "Show Viewer", new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 

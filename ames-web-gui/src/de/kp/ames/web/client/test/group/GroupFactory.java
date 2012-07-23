@@ -2,7 +2,10 @@ package de.kp.ames.web.client.test.group;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class GroupFactory {
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+
+public class GroupFactory extends FncFactory {
 
 	public static VLayout createCategoryGridImpl() {
 
@@ -22,17 +25,25 @@ public class GroupFactory {
 
 	public static VLayout createGroupCreateDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the GroupCreateDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
 	public static VLayout createGroupEditDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the GroupEditDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
@@ -46,9 +57,13 @@ public class GroupFactory {
 
 	public static VLayout createGroupGetViewer() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the GroupGetViewer.";
+		return createDialog(message, "Show Viewer", new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 

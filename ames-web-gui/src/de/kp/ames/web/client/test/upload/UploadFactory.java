@@ -1,16 +1,14 @@
 package de.kp.ames.web.client.test.upload;
 
-import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
-import com.smartgwt.client.widgets.IButton;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.function.upload.widget.UploadCreateDialog;
 import de.kp.ames.web.client.function.upload.widget.UploadFormImpl;
 import de.kp.ames.web.client.style.GuiStyles;
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
 
-public class UploadFactory {
+public class UploadFactory extends FncFactory {
 
 	public static VLayout createUploadGridImpl() {
 
@@ -22,43 +20,13 @@ public class UploadFactory {
 
 	public static VLayout createUploadCreateDialog() {
 
-        VLayout layout = new VLayout();
-		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
-
-        /*
-         * Label
-         */
-        HTMLPane pane = new HTMLPane();
-        pane.setStyleName(GuiStyles.X_SC_TEASER);
-        
-        pane.setContents("Click the button to open the UploadCreateDialog.");
-        pane.setHeight(40);
-
-        /*
-         * Canvas
-         */
-        Canvas canvas = new Canvas();
-        canvas.setMargin(24);
-        
-		/*
-		 * Button
-		 */        
-        IButton button = new IButton("Show Dialog");
-         
-        button.setWidth(120);
-        button.setIcon("silk/widget.png");
-	        
-        button.addClickHandler(new ClickHandler() {
-
-			public void onClick(ClickEvent event) {
-				new UploadCreateDialog();				
+		String message = "Click the button to open the UploadCreateDialog.";		
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				new UploadCreateDialog();
 			}
-        });
-
-        canvas.addChild(button);
-        
-        layout.setMembers(pane, canvas);
-        return layout;
+			
+		});
 	
 	}
 

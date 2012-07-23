@@ -20,7 +20,6 @@ package de.kp.ames.web.client.function.product;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.BooleanCallback;
@@ -28,10 +27,10 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.product.widget.ProductorCreateDialog;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class ProductWidget {
 
@@ -99,18 +98,13 @@ public class ProductWidget {
 		/*
 		 * Prepare data for delete request
 		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
+		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
 			
 		/*
 		 * Invoke delete request
 		 */
 		ProductService service = new ProductService();
-		service.doDelete(attributes, data, activity);
+		service.doDelete(attributes, activity);
 		
 	}
 	

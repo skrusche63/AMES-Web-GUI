@@ -2,7 +2,10 @@ package de.kp.ames.web.client.test.product;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class ProductFactory {
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+
+public class ProductFactory extends FncFactory {
 
 	public static VLayout createProductGridImpl() {
 
@@ -14,33 +17,49 @@ public class ProductFactory {
 
 	public static VLayout createProductEditDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the ProductEditDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
 	public static VLayout createProductorApplyDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the ProductorApplyDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
 	public static VLayout createProductorCreateDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the ProductorCreateDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
 	public static VLayout createProductorEditDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the ProductorEditDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 

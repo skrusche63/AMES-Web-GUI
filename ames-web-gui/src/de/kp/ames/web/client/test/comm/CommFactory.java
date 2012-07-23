@@ -2,7 +2,10 @@ package de.kp.ames.web.client.test.comm;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class CommFactory {
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+
+public class CommFactory extends FncFactory {
 
 	public static VLayout createCommGridImpl() {
 
@@ -14,9 +17,13 @@ public class CommFactory {
 
 	public static VLayout createCommViewer() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the CommViewer.";
+		return createDialog(message, "Show Viewer", new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 

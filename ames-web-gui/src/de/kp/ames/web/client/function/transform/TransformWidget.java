@@ -20,13 +20,11 @@ package de.kp.ames.web.client.function.transform;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.service.FrameService;
-import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.transform.widget.SpecCreateDialog;
 import de.kp.ames.web.client.function.transform.widget.TransformCreateDialog;
@@ -96,18 +94,13 @@ public class TransformWidget {
 		/*
 		 * Prepare data for delete request
 		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
+		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
 		
 		/*
 		 * Invoke delete request
 		 */
 		TransformService service = new TransformService();
-		service.doDelete(attributes, data, activity);
+		service.doDelete(attributes, activity);
 		
 	}
 

@@ -47,9 +47,9 @@ public class TransformDeleteImpl extends GridDeleteImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		final TransformDeleteImpl self = this;
-		
+		final TransformDeleteImpl self = this;		
 		TransformWidget widget = new TransformWidget();
+		
 		widget.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				

@@ -2,7 +2,10 @@ package de.kp.ames.web.client.test.dms;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class DmsFactory {
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+
+public class DmsFactory extends FncFactory {
 
 	public static VLayout createDmsGridImpl() {
 
@@ -14,17 +17,25 @@ public class DmsFactory {
 
 	public static VLayout createDmsCreateDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the DmsCreateDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
 	public static VLayout createDmsEditDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the AccessorEditDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
@@ -38,17 +49,25 @@ public class DmsFactory {
 
 	public static VLayout createDmsGetViewer() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the DmsGetViewer.";
+		return createDialog(message, "Show Viewer", new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
 	public static VLayout createDmsViewer() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the DmsViewer.";
+		return createDialog(message, "Show Viewer", new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 

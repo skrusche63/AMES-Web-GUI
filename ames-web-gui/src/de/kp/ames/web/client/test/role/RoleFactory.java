@@ -2,7 +2,10 @@ package de.kp.ames.web.client.test.role;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class RoleFactory {
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+
+public class RoleFactory extends FncFactory {
 
 	public static VLayout createRoleGridImpl() {
 
@@ -14,9 +17,13 @@ public class RoleFactory {
 
 	public static VLayout createResponsibilityCreateDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the ResponsibilityCreateDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 
@@ -30,9 +37,13 @@ public class RoleFactory {
 
 	public static VLayout createRoleCreateDialog() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the RoleCreateDialog.";
+		return createDialog(message, new ScAction() {
+			public void execute() {
+				// TODO
+			}
+			
+		});
 	
 	}
 

@@ -20,7 +20,6 @@ package de.kp.ames.web.client.function.dms;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.BooleanCallback;
@@ -30,7 +29,6 @@ import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
-import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.dms.widget.DmsCreateDialog;
 import de.kp.ames.web.client.function.globals.FncGlobals;
@@ -101,18 +99,13 @@ public class DmsWidget {
 		/*
 		 * Prepare data for delete request
 		 */
-		String[] keys = {
-			JaxrConstants.RIM_ID
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
+		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
 
 		/*
 		 * Invoke delete request
 		 */
 		DmsService service = new DmsService();
-		service.doDelete(attributes, data, activity);
+		service.doDelete(attributes, activity);
 		
 	}
 
