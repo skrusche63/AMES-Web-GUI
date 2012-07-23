@@ -20,7 +20,6 @@ package de.kp.ames.web.client.function.upload;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
@@ -28,7 +27,6 @@ import com.smartgwt.client.util.SC;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
-import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.product.ProductService;
@@ -87,18 +85,13 @@ public class UploadWidget {
 		/*
 		 * Prepare data for delete request;
 		 */
-		String[] keys = {
-			JsonConstants.J_KEY
-		};
-		
-		JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-		String data = jRecord.toString();
+		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JsonConstants.J_KEY));
 
 		/*
 		 * Invoke delete request
 		 */
 		ProductService service = new ProductService();
-		service.doDelete(attributes, data, activity);
+		service.doDelete(attributes, activity);
 
 	}
 	

@@ -5,7 +5,7 @@ import com.smartgwt.client.widgets.Canvas;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
 
-public class CommViewViewer extends ViewerImpl {
+public class CommViewer extends ViewerImpl {
 
 	private static String TITLE  = GUIGlobals.APP_TITLE + ": Comm Viewer";
 	private static String SLOGAN = "Use this widget to view a certain communication object.";
@@ -15,7 +15,7 @@ public class CommViewViewer extends ViewerImpl {
 	 * 
 	 * @param body
 	 */
-	public CommViewViewer(Canvas body) {
+	public CommViewer(Canvas body) {
 		super(TITLE, SLOGAN, body);
 	}
 	
@@ -26,7 +26,7 @@ public class CommViewViewer extends ViewerImpl {
 	 * @param slogan
 	 * @param body
 	 */
-	public CommViewViewer(String title, String slogan, Canvas body) {
+	public CommViewer(String title, String slogan, Canvas body) {
 		super(title, slogan, body);
 	}
 

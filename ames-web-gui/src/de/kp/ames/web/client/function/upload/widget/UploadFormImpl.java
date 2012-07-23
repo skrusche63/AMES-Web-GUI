@@ -1,22 +1,39 @@
 package de.kp.ames.web.client.function.upload.widget;
 
 import java.util.ArrayList;
-
+import com.google.gwt.json.client.JSONBoolean;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.smartgwt.client.data.DSCallback;
+import com.smartgwt.client.data.DSRequest;
+import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.types.Encoding;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.UploadItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
+import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class UploadFormImpl extends FormImpl {
 	/*
 	 * Reference to label style for form items
 	 */
 	private static String LABEL_STYLE = "x-sc-label";
+
+	/*
+	 * Success Http Response Code
+	 */
+	private static final int STATUS_CODE_OK = 200;
 
 	/**
 	 * Constructor
@@ -84,42 +101,105 @@ public class UploadFormImpl extends FormImpl {
 		
 	}
 
-	public void doSubmit() {
-
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#doSubmit(de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doSubmit(final Activity afterSubmitActivity) {
 		/*
-		 * 
-		 * final DynamicForm uploadForm = new DynamicForm();		
-	uploadForm.setEncoding(Encoding.MULTIPART);
-	UploadItem fileItem = new UploadItem("image");
-	TextItem nameItem = new TextItem("imageName");
-	TextItem descriptionItem = new TextItem("description");
-	HiddenItem spaceImageIdItem = new HiddenItem("spaceImageId");
-	HiddenItem propertyIdItem = new HiddenItem("propertyId");
-	propertyIdItem.setValue(23);
-	spaceImageIdItem.setValue(0);
-	uploadForm.setTarget("hidden_frame");
-	uploadForm.setAction("/company/imageUploadRest.do");
-	IButton uploadButton = new IButton("Upload...");
-	uploadButton.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler(){
-		public void onClick(ClickEvent e){
-			uploadForm.submitForm();
-		}
-	});
-		
-	uploadForm.setItems(fileItem, nameItem, descriptionItem, spaceImageIdItem, propertyIdItem);
-	layout.setMembers(uploadForm, uploadButton);
-
-	RootPanel.get("tree1").add(layout);
-		 * 
+		 * Upload uses the native form-based mechanism
+		 * to transport a certain file to the server
 		 */
+		scForm.setAction(getUri());	
+		scForm.submit(new DSCallback() {
+
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.data.DSCallback#execute(com.smartgwt.client.data.DSResponse, java.lang.Object, com.smartgwt.client.data.DSRequest)
+			 */
+			public void execute(DSResponse response, Object rawData, DSRequest request) {
+				int status = response.getHttpResponseCode();
+				if (status == STATUS_CODE_OK) {
+					handleSuccess(afterSubmitActivity);
+				
+				} else {
+					handleError(afterSubmitActivity);
+					
+				}
+				
+			}
+			
+		});
 		
 	}
-	/*
-	 *  If it is acceptable that the application will do a full-page reload after the upload completes, you can simply:
 
-    set DynamicForm.encoding to "multipart"
-    include an UploadItem to get a basic HTML upload control
-    set DynamicForm.action to a URL where you have deployed server-side code to handle the upload
-    call DynamicForm.submitForm() to cause the form to be submitted 
+	/**
+	 * A helper method to inform the user about
+	 * successful file upload
+	 * 
+	 * @param afterSubmitActivity
 	 */
+	private void handleSuccess(final Activity afterSubmitActivity) {
+
+		JSONObject jResponse = new JSONObject();
+		
+		jResponse.put(JsonConstants.J_SUCCESS, JSONBoolean.getInstance(true));
+		jResponse.put(JsonConstants.J_MESSAGE, new JSONString(FncGlobals.UPLOAD_SUCCESS_MESSAGE));
+
+		afterSubmitActivity.execute(jResponse);
+		
+	}
+	
+	/**
+	 * A helper method to handle server-side error
+	 * 
+	 * @param afterSubmitActivity
+	 */
+	private void handleError(final Activity afterSubmitActivity) {
+
+		JSONObject jResponse = new JSONObject();
+		
+		jResponse.put(JsonConstants.J_SUCCESS, JSONBoolean.getInstance(false));
+		jResponse.put(JsonConstants.J_MESSAGE, new JSONString(FncGlobals.UPLOAD_ERROR_MESSAGE));
+
+		afterSubmitActivity.execute(jResponse);
+
+	}
+	
+	/**
+	 * A helper method to retrieve the form action url
+	 * 
+	 * @return
+	 */
+	private String getUri() {
+
+		/*
+		 * Build method
+		 */
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_SET);
+
+		requestMethod.setAttributes(this.params);
+		
+		/*
+		 * Add key for cache entry
+		 */
+
+		// TODO
+		
+		/*
+		 * Build request uri
+		 */
+		return getRequestUrl() + requestMethod.toQuery();
+		
+	}
+		
+	/**
+	 * Build base request url for mulitpart request
+	 * 
+	 * @return
+	 */
+	private String getRequestUrl() {
+		return CoreGlobals.REG_URL + "/" + ServiceConstants.UPLOAD_SERVICE_ID;
+		
+	}
+
 }

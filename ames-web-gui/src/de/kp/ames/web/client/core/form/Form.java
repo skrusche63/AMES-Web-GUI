@@ -19,10 +19,12 @@ package de.kp.ames.web.client.core.form;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.handler.FormHandler;
 
 public interface Form {
@@ -44,13 +46,6 @@ public interface Form {
 	 * form data
 	 */
 	public void addFormHandler(FormHandler formHandler);
-	
-	/**
-	 * Indicate form to be read only or not
-	 * 
-	 * @param readOnly
-	 */
-	public void setReadOnly(boolean readOnly);
 
 	/**
 	 * @return
@@ -61,5 +56,35 @@ public interface Form {
 	 * @return
 	 */
 	public ArrayList<FormItem> createFormItemsAsList();
+
+
+	/**
+	 * @param afterSubmitActivity
+	 */
+	public void doSubmit(Activity afterSubmitActivity);
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getParam(String key);
+
+	/**
+	 * @param key
+	 * @param value
+	 */
+	public void setParam(String key, String value);
+	
+	/**
+	 * @param params
+	 */
+	public void setParams(HashMap<String,String> params);
+	
+	/**
+	 * Indicate form to be read only or not
+	 * 
+	 * @param readOnly
+	 */
+	public void setReadOnly(boolean readOnly);
 
 }

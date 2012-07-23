@@ -8,6 +8,7 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.handler.FormHandler;
 
 public class FormImpl extends VLayout implements Form {
@@ -39,26 +40,28 @@ public class FormImpl extends VLayout implements Form {
 	 */
 	protected boolean readOnly;
 
-	/**
-	 * Set a certain request specific parameter
-	 * 
-	 * @param key
-	 * @param value
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#setParam(java.lang.String, java.lang.String)
 	 */
 	public void setParam(String key, String value) {
 		if (this.params == null) this.params = new HashMap<String,String>();
 		this.params.put(key, value);
 	}
 	
-	/**
-	 * Get a certain request specific parameter
-	 * 
-	 * @param key
-	 * @return
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#getParam(java.lang.String)
 	 */
 	public String getParam(String key) {
 		if ((this.params == null) || (this.params.containsKey(key) == false)) return null;
 		return this.params.get(key);
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#setParams(java.util.HashMap)
+	 */
+	public void setParams(HashMap<String,String> params) {
+		if (this.params == null) this.params = new HashMap<String,String>();
+		this.params.putAll(params);
 	}
 	
 	/* (non-Javadoc)
@@ -115,4 +118,12 @@ public class FormImpl extends VLayout implements Form {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#doSubmit(de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doSubmit(Activity afterSubmitActivity) {
+		/*
+		 * Must be overridden
+		 */
+	}
 }

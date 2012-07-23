@@ -107,9 +107,13 @@ public class FncGlobals {
 	/*
 	 * Upload-Layer
 	 */
-	public static String UPLOAD_C_TITLE  = GUIGlobals.APP_TITLE + ": Upload Editor";;
-	public static String UPLOAD_C_SLOGAN = "Use this widget to upload files to server cache.";
+	public static String UPLOAD_TITLE = "Upload Editor";
+	public static String UPLOAD_C_TITLE  = GUIGlobals.APP_TITLE + ": " + UPLOAD_TITLE;
+	public static String UPLOAD_C_SLOGAN = "Use this widget to upload files to the server cache.";
 
+	public static String UPLOAD_SUCCESS_MESSAGE = "File Upload has been successfully performed.";
+	public static String UPLOAD_ERROR_MESSAGE   = "File Upload failed due to a server-side error.";
+	
 	/*
 	 * User-Layer
 	 */
