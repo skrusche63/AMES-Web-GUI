@@ -468,7 +468,7 @@ public class ScFactory {
 	 */
 	private static Tab createCommGridImpl(String nid) {
 		
-		VLayout content = CommFactory.createCommGridImpl();
+		VLayout content = CommFactory.getInstance().createCommGridImpl();
 		
 		Tab tab = createTab(nid, "CommGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -477,7 +477,7 @@ public class ScFactory {
 
 	private static Tab createCommViewer(String nid) {
 		
-		VLayout content = CommFactory.createCommViewer();
+		VLayout content = CommFactory.getInstance().createCommViewer();
 		
 		Tab tab = createTab(nid, "CommViewer", WIDGET_ICON, content);	
 		return tab;
@@ -876,7 +876,7 @@ public class ScFactory {
 	 */
 	private static Tab createUploadGridImpl(String nid) {
 		
-		VLayout content = UploadFactory.createUploadGridImpl();
+		VLayout content = UploadFactory.getInstance().createUploadGridImpl();
 		
 		Tab tab = createTab(nid, "UploadGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -885,7 +885,7 @@ public class ScFactory {
 	
 	private static Tab createUploadCreateDialog(String nid) {
 		
-        VLayout content = UploadFactory.createUploadCreateDialog();		
+        VLayout content = UploadFactory.getInstance().createUploadCreateDialog();		
 		
 		Tab tab = createTab(nid, "UploadCreateDialog", WIDGET_ICON, content);	
 		return tab;
@@ -894,7 +894,7 @@ public class ScFactory {
 	
 	private static Tab createUploadFormImpl(String nid) {
 
-        VLayout content = UploadFactory.createUploadFormImpl();
+        VLayout content = UploadFactory.getInstance().createUploadFormImpl();
 		
 		Tab tab = createTab(nid, "UploadFormImpl", WIDGET_ICON, content);	
 		return tab;
