@@ -21,7 +21,6 @@ package de.kp.ames.web.client;
  */
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONValue;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
@@ -55,9 +54,7 @@ public class main implements EntryPoint {
 
 			service.doGetCallersApps(new ActivityImpl() {
 				public void execute(JSONValue jValue) {
-					
-					JSONArray jArray = jValue.isArray();
-					MainController.getInstance().createOpsCase(jArray);
+					MainController.getInstance().createOpsCase(jValue);
 				}
 			});
 			

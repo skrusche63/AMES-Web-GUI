@@ -18,6 +18,8 @@ package de.kp.ames.web.client.core.apps;
  *
  */
 
+import com.google.gwt.json.client.JSONObject;
+
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 
 public class UserController {
@@ -49,6 +51,22 @@ public class UserController {
 	public static UserController getInstance() {
 		if (instance == null) instance = new UserController();
 		return instance;
+	}
+	
+	public void setUser(JSONObject jUser) {
+				
+		/* 
+		 * Retrieve information about current user
+		 */
+		String uid   = jUser.get("id").isString().stringValue();
+		setUserId(uid);
+		
+		String name = jUser.get("name").isString().stringValue();
+		setUserName(name);
+		
+		String role = jUser.get("role").isString().stringValue();
+		setUserRole(role);
+		
 	}
 	
 	/**

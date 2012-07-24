@@ -21,6 +21,7 @@ package de.kp.ames.web.client.core.apps;
 import java.util.ArrayList;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -42,8 +43,9 @@ import de.kp.ames.web.client.core.widget.base.Viewport;
 import de.kp.ames.web.client.function.bulletin.widget.BulletinImpl;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 import de.kp.ames.web.client.function.help.HelpImpl;
-import de.kp.ames.web.client.function.login.LoginDialog;
+import de.kp.ames.web.client.function.login.DisclaimerDialog;
 import de.kp.ames.web.client.function.scm.ScmSysImpl;
+import de.kp.ames.web.client.function.service.DisclaimerService;
 import de.kp.ames.web.client.test.ShowCaseImpl;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
@@ -122,12 +124,20 @@ public class MainController {
 	 * Create introduction viewport when
 	 * starting the AMES Web application
 	 */
-	public void createOpsCase(JSONArray jApps) {
+	public void createOpsCase(JSONValue jValue) {
+		
+		JSONObject jObject = jValue.isObject();
+		
+		/*
+		 * Retrieve User
+		 */
+		JSONObject jUser = jObject.get("user").isObject();
+		UserController.getInstance().setUser(jUser);
 		
 		/*
 		 * Register callers apps
 		 */
-		this.jRegisteredApps = jApps;
+		this.jRegisteredApps = jObject.get("apps").isArray();
 		
 		/* 
 		 * Remove the initial splash screen
@@ -139,28 +149,23 @@ public class MainController {
 		 * Create viewport
 		 */
 		createViewport();
-		
-		/*
-		 * Show Login Dialog: this dialog is used to
-		 * retrieve additional user credentials
+
+		/* 
+		 * Add the user to main topline
 		 */
-		new LoginDialog(new ActivityImpl() {
-			public void execute() {				
-				/* 
-				 * Add the user to main topline, and 
-				 * second replace the main application
-				 */
-				viewport.setUser(UserController.getInstance().getUserName());	
-				
-				/*
-				 * Create desktop application as initial
-				 * viewport to enable the user to select
-				 * specific apps
-				 */
-				createApp(FncGlobals.FNC_APP_ID_Desktop);
-				
-			}
-		});
+		viewport.setUser(UserController.getInstance().getUserName());	
+
+		/*
+		 * Create desktop application as initial
+		 * viewport to enable the user to select
+		 * specific apps
+		 */
+		createApp(FncGlobals.FNC_APP_ID_Desktop);
+
+		/*
+		 * Show disclaimer dialog
+		 */
+		createDisclaimer();
 		
 	}
 
@@ -262,6 +267,20 @@ public class MainController {
 		 */
 		replaceApp(app);
 		
+	}
+
+	/**
+	 * Show disclaimer dialog
+	 */
+	private void createDisclaimer() {
+
+		DisclaimerService service = new DisclaimerService();
+		service.doGetRequest(new ActivityImpl() {
+			public void execute(String response) {
+				new DisclaimerDialog(response);				
+			}
+		});
+
 	}
 	
 	/**

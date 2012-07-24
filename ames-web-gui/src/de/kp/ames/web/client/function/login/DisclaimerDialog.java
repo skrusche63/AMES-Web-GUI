@@ -23,25 +23,19 @@ import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.BaseDialog;
 import de.kp.ames.web.client.function.globals.FncGlobals;
 
 public class DisclaimerDialog extends BaseDialog {
 
-	private Activity callback;
 	private HTMLFlow flow;
 	
-	public DisclaimerDialog(String html, Activity callback) {
+	public DisclaimerDialog(String html) {
 		super(FncGlobals.DISCLAIMER_TITLE, FncGlobals.DISCLAIMER_SLOGAN);
-		
-		// register callback
-		this.callback = callback;
 		
 		this.flow.setContents(html);
 		
-		this.setTitle(GUIGlobals.APP_TITLE + ": " + FncGlobals.DISCLAIMER_TITLE);
+		this.setTitle(FncGlobals.DISCLAIMER_TITLE);
 		
 		this.setShowCloseButton(false);
 		this.setShowMinimizeButton(false);
@@ -69,10 +63,7 @@ public class DisclaimerDialog extends BaseDialog {
 	public ClickHandler createB1ClickHandler() {
 		return new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				
-				if (callback != null) callback.execute();
-				destroy();
-			
+				destroy();			
 			}			
 		};
 	}
