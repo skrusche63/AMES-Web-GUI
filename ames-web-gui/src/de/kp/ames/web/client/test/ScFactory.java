@@ -489,7 +489,7 @@ public class ScFactory {
 	 */
 	private static Tab createDmsGridImpl(String nid) {
 		
-		VLayout content = DmsFactory.createDmsGridImpl();
+		VLayout content = DmsFactory.getInstance().createDmsGridImpl();
 		
 		Tab tab = createTab(nid, "DmsGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -498,7 +498,7 @@ public class ScFactory {
 
 	private static Tab createDmsCreateDialog(String nid) {
 		
-		VLayout content = DmsFactory.createDmsCreateDialog();
+		VLayout content = DmsFactory.getInstance().createDmsCreateDialog();
 		
 		Tab tab = createTab(nid, "DmsCreateDialog", WIDGET_ICON, content);	
 		return tab;
@@ -507,7 +507,7 @@ public class ScFactory {
 
 	private static Tab createDmsEditDialog(String nid) {
 		
-		VLayout content = DmsFactory.createDmsEditDialog();
+		VLayout content = DmsFactory.getInstance().createDmsEditDialog();
 		
 		Tab tab = createTab(nid, "DmsEditDialog", WIDGET_ICON, content);	
 		return tab;
@@ -516,7 +516,7 @@ public class ScFactory {
 
 	private static Tab createDmsFormImpl(String nid) {
 		
-		VLayout content = DmsFactory.createDmsFormImpl();
+		VLayout content = DmsFactory.getInstance().createDmsFormImpl();
 		
 		Tab tab = createTab(nid, "DmsFormImpl", WIDGET_ICON, content);	
 		return tab;
@@ -525,7 +525,7 @@ public class ScFactory {
 
 	private static Tab createDmsGetViewer(String nid) {
 		
-		VLayout content = DmsFactory.createDmsGetViewer();
+		VLayout content = DmsFactory.getInstance().createDmsGetViewer();
 		
 		Tab tab = createTab(nid, "DmsGetViewer", WIDGET_ICON, content);	
 		return tab;
@@ -534,7 +534,7 @@ public class ScFactory {
 
 	private static Tab createDmsViewer(String nid) {
 		
-		VLayout content = DmsFactory.createDmsViewer();
+		VLayout content = DmsFactory.getInstance().createDmsViewer();
 		
 		Tab tab = createTab(nid, "DmsViewer", WIDGET_ICON, content);	
 		return tab;

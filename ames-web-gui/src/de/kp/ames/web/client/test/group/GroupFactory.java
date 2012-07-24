@@ -1,7 +1,10 @@
 package de.kp.ames.web.client.test.group;
 
+import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.function.group.data.GroupGridImpl;
+import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
 
@@ -18,7 +21,26 @@ public class GroupFactory extends FncFactory {
 	public static VLayout createGroupGridImpl() {
 
         VLayout layout = new VLayout();
-        // TODO
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+        /*
+         * Label
+         */
+        HTMLPane pane = getTeaser("View all registered Communities of Interest.", 40);
+        
+        /*
+         * Grid
+         */
+        
+		GroupGridImpl grid = new GroupGridImpl();
+		grid.setMargin(24);
+
+		grid.setWidth(480);
+		grid.setHeight(480);
+
+		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane, grid);
 		return layout;
 	
 	}
