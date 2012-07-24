@@ -53,7 +53,8 @@ public class Viewport extends VLayout {
 	
 	private Label user;
 	
-	private static int TOP_HEIGHT = 32;
+	private static int TOP_OPS_HEIGHT = 32;
+	private static int TOP_SC_HEIGHT  = 58;
 	
 	public Viewport() {
 
@@ -116,7 +117,7 @@ public class Viewport extends VLayout {
 		ts.setStyleName(GuiStyles.X_SC_HEADER);
 		
 		ts.setWidth100();
-		ts.setHeight(TOP_HEIGHT);
+		ts.setHeight(TOP_SC_HEIGHT);
 		
 		ts.addFill();
 		
@@ -125,8 +126,8 @@ public class Viewport extends VLayout {
 		ImgButton logo = new ImgButton();
 		logo.setSrc(GuiStyles.LOGO_IMAGE);
 		
-		logo.setWidth(256);
-		logo.setHeight(56);
+		logo.setWidth(221);
+		logo.setHeight(58);
 
 	    logo.setHoverStyle(GuiStyles.X_IMAGEHOVER);
 	    
@@ -153,7 +154,7 @@ public class Viewport extends VLayout {
 		ts.setStyleName(GuiStyles.X_HEADER);
 		
 		ts.setWidth100();
-		ts.setHeight(TOP_HEIGHT);
+		ts.setHeight(TOP_OPS_HEIGHT);
 		
 		ts.addSpacer(5);
 		
@@ -308,7 +309,7 @@ public class Viewport extends VLayout {
 		apps.setSelected(true);
 
 		int x = apps.getAbsoluteLeft();
-		int y = apps.getAbsoluteTop() + TOP_HEIGHT - 1;
+		int y = apps.getAbsoluteTop() + TOP_SC_HEIGHT - 1;
 		
 		Menu menu = apps.getMenu();
 		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(apps));
@@ -332,7 +333,7 @@ public class Viewport extends VLayout {
 		help.setSelected(true);
 
 		int x = help.getAbsoluteLeft();
-		int y = help.getAbsoluteTop() + TOP_HEIGHT - 1;
+		int y = help.getAbsoluteTop() + TOP_SC_HEIGHT - 1;
 		
 		Menu menu = help.getMenu();
 		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(help));
