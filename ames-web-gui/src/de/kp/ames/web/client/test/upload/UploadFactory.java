@@ -118,7 +118,7 @@ public class UploadFactory extends FncFactory {
 		/*
 		 * Dimensions
 		 */
-		uploadForm.setWidth(380);
+		uploadForm.setWidth(388);
 		uploadForm.setHeight(1);
 		
 		/*

@@ -798,7 +798,7 @@ public class ScFactory {
 	 */
 	private static Tab createSymbolGridImpl(String nid) {
 		
-		VLayout content = SymbolFactory.createSymbolGridImpl();
+		VLayout content = SymbolFactory.getInstance().createSymbolGridImpl();
 		
 		Tab tab = createTab(nid, "SymbolGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -807,7 +807,7 @@ public class ScFactory {
 
 	private static Tab createSymbolTreeImpl(String nid) {
 		
-		VLayout content = SymbolFactory.createSymbolTreeImpl();
+		VLayout content = SymbolFactory.getInstance().createSymbolTreeImpl();
 		
 		Tab tab = createTab(nid, "SymbolTreeImpl", TABLE_ICON, content);	
 		return tab;
@@ -816,7 +816,7 @@ public class ScFactory {
 
 	private static Tab createSymbolViewer(String nid) {
 		
-		VLayout content = SymbolFactory.createSymbolViewer();
+		VLayout content = SymbolFactory.getInstance().createSymbolViewer();
 		
 		Tab tab = createTab(nid, "SymbolViewer", WIDGET_ICON, content);	
 		return tab;

@@ -18,7 +18,6 @@ package de.kp.ames.web.client.core.form;
  *
  */
 
-import com.google.gwt.user.client.ui.HTML;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.RichTextEditor;
@@ -26,7 +25,6 @@ import com.smartgwt.client.widgets.form.fields.CanvasItem;
 import com.smartgwt.client.widgets.form.fields.PasswordItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
-import com.smartgwt.client.widgets.form.fields.UploadItem;
 
 public class GuiFormFactory {
 
@@ -173,54 +171,12 @@ public class GuiFormFactory {
 	 * @param width
 	 * @return
 	 */
-	public static UploadItem createScUploadItem(String label, String name, String style, int width) {
+	public static FileUploadItem createScFileUploadItem(String name, int width) {
 		
-		UploadItem uploadField = new UploadItem(name, label);
-		
-		if (label == null) uploadField.setShowTitle(false);
-		uploadField.setTitleStyle(style);
+		FileUploadItem uploadField = new FileUploadItem(name, "", width);
+		uploadField.wrapHtmlElement();
 
-		uploadField.setWidth(width);
 		return uploadField;
-		
-	}
-
-	public static HTML createScUploadHtml(String label, String name, int width) {
-		
-		int internalWidth = width+28;
-		int fileOffset = internalWidth - 215;
-		
-		StringBuffer sb = new StringBuffer();
-		
-		sb.append("<div style=\"margin:16px;margin-top:24px;position:relative;width:" + internalWidth + "px;\">"); // container
-
-		/*
-		 * Fake item
-		 */
-		sb.append("<div style=\"position:absolute;top:0px;left:0px;\">");
-		
-		sb.append("<div style=\"top:0;left:0;\">"); // div wrapper for <input> element
-		sb.append("<input type=\"text\" id=\"fake_upload\" style=\"width:" + width + "px;height:28px;\" />");
-		sb.append("</div>");
-
-		sb.append("<img src=\"images/upload24.png\" style=\"position:relative;top:-28px;left:" + width + "px;\"/>"); // browse image
-		
-		sb.append("</div>");
-		
-		/*
-		 * File item
-		 */		
-		sb.append("<span style=\"position:relative;top:0px;left:" + fileOffset + "px;-moz-opacity:0;filter:alpha(opacity=0);opacity:0.0;text-align:right;cursor:pointer;\">");
-
-		sb.append("<input type=\"file\" name=\"" + name + "\" onchange=\"document.getElementById('fake_upload').value=this.value;\" style=\"cursor:pointer;\" />");
-		sb.append("</span>");
-
-		sb.append("</div>"); // end container
-		
-		HTML html = new HTML();
-		html.setHTML(sb.toString());
-	     
-		return html;
 		
 	}
 	

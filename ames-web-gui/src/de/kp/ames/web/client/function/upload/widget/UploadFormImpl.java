@@ -10,10 +10,10 @@ import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.types.Encoding;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
-import com.smartgwt.client.widgets.form.fields.UploadItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FileUploadItem;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
@@ -25,10 +25,6 @@ import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class UploadFormImpl extends FormImpl {
-	/*
-	 * Reference to label style for form items
-	 */
-	private static String LABEL_STYLE = "x-sc-label";
 
 	/*
 	 * Success Http Response Code
@@ -56,29 +52,14 @@ public class UploadFormImpl extends FormImpl {
 		scForm.setWidth100();
 		scForm.setHeight(64);
 
-		/*
-		 * Build form content from native Html; this way is used
-		 * to beautify the original <input> file component
-		 */
-		scForm.addChild(GuiFormFactory.createScUploadHtml("", JaxrConstants.RIM_FILE, 280));
-
-		/*
-		 * Below is an alternate setup of 
-		 * 
-		 * scForm.setTitleSuffix(""); // default ":"
-		 * 
-		 * scForm.setColWidths(60, 480);
-		 * scForm.setFixedColWidths(true);
-		 * 
-		 * scForm.setPadding(8);
-		 * scForm.setTitleOrientation(TitleOrientation.LEFT);
-		 * 
-		 * scForm.setFields(createFormItemsAsArray());
-		 * 
-		 * scForm.setAutoFocus(true);
-		 * scForm.setLayoutAlign(Alignment.CENTER);
-		 */
-
+		 
+		scForm.setTitleSuffix(""); // default ":"
+		 
+		scForm.setColWidths(0, 340);
+		scForm.setFixedColWidths(true);
+		 
+		scForm.setFields(createFormItemsAsArray());
+		 
 		wrapper.setMembers(scForm);
 		this.setMembers(wrapper);
 
@@ -94,7 +75,7 @@ public class UploadFormImpl extends FormImpl {
 		/*
 		 * UplodItem
 		 */
-		UploadItem uploadItem = GuiFormFactory.createScUploadItem("<b>File</b>:", JaxrConstants.RIM_FILE, LABEL_STYLE, 320);
+		FileUploadItem uploadItem = GuiFormFactory.createScFileUploadItem(JaxrConstants.RIM_FILE, 280);
 		items.add(uploadItem);
 		
 		return items;
