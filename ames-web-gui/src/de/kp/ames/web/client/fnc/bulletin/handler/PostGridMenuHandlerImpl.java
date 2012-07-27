@@ -36,22 +36,26 @@ public class PostGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		items.add(comment);
 		
-		/*
-		 * Separate create from get all
-		 */
-		items.add(new MenuItemSeparator());
-
-		/*
-		 * Build comment all
-		 */
-		CommentGetAllImpl getAllAction = new CommentGetAllImpl(grid, record);
-		createAction.setParams(this.getParams());
+		if (record != null) {
 		
-		CommentAllMenuItem commentAll = new CommentAllMenuItem();
-		comment.addAction(getAllAction);
-		
-		items.add(commentAll);
+			/*
+			 * Separate create from get all
+			 */
+			items.add(new MenuItemSeparator());
+	
+			/*
+			 * Build comment all
+			 */
+			CommentGetAllImpl getAllAction = new CommentGetAllImpl(grid, record);
+			createAction.setParams(this.getParams());
+			
+			CommentAllMenuItem commentAll = new CommentAllMenuItem();
+			comment.addAction(getAllAction);
+			
+			items.add(commentAll);
 
+		}
+		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		
 	}

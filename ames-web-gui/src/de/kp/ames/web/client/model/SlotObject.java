@@ -64,9 +64,11 @@ public class SlotObject extends ExtensibleObject {
 		/*
 		 * Value
 		 */
-		ListGridField valField = new ListGridField(JaxrConstants.RIM_VAL, LabelConstants.VALUE_LABEL, 160);
+		ListGridField valField = new ListGridField(JaxrConstants.RIM_VAL, LabelConstants.VALUE_LABEL);
+		
 		valField.setType(ListGridFieldType.TEXT);
-	
+		valField.setWidth("*");
+		
 		fields.add(valField);
 
 		return fields;

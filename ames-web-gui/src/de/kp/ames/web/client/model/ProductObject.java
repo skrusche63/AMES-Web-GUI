@@ -58,7 +58,7 @@ public class ProductObject extends ExtrinsicObject {
 		/*
 		 * Product author
 		 */
-		fields.add(GridFieldFactory.createRimAuthorField(160));
+		fields.add(GridFieldFactory.createRimAuthorField("*"));
 		
 		return fields;
 		

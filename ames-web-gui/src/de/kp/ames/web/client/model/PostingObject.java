@@ -95,9 +95,11 @@ public class PostingObject extends ExtrinsicObject {
 		/*
 		 * From
 		 */	
-		ListGridField fromField = new ListGridField(JaxrConstants.RIM_FROM, LabelConstants.FROM_LABEL, 160);
+		ListGridField fromField = new ListGridField(JaxrConstants.RIM_FROM, LabelConstants.FROM_LABEL);
+		
 		fromField.setType(ListGridFieldType.TEXT);
-	
+		fromField.setWidth("*");
+		
 		fields.add(fromField);
 		
 		return fields;

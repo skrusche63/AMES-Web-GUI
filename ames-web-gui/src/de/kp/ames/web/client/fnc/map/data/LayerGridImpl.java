@@ -70,7 +70,7 @@ public class LayerGridImpl extends RemoteGridImpl {
 		recordHandler.setAfterLayerActivity(activity);
 		
 		this.addRecordHandler(recordHandler);
-		
+
 	}
 
 	/**

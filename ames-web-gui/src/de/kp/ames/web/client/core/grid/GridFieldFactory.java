@@ -51,6 +51,23 @@ public class GridFieldFactory {
 	}
 
 	/**
+	 * Create a predefined Author Field
+	 * 
+	 * @param width
+	 * @return
+	 */
+	public static ListGridField createRimAuthorField(String width) {
+		
+		ListGridField authorField = new ListGridField(JaxrConstants.RIM_AUTHOR, LabelConstants.AUTHOR_LABEL);
+		
+		authorField.setType(ListGridFieldType.TEXT);
+		authorField.setWidth(width);
+		
+		return authorField;
+		
+	}
+
+	/**
 	 * Create a predefined Icon Field
 	 *
 	 * @return
@@ -120,6 +137,22 @@ public class GridFieldFactory {
 		ListGridField nameField = new ListGridField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL, width);
 		nameField.setType(ListGridFieldType.TEXT);
 
+		return nameField;
+		
+	}
+
+	/**
+	 * Create a predefined Name Field
+	 * 
+	 * @return
+	 */
+	public static ListGridField createRimNameField(String width) {
+		
+		ListGridField nameField = new ListGridField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL);
+		
+		nameField.setType(ListGridFieldType.TEXT);
+		nameField.setWidth("*");
+		
 		return nameField;
 		
 	}

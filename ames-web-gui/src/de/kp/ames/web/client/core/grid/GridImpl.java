@@ -31,6 +31,8 @@ import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler;
+import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
+import com.smartgwt.client.widgets.grid.events.RowContextClickHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
@@ -150,6 +152,12 @@ public class GridImpl extends ListGrid implements Grid {
 			}
 		});
 
+		this.addRowContextClickHandler(new RowContextClickHandler() {
+			public void onRowContextClick(RowContextClickEvent event) {
+				self.afterRowContextClickHandler(event);
+			}
+			
+		});
 	}
 	
 	/* (non-Javadoc)
@@ -196,6 +204,28 @@ public class GridImpl extends ListGrid implements Grid {
 		 */
 		if (this.menuHandler != null) this.menuHandler.doOpen(record);
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#afterRowContextClickHandler(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
+	 */
+	public void afterRowContextClickHandler(RowContextClickEvent event) {
+		/*
+		 * This event is exclusively used with empty grids;
+		 */
+		Record record = event.getRecord();
+		if (record != null) return;
+
+		/*
+		 * Stop event propagation
+		 */
+		event.cancel();
+
+		/*
+		 * Invoke Grid MenuHandler
+		 */
+		if (this.menuHandler != null) this.menuHandler.doOpen(record);
+
 	}
 
 	/* (non-Javadoc)

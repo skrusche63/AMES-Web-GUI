@@ -67,33 +67,41 @@ public class UploadGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		items.add(create);
 
-		/*
-		 * Separate create from delete
-		 */
-		items.add(separator);
-		
-		/*
-		 * Delete upload
-		 */
-		UploadDeleteImpl deleteAction = new UploadDeleteImpl(grid, record);
-		deleteAction.setParams(this.getParams());
-		
-		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(deleteAction);
+		if (record != null) {
+			
+			/*
+			 * Separate create from delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Delete upload
+			 */
+			UploadDeleteImpl deleteAction = new UploadDeleteImpl(grid, record);
+			deleteAction.setParams(this.getParams());
+			
+			DeleteMenuItem delete = new DeleteMenuItem();
+			delete.addAction(deleteAction);
+	
+			items.add(delete);
+			
+			/*
+			 * Separate delete from view
+			 */
+			items.add(separator);
+	
+			/*
+			 * View upload
+			 */
+			UploadViewImpl viewAction = new UploadViewImpl(grid, record);
+			viewAction.setParams(this.getParams());
+			
+			ViewMenuItem view = new ViewMenuItem();
+			view.addAction(viewAction);
+			
+			items.add(view);
 
-		/*
-		 * Separate delete from view
-		 */
-		items.add(separator);
-
-		/*
-		 * View upload
-		 */
-		UploadViewImpl viewAction = new UploadViewImpl(grid, record);
-		viewAction.setParams(this.getParams());
-		
-		ViewMenuItem view = new ViewMenuItem();
-		view.addAction(viewAction);
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		

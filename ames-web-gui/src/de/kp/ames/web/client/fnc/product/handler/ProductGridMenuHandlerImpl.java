@@ -75,61 +75,64 @@ public class ProductGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		String type = this.getParam(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Product)) {
 
-			/*
-			 * Edit product
-			 */
-			ProductEditImpl editAction = new ProductEditImpl(grid, record);
-			editAction.setParams(this.getParams());
-			
-			EditMenuItem edit = new EditMenuItem();
-			edit.addAction(editAction);
-			
-			items.add(edit);
+			if (record != null) {
+				
+				/*
+				 * Edit product
+				 */
+				ProductEditImpl editAction = new ProductEditImpl(grid, record);
+				editAction.setParams(this.getParams());
+				
+				EditMenuItem edit = new EditMenuItem();
+				edit.addAction(editAction);
+				
+				items.add(edit);
+	
+				/*
+				 * Delete product
+				 */
+				ProductDeleteImpl deleteAction = new ProductDeleteImpl(grid, record);
+				deleteAction.setParams(this.getParams());
+				
+				DeleteMenuItem delete = new DeleteMenuItem();
+				delete.addAction(deleteAction);
+				
+				items.add(delete);
+	
+				/*
+				 * Separate view from delete
+				 */
+				items.add(separator);
+				
+				/*
+				 * View product
+				 */
+				ProductViewImpl viewAction = new ProductViewImpl(grid, record);
+				viewAction.setParams(this.getParams());
+				
+				ViewMenuItem view = new ViewMenuItem();
+				view.addAction(viewAction);
+				
+				items.add(view);
+	
+				/*
+				 * Separate download from view
+				 */
+				items.add(separator);
+				
+				/*
+				 * Download product
+				 */
+				ProductDownloadImpl downloadAction = new ProductDownloadImpl(grid, record);
+				downloadAction.setParams(this.getParams());
+				
+				DownloadMenuItem download = new DownloadMenuItem();
+				download.addAction(downloadAction);
+				
+				items.add(download);
 
-			/*
-			 * Delete product
-			 */
-			ProductDeleteImpl deleteAction = new ProductDeleteImpl(grid, record);
-			deleteAction.setParams(this.getParams());
+			}
 			
-			DeleteMenuItem delete = new DeleteMenuItem();
-			delete.addAction(deleteAction);
-			
-			items.add(delete);
-
-			/*
-			 * Separate view from delete
-			 */
-			items.add(separator);
-			
-			/*
-			 * View product
-			 */
-			ProductViewImpl viewAction = new ProductViewImpl(grid, record);
-			viewAction.setParams(this.getParams());
-			
-			ViewMenuItem view = new ViewMenuItem();
-			view.addAction(viewAction);
-			
-			items.add(view);
-
-			/*
-			 * Separate download from view
-			 */
-			items.add(separator);
-			
-			/*
-			 * Download product
-			 */
-			ProductDownloadImpl downloadAction = new ProductDownloadImpl(grid, record);
-			downloadAction.setParams(this.getParams());
-			
-			DownloadMenuItem download = new DownloadMenuItem();
-			download.addAction(downloadAction);
-			
-			items.add(download);
-
-
 		} else if (type.equals(ClassificationConstants.FNC_ID_Productor)) {
 			
 			/*
@@ -142,65 +145,69 @@ public class ProductGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			create.addAction(createAction);
 			
 			items.add(create);
-			
-			/*
-			 * Separate create from edit & delete
-			 */
-			items.add(separator);
 
-			/*
-			 * Edit productor
-			 */
-			ProductorEditImpl editAction = new ProductorEditImpl(grid, record);
-			editAction.setParams(this.getParams());
-			
-			EditMenuItem edit = new EditMenuItem();
-			edit.addAction(editAction);
-			
-			items.add(edit);
+			if (record != null) {
+				
+				/*
+				 * Separate create from edit & delete
+				 */
+				items.add(separator);
+	
+				/*
+				 * Edit productor
+				 */
+				ProductorEditImpl editAction = new ProductorEditImpl(grid, record);
+				editAction.setParams(this.getParams());
+				
+				EditMenuItem edit = new EditMenuItem();
+				edit.addAction(editAction);
+				
+				items.add(edit);
+	
+				/*
+				 * Delete productor
+				 */
+				ProductorDeleteImpl deleteAction = new ProductorDeleteImpl(grid, record);
+				deleteAction.setParams(this.getParams());
+				
+				DeleteMenuItem delete = new DeleteMenuItem();
+				delete.addAction(deleteAction);
+				
+				items.add(delete);
+	
+				/*
+				 * Separate delete from get
+				 */
+				items.add(separator);
+	
+				/*
+				 * Get productor
+				 */
+				ProductorGetImpl getAction = new ProductorGetImpl(grid, record);
+				getAction.setParams(this.getParams());
+				
+				GetMenuItem get = new GetMenuItem();
+				get.addAction(getAction);
+				
+				items.add(get);
+	
+				/*
+				 * Separate get from apply
+				 */
+				items.add(separator);
+	
+				/*
+				 * Apply productor
+				 */
+				ProductorApplyImpl applyAction = new ProductorApplyImpl(grid, record);
+				applyAction.setParams(this.getParams());
+				
+				ApplyMenuItem apply = new ApplyMenuItem();
+				apply.addAction(applyAction);
+				
+				items.add(apply);
 
-			/*
-			 * Delete productor
-			 */
-			ProductorDeleteImpl deleteAction = new ProductorDeleteImpl(grid, record);
-			deleteAction.setParams(this.getParams());
-			
-			DeleteMenuItem delete = new DeleteMenuItem();
-			delete.addAction(deleteAction);
-			
-			items.add(delete);
-
-			/*
-			 * Separate delete from get
-			 */
-			items.add(separator);
-
-			/*
-			 * Get productor
-			 */
-			ProductorGetImpl getAction = new ProductorGetImpl(grid, record);
-			getAction.setParams(this.getParams());
-			
-			GetMenuItem get = new GetMenuItem();
-			get.addAction(getAction);
-			
-			items.add(get);
-
-			/*
-			 * Separate get from apply
-			 */
-			items.add(separator);
-
-			/*
-			 * Apply productor
-			 */
-			ProductorApplyImpl applyAction = new ProductorApplyImpl(grid, record);
-			applyAction.setParams(this.getParams());
-			
-			ApplyMenuItem apply = new ApplyMenuItem();
-			apply.addAction(applyAction);
-			
-			items.add(apply);
+			}
 			
 		}
 				

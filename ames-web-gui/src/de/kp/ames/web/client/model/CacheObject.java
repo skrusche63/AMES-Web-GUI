@@ -86,8 +86,10 @@ public class CacheObject extends ExternalObject {
 		/*
 		 * Mimetype
 		 */
-		ListGridField mimeField = new ListGridField(JsonConstants.J_MIME, LabelConstants.MIME_LABEL, 120);
+		ListGridField mimeField = new ListGridField(JsonConstants.J_MIME, LabelConstants.MIME_LABEL);
+		
 		mimeField.setType(ListGridFieldType.TEXT);
+		mimeField.setWidth("*");
 
 		fields.add(mimeField);
 

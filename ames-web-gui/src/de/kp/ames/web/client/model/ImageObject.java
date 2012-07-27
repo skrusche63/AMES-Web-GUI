@@ -66,7 +66,7 @@ public class ImageObject extends ExtrinsicObject {
 		/*
 		 * Image author
 		 */
-		fields.add(GridFieldFactory.createRimAuthorField(160));
+		fields.add(GridFieldFactory.createRimAuthorField("*"));
 		
 		return fields;
 		

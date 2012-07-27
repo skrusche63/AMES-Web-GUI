@@ -51,48 +51,52 @@ public class NsTreeMenuHandlerImpl extends TreeMenuHandlerImpl {
 		
 		items.add(create);
 		
-		/*
-		 * Separate create from edit & delete
-		 */
-		items.add(separator);
-		
-		/*
-		 * Edit namespace (= folder)
-		 */
-		NsEditImpl editAction = new NsEditImpl(tree, node);
-		editAction.setParams(this.getParams());
-		
-		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(editAction);
-		
-		items.add(edit);
-		
-		/*
-		 * Delete namespace (= folder)
-		 */
-		NsDeleteImpl deleteAction = new NsDeleteImpl(tree, node);
-		deleteAction.setParams(this.getParams());
-		
-		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(deleteAction);
-		
-		items.add(delete);
-				
-		/*
-		 * Separate delete from get
-		 */
-		items.add(separator);
-		
-		/*
-		 * Get namespace (= folder)
-		 */
-		NsGetImpl getAction = new NsGetImpl(tree, node);
-		getAction.setParams(this.getParams());
-		
-		GetMenuItem get = new GetMenuItem();
-		get.addAction(getAction);
-		
-		items.add(get);
+		if (node != null) {
+			
+			/*
+			 * Separate create from edit & delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Edit namespace (= folder)
+			 */
+			NsEditImpl editAction = new NsEditImpl(tree, node);
+			editAction.setParams(this.getParams());
+			
+			EditMenuItem edit = new EditMenuItem();
+			edit.addAction(editAction);
+			
+			items.add(edit);
+			
+			/*
+			 * Delete namespace (= folder)
+			 */
+			NsDeleteImpl deleteAction = new NsDeleteImpl(tree, node);
+			deleteAction.setParams(this.getParams());
+			
+			DeleteMenuItem delete = new DeleteMenuItem();
+			delete.addAction(deleteAction);
+			
+			items.add(delete);
+					
+			/*
+			 * Separate delete from get
+			 */
+			items.add(separator);
+			
+			/*
+			 * Get namespace (= folder)
+			 */
+			NsGetImpl getAction = new NsGetImpl(tree, node);
+			getAction.setParams(this.getParams());
+			
+			GetMenuItem get = new GetMenuItem();
+			get.addAction(getAction);
+			
+			items.add(get);
+
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 

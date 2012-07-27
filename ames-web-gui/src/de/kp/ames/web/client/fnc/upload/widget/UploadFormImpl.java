@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FileUploadItem;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
@@ -83,14 +84,16 @@ public class UploadFormImpl extends FormImpl {
 		
 	}
 
-	public void doSubmit() {
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#doSubmit(de.kp.ames.web.client.core.activity.Activity)
+	 */
+	public void doSubmit(Activity sendActivity) {
 		/*
 		 * Upload uses the native form-based mechanism
 		 * to transport a certain file to the server
 		 */
 		
-		//scForm.setAction(getUri());	
-		scForm.setAction("http://localhost:8080/ames/upload.htm");		
+		scForm.setAction(getUri());	
 		scForm.submitForm();
 		
 	}

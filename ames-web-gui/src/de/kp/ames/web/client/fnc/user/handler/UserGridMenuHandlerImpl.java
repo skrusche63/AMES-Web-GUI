@@ -49,37 +49,41 @@ public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 
-		/* 
-		 * Separator
-		 */
-		MenuItemSeparator separator = new MenuItemSeparator();
-		
-		/*
-		 * Edit user
-		 */
-		UserEditImpl editAction = new UserEditImpl(grid, record);
-		editAction.setParams(this.getParams());
-		
-		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(editAction);
-		
-		items.add(edit);
+		if (record != null) {
+			
+			/* 
+			 * Separator
+			 */
+			MenuItemSeparator separator = new MenuItemSeparator();
+			
+			/*
+			 * Edit user
+			 */
+			UserEditImpl editAction = new UserEditImpl(grid, record);
+			editAction.setParams(this.getParams());
+			
+			EditMenuItem edit = new EditMenuItem();
+			edit.addAction(editAction);
+			
+			items.add(edit);
+	
+			/*
+			 * Seperate edit from view
+			 */
+			items.add(separator);
+			
+			/*
+			 * Get user
+			 */
+			UserGetImpl getAction = new UserGetImpl(grid, record);
+			getAction.setParams(this.getParams());
+			
+			GetMenuItem get = new GetMenuItem();
+			get.addAction(getAction);
+			
+			items.add(get);
 
-		/*
-		 * Seperate edit from view
-		 */
-		items.add(separator);
-		
-		/*
-		 * Get user
-		 */
-		UserGetImpl getAction = new UserGetImpl(grid, record);
-		getAction.setParams(this.getParams());
-		
-		GetMenuItem get = new GetMenuItem();
-		get.addAction(getAction);
-		
-		items.add(get);
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		

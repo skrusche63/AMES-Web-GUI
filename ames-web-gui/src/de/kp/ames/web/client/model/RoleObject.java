@@ -82,7 +82,7 @@ public class RoleObject extends ConceptObject {
 		/*
 		 * Role name
 		 */
-		fields.add(GridFieldFactory.createRimNameField(160));
+		fields.add(GridFieldFactory.createRimNameField("*"));
 		
 		return fields;
 		

@@ -69,48 +69,52 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		items.add(create);
 		
-		/*
-		 * Separate create from edit & delete
-		 */
-		items.add(separator);
-		
-		/*
-		 * Edit Community
-		 */
-		GroupEditImpl editAction = new GroupEditImpl(grid, record);
-		editAction.setParams(this.getParams());
-		
-		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(editAction);
-		
-		items.add(edit);
-		
-		/*
-		 * Delete Community
-		 */
-		GroupDeleteImpl deleteAction = new GroupDeleteImpl(grid, record);
-		deleteAction.setParams(this.getParams());
-		
-		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(deleteAction);
-		
-		items.add(delete);
-				
-		/*
-		 * Separate delete from get
-		 */
-		items.add(separator);
-		
-		/*
-		 * Get community
-		 */
-		GroupGetImpl getAction = new GroupGetImpl(grid, record);
-		getAction.setParams(this.getParams());
-		
-		GetMenuItem get = new GetMenuItem();
-		get.addAction(getAction);
-		
-		items.add(get);
+		if (record != null) {
+			
+			/*
+			 * Separate create from edit & delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Edit Community
+			 */
+			GroupEditImpl editAction = new GroupEditImpl(grid, record);
+			editAction.setParams(this.getParams());
+			
+			EditMenuItem edit = new EditMenuItem();
+			edit.addAction(editAction);
+			
+			items.add(edit);
+			
+			/*
+			 * Delete Community
+			 */
+			GroupDeleteImpl deleteAction = new GroupDeleteImpl(grid, record);
+			deleteAction.setParams(this.getParams());
+			
+			DeleteMenuItem delete = new DeleteMenuItem();
+			delete.addAction(deleteAction);
+			
+			items.add(delete);
+					
+			/*
+			 * Separate delete from get
+			 */
+			items.add(separator);
+			
+			/*
+			 * Get community
+			 */
+			GroupGetImpl getAction = new GroupGetImpl(grid, record);
+			getAction.setParams(this.getParams());
+			
+			GetMenuItem get = new GetMenuItem();
+			get.addAction(getAction);
+			
+			items.add(get);
+
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 

@@ -86,9 +86,9 @@ public class LayerObject extends ExternalObject {
 		/*
 		 * Srs (Projection)
 		 */
-		ListGridField srsField = new ListGridField(JsonConstants.J_SRS, LabelConstants.SRS_LABEL, 120);
+		ListGridField srsField = new ListGridField(JsonConstants.J_SRS, LabelConstants.SRS_LABEL);
 		srsField.setType(ListGridFieldType.TEXT);
-		
+
 		fields.add(srsField);
 
 		return fields;

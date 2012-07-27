@@ -25,6 +25,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.CellClickEvent;
 import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
+import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
 import de.kp.ames.web.client.handler.GridMenuHandler;
@@ -61,6 +62,13 @@ public interface Grid {
 	 * @param event
 	 */
 	public void afterCellContextMenu(CellContextClickEvent event);
+
+	/**
+	 * Event handling after row right click
+	 * 
+	 * @param event
+	 */
+	public void afterRowContextClickHandler(RowContextClickEvent event);
 
 	/**
 	 * @param event

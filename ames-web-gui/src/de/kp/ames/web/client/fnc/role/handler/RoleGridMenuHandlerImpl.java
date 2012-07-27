@@ -75,21 +75,25 @@ public class RoleGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			
 			items.add(create);
 			
-			/*
-			 * Separate create from delete
-			 */
-			items.add(separator);
-			
-			/*
-			 * Delete responsibility
-			 */
-			ResponsibilityDeleteImpl deleteAction = new ResponsibilityDeleteImpl(grid, record);
-			deleteAction.setParams(this.getParams());
-			
-			DeleteMenuItem delete = new DeleteMenuItem();
-			delete.addAction(deleteAction);
-			
-			items.add(delete);
+			if (record != null) {
+				
+				/*
+				 * Separate create from delete
+				 */
+				items.add(separator);
+				
+				/*
+				 * Delete responsibility
+				 */
+				ResponsibilityDeleteImpl deleteAction = new ResponsibilityDeleteImpl(grid, record);
+				deleteAction.setParams(this.getParams());
+				
+				DeleteMenuItem delete = new DeleteMenuItem();
+				delete.addAction(deleteAction);
+				
+				items.add(delete);
+
+			}
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Role)) {
 
@@ -104,22 +108,26 @@ public class RoleGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			
 			items.add(create);
 			
-			/*
-			 * Separate create from delete
-			 */
-			items.add(separator);
-			
-			/*
-			 * Delete role
-			 */
-			RoleDeleteImpl deleteAction = new RoleDeleteImpl(grid, record);
-			deleteAction.setParams(this.getParams());
-			
-			DeleteMenuItem delete = new DeleteMenuItem();
-			delete.addAction(deleteAction);
-			
-			items.add(delete);
+			if (record != null) {
+				
+				/*
+				 * Separate create from delete
+				 */
+				items.add(separator);
+				
+				/*
+				 * Delete role
+				 */
+				RoleDeleteImpl deleteAction = new RoleDeleteImpl(grid, record);
+				deleteAction.setParams(this.getParams());
+				
+				DeleteMenuItem delete = new DeleteMenuItem();
+				delete.addAction(deleteAction);
+				
+				items.add(delete);
 
+			}
+			
 		}
 		
 

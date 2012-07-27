@@ -40,16 +40,20 @@ public class CommGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 
-		/*
-		 * View comm object
-		 */
-		CommViewImpl viewAction = new CommViewImpl(grid, record);
-		viewAction.setParams(this.getParams());
-		
-		ViewMenuItem view = new ViewMenuItem();
-		view.addAction(viewAction);
-		
-		items.add(view);
+		if (record != null) {
+			
+			/*
+			 * View comm object
+			 */
+			CommViewImpl viewAction = new CommViewImpl(grid, record);
+			viewAction.setParams(this.getParams());
+			
+			ViewMenuItem view = new ViewMenuItem();
+			view.addAction(viewAction);
+			
+			items.add(view);
+
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 

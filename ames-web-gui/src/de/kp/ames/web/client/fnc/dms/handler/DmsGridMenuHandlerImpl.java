@@ -73,77 +73,81 @@ public class DmsGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		items.add(create);
 		
-		/*
-		 * Separate create from edit & delete
-		 */
-		items.add(separator);
-		
-		/*
-		 * Edit Dms Entry
-		 */
-		DmsEditImpl editAction = new DmsEditImpl(grid, record);
-		editAction.setParams(this.getParams());
+		if (record != null) {
 
-		EditMenuItem edit = new EditMenuItem();
-		edit.addAction(editAction);
+			/*
+			 * Separate create from edit & delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Edit Dms Entry
+			 */
+			DmsEditImpl editAction = new DmsEditImpl(grid, record);
+			editAction.setParams(this.getParams());
+	
+			EditMenuItem edit = new EditMenuItem();
+			edit.addAction(editAction);
+	
+			items.add(edit);
+			
+			/*
+			 * Delete Dms Entry
+			 */
+			DmsDeleteImpl deleteAction = new DmsDeleteImpl(grid, record);
+			deleteAction.setParams(this.getParams());
+	
+			DeleteMenuItem delete = new DeleteMenuItem();
+			delete.addAction(deleteAction);
+			
+			items.add(delete);
+			
+			/*
+			 * Separate get from edit & delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Get Dms Entry
+			 */
+			DmsGetImpl getAction = new DmsGetImpl(grid, record);
+			getAction.setParams(this.getParams());
+	
+			GetMenuItem get = new GetMenuItem();
+			get.addAction(getAction);
+			
+			items.add(get);
+			
+			/*
+			 * Separate get from view
+			 */
+			items.add(separator);
+			
+			/*
+			 * View Dms Entry
+			 */
+			DmsViewImpl viewAction = new DmsViewImpl(grid, record);
+			viewAction.setParams(this.getParams());
+	
+			ViewMenuItem view = new ViewMenuItem();
+			view.addAction(viewAction);
+			
+			items.add(view);
+			
+			/*
+			 * Separate download from view
+			 */
+			items.add(separator);
+	
+			DmsDownloadImpl downloadAction = new DmsDownloadImpl(grid, record);
+			downloadAction.setParams(this.getParams());
+			
+			DownloadMenuItem download = new DownloadMenuItem();
+			download.addAction(downloadAction);
+			
+			items.add(download);
 
-		items.add(edit);
-		
-		/*
-		 * Delete Dms Entry
-		 */
-		DmsDeleteImpl deleteAction = new DmsDeleteImpl(grid, record);
-		deleteAction.setParams(this.getParams());
-
-		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(deleteAction);
-		
-		items.add(delete);
-		
-		/*
-		 * Separate get from edit & delete
-		 */
-		items.add(separator);
-		
-		/*
-		 * Get Dms Entry
-		 */
-		DmsGetImpl getAction = new DmsGetImpl(grid, record);
-		getAction.setParams(this.getParams());
-
-		GetMenuItem get = new GetMenuItem();
-		get.addAction(getAction);
-		
-		items.add(get);
-		
-		/*
-		 * Separate get from view
-		 */
-		items.add(separator);
-		
-		/*
-		 * View Dms Entry
-		 */
-		DmsViewImpl viewAction = new DmsViewImpl(grid, record);
-		viewAction.setParams(this.getParams());
-
-		ViewMenuItem view = new ViewMenuItem();
-		view.addAction(viewAction);
-		
-		items.add(view);
-		
-		/*
-		 * Separate download from view
-		 */
-		items.add(separator);
-
-		DmsDownloadImpl downloadAction = new DmsDownloadImpl(grid, record);
-		downloadAction.setParams(this.getParams());
-		
-		DownloadMenuItem download = new DownloadMenuItem();
-		download.addAction(downloadAction);
-		
-		items.add(download);
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		

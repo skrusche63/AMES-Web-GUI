@@ -43,16 +43,20 @@ public class ContactGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 
-		/*
-		 * Build post
-		 */
-		PostCreateImpl createAction = new PostCreateImpl(grid, record);
-		createAction.setParams(this.getParams());
+		if (record != null) {
+
+			/*
+			 * Build post
+			 */
+			PostCreateImpl createAction = new PostCreateImpl(grid, record);
+			createAction.setParams(this.getParams());
+			
+			PostMenuItem post = new PostMenuItem();
+			post.addAction(createAction);
+			
+			items.add(post);
 		
-		PostMenuItem post = new PostMenuItem();
-		post.addAction(createAction);
-		
-		items.add(post);
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		

@@ -67,33 +67,41 @@ public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		
 		items.add(create);
 
-		/*
-		 * Separate create from delete
-		 */
-		items.add(separator);
-		
-		/*
-		 * Delete spec
-		 */
-		SpecDeleteImpl deleteAction = new SpecDeleteImpl(grid, record);
-		deleteAction.setParams(this.getParams());
-		
-		DeleteMenuItem delete = new DeleteMenuItem();
-		delete.addAction(deleteAction);
+		if (record != null) {
+			
+			/*
+			 * Separate create from delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Delete spec
+			 */
+			SpecDeleteImpl deleteAction = new SpecDeleteImpl(grid, record);
+			deleteAction.setParams(this.getParams());
+			
+			DeleteMenuItem delete = new DeleteMenuItem();
+			delete.addAction(deleteAction);
+	
+			items.add(delete);
+			
+			/*
+			 * Separate delete from view
+			 */
+			items.add(separator);
+	
+			/*
+			 * View upload
+			 */
+			SpecViewImpl viewAction = new SpecViewImpl(grid, record);
+			viewAction.setParams(this.getParams());
+			
+			ViewMenuItem view = new ViewMenuItem();
+			view.addAction(viewAction);
 
-		/*
-		 * Separate delete from view
-		 */
-		items.add(separator);
-
-		/*
-		 * View upload
-		 */
-		SpecViewImpl viewAction = new SpecViewImpl(grid, record);
-		viewAction.setParams(this.getParams());
-		
-		ViewMenuItem view = new ViewMenuItem();
-		view.addAction(viewAction);
+			items.add(view);
+			
+		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 

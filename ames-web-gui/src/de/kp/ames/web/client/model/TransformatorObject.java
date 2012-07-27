@@ -96,7 +96,7 @@ public class TransformatorObject extends ExtrinsicObject {
 		/*
 		 * Transformator author
 		 */
-		fields.add(GridFieldFactory.createRimAuthorField(160));
+		fields.add(GridFieldFactory.createRimAuthorField("*"));
 		
 		return fields;
 		

@@ -78,7 +78,7 @@ public class AccessorObject extends ServiceObject {
 		/*
 		 * Productor author
 		 */
-		fields.add(GridFieldFactory.createRimAuthorField(160));
+		fields.add(GridFieldFactory.createRimAuthorField("*"));
 		
 		return fields;
 		

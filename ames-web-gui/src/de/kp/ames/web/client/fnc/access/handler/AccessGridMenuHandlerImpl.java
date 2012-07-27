@@ -88,49 +88,52 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			
 			items.add(create);
 			
-			/*
-			 * Separate create from block edit & delete
-			 */
-			items.add(separator);
+			if (record != null) {
 			
-			/*
-			 * Edit accessor
-			 */
-			AccessorEditImpl editAction = new AccessorEditImpl(grid, record);
-			editAction.setParams(this.getParams());
-			
-			EditMenuItem edit = new EditMenuItem();
-			edit.addAction(editAction);
-			
-			items.add(edit);
-			
-			/*
-			 * Delete accessor
-			 */
-			AccessorDeleteImpl deleteAction = new AccessorDeleteImpl(grid, record);
-			deleteAction.setParams(this.params);
-			
-			DeleteMenuItem delete = new DeleteMenuItem();
-			delete.addAction(deleteAction);
-			
-			items.add(delete);
+				/*
+				 * Separate create from block edit & delete
+				 */
+				items.add(separator);
+				
+				/*
+				 * Edit accessor
+				 */
+				AccessorEditImpl editAction = new AccessorEditImpl(grid, record);
+				editAction.setParams(this.getParams());
+				
+				EditMenuItem edit = new EditMenuItem();
+				edit.addAction(editAction);
+				
+				items.add(edit);
+				
+				/*
+				 * Delete accessor
+				 */
+				AccessorDeleteImpl deleteAction = new AccessorDeleteImpl(grid, record);
+				deleteAction.setParams(this.params);
+				
+				DeleteMenuItem delete = new DeleteMenuItem();
+				delete.addAction(deleteAction);
+				
+				items.add(delete);
+	
+				/*
+				 * Separate get from block edit & delete
+				 */
+				items.add(separator);
+	
+				/*
+				 * Get accessor
+				 */
+				AccessorGetImpl getAction = new AccessorGetImpl(grid, record);
+				getAction.setParams(this.getParams());
+				
+				GetMenuItem get = new GetMenuItem();
+				get.addAction(getAction);
+				
+				items.add(get);
 
-			/*
-			 * Separate get from block edit & delete
-			 */
-			items.add(separator);
-
-			/*
-			 * Get accessor
-			 */
-			AccessorGetImpl getAction = new AccessorGetImpl(grid, record);
-			getAction.setParams(this.getParams());
-			
-			GetMenuItem get = new GetMenuItem();
-			get.addAction(getAction);
-			
-			items.add(get);
-
+			}
 			
 		} else {
 
@@ -140,31 +143,35 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			 * 
 			 ***************************************************************/
 			
-			/*
-			 * Get remote object
-			 */
-			RemoteGetImpl getAction = new RemoteGetImpl(grid, record);
-			getAction.setParams(this.getParams());
+			if (record != null) {
 			
-			GetMenuItem get = new GetMenuItem();
-			get.addAction(getAction);
+				/*
+				 * Get remote object
+				 */
+				RemoteGetImpl getAction = new RemoteGetImpl(grid, record);
+				getAction.setParams(this.getParams());
+				
+				GetMenuItem get = new GetMenuItem();
+				get.addAction(getAction);
+	
+				/*
+				 * Separate get from view
+				 */
+				items.add(separator);
+	
+				/*
+				 * View remote object
+				 */
+				RemoteViewImpl viewAction = new RemoteViewImpl(grid, record);
+				viewAction.setParams(this.getParams());
+				
+				ViewMenuItem view = new ViewMenuItem();
+				view.addAction(viewAction);
+				
+				items.add(get);
 
-			/*
-			 * Separate get from view
-			 */
-			items.add(separator);
-
-			/*
-			 * View remote object
-			 */
-			RemoteViewImpl viewAction = new RemoteViewImpl(grid, record);
-			viewAction.setParams(this.getParams());
+			}
 			
-			ViewMenuItem view = new ViewMenuItem();
-			view.addAction(viewAction);
-			
-			items.add(get);
-
 		}
 		
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
