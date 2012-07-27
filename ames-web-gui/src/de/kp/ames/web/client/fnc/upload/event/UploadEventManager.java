@@ -89,7 +89,7 @@ public class UploadEventManager implements UploadListener {
 	}
 	
 	public static void onUploadFailure() {
-		UploadEventManager.getInstance().onSuccess();
+		UploadEventManager.getInstance().onFailure();
 	}
 
     /**
