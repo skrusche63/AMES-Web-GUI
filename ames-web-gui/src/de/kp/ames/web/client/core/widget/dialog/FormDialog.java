@@ -51,6 +51,12 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	 */
 	protected static String STYLE = "x-sc-label";
 	
+	/*
+	 * An indicator to determine whether a dialog is
+	 * automatically closed after any button is clicked 
+	 */
+	protected boolean autoClose = true;
+	
 	/**
 	 * Constructor
 	 * 
@@ -116,6 +122,12 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	public void setParam(String key, String value) {
 		if (this.params == null) this.params = new HashMap<String,String>();
 		this.params.put(key, value);
+		
+		/*
+		 * Synchronize form
+		 */
+		this.form.setParams(this.params);
+		
 	}
 	
 	/**
@@ -129,6 +141,13 @@ public class FormDialog extends BaseDialog implements FormHandler {
 		return this.params.get(key);
 	}
 
+	/**
+	 * @param autoClose
+	 */
+	public void setAutoClose(boolean autoClose) {
+		this.autoClose = autoClose;
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.FormHandler#doSend()
 	 */
@@ -176,6 +195,8 @@ public class FormDialog extends BaseDialog implements FormHandler {
 		 */
 		this.doSend();				
 
+		if (this.autoClose == false) return;
+		
 		/*
 		 * Initiate before remove processing
 		 */

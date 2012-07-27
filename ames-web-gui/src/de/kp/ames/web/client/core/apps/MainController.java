@@ -40,12 +40,12 @@ import de.kp.ames.web.client.core.search.SearchWidget;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.core.widget.base.ControlLabel;
 import de.kp.ames.web.client.core.widget.base.Viewport;
-import de.kp.ames.web.client.function.bulletin.widget.BulletinImpl;
-import de.kp.ames.web.client.function.globals.FncGlobals;
-import de.kp.ames.web.client.function.help.HelpImpl;
-import de.kp.ames.web.client.function.login.DisclaimerDialog;
-import de.kp.ames.web.client.function.scm.ScmSysImpl;
-import de.kp.ames.web.client.function.service.DisclaimerService;
+import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.help.HelpImpl;
+import de.kp.ames.web.client.fnc.login.DisclaimerDialog;
+import de.kp.ames.web.client.fnc.scm.ScmSysImpl;
+import de.kp.ames.web.client.fnc.service.DisclaimerService;
 import de.kp.ames.web.client.test.ShowCaseImpl;
 import de.kp.ames.web.shared.constants.JsonConstants;
 

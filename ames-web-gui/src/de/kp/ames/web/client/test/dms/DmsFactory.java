@@ -9,7 +9,7 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.function.dms.data.DmsGridImpl;
+import de.kp.ames.web.client.fnc.dms.data.DmsGridImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;

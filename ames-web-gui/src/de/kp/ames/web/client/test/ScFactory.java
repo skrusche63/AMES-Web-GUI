@@ -906,7 +906,7 @@ public class ScFactory {
 	 */
 	private static Tab createUserGridImpl(String nid) {
 
-        VLayout content = UserFactory.createUserGridImpl();
+        VLayout content = UserFactory.getInstance().createUserGridImpl();
 		
 		Tab tab = createTab(nid, "UserGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -915,7 +915,7 @@ public class ScFactory {
 
 	private static Tab createUserEditDialog(String nid) {
 
-        VLayout content = UserFactory.createUserEditDialog();
+        VLayout content = UserFactory.getInstance().createUserEditDialog();
 		
 		Tab tab = createTab(nid, "UserEditDialog", WIDGET_ICON, content);	
 		return tab;
@@ -924,7 +924,7 @@ public class ScFactory {
 
 	private static Tab createUserFormImpl(String nid) {
 
-        VLayout content = UserFactory.createUserFormImpl();
+        VLayout content = UserFactory.getInstance().createUserFormImpl();
 		
 		Tab tab = createTab(nid, "UserFormImpl", WIDGET_ICON, content);	
 		return tab;
@@ -933,7 +933,7 @@ public class ScFactory {
 
 	private static Tab createUserGetViewer(String nid) {
 
-        VLayout content = UserFactory.createUserGetViewer();
+        VLayout content = UserFactory.getInstance().createUserGetViewer();
 		
 		Tab tab = createTab(nid, "UserGetViewer", WIDGET_ICON, content);	
 		return tab;

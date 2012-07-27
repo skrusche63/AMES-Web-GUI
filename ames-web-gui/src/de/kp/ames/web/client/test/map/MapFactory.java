@@ -5,7 +5,7 @@ import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.function.map.data.LayerGridImpl;
+import de.kp.ames.web.client.fnc.map.data.LayerGridImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 

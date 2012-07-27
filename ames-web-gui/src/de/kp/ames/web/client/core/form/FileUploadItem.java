@@ -2,9 +2,12 @@ package de.kp.ames.web.client.core.form;
 
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.fields.UploadItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 
 /*
  * Customized upload item
@@ -33,25 +36,33 @@ public class FileUploadItem extends UploadItem {
 			}
 		});
 
+        this.addChangedHandler(new ChangedHandler() {
+
+			public void onChanged(ChangedEvent event) {
+				SC.say("afterChanged");
+				
+			}
+        	
+        });
 	}
 	
     /**
      * @param event
      */
     protected void doAfterChange(ChangeEvent event) {
-
+   	
     	String source = this.getAttribute("fileItemId");
     	String value = (String)event.getValue();
 
     	String target = source + "_fake";   		
-
+        
     	Element e = DOM.getElementById(target);
     	
     	e.focus();
     	e.setInnerText(value);
-    	 
-    }
 
+    }
+    
 	/**
 	 * This method is used to modify the HTML representation
 	 * of the FileUploadItem
@@ -61,20 +72,25 @@ public class FileUploadItem extends UploadItem {
     	// Retrieve JS object for the FileUploadItem
     	var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
  
+ 		var fileItemId;
+ 
     	// Override the HTML representation method
     	self.getElementHTML = function(value, dataValue) {
 
 	        var result;
 
-	        var name  = this.name;
+	        var name  = (this.name == null) ? "rimFile" : this.name;
 	        var width = this.displayWidth;
 	        
 	        var internalWidth = width + 28;
 	        var fileOffset = 0; // this is correct in firefox
 	        
-	        var fileItemId = this.getDataElementId();
+	        fileItemId = this.getDataElementId();
 	        var fakeItemId = fileItemId + "_fake";
 	        
+	        // bind fileitem id for later user (in case of a
+	        // datasource field 'self' must be used instead 
+	        // of 'this'
 	        this.fileItemId = fileItemId;
 	        
 			result = "<div style=\"margin:16px;margin-top:24px;position:relative;width:" + internalWidth + "px;\">"; // container
@@ -94,6 +110,7 @@ public class FileUploadItem extends UploadItem {
 			result += "</div>"; // end container
 			
 	        return result;
+
 		};
 		
     }-*/;

@@ -63,20 +63,20 @@ public class RuleObject implements DataObject {
 	 * @see de.kp.ames.web.client.model.core.DataObject#createDataFieldsAsArray()
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
-		/*
-		 * Must be overridden
-		 */
-		return null;
+
+		ArrayList<DataSourceField> fields = createDataFieldsAsList();
+		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
+	
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.DataObject#createGridFieldsAsArray()
 	 */
 	public ListGridField[] createListGridFieldsAsArray() {
-		/*
-		 * Must be overridden
-		 */
-		return null;
+		
+		ArrayList<ListGridField> fields = createListGridFieldsAsList();
+		return (ListGridField[])fields.toArray(new ListGridField [fields.size()]);
+				
 	}
 
 	/* (non-Javadoc)

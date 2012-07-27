@@ -9,13 +9,15 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.function.upload.data.UploadGridImpl;
-import de.kp.ames.web.client.function.upload.widget.UploadCreateDialog;
-import de.kp.ames.web.client.function.upload.widget.UploadFormImpl;
+import de.kp.ames.web.client.fnc.upload.data.UploadGridImpl;
+import de.kp.ames.web.client.fnc.upload.handler.UploadGridMenuHandlerImpl;
+import de.kp.ames.web.client.fnc.upload.widget.UploadCreateDialog;
+import de.kp.ames.web.client.fnc.upload.widget.UploadFormImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class UploadFactory extends FncFactory {
 
@@ -81,7 +83,12 @@ public class UploadFactory extends FncFactory {
 		grid.setMargin(24);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
-
+		
+		UploadGridMenuHandlerImpl menuHandler = new UploadGridMenuHandlerImpl(grid);
+		menuHandler.setParam(MethodConstants.ATTR_TYPE, type);
+		
+		grid.addMenuHandler(menuHandler);
+		
 		uploadGridLayout.removeMember(uploadGridLayout.getMember(2));
 		uploadGridLayout.addMember(grid);
 		
@@ -92,7 +99,13 @@ public class UploadFactory extends FncFactory {
 		String message = "Click the button to open the UploadCreateDialog.";		
 		return createDialog(message, new ScAction() {
 			public void execute() {
-				new UploadCreateDialog();
+				/*
+				 * Upload is restricted to 
+				 */
+				UploadCreateDialog dialog = new UploadCreateDialog();
+
+				String type = ClassificationConstants.FNC_ID_Document;
+				dialog.setParam(MethodConstants.ATTR_TYPE, type);
 			}
 			
 		});

@@ -32,7 +32,7 @@ import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.function.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class Viewport extends VLayout {

@@ -3,7 +3,7 @@ package de.kp.ames.web.client.test.group;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.function.group.data.GroupGridImpl;
+import de.kp.ames.web.client.fnc.group.data.GroupGridImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
