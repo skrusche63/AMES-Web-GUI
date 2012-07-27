@@ -20,8 +20,7 @@ package de.kp.ames.web.client.fnc.dms.action;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.dms.DmsWidget;
@@ -34,7 +33,7 @@ public class DmsGetImpl extends GridEditImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public DmsGetImpl(Grid grid, ListGridRecord record) {
+	public DmsGetImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

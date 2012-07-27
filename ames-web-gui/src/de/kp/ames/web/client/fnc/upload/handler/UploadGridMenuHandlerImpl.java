@@ -20,7 +20,7 @@ package de.kp.ames.web.client.fnc.upload.handler;
 
 import java.util.ArrayList;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
@@ -45,9 +45,9 @@ public class UploadGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.menu.GridMenuHandlerImpl#createMenuItems(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.handler.GridMenuHandlerImpl#createMenuItems(com.smartgwt.client.data.Record)
 	 */
-	public MenuItem[] createMenuItems(ListGridRecord record) {
+	public MenuItem[] createMenuItems(Record record) {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 
@@ -102,7 +102,7 @@ public class UploadGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			items.add(view);
 
 		}
-		
+
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 		
 	}

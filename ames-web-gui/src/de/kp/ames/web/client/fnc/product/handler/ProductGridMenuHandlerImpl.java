@@ -20,7 +20,7 @@ package de.kp.ames.web.client.fnc.product.handler;
 
 import java.util.ArrayList;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
@@ -45,6 +45,10 @@ import de.kp.ames.web.client.menu.ViewMenuItem;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
+/**
+ * @author krusche
+ *
+ */
 public class ProductGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	
 	/**
@@ -56,10 +60,7 @@ public class ProductGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		super(grid);
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.menu.GridMenuHandlerImpl#createMenuItems(com.smartgwt.client.widgets.grid.ListGridRecord)
-	 */
-	public MenuItem[] createMenuItems(ListGridRecord record) {
+	public MenuItem[] createMenuItems(Record record) {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 

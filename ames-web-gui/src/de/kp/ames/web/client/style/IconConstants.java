@@ -6,8 +6,8 @@ public class IconConstants {
 	public static String ICON_ASSIGN   = "";
 	public static String ICON_COMMENT  = "";
 	public static String ICON_COMMENTS = "";
-	public static String ICON_CREATE   = "";
-	public static String ICON_DELETE   = "";
+	public static String ICON_CREATE   = "silk/add.png";
+	public static String ICON_DELETE   = "silk/cross.png";
 	public static String ICON_DOWNLOAD = "";
 	public static String ICON_EDIT     = "";
 	public static String ICON_GET      = "";

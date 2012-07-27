@@ -21,8 +21,7 @@ package de.kp.ames.web.client.fnc.dms.action;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
@@ -36,7 +35,7 @@ public class DmsEditImpl extends GridEditImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public DmsEditImpl(Grid grid, ListGridRecord record) {
+	public DmsEditImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

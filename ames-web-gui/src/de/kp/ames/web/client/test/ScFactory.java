@@ -965,6 +965,13 @@ public class ScFactory {
 	private static VLayout createVLayout() {
 
 		VLayout layout = new VLayout();
+	
+		/*
+		 * Dimensions
+		 */
+		layout.setWidth100();
+		layout.setHeight100();
+		
         /*
          * Style
          */

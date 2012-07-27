@@ -1,7 +1,6 @@
 package de.kp.ames.web.client.fnc.dms.action;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDownloadImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 
@@ -13,7 +12,7 @@ public class DmsDownloadImpl extends GridDownloadImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public DmsDownloadImpl(Grid grid, ListGridRecord record) {
+	public DmsDownloadImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

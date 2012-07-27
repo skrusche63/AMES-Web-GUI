@@ -57,8 +57,11 @@ public class UploadFormImpl extends FormImpl {
 		 * Hidden iFrame
 		 */
 		NamedFrame iFrame = new NamedFrame("uploadFrame");
-		iFrame.setWidth("100");
-		iFrame.setHeight("40");
+		
+		iFrame.setWidth("1");
+		iFrame.setHeight("1");
+		
+		iFrame.setVisible(false);
 		
 		scForm.setTarget("uploadFrame");
 		

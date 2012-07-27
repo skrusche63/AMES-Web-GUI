@@ -21,7 +21,7 @@ package de.kp.ames.web.client.fnc.product.action;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
@@ -38,7 +38,7 @@ public class ProductEditImpl extends GridEditImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public ProductEditImpl(Grid grid, ListGridRecord record) {
+	public ProductEditImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

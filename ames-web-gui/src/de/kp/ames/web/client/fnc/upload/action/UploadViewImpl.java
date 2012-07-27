@@ -20,8 +20,7 @@ package de.kp.ames.web.client.fnc.upload.action;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.upload.UploadWidget;
@@ -34,7 +33,7 @@ public class UploadViewImpl extends GridViewImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public UploadViewImpl(Grid grid, ListGridRecord record) {
+	public UploadViewImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

@@ -20,8 +20,7 @@ package de.kp.ames.web.client.fnc.group.action;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.group.GroupWidget;
@@ -34,7 +33,7 @@ public class GroupGetImpl extends GridEditImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public GroupGetImpl(Grid grid, ListGridRecord record) {
+	public GroupGetImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

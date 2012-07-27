@@ -21,8 +21,7 @@ package de.kp.ames.web.client.fnc.dms.action;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
@@ -36,7 +35,7 @@ public class DmsDeleteImpl extends GridDeleteImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public DmsDeleteImpl(Grid grid, ListGridRecord record) {
+	public DmsDeleteImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

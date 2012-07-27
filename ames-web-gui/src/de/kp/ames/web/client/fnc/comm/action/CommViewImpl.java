@@ -20,8 +20,7 @@ package de.kp.ames.web.client.fnc.comm.action;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.comm.CommWidget;
@@ -34,7 +33,7 @@ public class CommViewImpl extends GridViewImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public CommViewImpl(Grid grid, ListGridRecord record) {
+	public CommViewImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

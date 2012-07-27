@@ -20,7 +20,7 @@ package de.kp.ames.web.client.fnc.transform.handler;
 
 import java.util.ArrayList;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
@@ -44,10 +44,7 @@ public class TransformGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		super(grid);
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.menu.GridMenuHandlerImpl#createMenuItems(com.smartgwt.client.widgets.grid.ListGridRecord)
-	 */
-	public MenuItem[] createMenuItems(ListGridRecord record) {
+	public MenuItem[] createMenuItems(Record record) {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 

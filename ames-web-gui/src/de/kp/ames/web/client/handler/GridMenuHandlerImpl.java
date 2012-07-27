@@ -53,6 +53,9 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 		this.grid = grid;
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.GridMenuHandler#doOpen(com.smartgwt.client.data.Record)
+	 */
 	public void doOpen(Record record) {
 		
 		/*
@@ -62,7 +65,12 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 		menu.showContextMenu();
 
 		menu.setItems(createMenuItems(record));
-
+		
+		/*
+		 * Assign menu to underlying 
+		 */
+		this.grid.setMenu(menu);
+		
 	}
 
 	/* (non-Javadoc)

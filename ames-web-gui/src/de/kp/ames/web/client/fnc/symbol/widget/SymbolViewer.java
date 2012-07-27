@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.layout.VLayout;
-import com.smartgwt.client.widgets.tree.TreeNode;
-
 import de.kp.ames.web.client.fnc.symbol.data.SymbolGridImpl;
 import de.kp.ames.web.client.fnc.symbol.event.SymbolEventManager;
 import de.kp.ames.web.client.fnc.symbol.event.SymbolListener;

@@ -82,6 +82,9 @@ public class UploadFactory extends FncFactory {
 		UploadGridImpl grid = new UploadGridImpl(type);
 		grid.setMargin(24);
 
+		grid.setWidth(480);
+		grid.setHeight(480);
+		
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
 		
 		UploadGridMenuHandlerImpl menuHandler = new UploadGridMenuHandlerImpl(grid);

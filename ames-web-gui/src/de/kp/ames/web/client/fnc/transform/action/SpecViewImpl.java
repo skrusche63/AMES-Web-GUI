@@ -1,7 +1,6 @@
 package de.kp.ames.web.client.fnc.transform.action;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 
@@ -13,7 +12,7 @@ public class SpecViewImpl extends GridViewImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public SpecViewImpl(Grid grid, ListGridRecord record) {
+	public SpecViewImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 

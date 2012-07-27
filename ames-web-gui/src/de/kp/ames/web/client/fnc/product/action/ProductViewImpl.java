@@ -20,8 +20,7 @@ package de.kp.ames.web.client.fnc.product.action;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.product.ProductWidget;
@@ -34,7 +33,7 @@ public class ProductViewImpl extends GridViewImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public ProductViewImpl(Grid grid, ListGridRecord record) {
+	public ProductViewImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 
