@@ -27,6 +27,7 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.client.core.apps.MainService;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.fnc.upload.event.UploadEventManager;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -38,6 +39,16 @@ public class main implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 
+		/*
+		 * Register external method to use with
+		 * native JavaScript
+		 */
+		UploadEventManager.exportStaticMethods();
+		
+		/*
+		 * Call main functionality either the showcase
+		 * or the operational one
+		 */
 		if (CoreGlobals.SHOWCASE_FLAG == true) {
 			
 			/*

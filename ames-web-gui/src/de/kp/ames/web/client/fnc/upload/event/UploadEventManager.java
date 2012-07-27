@@ -20,6 +20,8 @@ package de.kp.ames.web.client.fnc.upload.event;
 
 import java.util.ArrayList;
 
+import com.smartgwt.client.util.SC;
+
 public class UploadEventManager implements UploadListener {
 
 	private static UploadEventManager instance = new UploadEventManager();
@@ -82,6 +84,7 @@ public class UploadEventManager implements UploadListener {
 	}
 
 	public static void onUploadSuccess() {
+		SC.say("Success");
 		UploadEventManager.getInstance().onSuccess();
 	}
 	

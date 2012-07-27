@@ -25,6 +25,7 @@ import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.fnc.map.handler.LayerRecordHandlerImpl;
 import de.kp.ames.web.client.model.LayerObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -43,7 +44,9 @@ public class LayerGridImpl extends RemoteGridImpl {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
+		
 		attributes.put(MethodConstants.ATTR_ENDPOINT, endpoint);
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Layer);
 
 		/*
 		 * Create data object
