@@ -25,7 +25,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.dms.DmsWidget;
+import de.kp.ames.web.client.fnc.dms.DmsController;
 
 /*
  * This action registers an already existing and transient document (cache) 
@@ -49,10 +49,10 @@ public class DmsCreateImpl extends GridCreateImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 
-		final DmsCreateImpl self = this;
+		final DmsCreateImpl self = this;		
+		DmsController controller = new DmsController();
 		
-		DmsWidget widget = new DmsWidget();
-		widget.doCreate(attributes, new ActivityImpl() {
+		controller.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			

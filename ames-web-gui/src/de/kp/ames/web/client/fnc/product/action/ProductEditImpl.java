@@ -26,7 +26,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.product.ProductWidget;
+import de.kp.ames.web.client.fnc.product.ProductController;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -52,7 +52,7 @@ public class ProductEditImpl extends GridEditImpl {
 		
 		final ProductEditImpl self = this;
 		
-		ProductWidget widget = new ProductWidget();
+		ProductController widget = new ProductController();
 		widget.doEdit(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterEdit(jValue);

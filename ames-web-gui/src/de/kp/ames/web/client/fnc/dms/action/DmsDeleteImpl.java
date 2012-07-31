@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.dms.DmsWidget;
+import de.kp.ames.web.client.fnc.dms.DmsController;
 
 public class DmsDeleteImpl extends GridDeleteImpl {
 
@@ -48,8 +48,8 @@ public class DmsDeleteImpl extends GridDeleteImpl {
 		
 		final DmsDeleteImpl self = this;
 		
-		DmsWidget widget = new DmsWidget();
-		widget.doDelete(attributes, record, new ActivityImpl() {
+		DmsController controller = new DmsController();
+		controller.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				

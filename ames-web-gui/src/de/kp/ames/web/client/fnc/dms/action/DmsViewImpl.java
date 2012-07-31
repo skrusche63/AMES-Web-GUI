@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.dms.DmsWidget;
+import de.kp.ames.web.client.fnc.dms.DmsController;
 
 public class DmsViewImpl extends GridViewImpl {
 
@@ -44,8 +44,8 @@ public class DmsViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		DmsWidget widget = new DmsWidget();
-		widget.doView(attributes, record);
+		DmsController controller = new DmsController();
+		controller.doView(attributes, record);
 		
 	}
 

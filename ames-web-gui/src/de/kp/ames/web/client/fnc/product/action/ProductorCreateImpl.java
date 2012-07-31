@@ -7,7 +7,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.product.ProductWidget;
+import de.kp.ames.web.client.fnc.product.ProductController;
 
 public class ProductorCreateImpl extends GridCreateImpl {
 
@@ -29,7 +29,7 @@ public class ProductorCreateImpl extends GridCreateImpl {
 
 		final ProductorCreateImpl self = this;
 		
-		ProductWidget widget = new ProductWidget();
+		ProductController widget = new ProductController();
 		widget.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);

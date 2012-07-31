@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.dms;
+package de.kp.ames.web.client.fnc.product;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -27,53 +27,50 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.service.FrameService;
-import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
-import de.kp.ames.web.client.fnc.dms.widget.DmsCreateDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.fnc.user.UserService;
-import de.kp.ames.web.shared.constants.ClassificationConstants;
-import de.kp.ames.web.shared.constants.FormatConstants;
+import de.kp.ames.web.client.fnc.product.widget.ProductorCreateDialog;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
-import de.kp.ames.web.shared.constants.ServiceConstants;
 
-public class DmsWidget {
-	
+public class ProductController {
+
 	/**
 	 * Constructor
 	 */
-	public DmsWidget() {
+	public ProductController() {
 	}
-
+	
 	/**
+	 * Create productor
+	 * 
 	 * @param attributes
-	 * @param afterSendActivity
+	 * @param activity
 	 */
-	public void doCreate(HashMap<String,String> attributes, Activity afterSendActivity) {
-		
+	public void doCreate(HashMap<String,String> attributes, Activity activity) {
+
 		/*
 		 * Create dialog
 		 */
-		DmsCreateDialog createDialog = new DmsCreateDialog();
+		ProductorCreateDialog createDialog = new ProductorCreateDialog();
 		
 		/*
 		 * Provide request specific information
 		 */
 		createDialog.setParams(attributes);
-		createDialog.addSendActivity(afterSendActivity);
-
+		createDialog.addSendActivity(activity);
+		
 	}
 
 	/**
+	 * Delete product or productor
+	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */
 	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
 
-		SC.confirm(FncGlobals.CONFIRM_DMS_DELETE, new BooleanCallback() {  
+		SC.confirm(FncGlobals.CONFIRM_ACCESSOR_DELETE, new BooleanCallback() {  
  
 			public void execute(Boolean value) {  
                 if (value != null && value) {  
@@ -86,10 +83,12 @@ public class DmsWidget {
             }  
         
 		});
-
+		
 	}
 
 	/**
+	 * Delete product or productor
+	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
@@ -100,11 +99,11 @@ public class DmsWidget {
 		 * Prepare data for delete request
 		 */
 		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
-
+			
 		/*
 		 * Invoke delete request
 		 */
-		DmsService service = new DmsService();
+		ProductService service = new ProductService();
 		service.doDelete(attributes, activity);
 		
 	}
@@ -123,19 +122,21 @@ public class DmsWidget {
 		/*
 		 * Invoke download request
 		 */
-		DmsService service = new DmsService();
+		ProductService service = new ProductService();
 		service.doDownload(attributes, activity);
 		
 	}
 	
 	/**
+	 * Edit product or productor
+	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */
 	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
-		final DmsWidget self = this;
+		final ProductController self = this;
 		
 		/*
 		 * Specify get activity
@@ -147,21 +148,21 @@ public class DmsWidget {
 		};
 
 		/*
-		 * Retrieve actual version of accessor
+		 * Retrieve actual version of product or productor
 		 */
 		doGet(attributes, record, afterGetActivity);
-
+		
 	}
 
 	/**
-	 * Get Dms Entry
+	 * Get product or productor (metadata)
 	 * 
 	 * @param attributes
 	 * @param record
 	 */
 	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
-		final DmsWidget self = this;
+		final ProductController self = this;
 		
 		/*
 		 * Specify get activity
@@ -173,97 +174,22 @@ public class DmsWidget {
 		};
 
 		/*
-		 * Retrieve actual version of accessor or remote object
+		 * Retrieve actual version of product or productor
 		 */
 		doGet(attributes, record, afterGetActivity);
+		
 	}
 
-	/**
-	 * @param attributes
-	 * @param record
-	 */
 	public void doView(HashMap<String,String> attributes, Record record) {
-
-		/*
-		 * Prepare data for view request
-		 */
-
-		String type = attributes.get(MethodConstants.ATTR_TYPE);
-
-		/*
-		 * Redirect service
-		 */
-		attributes.put(MethodConstants.ATTR_SERVICE, ServiceConstants.DMS_SERVICE_ID);
-		
-		if (type.equals(ClassificationConstants.FNC_ID_Document)) {
-
-			/*
-			 * View Dms document
-			 */
-			String format = FormatConstants.FNC_FORMAT_ID_File;
-			attributes.put(MethodConstants.ATTR_FORMAT, format);
-			
-		} else if (type.equals(ClassificationConstants.FNC_ID_Image)) {
-
-			/*
-			 * View Dms image
-			 */
-			String format = FormatConstants.FNC_FORMAT_ID_Image;
-			attributes.put(MethodConstants.ATTR_FORMAT, format);
-			
-		}
-
-		/*
-		 * Reference to the registry object to be viewed
-		 */
-		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
-		attributes.put(MethodConstants.ATTR_ITEM, item);
-
-		/*
-		 * Build request uri
-		 */
-		FrameService service = new FrameService();
-		String uri = service.getUri(attributes);
-
-		/*
-		 * Build viewer
-		 */
-		String title  = GUIGlobals.APP_TITLE + ": Dms Viewer";
-		String slogan = "Use this widget to view Dms information objects.";
-		
-		ViewerFactory.createFrameViewer(title, slogan, uri);
-		
-	}
-
-	/**
-	 * Get Dms Entry (metadata)
-	 * 
-	 * @param attributes
-	 * @param record
-	 * @param afterGetActivity
-	 */
-	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
-
 		// TODO
-	
+	}
 
-		/*
-		 * Prepare get request
-		 */
-		String format = FormatConstants.FNC_FORMAT_ID_Object;
-		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
-		
-		/*
-		 * Invoke get request
-		 */
-		UserService service = new UserService();
-		service.doGet(format, item, afterGetActivity);
-
-	
+	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
+		// TODO
 	}
 
 	/**
-	 * Build Dms Edit Dialog
+	 * Build Accessor Edit Dialog
 	 * 
 	 * @param jValue
 	 */
@@ -271,11 +197,6 @@ public class DmsWidget {
 		// TODO
 	}
 
-	/**
-	 * Build Dms Viewer
-	 * 
-	 * @param jValue
-	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
 		// TODO
 	}

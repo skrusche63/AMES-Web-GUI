@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.product.ProductWidget;
+import de.kp.ames.web.client.fnc.product.ProductController;
 
 public class ProductorDeleteImpl extends GridDeleteImpl {
 
@@ -48,7 +48,7 @@ public class ProductorDeleteImpl extends GridDeleteImpl {
 		
 		final ProductorDeleteImpl self = this;
 		
-		ProductWidget widget = new ProductWidget();
+		ProductController widget = new ProductController();
 		widget.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				

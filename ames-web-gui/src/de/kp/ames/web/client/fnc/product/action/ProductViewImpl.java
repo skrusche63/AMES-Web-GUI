@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.product.ProductWidget;
+import de.kp.ames.web.client.fnc.product.ProductController;
 
 public class ProductViewImpl extends GridViewImpl {
 
@@ -44,7 +44,7 @@ public class ProductViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		ProductWidget widget = new ProductWidget();
+		ProductController widget = new ProductController();
 		widget.doView(attributes, record);
 		
 	}

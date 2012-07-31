@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <!--  reference to main web service -->
-    <meta name="gwt:property" id="urn:de:kp:reg:url" content="http://localhost:8080/ames"/>
+    <meta name="gwt:property" id="urn:de:kp:reg:url" content="https://localhost:8443/ames/saml"/>
     
     <!-- wms connection parameters -->
     <meta name="gwt:property" id="urn:de:kp:wms:url" content="http://localhost:9090/geoserver/wms"/>
@@ -60,6 +60,13 @@
 	<script type="text/javascript">
 		document.getElementById('x-splash-msg').innerHTML = 'Initializing...';
 	</script>
+
+  	<!-- OpenLayers-2.9 -->
+  	<script src="js/openlayers-2.9/OpenLayers.js"></script>
+    <script src="js/openlayers-2.9/util.js"></script>
+
+	<!--  OpenLayers-2.9 Extension -->
+    <script src="js/OL29-Extension.js"></script>
    	 
   </body>
 </html>
