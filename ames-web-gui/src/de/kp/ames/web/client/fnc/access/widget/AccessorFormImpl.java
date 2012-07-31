@@ -118,6 +118,9 @@ public class AccessorFormImpl extends FormImpl {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#addFormData(com.google.gwt.json.client.JSONValue)
+	 */
 	public void addFormData(JSONValue jValue) {
 		/*
 		 * Register form data
@@ -149,6 +152,7 @@ public class AccessorFormImpl extends FormImpl {
 				String val = jForm.get(key).isString().stringValue();
 				JSONObject jSlots = JsonConverter.strToJson(val);
 				
+				slotGrid.setSlots(jSlots);
 				
 			} else if (key.equals(JaxrConstants.RIM_SPEC)) {
 				/*

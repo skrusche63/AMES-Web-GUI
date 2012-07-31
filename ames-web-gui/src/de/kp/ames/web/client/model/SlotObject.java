@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.fields.DataSourceIntegerField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -30,10 +31,21 @@ public class SlotObject extends ExtensibleObject {
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 
 		/*
+		 * Pirmary key field
+		 */
+		DataSourceIntegerField pkField = new DataSourceIntegerField ("pk");	
+		pkField.setPrimaryKey (true);
+		
+		pkField.setHidden(true);
+		fields.add(pkField);
+
+		/*
 		 * Key (without label)	
 		 */
 		DataSourceTextField keyField = new DataSourceTextField(JaxrConstants.RIM_KEY);
 		keyField.setValueMap(getDefinedSlots());
+		
+		keyField.setCanEdit(true);
 		
 	    fields.add(keyField);
 		

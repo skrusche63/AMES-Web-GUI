@@ -1,6 +1,9 @@
 package de.kp.ames.web.client.core.slot.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import com.google.gwt.json.client.JSONObject;
@@ -8,6 +11,8 @@ import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ListGridEditEvent;
+import com.smartgwt.client.types.RowEndEditAction;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.grid.LocalGridImpl;
@@ -43,7 +48,9 @@ public class SlotGridImpl extends LocalGridImpl {
         this.setEditByCell(true);  
         this.setEditEvent(ListGridEditEvent.CLICK);  
  		
-		/*
+        this.setListEndEditAction(RowEndEditAction.NEXT);
+        
+        /*
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
@@ -80,8 +87,10 @@ public class SlotGridImpl extends LocalGridImpl {
 
 		DataSourceField[] requestFields = this.dataObject.createDataFieldsAsArray();
 
-		DataSource dataSource = new DataSource();
+		DataSource dataSource = new DataSource();		
 		dataSource.setFields(requestFields);
+		
+		dataSource.setClientOnly(true);
 		
 		/*
 		 * finally set data source
@@ -94,7 +103,18 @@ public class SlotGridImpl extends LocalGridImpl {
 	 * Create new slot entry
 	 */
 	public void newSlot() {
-		this.addData(((SlotObject)this.dataObject).createNewSlot());
+
+		ListGridRecord newSlot = ((SlotObject)this.dataObject).createNewSlot();
+
+		List<ListGridRecord> records = Arrays.asList(this.getRecords());
+		
+		records.add(newSlot);
+
+		ListGridRecord[] array = (ListGridRecord[])records.toArray(new ListGridRecord [records.size()]);
+		this.setData(array);
+		
+		this.redraw();
+		
 	}
 	
 	/**
@@ -129,7 +149,7 @@ public class SlotGridImpl extends LocalGridImpl {
 			newSlot.setAttribute(JaxrConstants.RIM_KEY, key);
 			newSlot.setAttribute(JaxrConstants.RIM_VAL, val);
 
-			this.addData(newSlot);
+			this.addRecord(newSlot);
 			
 		}
 		
