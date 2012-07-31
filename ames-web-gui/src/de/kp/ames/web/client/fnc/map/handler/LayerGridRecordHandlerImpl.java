@@ -1,17 +1,12 @@
 package de.kp.ames.web.client.fnc.map.handler;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
-import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.fnc.map.event.MapEventManager;
 import de.kp.ames.web.client.handler.GridRecordHandlerImpl;
 
 public class LayerGridRecordHandlerImpl extends GridRecordHandlerImpl {
-
-	/*
-	 * Reference to activity for after layer selection
-	 */
-	private Activity activity;
 
 	/**
 	 * Constructor
@@ -21,26 +16,15 @@ public class LayerGridRecordHandlerImpl extends GridRecordHandlerImpl {
 	public LayerGridRecordHandlerImpl(Grid grid) {
 		super(grid);
 	}
-	
-	/**
-	 * @param activity
-	 */
-	public void setAfterLayerActivity(Activity activity) {		
-		/*
-		 * Register activity
-		 */
-		this.activity = activity;
-		
-	}
+
 	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.handler.GridRecordHandlerImpl#doSelect(com.smartgwt.client.widgets.grid.ListGridRecord)
 	 */
-	public void doSelect(ListGridRecord record) {
-		/*
-		 * Invoke after layer activity
-		 */
-		this.activity.execute(record);
+	@Override
+	public void doSelect(Record record) {
+				
+		MapEventManager.getInstance().onLayerSelected(record);
 		
 	}
 	

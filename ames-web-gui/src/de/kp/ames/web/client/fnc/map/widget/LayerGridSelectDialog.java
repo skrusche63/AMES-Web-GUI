@@ -139,6 +139,16 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 		this.layerRecord = record;
 		this.doSend();
 		
+		/*
+		 * Initiate before remove processing
+		 */
+		this.beforeRemove();
+		
+		/*
+		 * Destroy window
+		 */
+		this.destroy();
+		
 	}	
 	
 	/**

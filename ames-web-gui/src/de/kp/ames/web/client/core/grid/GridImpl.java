@@ -19,6 +19,7 @@ package de.kp.ames.web.client.core.grid;
  */
 
 import java.util.HashMap;
+
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ExpansionMode;
@@ -254,9 +255,15 @@ public class GridImpl extends ListGrid implements Grid {
 	 */
 	public void afterSelectionChanged(SelectionEvent event) {
 		/*
-		 * Must be overridden: This event is usually used to
-		 * support checkbox selection within grids
+		 * Retrieve affected grid record
 		 */
+		Record record = event.getRecord();
+		
+		/*
+		 * Invoke Grid RecordHandler
+		 */
+		if (this.recordHandler != null) this.recordHandler.doSelect(record);		
+		
 	}
 
 	/* (non-Javadoc)

@@ -67,7 +67,6 @@ public class LayerGridImpl extends RemoteGridImpl {
 		 * Add record handler
 		 */
 		LayerGridRecordHandlerImpl recordHandler = new LayerGridRecordHandlerImpl(this);
-		recordHandler.setAfterLayerActivity(activity);
 		
 		this.addRecordHandler(recordHandler);
 
