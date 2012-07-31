@@ -33,12 +33,12 @@ import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class TransformWidget {
+public class TransformController {
 
 	/**
 	 * Constructor
 	 */
-	public TransformWidget() {
+	public TransformController() {
 	}
 
 	/**

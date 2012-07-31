@@ -84,17 +84,23 @@ public class SlotObject extends ExtensibleObject {
 		 * Initial fill of SlotGrid
 		 */
 		ArrayList<ListGridRecord> records = new ArrayList<ListGridRecord>();
-		
-		ListGridRecord initialRecord = new ListGridRecord();
-		
-		initialRecord.setAttribute(JaxrConstants.RIM_KEY, "(Property name)");
-		initialRecord.setAttribute(JaxrConstants.RIM_VAL, "(Property value");
-		
-		records.add(initialRecord);
+		records.add(createNewSlot());
+
 		return records;	
 		
 	}
 
+	public ListGridRecord createNewSlot() {
+
+		ListGridRecord newSlot = new ListGridRecord();
+		
+		newSlot.setAttribute(JaxrConstants.RIM_KEY, "(Property name)");
+		newSlot.setAttribute(JaxrConstants.RIM_VAL, "(Property value)");
+
+		return newSlot;
+		
+	}
+	
 	/**
 	 * A data method to convert the content of the
 	 * slot representation (grid) into a JSON representation

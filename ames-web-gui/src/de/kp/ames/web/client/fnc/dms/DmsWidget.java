@@ -114,6 +114,25 @@ public class DmsWidget {
 	 * @param record
 	 * @param activity
 	 */
+	public void doDownload(HashMap<String,String> attributes, Record record, Activity activity) {
+		/*
+		 * Prepare data for download request
+		 */
+		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
+
+		/*
+		 * Invoke download request
+		 */
+		DmsService service = new DmsService();
+		service.doDownload(attributes, activity);
+		
+	}
+	
+	/**
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
 	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
 		final DmsWidget self = this;

@@ -31,6 +31,7 @@ import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
+import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
 /**
@@ -43,16 +44,20 @@ import de.kp.ames.web.shared.constants.JsonConstants;
  */
 public class PortletImpl extends Window implements Portlet { 
 
-	private JSONObject jConfiguration;
+	private JSONObject jApp;
 	
-	public PortletImpl(JSONObject jConfig) {
+	public PortletImpl(JSONObject jApp) {
 		
-		// register configuration data
-		this.jConfiguration = jConfig;
+		/* 
+		 * Register configuration data
+		 */
+		this.jApp = jApp;
 		
 		setShowShadow(false);  
 		
-		// enable predefined component animation  
+		/* 
+		 * Enable predefined component animation  
+		 */
 		setAnimateMinimize(true);  
 		
 		// Window is draggable with "outline" appearance by default.  
@@ -61,10 +66,7 @@ public class PortletImpl extends Window implements Portlet {
 		setCanDrop(true);  
 		
 		// customize the appearance and order of the controls in the window header  
-		setHeaderControls(HeaderControls.MINIMIZE_BUTTON, HeaderControls.HEADER_LABEL, 
-				new HeaderControl(HeaderControl.SETTINGS), 
-				new HeaderControl(HeaderControl.HELP), 
-				HeaderControls.CLOSE_BUTTON);  
+		setHeaderControls(HeaderControls.MINIMIZE_BUTTON, HeaderControls.HEADER_LABEL, new HeaderControl(HeaderControl.SETTINGS), new HeaderControl(HeaderControl.HELP), HeaderControls.CLOSE_BUTTON);  
 
 		// show either a shadow, or translucency, when dragging a portlet  
 		// (could do both at the same time, but these are not visually compatible effects)  
@@ -82,7 +84,6 @@ public class PortletImpl extends Window implements Portlet {
 		// associated application into the actual viewport
 		this.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				// start associated application
 				start();
 			}			
 		});
@@ -94,7 +95,7 @@ public class PortletImpl extends Window implements Portlet {
 	 */
 	public void build() {
 		
-		String title = this.jConfiguration.get(JsonConstants.J_NAME).isString().stringValue();
+		String title = this.jApp.get(JsonConstants.J_NAME).isString().stringValue();
 		this.setTitle(title);
 		
 		// this is a dummy content
@@ -113,6 +114,9 @@ public class PortletImpl extends Window implements Portlet {
 	 * @see de.kp.ames.web.client.gui.portal.Portlet#start()
 	 */
 	public void start() {
-		// TODO
+
+		String profile = jApp.get(JsonConstants.J_ID).isString().stringValue();
+        MainController.getInstance().createApp(profile);
+	
 	}
 }

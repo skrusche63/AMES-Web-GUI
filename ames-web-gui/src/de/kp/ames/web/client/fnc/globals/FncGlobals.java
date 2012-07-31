@@ -75,7 +75,16 @@ public class FncGlobals {
 	public static String DISCLAIMER_SLOGAN = "Please read this disclaimer carefully.";
 
 	/*
-	 * Group
+	 * Dms-Layer
+	 */
+	public static String DMS_C_TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
+	public static String DMS_C_SLOGAN = "Use this widget to create a Dms entry.";
+
+	public static String DMS_E_TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
+	public static String DMS_E_SLOGAN = "Use this widget to edit a certain Dms entry.";
+
+	/*
+	 * Group-Layer
 	 */
 	public static String GROUP_G_TITLE  = GUIGlobals.APP_TITLE + ": Group Viewer";
 	public static String GROUP_G_SLOGAN = "Use this widget to view group specific information.";

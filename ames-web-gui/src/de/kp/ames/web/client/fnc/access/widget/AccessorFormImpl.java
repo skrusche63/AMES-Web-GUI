@@ -1,6 +1,7 @@
 package de.kp.ames.web.client.fnc.access.widget;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
@@ -11,9 +12,12 @@ import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.form.FormImpl;
-import de.kp.ames.web.client.core.slot.SlotGridImpl;
+import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
+import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
 import de.kp.ames.web.client.model.AccessorObject;
 import de.kp.ames.web.client.model.SlotObject;
@@ -23,6 +27,15 @@ import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class AccessorFormImpl extends FormImpl {
 
+	private static String SLOTS = "Slots";
+	private static String SPECS = "Specifications";
+	
+	/*
+	 * Form dimensions for proper rendering
+	 */
+	private static int FORM_WIDTH  = 512;
+	private static int FORM_HEIGHT = 532;
+	
 	/*
 	 * Reference to SlotGrid
 	 */
@@ -37,13 +50,19 @@ public class AccessorFormImpl extends FormImpl {
 	 * Constructor
 	 */
 	public AccessorFormImpl() {
-		
+
+		/*
+		 * Dimensions
+		 */
+		this.setWidth(FORM_WIDTH);
+		this.setHeight(FORM_HEIGHT);
+
 		/*
 		 * Note, that width and height used below are the result
 		 * of a boring rendering process to achieve the best user
 		 * experience, so be careful when changing these numbers
 		 */
-		VLayout wrapper = new VLayout();
+		VLayout wrapper = createVLayout(false);
 		
 		wrapper.setWidth100();
 		wrapper.setHeight100();
@@ -51,10 +70,10 @@ public class AccessorFormImpl extends FormImpl {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 480);
+		scForm.setColWidths(60, 320);
 		scForm.setFixedColWidths(true);
 		
-		scForm.setPadding(8);
+		scForm.setPadding(16);
 		scForm.setTitleOrientation(TitleOrientation.LEFT);
 		
 		scForm.setWidth100();
@@ -66,18 +85,35 @@ public class AccessorFormImpl extends FormImpl {
 		
 		scForm.setAutoFocus(true);
 		scForm.setLayoutAlign(Alignment.CENTER);
+
+		/*
+		 * Create Tabs
+		 */
+		VLayout layout = new VLayout();
+		layout.setShowEdges(false);
 		
+		layout.setWidth(480);
+		
+		layout.setLayoutMargin(16);
+		layout.setLayoutTopMargin(0);
+		
+		TabSet tabSet = createTabSet();
+		
+		tabSet.setWidth(480);
+		tabSet.setHeight(320);
+
 		/*
 		 * Build SlotGrid
 		 */
-		slotGrid = new SlotGridImpl();
+		tabSet.addTab(createSlotTab());
 		
 		/*
 		 * Build SpecGrid
 		 */
-		specGrid = new SpecGridImpl();
+		tabSet.addTab(createSpecTab());
+		layout.addMember(tabSet);
 		
-		wrapper.setMembers(scForm, slotGrid, specGrid);
+		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);
 
 	}
@@ -87,18 +123,40 @@ public class AccessorFormImpl extends FormImpl {
 		 * Register form data
 		 */
 		this.jData = jValue;
+		JSONObject jForm = jData.isObject();
 		
-		/*
-		 * Assign form data
-		 */
-		
-		/*
-		 * Assign slot data
-		 */
-		
-		/*
-		 * Assign specification data
-		 */
+		Set<String> keys = jForm.keySet();
+		for (String key:keys) {
+			
+			if (key.equals(JaxrConstants.RIM_NAME)) {
+				/*
+				 * Form data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+				
+			} else if (key.equals(JaxrConstants.RIM_DESC)) {
+				/*
+				 * Form data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+				
+			} else if (key.equals(JaxrConstants.RIM_SLOT)) {
+				/*
+				 * Slot data
+				 */
+				String val = jForm.get(key).isString().stringValue();
+				JSONObject jSlots = JsonConverter.strToJson(val);
+				
+				
+			} else if (key.equals(JaxrConstants.RIM_SPEC)) {
+				/*
+				 * Spec data
+				 */
+			}
+			
+		}
 		
 		
 	}
@@ -163,4 +221,59 @@ public class AccessorFormImpl extends FormImpl {
 		return new AccessorObject().createFormItemsAsList();
 	}
 	
+	/**
+	 * Create layout component for slots
+	 * 
+	 * @return
+	 */
+	private Tab createSlotTab() {
+		
+		/*
+		 * Build SlotGrid
+		 */
+		slotGrid = new SlotGridImpl();
+
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(SLOTS);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(slotGrid);
+		return tab;
+		
+	}
+
+	/**
+	 * Create layout component for specs
+	 * 
+	 * @return
+	 */
+	private Tab createSpecTab() {
+
+		VLayout layout = new VLayout();
+		
+		layout.setWidth100();
+		layout.setHeight100();
+		
+		/*
+		 * Build SpecGrid
+		 */
+		//specGrid = new SpecGridImpl();
+		//layout.addMember(slotGrid);
+		
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+        
+        tab.setTitle(SPECS);
+
+        /*
+         * Tab content
+         */
+        tab.setPane(layout);
+		return tab;
+		
+	}
 }

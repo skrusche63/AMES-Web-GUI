@@ -8,11 +8,9 @@ import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
-
 import de.kp.ames.web.client.fnc.dms.data.DmsGridImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
-import de.kp.ames.web.client.test.ScAction;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 
 public class DmsFactory extends FncFactory {
@@ -70,62 +68,6 @@ public class DmsFactory extends FncFactory {
         dmsGridLayout.setMembers(pane, scForm, createPlaceHolder());      
         return dmsGridLayout;
  	}
-
-	public VLayout createDmsCreateDialog() {
-
-		String message = "Click the button to open the DmsCreateDialog.";
-		return createDialog(message, new ScAction() {
-			public void execute() {
-				// TODO
-			}
-			
-		});
-	
-	}
-
-	public VLayout createDmsEditDialog() {
-
-		String message = "Click the button to open the AccessorEditDialog.";
-		return createDialog(message, new ScAction() {
-			public void execute() {
-				// TODO
-			}
-			
-		});
-	
-	}
-
-	public VLayout createDmsFormImpl() {
-
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
-	}
-
-	public VLayout createDmsGetViewer() {
-
-		String message = "Click the button to open the DmsGetViewer.";
-		return createDialog(message, "Show Viewer", new ScAction() {
-			public void execute() {
-				// TODO
-			}
-			
-		});
-	
-	}
-
-	public VLayout createDmsViewer() {
-
-		String message = "Click the button to open the DmsViewer.";
-		return createDialog(message, "Show Viewer", new ScAction() {
-			public void execute() {
-				// TODO
-			}
-			
-		});
-	
-	}
 
 	private void replacePlaceHolder(String type) {
 		

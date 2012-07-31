@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.access.AccessWidget;
+import de.kp.ames.web.client.fnc.access.AccessController;
 
 public class RemoteViewImpl extends GridViewImpl {
 
@@ -44,8 +44,8 @@ public class RemoteViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		AccessWidget widget = new AccessWidget();
-		widget.doView(attributes, record);
+		AccessController controller = new AccessController();
+		controller.doView(attributes, record);
 
 	}
 

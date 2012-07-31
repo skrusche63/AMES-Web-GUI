@@ -61,12 +61,6 @@ public class ScData {
                 new ScNode("<b>Dms</b>",      PREFIX + "dms:folder", "root", "silk/folder.png"),
                 new ScNode("Data",            PREFIX + "dms:data:folder",                 PREFIX + "dms:folder", "silk/folder.png"),
                 new ScNode("DmsGridImpl",     PREFIX + "dms:data:DmsGridImpl:leaf",       PREFIX + "dms:data:folder", "silk/table.png"),
-                new ScNode("Widget",          PREFIX + "dms:widget:folder",               PREFIX + "dms:folder", "silk/folder.png"),
-                new ScNode("DmsCreateDialog", PREFIX + "dms:widget:DmsCreateDialog:leaf", PREFIX + "dms:widget:folder", "silk/widget.png"),
-                new ScNode("DmsEditDialog",   PREFIX + "dms:widget:DmsEditDialog:leaf",   PREFIX + "dms:widget:folder", "silk/widget.png"),
-                new ScNode("DmsFormImpl",     PREFIX + "dms:widget:DmsFormImpl:leaf",     PREFIX + "dms:widget:folder", "silk/widget.png"),
-                new ScNode("DmsGetViewer",    PREFIX + "dms:widget:DmsGetViewer:leaf",    PREFIX + "dms:widget:folder", "silk/widget.png"),
-                new ScNode("DmsViewer",       PREFIX + "dms:widget:DmsViewer:leaf",       PREFIX + "dms:widget:folder", "silk/widget.png"),
 
         		/*
         		 * Group-Layer

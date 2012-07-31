@@ -39,12 +39,12 @@ import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class AccessWidget {
+public class AccessController {
 	
 	/**
 	 * Constructor
 	 */
-	public AccessWidget() {
+	public AccessController() {
 	}
 	
 	/**
@@ -124,7 +124,7 @@ public class AccessWidget {
 	 */
 	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
-		final AccessWidget self = this;
+		final AccessController self = this;
 		
 		/*
 		 * Specify get activity
@@ -150,7 +150,7 @@ public class AccessWidget {
 	 */
 	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
-		final AccessWidget self = this;
+		final AccessController self = this;
 		
 		/*
 		 * Specify get activity

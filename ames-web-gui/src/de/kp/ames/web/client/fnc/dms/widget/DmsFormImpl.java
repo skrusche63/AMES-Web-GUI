@@ -1,18 +1,34 @@
 package de.kp.ames.web.client.fnc.dms.widget;
 
+import java.util.ArrayList;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 
 public class DmsFormImpl extends FormImpl {
 
+	public enum FormAction {
+		CREATE, EDIT, GET
+	};
+	
+	/*
+	 * Reference to SlotGrid
+	 */
+	private SlotGridImpl slotGrid;
+
 	/**
 	 * Constructor
+	 * 
+	 * @param action
 	 */
-	public DmsFormImpl() {
+	public DmsFormImpl(FormAction action) {
 
 		/*
 		 * Note, that width and height used below are the result
@@ -43,8 +59,40 @@ public class DmsFormImpl extends FormImpl {
 		scForm.setAutoFocus(true);
 		scForm.setLayoutAlign(Alignment.CENTER);
 		
-		// TODO
+		/*
+		 * Build SlotGrid
+		 */
+		slotGrid = new SlotGridImpl();
+		
+		wrapper.setMembers(scForm, slotGrid);
+		this.setMembers(wrapper);
 		
 	}
 	
+	public void addFormData(JSONValue jValue) {
+		/*
+		 * Register form data
+		 */
+		this.jData = jValue;
+		
+		/*
+		 * Assign form data
+		 */
+		// TODO
+		
+		/*
+		 * Assign slot data
+		 */
+		// TODO
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#createFormItemsAsList()
+	 */
+	public ArrayList<FormItem> createFormItemsAsList() {
+		// TODO
+		return null;
+	}
+
 }

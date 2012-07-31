@@ -107,6 +107,25 @@ public class ProductWidget {
 		service.doDelete(attributes, activity);
 		
 	}
+
+	/**
+	 * @param attributes
+	 * @param record
+	 * @param activity
+	 */
+	public void doDownload(HashMap<String,String> attributes, Record record, Activity activity) {
+		/*
+		 * Prepare data for download request
+		 */
+		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
+
+		/*
+		 * Invoke download request
+		 */
+		ProductService service = new ProductService();
+		service.doDownload(attributes, activity);
+		
+	}
 	
 	/**
 	 * Edit product or productor

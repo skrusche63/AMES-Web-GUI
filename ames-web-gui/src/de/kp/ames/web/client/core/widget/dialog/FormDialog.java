@@ -110,7 +110,14 @@ public class FormDialog extends BaseDialog implements FormHandler {
 	 * @param params
 	 */
 	public void setParams(HashMap<String,String> params) {
-		this.params = params;
+		if (this.params == null) this.params = new HashMap<String,String>();
+		this.params.putAll(params);
+
+		/*
+		 * Synchronize form
+		 */
+		this.form.setParams(this.params);
+
 	}
 
 	/**

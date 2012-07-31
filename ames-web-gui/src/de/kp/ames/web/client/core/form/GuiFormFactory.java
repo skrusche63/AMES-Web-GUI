@@ -19,6 +19,7 @@ package de.kp.ames.web.client.core.form;
  */
 
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.VerticalAlignment;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.form.fields.CanvasItem;
@@ -69,6 +70,8 @@ public class GuiFormFactory {
 		if (label == null) textField.setShowTitle(false);
 		textField.setTitleStyle(style);
 
+		textField.setVAlign(VerticalAlignment.TOP);
+		
 		textField.setWidth(width);
 		return textField;
 		
@@ -89,6 +92,8 @@ public class GuiFormFactory {
 		
 		if (label == null) textAreaField.setShowTitle(false);
 		textAreaField.setTitleStyle(style);
+
+		textAreaField.setVAlign(VerticalAlignment.TOP);
 
 		textAreaField.setWidth(width);
 		textAreaField.setHeight(100);
@@ -113,6 +118,8 @@ public class GuiFormFactory {
 		if (label == null) textAreaField.setShowTitle(false);
 		textAreaField.setTitleStyle(style);
 
+		textAreaField.setVAlign(VerticalAlignment.TOP);
+
 		textAreaField.setWidth(width);
 		textAreaField.setHeight(100);
 		
@@ -136,6 +143,8 @@ public class GuiFormFactory {
 		if (label == null) textField.setShowTitle(false);
 		textField.setTitleStyle(style);
 
+		textField.setVAlign(VerticalAlignment.TOP);
+
 		textField.setWidth(width);
 		return textField;
 		
@@ -156,6 +165,8 @@ public class GuiFormFactory {
 		
 		if (label == null) textField.setShowTitle(false);
 		textField.setTitleStyle(style);
+
+		textField.setVAlign(VerticalAlignment.TOP);
 
 		textField.setWidth(width);
 		return textField;

@@ -45,6 +45,7 @@ public class GuiStyles {
 	public static String X_BD_STYLE_2 = "x-bd-style-2";
 	public static String X_BD_STYLE_3 = "x-bd-style-3";
 	public static String X_BD_STYLE_4 = "x-bd-style-4";
+	public static String X_BD_STYLE_5 = "x-bd-style-5";
 
 	public static String X_CONTROL      = "x-control";
 	public static String X_CONTROL_OVER = "x-control-over";

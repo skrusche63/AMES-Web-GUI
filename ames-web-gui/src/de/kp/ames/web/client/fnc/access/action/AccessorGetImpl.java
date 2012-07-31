@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.access.AccessWidget;
+import de.kp.ames.web.client.fnc.access.AccessController;
 
 public class AccessorGetImpl extends GridEditImpl {
 
@@ -44,8 +44,8 @@ public class AccessorGetImpl extends GridEditImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		AccessWidget widget = new AccessWidget();
-		widget.doGet(attributes, record);
+		AccessController controller = new AccessController();
+		controller.doGet(attributes, record);
 
 	}
 

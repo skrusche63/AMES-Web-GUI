@@ -40,7 +40,7 @@ public class ScFactory {
 			
 		} else if (nid.equals(PREFIX + "access:widget:AccessorEditDialog:leaf")) {
 			return createAccessorEditDialog(nid);
-			
+
 		} else if (nid.equals(PREFIX + "access:widget:AccessorFormImpl:leaf")) {
 			return createAccessorFormImpl(nid);
 
@@ -106,21 +106,6 @@ public class ScFactory {
 		 */
 		else if (nid.equals(PREFIX + "dms:data:DmsGridImpl:leaf")) {
 			return createDmsGridImpl(nid);
-
-		} else if (nid.equals(PREFIX + "dms:widget:DmsCreateDialog:leaf")) {
-			return createDmsCreateDialog(nid);
-
-		} else if (nid.equals(PREFIX + "dms:widget:DmsEditDialog:leaf")) {
-			return createDmsEditDialog(nid);
-
-		} else if (nid.equals(PREFIX + "dms:widget:DmsFormImpl:leaf")) {
-			return createDmsFormImpl(nid);
-		
-		} else if (nid.equals(PREFIX + "dms:widget:DmsGetViewer:leaf")) {
-			return createDmsGetViewer(nid);
-		
-		} else if (nid.equals(PREFIX + "dms:widget:DmsViewer:leaf")) {
-			return createDmsViewer(nid);
 
 		}
 
@@ -492,51 +477,6 @@ public class ScFactory {
 		VLayout content = DmsFactory.getInstance().createDmsGridImpl();
 		
 		Tab tab = createTab(nid, "DmsGridImpl", TABLE_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createDmsCreateDialog(String nid) {
-		
-		VLayout content = DmsFactory.getInstance().createDmsCreateDialog();
-		
-		Tab tab = createTab(nid, "DmsCreateDialog", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createDmsEditDialog(String nid) {
-		
-		VLayout content = DmsFactory.getInstance().createDmsEditDialog();
-		
-		Tab tab = createTab(nid, "DmsEditDialog", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createDmsFormImpl(String nid) {
-		
-		VLayout content = DmsFactory.getInstance().createDmsFormImpl();
-		
-		Tab tab = createTab(nid, "DmsFormImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createDmsGetViewer(String nid) {
-		
-		VLayout content = DmsFactory.getInstance().createDmsGetViewer();
-		
-		Tab tab = createTab(nid, "DmsGetViewer", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createDmsViewer(String nid) {
-		
-		VLayout content = DmsFactory.getInstance().createDmsViewer();
-		
-		Tab tab = createTab(nid, "DmsViewer", WIDGET_ICON, content);	
 		return tab;
 
 	}

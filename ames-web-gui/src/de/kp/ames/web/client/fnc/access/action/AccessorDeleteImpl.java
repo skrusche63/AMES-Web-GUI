@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.access.AccessWidget;
+import de.kp.ames.web.client.fnc.access.AccessController;
 
 public class AccessorDeleteImpl extends GridDeleteImpl {
 
@@ -47,9 +47,9 @@ public class AccessorDeleteImpl extends GridDeleteImpl {
 		HashMap<String,String> attributes = this.getParams();
 		
 		final AccessorDeleteImpl self = this;		
-		AccessWidget widget = new AccessWidget();
+		AccessController controller = new AccessController();
 		
-		widget.doDelete(attributes, record, new ActivityImpl() {
+		controller.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				

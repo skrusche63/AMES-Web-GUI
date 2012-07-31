@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.access.action;
+package de.kp.ames.web.client.core.slot.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,42 +18,29 @@ package de.kp.ames.web.client.fnc.access.action;
  *
  */
 
-import java.util.HashMap;
-
-import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.data.Record;
-import de.kp.ames.web.client.action.grid.GridEditImpl;
-import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.access.AccessController;
+import de.kp.ames.web.client.core.slot.SlotController;
 
-public class AccessorEditImpl extends GridEditImpl {
-
+public class SlotCreateImpl extends GridCreateImpl {
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param grid
-	 * @param record
 	 */
-	public AccessorEditImpl(Grid grid, Record record) {
-		super(grid, record);
+	public SlotCreateImpl(Grid grid) {	
+		super(grid);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
 	public void execute() {
-
-		HashMap<String,String> attributes = this.getParams();
-
-		final AccessorEditImpl self = this;		
-		AccessController controller = new AccessController();		
-		
-		controller.doEdit(attributes, record, new ActivityImpl() {
-			public void execute(JSONValue jValue) {
-				self.doAfterEdit(jValue);
-			}
-		});
 	
+		SlotController controller = new SlotController();
+		controller.doCreate(grid);
+		
 	}
+
 }

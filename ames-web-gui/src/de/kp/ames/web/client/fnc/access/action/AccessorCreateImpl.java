@@ -25,7 +25,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.access.AccessWidget;
+import de.kp.ames.web.client.fnc.access.AccessController;
 
 public class AccessorCreateImpl extends GridCreateImpl {
 	
@@ -46,9 +46,9 @@ public class AccessorCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final AccessorCreateImpl self = this;
-		AccessWidget widget = new AccessWidget();
+		AccessController controller = new AccessController();
 
-		widget.doCreate(attributes, grid, new ActivityImpl() {
+		controller.doCreate(attributes, grid, new ActivityImpl() {
 			
 			/* (non-Javadoc)
 			 * @see de.kp.ames.web.client.core.activity.ActivityImpl#execute(com.google.gwt.json.client.JSONValue)

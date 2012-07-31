@@ -32,6 +32,7 @@ import de.kp.ames.web.client.core.http.ExtractCallbackImpl;
 import de.kp.ames.web.client.core.http.GetJsonCallbackImpl;
 import de.kp.ames.web.client.core.http.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.client.core.util.DownloadFrame;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 /**
@@ -146,6 +147,24 @@ public class ServiceImpl implements Service {
 		DeleteCallbackImpl callback = new DeleteCallbackImpl(activity, this);
 		sendPostRequest(requestMethod, data, callback);
 
+	}
+	
+	/**
+	 * A helper method to download a certain file
+	 * 
+	 * @param attributes
+	 * @param activity
+	 */
+	public void doDownload(HashMap<String,String> attributes, Activity activity) {
+
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_DOWNLOAD);
+
+		requestMethod.setAttributes(attributes);
+
+		String requestUrl = getRequestUrl()  + requestMethod.toQuery();
+		new DownloadFrame(requestUrl, activity);
+		
 	}
 	
 	/* (non-Javadoc)

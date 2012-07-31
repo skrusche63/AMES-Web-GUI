@@ -20,21 +20,18 @@ package de.kp.ames.web.client.fnc.dms.widget;
 
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.dms.DmsService;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsCreateDialog extends CreateFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
-	private static String SLOGAN = "Use this widget to create a Dms entry.";
 	
 	/**
 	 * Constructor
 	 */
 	public DmsCreateDialog() {
-		super(TITLE, SLOGAN);
+		super(FncGlobals.DMS_C_TITLE, FncGlobals.DMS_C_SLOGAN);
 	}
 
 	/* (non-Javadoc)
@@ -45,10 +42,9 @@ public class DmsCreateDialog extends CreateFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new DmsFormImpl();
+		this.form = new DmsFormImpl(DmsFormImpl.FormAction.CREATE);
 		this.form.addFormHandler(this);
 
-		this.form.addFormData(this.jValue);		
 		return this.form;
 		
 	}

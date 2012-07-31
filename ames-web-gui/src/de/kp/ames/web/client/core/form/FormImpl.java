@@ -6,10 +6,13 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.handler.FormHandler;
+import de.kp.ames.web.client.style.GuiStyles;
 
 public class FormImpl extends VLayout implements Form {
 
@@ -126,4 +129,53 @@ public class FormImpl extends VLayout implements Form {
 		 * Must be overridden
 		 */
 	}
+	
+	/**
+	 * A helper method to create a tabset for additional
+	 * information rendering in a form
+	 * 
+	 * @return
+	 */
+	public TabSet createTabSet() {
+		
+		TabSet tabSet = new TabSet();
+		
+		/*
+		 * TabSet layout settings
+		 */
+	    Layout tabProperties = new Layout();
+
+	    tabProperties.setLayoutMargin(0);
+	    tabProperties.setLayoutTopMargin(1);
+	    
+	    tabSet.setPaneContainerProperties(tabProperties);
+	    return tabSet;
+	    
+	}
+ 
+	/**
+	 * A helper method to create a vertical layout
+	 * container either bordered or unbordered
+	 * 
+	 * @param border
+	 * @return
+	 */
+	public static VLayout createVLayout(boolean border) {
+
+		VLayout layout = new VLayout();
+		layout.setShowEdges(false);
+		
+        /*
+         * Style
+         */
+        if (border == true) 
+        	layout.setStyleName(GuiStyles.X_BD_STYLE_4);
+        
+        else
+        	layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+        	
+		return layout;
+		
+	}
+	
 }

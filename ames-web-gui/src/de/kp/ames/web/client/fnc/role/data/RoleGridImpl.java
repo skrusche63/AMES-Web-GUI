@@ -26,6 +26,7 @@ import de.kp.ames.web.client.model.ResponsibilityObject;
 import de.kp.ames.web.client.model.RoleObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -101,8 +102,7 @@ public class RoleGridImpl extends RemoteGridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
-		return null;
+		return JaxrConstants.RIM_DESC;
 	}
 
 }

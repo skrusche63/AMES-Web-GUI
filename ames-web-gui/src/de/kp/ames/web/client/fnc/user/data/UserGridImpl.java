@@ -112,7 +112,10 @@ public class UserGridImpl extends RemoteGridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
+		/*
+		 * Actually there is no need for a more
+		 * detailed description of a user
+		 */
 		return null;
 	}
 

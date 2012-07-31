@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.transform.TransformWidget;
+import de.kp.ames.web.client.fnc.transform.TransformController;
 
 public class TransformViewImpl extends GridViewImpl {
 
@@ -44,7 +44,7 @@ public class TransformViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		TransformWidget widget = new TransformWidget();
+		TransformController widget = new TransformController();
 		widget.doView(attributes, record);
 		
 	}

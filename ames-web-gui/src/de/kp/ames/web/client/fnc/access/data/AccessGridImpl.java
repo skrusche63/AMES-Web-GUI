@@ -26,6 +26,7 @@ import de.kp.ames.web.client.model.AccessorObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.client.model.remote.RemoteFactory;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -82,7 +83,7 @@ public class AccessGridImpl extends RemoteGridImpl {
 	 */
 	private DataObject createDataObject() {
 		/*
-		 * Distinguish between accessor and reomte object
+		 * Distinguish between accessor and remote object
 		 */
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {			
@@ -105,8 +106,16 @@ public class AccessGridImpl extends RemoteGridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
+		/*
+		 * Distinguish between accessor and remote object
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {	
+			return JaxrConstants.RIM_DESC;
+		}
+		
 		return null;
+		
 	}
 	
 }

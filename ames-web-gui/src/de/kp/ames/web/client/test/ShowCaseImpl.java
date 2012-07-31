@@ -20,6 +20,7 @@ package de.kp.ames.web.client.test;
 
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
@@ -123,21 +124,6 @@ public class ShowCaseImpl extends BaseApp {
         tabProperties.setLayoutTopMargin(1);
         
         mainTabs.setPaneContainerProperties(tabProperties);
-
-        /*
-        mainTabSet.addTabSelectedHandler(new TabSelectedHandler() {
-            public void onTabSelected(TabSelectedEvent event) {
-                Tab selectedTab = event.getTab();
-                String historyToken = selectedTab.getAttribute("historyToken");
-                if (historyToken != null) {
-                    History.newItem(historyToken, false);
-                } else {
-                    History.newItem("main", false);
-                }
-            }
-        });
-		*/
-
         mainTabs.setTabBarControls(TabBarControls.TAB_SCROLLER, TabBarControls.TAB_PICKER);
 
         /*
@@ -150,13 +136,13 @@ public class ShowCaseImpl extends BaseApp {
         tab.setWidth(80);
 
         /*
-         * Tab content (TODO)
+         * Tab content
          */
- 
+        tab.setPane(createHomeTab());
         mainTabs.addTab(tab);
 
         /*
-         * Wrap batset
+         * Wrap tabset
          */
         Canvas canvas = new Canvas();
         
@@ -170,6 +156,32 @@ public class ShowCaseImpl extends BaseApp {
         canvas.addChild(mainTabs);
         return canvas;
         
+	}
+
+   private Canvas createHomeTab() {
+	   
+	   VLayout layout = new VLayout();
+	   layout.setShowEdges(false);
+
+       layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+       
+	   /*
+	    * Dimensions
+	    */
+	   layout.setWidth100();
+	   layout.setHeight100();
+	   
+	   HTMLPane pane = new HTMLPane();
+	   
+	   StringBuffer sb = new StringBuffer();
+	   
+	   sb.append("<div style=\"padding:24px;font-size:16px;\">Welcome to the Application Development Framework</div>");
+	   
+	   pane.setContents(sb.toString());
+	   
+	   layout.addMember(pane);
+	   return layout;
+	   
 	}
 
    protected void showTestCase(TreeNode node) {

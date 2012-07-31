@@ -112,11 +112,6 @@ public class AccessorObject extends ServiceObject {
 		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
 		items.add(descItem);
 
-		// TODO
-		
-		/*
-		 * Must be overridden
-		 */
 		return items;
 		
 	}

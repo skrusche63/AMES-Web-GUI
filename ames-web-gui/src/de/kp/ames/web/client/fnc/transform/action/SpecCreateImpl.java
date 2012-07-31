@@ -25,7 +25,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.transform.TransformWidget;
+import de.kp.ames.web.client.fnc.transform.TransformController;
 
 public class SpecCreateImpl extends GridCreateImpl {
 	
@@ -46,7 +46,7 @@ public class SpecCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final SpecCreateImpl self = this;		
-		TransformWidget widget = new TransformWidget();
+		TransformController widget = new TransformController();
 		
 		widget.doCreate(attributes, grid, new ActivityImpl() {
 			/* (non-Javadoc)

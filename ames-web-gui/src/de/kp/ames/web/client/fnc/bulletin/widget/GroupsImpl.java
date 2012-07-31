@@ -69,10 +69,14 @@ public class GroupsImpl extends VLayout implements RemoveHandler {
 		
 	}
 
-	@Override
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
+	 */
 	public void beforeRemove() {
-		// TODO Auto-generated method stub
-		
+		/*
+		 * Actually there is noting to do as there is
+		 * no event handling invoked
+		 */		
 	}
 	
 }

@@ -8,7 +8,7 @@ public class IconConstants {
 	public static String ICON_COMMENTS = "";
 	public static String ICON_CREATE   = "silk/add.png";
 	public static String ICON_DELETE   = "silk/cross.png";
-	public static String ICON_DOWNLOAD = "";
+	public static String ICON_DOWNLOAD = "gnome/download.png";
 	public static String ICON_EDIT     = "";
 	public static String ICON_GET      = "";
 	public static String ICON_POST     = "";

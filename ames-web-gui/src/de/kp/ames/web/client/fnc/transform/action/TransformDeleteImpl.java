@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.transform.TransformWidget;
+import de.kp.ames.web.client.fnc.transform.TransformController;
 
 public class TransformDeleteImpl extends GridDeleteImpl {
 
@@ -47,7 +47,7 @@ public class TransformDeleteImpl extends GridDeleteImpl {
 		HashMap<String,String> attributes = this.getParams();
 		
 		final TransformDeleteImpl self = this;		
-		TransformWidget widget = new TransformWidget();
+		TransformController widget = new TransformController();
 		
 		widget.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
