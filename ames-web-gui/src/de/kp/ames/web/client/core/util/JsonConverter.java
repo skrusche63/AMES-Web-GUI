@@ -1,7 +1,6 @@
 package de.kp.ames.web.client.core.util;
 
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.data.Record;
 
@@ -23,13 +22,5 @@ public class JsonConverter {
 		return jRecord;
 		
 	}
-	
-	/**
-	 * @param jsonString
-	 * @return
-	 */
-	public static JSONObject strToJson(String jsonString) {		
-		return JSONParser.parseStrict(jsonString).isObject();
-	}
-	
+		
 }

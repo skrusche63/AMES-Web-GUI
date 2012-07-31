@@ -68,6 +68,7 @@ public class FncGlobals {
 	public static String HELP_TITLE  = "Online Help";
 	public static String HELP_SLOGAN = "Use the online help to answer your questions.";
 
+	
 	/*
 	 * Disclaimer
 	 */
@@ -88,6 +89,16 @@ public class FncGlobals {
 	 */
 	public static String GROUP_G_TITLE  = GUIGlobals.APP_TITLE + ": Group Viewer";
 	public static String GROUP_G_SLOGAN = "Use this widget to view group specific information.";
+
+	/*
+	 * Map-Layer
+	 */
+	public static String MAP_TITLE 	  = "Map Layer Selector";
+
+	public static String MAP_C_TITLE  = GUIGlobals.APP_TITLE + ": " + MAP_TITLE;
+	public static String MAP_C_SLOGAN = "Use this widget to select a map layer.";
+	
+	public static String LAYER_ERROR = "Please select one layer.";
 
 	/*
 	 * Posting

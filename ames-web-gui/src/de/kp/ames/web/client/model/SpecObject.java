@@ -5,57 +5,58 @@ import java.util.ArrayList;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.model.external.ExternalObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class SpecObject extends ExternalObject {
 	
+	/**
+	 * Constructor
+	 */
 	public SpecObject() {
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.external.ExternalObject#createFormItemsAsList()
-	 */
-	public ArrayList<FormItem> createFormItemsAsList() {
-		/*
-		 * TODO
-		 */
-		return null;		
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.external.ExternalObject#createDataFieldsAsList()
-	 */
-	public ArrayList<DataSourceField> createDataFieldsAsList() {
-		/*
-		 * TODO
-		 */
-		return null;
-	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.external.ExternalObject#createListGridFieldsAsList()
 	 */
 	public ArrayList<ListGridField> createListGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+		
 		/*
-		 * TODO
+		 * Identifier
 		 */
-		return null;
+		ListGridField identifierField = new ListGridField(JaxrConstants.RIM_ID, 20);
+		identifierField.setType(ListGridFieldType.TEXT);
+	
+		identifierField.setHidden(true);
+		fields.add(identifierField);
+		
+		/*
+		 * Value
+		 */
+		ListGridField nameField = new ListGridField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL);
+		
+		nameField.setType(ListGridFieldType.TEXT);
+		nameField.setWidth("*");
+		
+		fields.add(nameField);
+
+		return fields;
+
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.external.ExternalObject#createListGridRecordsAsList()
 	 */
 	public ArrayList<ListGridRecord> createListGridRecordsAsList() {
-		/*
-		 * TODO
-		 */
-		return null;		
+		return new ArrayList<ListGridRecord>();
 	}
 
 	/**

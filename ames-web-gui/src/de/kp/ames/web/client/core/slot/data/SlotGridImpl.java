@@ -1,18 +1,30 @@
 package de.kp.ames.web.client.core.slot.data;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 import com.google.gwt.json.client.JSONObject;
-import com.smartgwt.client.data.DataSource;
-import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.RowEndEditAction;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.grid.LocalGridImpl;
@@ -59,12 +71,7 @@ public class SlotGridImpl extends LocalGridImpl {
 		 * Create data object
 		 */
 		this.dataObject = createDataObject();
-		
-		/*
-		 * Create (local) data source
-		 */
-		this.createScGridDS();
-		
+				
 		/*
 		 * Create grid fields
 		 */
@@ -82,22 +89,6 @@ public class SlotGridImpl extends LocalGridImpl {
 		this.addMenuHandler(menuHandler);
 		
 	}
-
-	public void createScGridDS() {
-
-		DataSourceField[] requestFields = this.dataObject.createDataFieldsAsArray();
-
-		DataSource dataSource = new DataSource();		
-		dataSource.setFields(requestFields);
-		
-		dataSource.setClientOnly(true);
-		
-		/*
-		 * finally set data source
-		 */
-		setDataSource(dataSource);
-
-	}
 	
 	/**
 	 * Create new slot entry
@@ -105,16 +96,8 @@ public class SlotGridImpl extends LocalGridImpl {
 	public void newSlot() {
 
 		ListGridRecord newSlot = ((SlotObject)this.dataObject).createNewSlot();
+		this.addData(newSlot);
 
-		List<ListGridRecord> records = Arrays.asList(this.getRecords());
-		
-		records.add(newSlot);
-
-		ListGridRecord[] array = (ListGridRecord[])records.toArray(new ListGridRecord [records.size()]);
-		this.setData(array);
-		
-		this.redraw();
-		
 	}
 	
 	/**
@@ -149,7 +132,7 @@ public class SlotGridImpl extends LocalGridImpl {
 			newSlot.setAttribute(JaxrConstants.RIM_KEY, key);
 			newSlot.setAttribute(JaxrConstants.RIM_VAL, val);
 
-			this.addRecord(newSlot);
+			this.addData(newSlot);
 			
 		}
 		

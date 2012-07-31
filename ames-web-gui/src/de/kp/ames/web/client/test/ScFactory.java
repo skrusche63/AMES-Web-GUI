@@ -543,7 +543,7 @@ public class ScFactory {
 	 */
 	private static Tab createLayerGridImpl(String nid) {
 		
-		VLayout content = MapFactory.createLayerGridImpl();
+		VLayout content = MapFactory.getInstance().createLayerGridImpl();
 		
 		Tab tab = createTab(nid, "LayerGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -552,7 +552,7 @@ public class ScFactory {
 
 	private static Tab createBusinessMapImpl(String nid) {
 		
-		VLayout content = MapFactory.createBusinessMapImpl();
+		VLayout content = MapFactory.getInstance().createBusinessMapImpl();
 		
 		Tab tab = createTab(nid, "BusinessMapImpl", WIDGET_ICON, content);	
 		return tab;

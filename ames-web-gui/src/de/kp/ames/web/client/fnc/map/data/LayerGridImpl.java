@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
-import de.kp.ames.web.client.fnc.map.handler.LayerRecordHandlerImpl;
+import de.kp.ames.web.client.fnc.map.handler.LayerGridRecordHandlerImpl;
 import de.kp.ames.web.client.model.LayerObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
@@ -66,7 +66,7 @@ public class LayerGridImpl extends RemoteGridImpl {
 		/*
 		 * Add record handler
 		 */
-		LayerRecordHandlerImpl recordHandler = new LayerRecordHandlerImpl(this);
+		LayerGridRecordHandlerImpl recordHandler = new LayerGridRecordHandlerImpl(this);
 		recordHandler.setAfterLayerActivity(activity);
 		
 		this.addRecordHandler(recordHandler);

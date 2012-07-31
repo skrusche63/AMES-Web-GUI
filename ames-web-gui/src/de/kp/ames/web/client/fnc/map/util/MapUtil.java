@@ -20,8 +20,7 @@ package de.kp.ames.web.client.fnc.map.util;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.map.client.MapConfig;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.shared.constants.JsonConstants;
@@ -35,7 +34,7 @@ public class MapUtil {
 	 * @param record
 	 * @return
 	 */
-	public static MapConfig buildMapConfig(ListGridRecord record) {
+	public static MapConfig buildMapConfig(Record record) {
 
 		MapConfig config = new MapConfig();
 		config.setWmsLayers(CoreGlobals.WMS_URL);

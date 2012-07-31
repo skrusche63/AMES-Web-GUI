@@ -26,6 +26,7 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
+import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
 import de.kp.ames.web.client.fnc.transform.widget.SpecCreateDialog;
 import de.kp.ames.web.client.fnc.transform.widget.TransformCreateDialog;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
@@ -65,6 +66,7 @@ public class TransformController {
 			createDialog.addSendActivity(activity);
 			
 		}
+
 		if (type.equals(ClassificationConstants.FNC_ID_Transformator)) {
 		
 			/*
@@ -83,24 +85,36 @@ public class TransformController {
 	}
 
 	/**
-	 * Delete Transformator
+	 * Delete (local) specification or (remote) transformator
 	 * 
 	 * @param attributes
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(HashMap<String,String> attributes, Record record, Activity activity) {
+	public void doDelete(HashMap<String,String> attributes, Grid grid, Record record, Activity activity) {
 
-		/*
-		 * Prepare data for delete request
-		 */
-		attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
-		
-		/*
-		 * Invoke delete request
-		 */
-		TransformService service = new TransformService();
-		service.doDelete(attributes, activity);
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Specification)) {
+			/*
+			 * Remove data from local grid
+			 */
+			((SpecGridImpl)grid).removeData(record);
+
+		}
+
+		if (type.equals(ClassificationConstants.FNC_ID_Transformator)) {
+
+			/*
+			 * Prepare data for delete request
+			 */
+			attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
+			
+			/*
+			 * Invoke delete request
+			 */
+			TransformService service = new TransformService();
+			service.doDelete(attributes, activity);
+		}
 		
 	}
 

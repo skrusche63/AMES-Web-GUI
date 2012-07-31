@@ -44,8 +44,8 @@ public class TransformViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		TransformController widget = new TransformController();
-		widget.doView(attributes, record);
+		TransformController controller = new TransformController();
+		controller.doView(attributes, record);
 		
 	}
 	

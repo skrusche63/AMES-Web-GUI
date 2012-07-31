@@ -29,6 +29,8 @@ import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.fnc.transform.event.TransformListener;
@@ -40,6 +42,14 @@ import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class TransformFormImpl extends FormImpl implements TransformListener {
+	
+	private static String CACHE = "Cache";
+	
+	/*
+	 * Form dimensions for proper rendering
+	 */
+	private static int FORM_WIDTH  = 512;
+	private static int FORM_HEIGHT = 532;
 
 	/*
 	 * Reference to the UploadGrid as transformators
@@ -59,6 +69,12 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 	public TransformFormImpl() {
 
 		/*
+		 * Dimensions
+		 */
+		this.setWidth(FORM_WIDTH);
+		this.setHeight(FORM_HEIGHT);
+
+		/*
 		 * Note, that width and height used below are the result
 		 * of a boring rendering process to achieve the best user
 		 * experience, so be careful when changing these numbers
@@ -71,7 +87,7 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 480);
+		scForm.setColWidths(60, 320);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(8);
@@ -88,26 +104,62 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 		scForm.setLayoutAlign(Alignment.CENTER);
 
 		/*
-		 * Build classification
+		 * Create Tabs
+		 */
+		VLayout layout = new VLayout();
+		layout.setShowEdges(false);
+		
+		layout.setWidth(480);
+		
+		layout.setLayoutMargin(16);
+		layout.setLayoutTopMargin(0);
+		
+		TabSet tabSet = createTabSet();
+		
+		tabSet.setWidth(480);
+		tabSet.setHeight(320);
+
+		/*
+		 * Build UploadGrid
+		 */
+		tabSet.addTab(createUploadTab());
+		
+		/*
+		 * Build ClassificiationGrid
 		 * 
 		 * This is prepared for future versions; actually
 		 * classification of transformators is not supported
 		 */
 		
+		wrapper.setMembers(scForm, layout);
+		this.setMembers(wrapper);
+
+	}
+
+	private Tab createUploadTab() {
+
 		/*
 		 * Build UploadGrid
 		 */
 		String type = ClassificationConstants.FNC_ID_Transformator;
 		uploadGrid = new UploadGridImpl(type);
-		
+				
 		/*
 		 * Add record handler
 		 */
 		TransformGridRecordHandlerImpl recordHandler = new TransformGridRecordHandlerImpl();
 		uploadGrid.addRecordHandler(recordHandler);
 
-		wrapper.setMembers(scForm, uploadGrid);
-		this.setMembers(wrapper);
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(CACHE);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(uploadGrid);
+		return tab;
 
 	}
 

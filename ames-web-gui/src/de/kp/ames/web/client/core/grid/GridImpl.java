@@ -29,6 +29,8 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.grid.events.CellClickEvent;
 import com.smartgwt.client.widgets.grid.events.CellClickHandler;
+import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler;
 import com.smartgwt.client.widgets.grid.events.RowContextClickEvent;
@@ -149,6 +151,16 @@ public class GridImpl extends ListGrid implements Grid {
 			 * @see com.smartgwt.client.widgets.grid.events.RowContextClickHandler#onRowContextClick(com.smartgwt.client.widgets.grid.events.RowContextClickEvent)
 			 */
 			public void onRowContextClick(RowContextClickEvent event) {
+				Record record = event.getRecord();
+				self.openMenu(record);
+			}
+		});
+		
+		this.addCellContextClickHandler(new CellContextClickHandler() {
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.widgets.grid.events.CellContextClickHandler#onCellContextClick(com.smartgwt.client.widgets.grid.events.CellContextClickEvent)
+			 */
+			public void onCellContextClick(CellContextClickEvent event) {
 				Record record = event.getRecord();
 				self.openMenu(record);
 			}

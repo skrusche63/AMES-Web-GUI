@@ -1,12 +1,27 @@
 package de.kp.ames.web.client.model;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.ArrayList;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-import com.smartgwt.client.data.DataSourceField;
-import com.smartgwt.client.data.fields.DataSourceIntegerField;
-import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
@@ -24,41 +39,6 @@ public class SlotObject extends ExtensibleObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.ExtensibleObject#createDataFieldsAsList()
-	 */
-	public ArrayList<DataSourceField> createDataFieldsAsList() {
-		
-		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
-
-		/*
-		 * Pirmary key field
-		 */
-		DataSourceIntegerField pkField = new DataSourceIntegerField ("pk");	
-		pkField.setPrimaryKey (true);
-		
-		pkField.setHidden(true);
-		fields.add(pkField);
-
-		/*
-		 * Key (without label)	
-		 */
-		DataSourceTextField keyField = new DataSourceTextField(JaxrConstants.RIM_KEY);
-		keyField.setValueMap(getDefinedSlots());
-		
-		keyField.setCanEdit(true);
-		
-	    fields.add(keyField);
-		
-		/* 
-		 * Val (without label)
-		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_VAL));
-
-	    return fields;
-	    
-	}
-
-	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.ExtensibleObject#createListGridFieldsAsList()
 	 */
 	public ArrayList<ListGridField> createListGridFieldsAsList() {
@@ -71,6 +51,7 @@ public class SlotObject extends ExtensibleObject {
 		ListGridField keyField = new ListGridField(JaxrConstants.RIM_KEY, LabelConstants.PROPERTY_LABEL, 120);
 		keyField.setType(ListGridFieldType.TEXT);
 	
+		keyField.setValueMap(getDefinedSlots());
 		fields.add(keyField);
 		
 		/*

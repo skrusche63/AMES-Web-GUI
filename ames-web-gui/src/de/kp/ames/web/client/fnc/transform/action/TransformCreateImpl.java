@@ -46,9 +46,9 @@ public class TransformCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final TransformCreateImpl self = this;		
-		TransformController widget = new TransformController();
+		TransformController controller = new TransformController();
 		
-		widget.doCreate(attributes, grid, new ActivityImpl() {
+		controller.doCreate(attributes, grid, new ActivityImpl() {
 			/* (non-Javadoc)
 			 * @see de.kp.ames.web.client.core.activity.ActivityImpl#execute(com.google.gwt.json.client.JSONValue)
 			 */

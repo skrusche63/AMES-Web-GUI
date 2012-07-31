@@ -20,8 +20,6 @@ package de.kp.ames.web.client.fnc.transform.action;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONValue;
-
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
@@ -45,15 +43,12 @@ public class SpecCreateImpl extends GridCreateImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 
-		final SpecCreateImpl self = this;		
-		TransformController widget = new TransformController();
-		
-		widget.doCreate(attributes, grid, new ActivityImpl() {
-			/* (non-Javadoc)
-			 * @see de.kp.ames.web.client.core.activity.ActivityImpl#execute(com.google.gwt.json.client.JSONValue)
-			 */
-			public void execute(JSONValue jValue) {
-				self.doAfterCreate(jValue);
+		TransformController controller = new TransformController();		
+		controller.doCreate(attributes, grid, new ActivityImpl() {
+			public void execute() {
+				/*
+				 * No action invoked for local create
+				 */
 			}			
 		});
 	}

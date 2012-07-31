@@ -1,10 +1,29 @@
 package de.kp.ames.web.client.fnc.access.widget;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.ArrayList;
 import java.util.Set;
 
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
@@ -17,7 +36,6 @@ import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
-import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
 import de.kp.ames.web.client.model.AccessorObject;
 import de.kp.ames.web.client.model.SlotObject;
@@ -150,7 +168,7 @@ public class AccessorFormImpl extends FormImpl {
 				 * Slot data
 				 */
 				String val = jForm.get(key).isString().stringValue();
-				JSONObject jSlots = JsonConverter.strToJson(val);
+				JSONObject jSlots = JSONParser.parseStrict(val).isObject();
 				
 				slotGrid.setSlots(jSlots);
 				
@@ -158,6 +176,11 @@ public class AccessorFormImpl extends FormImpl {
 				/*
 				 * Spec data
 				 */
+				String val = jForm.get(key).isString().stringValue();
+				JSONArray jSpecs = JSONParser.parseStrict(val).isArray();
+				
+				specGrid.setSpecifications(jSpecs);
+				
 			}
 			
 		}
@@ -256,17 +279,11 @@ public class AccessorFormImpl extends FormImpl {
 	 * @return
 	 */
 	private Tab createSpecTab() {
-
-		VLayout layout = new VLayout();
-		
-		layout.setWidth100();
-		layout.setHeight100();
 		
 		/*
 		 * Build SpecGrid
 		 */
-		//specGrid = new SpecGridImpl();
-		//layout.addMember(slotGrid);
+		specGrid = new SpecGridImpl();
 		
         Tab tab = new Tab();   	
         tab.setWidth(80);
@@ -276,7 +293,7 @@ public class AccessorFormImpl extends FormImpl {
         /*
          * Tab content
          */
-        tab.setPane(layout);
+        tab.setPane(specGrid);
 		return tab;
 		
 	}
