@@ -18,8 +18,8 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
  *
  */
 
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.HTMLPane;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
@@ -70,9 +70,9 @@ public class DetailImpl extends VLayout implements PostingListener, RemoveHandle
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.Record)
 	 */
-	public void onPostingSelected(ListGridRecord record) {
+	public void onPostingSelected(Record record) {
 
 		String html = new PostingObject().toHtml(record);
 		pane.setContents(html);

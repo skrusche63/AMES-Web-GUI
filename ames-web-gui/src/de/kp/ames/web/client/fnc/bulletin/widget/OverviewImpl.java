@@ -20,7 +20,7 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
@@ -76,9 +76,9 @@ public class OverviewImpl extends VLayout implements ContactListener, RemoveHand
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onContactSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onContactSelected(com.smartgwt.client.widgets.grid.Record)
 	 */
-	public void onContactSelected(ListGridRecord record) {
+	public void onContactSelected(Record record) {
 		
 		String recipient = record.getAttributeAsString(JaxrConstants.RIM_ID);
 		
@@ -90,9 +90,9 @@ public class OverviewImpl extends VLayout implements ContactListener, RemoveHand
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.Record)
 	 */
-	public void onPostingSubmitted(ListGridRecord record) {
+	public void onPostingSubmitted(Record record) {
 		/*
 		 * Reload posting grid to show the newly
 		 * submitted posting to the user

@@ -20,7 +20,7 @@ package de.kp.ames.web.client.fnc.bulletin.event;
 
 import java.util.ArrayList;
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.Record;
 
 public class BulletinEventManager implements ContactListener, PostingListener {
 
@@ -75,9 +75,9 @@ public class BulletinEventManager implements ContactListener, PostingListener {
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onContactSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onContactSelected(com.smartgwt.client.widgets.grid.Record)
 	 */
-	public void onContactSelected(ListGridRecord record) {
+	public void onContactSelected(Record record) {
 
 		for (ContactListener listener:contactListeners) {
 			listener.onContactSelected(record);
@@ -86,9 +86,9 @@ public class BulletinEventManager implements ContactListener, PostingListener {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.Record)
 	 */
-	public void onPostingSubmitted(ListGridRecord record) {
+	public void onPostingSubmitted(Record record) {
 
 		for (ContactListener listener:contactListeners) {
 			listener.onPostingSubmitted(record);
@@ -115,9 +115,9 @@ public class BulletinEventManager implements ContactListener, PostingListener {
 	}
 	
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.ListGridRecord)
+	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.Record)
 	 */
-	public void onPostingSelected(ListGridRecord record) {
+	public void onPostingSelected(Record record) {
 
 		for (PostingListener listener:postingListeners) {
 			listener.onPostingSelected(record);

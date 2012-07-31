@@ -119,7 +119,7 @@ public class TransformController {
 	}
 
 	/**
-	 * View transformator (XSL file)
+	 * View specification or transformator (XSL file)
 	 * 
 	 * @param attributes
 	 * @param record
@@ -127,14 +127,11 @@ public class TransformController {
 	public void doView(HashMap<String,String> attributes, Record record) {
 
 		/*
-		 * View transformator
+		 * View transformator either from cache or from the registry
 		 */
 		String format = FormatConstants.FNC_FORMAT_ID_File;
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
-
-		String type = ClassificationConstants.FNC_ID_Transformator;
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-		
+			
 		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
 		attributes.put(MethodConstants.ATTR_ITEM, item);
 		
@@ -151,7 +148,7 @@ public class TransformController {
 		String slogan = "Use this widget to view a certain transformator.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);
-
+		
 	}
 
 }

@@ -18,8 +18,7 @@ package de.kp.ames.web.client.fnc.bulletin.handler;
  *
  */
 
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
+import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.handler.GridRecordHandlerImpl;
 
@@ -32,10 +31,7 @@ public class ContactGridRecordHandlerImpl extends GridRecordHandlerImpl {
 		super();
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.handler.GridRecordHandlerImpl#doSelect(com.smartgwt.client.widgets.grid.ListGridRecord)
-	 */
-	public void doSelect(ListGridRecord record) {
+	public void doSelect(Record record) {
 		/*
 		 * Invoke Event Handling to inform other components
 		 * about the selection of a certain contact
