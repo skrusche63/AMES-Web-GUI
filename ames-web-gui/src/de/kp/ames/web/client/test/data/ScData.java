@@ -1,5 +1,10 @@
 package de.kp.ames.web.client.test.data;
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+
+import de.kp.ames.web.shared.constants.JaxrConstants;
+
 public class ScData {
 
 	private static String PREFIX = "function:";
@@ -202,5 +207,37 @@ public class ScData {
     public static String TEST_CONTACT = "";
     public static String TEST_NAME    = "Test User";
     public static String TEST_POSTING = "";
+    
+    /*
+     * User-Layer
+     */
+    
+    public static JSONObject getJsonTestUser() {
+    	JSONObject jUser = new JSONObject();
+    	
+    	/*
+    	 * Person Name
+    	 */
+    	jUser.put(JaxrConstants.RIM_FIRST_NAME,  new JSONString("First name"));
+    	jUser.put(JaxrConstants.RIM_MIDDLE_NAME, new JSONString("Middle name"));
+
+    	jUser.put(JaxrConstants.RIM_LAST_NAME, new JSONString("Last name"));
+    	jUser.put(JaxrConstants.RIM_EMAIL,    new JSONString("email@address"));
+
+    	/*
+    	 * Postal Address
+    	 */
+    	
+    	// TODO
+
+    	/*
+    	 * Telephone Number
+    	 */
+    	
+    	// TODO
+    	return jUser;
+    
+    }
+    
     
 }

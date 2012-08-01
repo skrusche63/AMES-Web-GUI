@@ -29,7 +29,6 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.fnc.product.ProductService;
 import de.kp.ames.web.client.fnc.upload.widget.UploadCreateDialog;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
@@ -37,7 +36,7 @@ import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
-public class UploadWidget {
+public class UploadController {
 
 	/**
 	 * Constructor
@@ -45,7 +44,7 @@ public class UploadWidget {
 	 * The target of all the upload widget requests
 	 * is the respective transient server cache
 	 */
-	public UploadWidget() {
+	public UploadController() {
 	}
 
 	/**
@@ -90,7 +89,7 @@ public class UploadWidget {
 		/*
 		 * Invoke delete request
 		 */
-		ProductService service = new ProductService();
+		UploadService service = new UploadService();
 		service.doDelete(attributes, activity);
 
 	}

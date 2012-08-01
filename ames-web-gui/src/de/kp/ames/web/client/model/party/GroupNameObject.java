@@ -1,0 +1,58 @@
+package de.kp.ames.web.client.model.party;
+
+import java.util.ArrayList;
+
+import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.SpacerItem;
+import com.smartgwt.client.widgets.form.fields.TextAreaItem;
+import com.smartgwt.client.widgets.form.fields.TextItem;
+
+import de.kp.ames.web.client.core.form.GuiFormFactory;
+import de.kp.ames.web.client.model.core.ExtensibleObject;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+
+public class GroupNameObject extends ExtensibleObject {
+
+	public GroupNameObject() {
+		super();
+	}
+	
+	public ArrayList<FormItem> createFormItemsAsList() {
+		
+		ArrayList<FormItem> items = new ArrayList<FormItem>();
+
+		/*
+		 * Space for rendering purpose only
+		 */
+		SpacerItem spacer = new SpacerItem();
+		spacer.setHeight(2);
+
+		/*
+		 * Build name
+		 */
+		TextItem nameItem = GuiFormFactory.createScTextItem("<b>Name</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		items.add(nameItem);
+		
+		items.add(spacer);
+		items.add(spacer);
+		
+		/*
+		 * Build description
+		 */
+		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
+		items.add(descItem);
+
+		items.add(spacer);
+		items.add(spacer);
+
+		/*
+		 * Build email
+		 */
+		TextItem emailItem = GuiFormFactory.createScTextItem("<b>Email Address</b>:", JaxrConstants.RIM_EMAIL, LABEL_STYLE, 280);
+		items.add(emailItem);
+
+		return items;
+		
+	}
+
+}

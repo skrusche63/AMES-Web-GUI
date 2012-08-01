@@ -19,7 +19,6 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
  */
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;

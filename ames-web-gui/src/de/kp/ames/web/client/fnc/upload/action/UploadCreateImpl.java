@@ -25,7 +25,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.upload.UploadWidget;
+import de.kp.ames.web.client.fnc.upload.UploadController;
 
 public class UploadCreateImpl extends GridCreateImpl {
 	
@@ -47,7 +47,7 @@ public class UploadCreateImpl extends GridCreateImpl {
 		
 		final UploadCreateImpl self = this;
 		
-		UploadWidget widget = new UploadWidget();
+		UploadController widget = new UploadController();
 		widget.doUpload(attributes, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {

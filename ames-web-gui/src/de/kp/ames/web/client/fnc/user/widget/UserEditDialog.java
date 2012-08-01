@@ -21,14 +21,19 @@ package de.kp.ames.web.client.fnc.user.widget;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.user.UserService;
 
 public class UserEditDialog extends EditFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": User Editor";;
-	private static String SLOGAN = "Use this widget to edit a certain user.";
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 490;
 	
 	/**
 	 * Constructor
@@ -36,7 +41,28 @@ public class UserEditDialog extends EditFormDialog {
 	 * @param jValue
 	 */
 	public UserEditDialog(JSONValue jValue) {
-		super(TITLE, SLOGAN, jValue);
+		super(FncGlobals.USER_E_TITLE, FncGlobals.USER_E_SLOGAN, jValue);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(false);
+		this.setShowMinimizeButton(false);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+		
 	}
 
 	/* (non-Javadoc)
@@ -50,7 +76,7 @@ public class UserEditDialog extends EditFormDialog {
 		this.form = new UserFormImpl();
 		this.form.addFormHandler(this);
 
-		this.form.addFormData(this.jValue);		
+		this.form.addFormData(this.jValue);
 		return this.form;
 		
 	}

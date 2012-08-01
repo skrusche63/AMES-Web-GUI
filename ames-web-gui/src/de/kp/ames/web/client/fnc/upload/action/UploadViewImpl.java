@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.upload.UploadWidget;
+import de.kp.ames.web.client.fnc.upload.UploadController;
 
 public class UploadViewImpl extends GridViewImpl {
 
@@ -44,7 +44,7 @@ public class UploadViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		UploadWidget widget = new UploadWidget();
+		UploadController widget = new UploadController();
 		widget.doView(attributes, record);
 		
 	}

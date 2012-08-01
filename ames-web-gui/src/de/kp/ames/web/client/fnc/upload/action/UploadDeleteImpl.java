@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.upload.UploadWidget;
+import de.kp.ames.web.client.fnc.upload.UploadController;
 
 public class UploadDeleteImpl extends GridDeleteImpl {
 
@@ -48,7 +48,7 @@ public class UploadDeleteImpl extends GridDeleteImpl {
 
 		final UploadDeleteImpl self = this;
 		
-		UploadWidget widget = new UploadWidget();
+		UploadController widget = new UploadController();
 		widget.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {

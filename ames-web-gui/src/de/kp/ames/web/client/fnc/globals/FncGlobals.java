@@ -150,6 +150,10 @@ public class FncGlobals {
 	/*
 	 * User-Layer
 	 */
+
+	public static String USER_E_TITLE  = GUIGlobals.APP_TITLE + ": User Editor";;
+	public static String USER_E_SLOGAN = "Use this widget to edit a certain user.";
+
 	public static String USER_G_TITLE  = GUIGlobals.APP_TITLE + ": User Viewer";
 	public static String USER_G_SLOGAN = "Use this widget to view user specific information.";
 

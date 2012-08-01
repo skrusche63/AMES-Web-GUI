@@ -23,7 +23,6 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.ItemKeyPressEvent;
@@ -173,7 +172,6 @@ public class MessageFormImpl extends FormImpl {
 	 */
 	public void addFormData(JSONValue jValue) {
 
-		SC.say("BP0:" +  jValue);
 		this.jTarget = jValue;
 		
 		/*
@@ -181,7 +179,7 @@ public class MessageFormImpl extends FormImpl {
 		 */
 		String name = (jTarget.isObject().containsKey(RIM_NAME)) ? jTarget.isObject().get(RIM_NAME).isString().stringValue() : jTarget.isObject().get(RIM_SUBJECT).isString().stringValue();
 		to.setValue(name);
-		SC.say("BP1");
+
 	}
 	
 	/* (non-Javadoc)
