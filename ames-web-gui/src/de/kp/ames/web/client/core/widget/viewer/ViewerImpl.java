@@ -96,7 +96,7 @@ public class ViewerImpl extends Window {
 	 * @param canvas
 	 * @return
 	 */
-	private VLayout createBody(Canvas canvas) {
+	protected VLayout createBody(Canvas canvas) {
 
 		VLayout vLayout = new VLayout();
 		vLayout.setStyleName(GuiStyles.X_BD_STYLE_2);

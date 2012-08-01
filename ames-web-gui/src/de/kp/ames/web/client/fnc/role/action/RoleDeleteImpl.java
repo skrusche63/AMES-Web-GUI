@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.role.RoleWidget;
+import de.kp.ames.web.client.fnc.role.RoleController;
 
 public class RoleDeleteImpl extends GridDeleteImpl {
 
@@ -48,7 +48,7 @@ public class RoleDeleteImpl extends GridDeleteImpl {
 		
 		final RoleDeleteImpl self = this;
 		
-		RoleWidget widget = new RoleWidget();
+		RoleController widget = new RoleController();
 		widget.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				

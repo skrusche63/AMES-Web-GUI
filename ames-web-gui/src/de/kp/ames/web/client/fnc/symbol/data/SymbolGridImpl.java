@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.fnc.symbol.data;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +25,7 @@ import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
 import com.smartgwt.client.widgets.events.DrawEvent;
@@ -19,6 +38,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.client.fnc.symbol.event.SymbolEventManager;
 import de.kp.ames.web.client.model.GraphicObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.MethodConstants;
@@ -59,6 +79,13 @@ public class SymbolGridImpl extends TileGrid {
 	 * Constructor
 	 */
 	public SymbolGridImpl() {
+		this(null);
+	}
+
+	/**
+	 * @param type
+	 */
+	public SymbolGridImpl(String type) {
 		
 		/*
 		 * Register connection parameter
@@ -95,10 +122,10 @@ public class SymbolGridImpl extends TileGrid {
 
 		this.addDrawHandler(new DrawHandler() {
 			public void onDraw(DrawEvent event) {
-				self.afterDraw(event);				
+				self.afterDraw(event);
 			}			
 		});
-		
+
 		this.addRecordClickHandler(new RecordClickHandler() {
 			public void onRecordClick(RecordClickEvent event) {
 				self.afterRecordClick(event);				
@@ -110,7 +137,8 @@ public class SymbolGridImpl extends TileGrid {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
-
+		if (type != null) attributes.put(MethodConstants.ATTR_TYPE, type);
+		
 		/*
 		 * Create data object
 		 */
@@ -128,17 +156,28 @@ public class SymbolGridImpl extends TileGrid {
 
 	}
 
-	public void afterRecordClick(RecordClickEvent event) {
-		// TODO
-	}
-
 	/**
-	 * Fetch data after rendering
+	 * Initial data loading
 	 * 
 	 * @param event
 	 */
 	public void afterDraw(DrawEvent event) {
+
+		if (this.attributes.isEmpty()) return;
 		this.fetchData();
+	
+	}
+
+	/**
+	 * Processing after a certain (image) symbol is clicked
+	 * 
+	 * @param event
+	 */
+	public void afterRecordClick(RecordClickEvent event) {
+		
+		Record record = event.getRecord();
+		SymbolEventManager.getInstance().onSymbolSelected(record);
+		
 	}
 
 	/**

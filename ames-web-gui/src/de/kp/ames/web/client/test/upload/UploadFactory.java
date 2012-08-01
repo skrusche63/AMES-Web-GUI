@@ -103,7 +103,7 @@ public class UploadFactory extends FncFactory {
 		return createDialog(message, new ScAction() {
 			public void execute() {
 				/*
-				 * Upload is restricted to 
+				 * Upload is restricted to documents
 				 */
 				UploadCreateDialog dialog = new UploadCreateDialog();
 

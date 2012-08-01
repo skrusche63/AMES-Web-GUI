@@ -158,23 +158,14 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 	private void openMap() {
 		
 		MapConfig jGeoInfo = MapUtil.buildMapConfig(this.layerRecord);
-		String endpoint = CoreGlobals.WMS_URL;
-	
-		jGeoInfo.setWmsServer(endpoint);
-		final BusinessMapImpl map = new BusinessMapImpl(jGeoInfo, new MapListener() {
+		jGeoInfo.setWmsServer(CoreGlobals.WMS_URL);
 
-			@Override
-			public void onDragComplete(String key, double lat, double lon) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onDrag(String key, double lat, double lon) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		/*
+		 * A map listener (for dragging) is not supported for
+		 * the business map
+		 */
+		MapListener listener = null;
+		final BusinessMapImpl map = new BusinessMapImpl(jGeoInfo, listener);
 
 		/*
 		 * Dimensions
@@ -185,5 +176,5 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 		MapEventManager.getInstance().onMap(map);
 
 	}
-	
+
 }

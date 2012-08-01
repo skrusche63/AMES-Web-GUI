@@ -28,9 +28,9 @@ public class AffiliationCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final AffiliationCreateImpl self = this;
-		GroupController widget = new GroupController();
+		GroupController controller = new GroupController();
 
-		widget.doCreate(attributes, new ActivityImpl() {
+		controller.doCreate(attributes, new ActivityImpl() {
 			
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);

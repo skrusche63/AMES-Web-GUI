@@ -1,62 +1,43 @@
 package de.kp.ames.web.client.fnc.symbol.widget;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
-import java.util.HashMap;
+import com.smartgwt.client.widgets.Canvas;
+import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
-import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.widgets.layout.VLayout;
-import de.kp.ames.web.client.fnc.symbol.data.SymbolGridImpl;
-import de.kp.ames.web.client.fnc.symbol.event.SymbolEventManager;
-import de.kp.ames.web.client.fnc.symbol.event.SymbolListener;
-import de.kp.ames.web.client.handler.RemoveHandler;
+public class SymbolViewer extends ViewerImpl {
 
-public class SymbolViewer extends VLayout implements RemoveHandler, SymbolListener {
-
-	/*
-	 * Reference to SymbolGrid
-	 */
-	private SymbolGridImpl grid;
-	
 	/**
 	 * Contructor
 	 */
-	public SymbolViewer() {
-		
-		/*
-		 * Dimensions
-		 */
-		setWidth100();
-		setHeight100();
-
-		/*
-		 * This is an essential feature to ensure
-		 * proper scrollbars, i.e vertical ones only
-		 */
-		this.setOverflow(Overflow.AUTO);
-				
-		/*
-		 * Build member
-		 */
-		grid = new SymbolGridImpl();
-		
-		/*
-		 * Context specific event handling
-		 */
-		SymbolEventManager.getInstance().addSymbolListener(this);
+	public SymbolViewer(Canvas body) {
+		super(FncGlobals.SYMBOL_V_TITLE, FncGlobals.SYMBOL_V_SLOGAN, body);
 
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
+	/**
+	 * @param type
 	 */
-	public void beforeRemove() {
-		SymbolEventManager.getInstance().removeSymbolListener(this);
+	public static void create(String type) {
+		SymbolBoard body = new SymbolBoard(type);
+		new SymbolViewer(body);
 	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.symbol.event.SymbolListener#onSymbolSelected(com.smartgwt.client.widgets.tree.TreeNode)
-	 */
-	public void onSymbolSelected(HashMap<String,String> attributes) {		
-		if (grid != null) grid.reload(attributes);
-	}
-
+	
 }

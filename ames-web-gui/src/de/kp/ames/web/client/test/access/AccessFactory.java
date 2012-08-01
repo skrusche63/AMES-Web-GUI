@@ -94,11 +94,6 @@ public class AccessFactory extends FncFactory {
 		return createDialog(message, new ScAction() {
 			public void execute() {
 				
-				String type = ClassificationConstants.FNC_ID_Accessor;
-				String item = null;
-				
-				
-				
 				// TODO
 			}
 			

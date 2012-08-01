@@ -107,8 +107,7 @@ public class BulletinController {
 			String posting = record.getAttributeAsString(JaxrConstants.RIM_ID);
 			CommentGridImpl grid = new CommentGridImpl(posting);
 
-			CommentsViewer viewer = new CommentsViewer(grid);
-			viewer.setTitle(FncGlobals.COMMENTS_V_TITLE);
+			new CommentsViewer(grid);
 			
 		}
 

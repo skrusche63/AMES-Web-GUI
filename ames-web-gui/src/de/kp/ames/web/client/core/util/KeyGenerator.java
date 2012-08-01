@@ -18,9 +18,10 @@ package de.kp.ames.web.client.core.util;
  *
  */
 
+import de.kp.ames.web.client.core.apps.UserController;
+
 public class KeyGenerator {
 
-	private int counter = 0;
 	private static KeyGenerator instance = new KeyGenerator();
 	
 	private KeyGenerator() {		
@@ -31,17 +32,14 @@ public class KeyGenerator {
 	 */
 	public static KeyGenerator getInstance() {
 		if (instance == null) instance = new KeyGenerator();
-		return instance;
-		
+		return instance;		
 	}
 	
 	/**
-	 * @param type
 	 * @return
 	 */
-	public String getKey(String type) {
-		counter += 1;
-		return type + ":" + counter;
+	public String getKey() {
+		return UserController.getInstance().getUserId() + ":" + UUID.uuid();
 	}
 	
 }

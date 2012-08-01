@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.test.bulletin;
+/**
+ *	Copyright 2012 Dr. Krusche & Partner PartG
+ *
+ *	AMES-Web-GUI is free software: you can redistribute it and/or 
+ *	modify it under the terms of the GNU General Public License 
+ *	as published by the Free Software Foundation, either version 3 of 
+ *	the License, or (at your option) any later version.
+ *
+ *	AMES- Web-GUI is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * 
+ *  See the GNU General Public License for more details. 
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this software. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
@@ -14,6 +32,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.fnc.bulletin.data.CommentGridImpl;
 import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
 import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
+import de.kp.ames.web.client.fnc.bulletin.widget.CommentsViewer;
 import de.kp.ames.web.client.fnc.bulletin.widget.MessageFormImpl;
 import de.kp.ames.web.client.fnc.bulletin.widget.MessageImpl;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
@@ -169,12 +188,20 @@ public class BulletinFactory extends FncFactory {
 
 	public static VLayout createCommentsViewer() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the CommentsViewer.";
+		return createDialog(message, "Show Dialog", new ScAction() {
+			public void execute() {
+
+				String posting = ScData.TEST_POSTING;
+				CommentGridImpl grid = new CommentGridImpl(posting);
+
+				new CommentsViewer(grid);
+				
+			}
+		});
 	
 	}
-
+	
 	public static VLayout createMessageImpl() {
 
 		String message = "Click the button to open the MessageImpl.";

@@ -123,7 +123,7 @@ public class ExternalObject implements DataObject {
 	public TreeGridField[] createTreeGridFieldsAsArray() {
 		
 		ArrayList<TreeGridField> fields = createTreeGridFieldsAsList();
-		return (TreeGridField[])fields.toArray(new ListGridField [fields.size()]);
+		return (TreeGridField[])fields.toArray(new TreeGridField [fields.size()]);
 				
 	}
 

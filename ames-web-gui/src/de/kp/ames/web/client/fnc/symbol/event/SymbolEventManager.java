@@ -21,6 +21,8 @@ package de.kp.ames.web.client.fnc.symbol.event;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.smartgwt.client.data.Record;
+
 public class SymbolEventManager implements SymbolListener {
 
 	private static SymbolEventManager instance = new SymbolEventManager();
@@ -67,10 +69,24 @@ public class SymbolEventManager implements SymbolListener {
 		symbolListeners.remove(listener);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.fnc.symbol.event.SymbolListener#onSymbolSelected(java.util.HashMap)
+	 */
 	public void onSymbolSelected(HashMap<String,String> attributes) {
 
 		for (SymbolListener listener:symbolListeners) {
 			listener.onSymbolSelected(attributes);
+		}
+	
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.fnc.symbol.event.SymbolListener#onSymbolSelected(com.smartgwt.client.data.Record)
+	 */
+	public void onSymbolSelected(Record record) {
+
+		for (SymbolListener listener:symbolListeners) {
+			listener.onSymbolSelected(record);
 		}
 	
 	}

@@ -47,8 +47,8 @@ public class CommentGetAllImpl extends GridGetAllImpl {
 		HashMap<String,String> attributes = this.getParams();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Comment);
 		
-		BulletinController widget = new BulletinController();
-		widget.doGet(attributes, record);
+		BulletinController controller = new BulletinController();
+		controller.doGet(attributes, record);
 		
 	}
 

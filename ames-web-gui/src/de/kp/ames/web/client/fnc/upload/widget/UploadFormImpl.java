@@ -111,9 +111,7 @@ public class UploadFormImpl extends FormImpl {
 		/*
 		 * Add key for cache entry
 		 */
-		String type = this.params.get(MethodConstants.ATTR_TYPE);
-		String item = KeyGenerator.getInstance().getKey(type);
-
+		String item = KeyGenerator.getInstance().getKey();
 		this.params.put(MethodConstants.ATTR_ITEM, item);
 		
 		/*

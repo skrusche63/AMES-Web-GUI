@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.Record;
 
-public class BulletinEventManager implements ContactListener, PostingListener {
+public class BulletinEventManager implements ContactListener {
 
 	private static BulletinEventManager instance = new BulletinEventManager();
 	
@@ -31,18 +31,12 @@ public class BulletinEventManager implements ContactListener, PostingListener {
 	 */
 	private ArrayList<ContactListener> contactListeners;
 
-	/*
-	 * List of registered posting listeners
-	 */
-	private ArrayList<PostingListener> postingListeners;
-
 	/**
 	 * Constructor
 	 */
 	private BulletinEventManager() {
 		
 		contactListeners = new ArrayList<ContactListener>();
-		postingListeners = new ArrayList<PostingListener>();
 		
 	}
 	
@@ -92,35 +86,6 @@ public class BulletinEventManager implements ContactListener, PostingListener {
 
 		for (ContactListener listener:contactListeners) {
 			listener.onPostingSubmitted();
-		}
-	
-	}
-
-	/**
-	 * Register posting listener
-	 * 
-	 * @param listener
-	 */
-	public void addPostingListener(PostingListener listener) {
-		postingListeners.add(listener);
-	}
-	
-	/**
-	 * Unregister posting listener
-	 * 
-	 * @param listener
-	 */
-	public void removePostingListener(PostingListener listener) {
-		postingListeners.remove(listener);
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.PostingListener#onPostingSelected(com.smartgwt.client.widgets.grid.Record)
-	 */
-	public void onPostingSelected(Record record) {
-
-		for (PostingListener listener:postingListeners) {
-			listener.onPostingSelected(record);
 		}
 	
 	}

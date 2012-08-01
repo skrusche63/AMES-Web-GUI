@@ -18,66 +18,61 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
  *
  */
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
+import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
+import de.kp.ames.web.client.fnc.bulletin.event.ContactListener;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.handler.RemoveHandler;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class BoardImpl extends VLayout implements RemoveHandler {
+public class BoardImpl extends VLayout implements ContactListener, RemoveHandler {
 
 	/*
-	 * Reference to overview
+	 * Reference to registered postings
 	 */
-	private OverviewImpl overview;
-	
-	/*
-	 * Reference to details
-	 */
-	private DetailImpl details;
-	
-	/*
-	 * Reference to removable members
-	 */
-	private ArrayList<RemoveHandler> removables;
+	private PostGridImpl grid;
 
 	/**
 	 * Constructor
 	 */
 	public BoardImpl() {
 		
-		this.removables = new ArrayList<RemoveHandler>();
-				
 		/*
 		 * Dimensions
 		 */
-		this.setWidth100();
-		this.setHeight100();
-		
+		setWidth100();
+		setHeight100();
+
 		/*
-		 * Build members
+		 * Build label
 		 */
-		overview = new OverviewImpl();
-		removables.add(overview);
+		Label label = new Label(FncGlobals.POSTINGS_LABEL);
 		
-		details  = new DetailImpl();
-		removables.add(details);
+		label.setWidth100();
+		label.setHeight(22);
 		
+		label.setAlign(Alignment.CENTER);
+
 		/*
-		 * Set Dimensions and splitter
-		 */		
-		overview.setHeight("75%");
-		details.setHeight("25%");
-		
-		/*
-		 * Show splitter for overview
+		 * Build grid
 		 */
-		overview.setShowResizeBar(true);
+		String recipient = null;
+		grid = new PostGridImpl(recipient);
+		
+		this.setMembers(label, grid);
 		
 		/*
-		 * Set members to board
+		 * Context specific event handling
 		 */
-		this.setMembers(overview, details);
+		BulletinEventManager.getInstance().addContactListener(this);
 
 	}
 
@@ -85,10 +80,32 @@ public class BoardImpl extends VLayout implements RemoveHandler {
 	 * @see de.kp.ames.web.client.handler.RemoveHandler#beforeRemove()
 	 */
 	public void beforeRemove() {
+		BulletinEventManager.getInstance().removeContactListener(this);
+	}
 
-		for (RemoveHandler removable:removables) {
-			removable.beforeRemove();
-		}
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onContactSelected(com.smartgwt.client.widgets.grid.Record)
+	 */
+	public void onContactSelected(Record record) {
+		
+		String recipient = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		
+		HashMap<String,String> attributes = new HashMap<String,String>();		
+		attributes.put(MethodConstants.ATTR_TARGET, recipient);
+		
+		if (grid != null) grid.reload(attributes);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.fnc.bulletin.event.ContactListener#onPostingSubmitted()
+	 */
+	public void onPostingSubmitted() {
+		/*
+		 * Reload posting grid to show the newly
+		 * submitted posting to the user
+		 */
+		if (grid != null) grid.reload();
 		
 	}
 

@@ -1,7 +1,10 @@
 package de.kp.ames.web.client.test.product;
 
+import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.fnc.product.widget.ProductorFormImpl;
+import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
 
@@ -66,7 +69,26 @@ public class ProductFactory extends FncFactory {
 	public static VLayout createProductorFormImpl() {
 
         VLayout layout = new VLayout();
-        // TODO
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+        /*
+         * Label
+         */
+        HTMLPane pane = getTeaser("This is an example of a Productor Form.", 40);
+
+        /*
+         * Productor Form
+         */
+        ProductorFormImpl productorForm = new ProductorFormImpl();
+		productorForm.setMargin(24);
+		
+		/*
+		 * Style
+		 */
+		productorForm.setBackgroundColor("#F2F2F4");
+		productorForm.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane,productorForm);
 		return layout;
 	
 	}

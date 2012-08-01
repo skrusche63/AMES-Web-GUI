@@ -64,7 +64,9 @@ public class FncGlobals {
 
 	public static String COMMENTS_V_TITLE = "View comments";
 
+	public static String CODES_LABEL    = "<b>Codes</b>";
 	public static String GROUPS_LABEL   = "<b>Groups</b>";
+	public static String SYMBOLS_LABEL  = "<b>Symbols</b>";
 	public static String USERS_LABEL    = "<b>Users</b>";
 	public static String POSTINGS_LABEL = "<b>Postings</b>";
 	
@@ -138,6 +140,12 @@ public class FncGlobals {
 	public static String SCM_EXPLORER = "Package Explorer";
 	public static String SCM_MODULE   = "Module Viewer";
 
+	/*
+	 * Symbol-Layer
+	 */
+	public static String SYMBOL_V_TITLE  = GUIGlobals.APP_TITLE + ": Symbol Viewer";
+	public static String SYMBOL_V_SLOGAN = "Use this widget to assign symbols to information objects.";
+	
 	/*
 	 * Transform-Layer
 	 */

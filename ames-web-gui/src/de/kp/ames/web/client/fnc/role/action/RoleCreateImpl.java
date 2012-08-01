@@ -25,7 +25,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.role.RoleWidget;
+import de.kp.ames.web.client.fnc.role.RoleController;
 
 public class RoleCreateImpl extends GridCreateImpl {
 
@@ -45,7 +45,7 @@ public class RoleCreateImpl extends GridCreateImpl {
 
 		final RoleCreateImpl self = this;
 		
-		RoleWidget widget = new RoleWidget();
+		RoleController widget = new RoleController();
 		widget.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);

@@ -32,12 +32,12 @@ import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class RoleWidget {
+public class RoleController {
 
 	/**
 	 * Constructor
 	 */
-	public RoleWidget() {
+	public RoleController() {
 	}
 
 	/**
