@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridGetImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.user.UserWidget;
+import de.kp.ames.web.client.fnc.user.UserController;
 
 public class UserGetImpl extends GridGetImpl {
 
@@ -44,8 +44,8 @@ public class UserGetImpl extends GridGetImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		UserWidget widget = new UserWidget();
-		widget.doGet(attributes, record);
+		UserController controller = new UserController();
+		controller.doGet(attributes, record);
 		
 	}
 

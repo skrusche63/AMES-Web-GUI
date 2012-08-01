@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.group.GroupWidget;
+import de.kp.ames.web.client.fnc.group.GroupController;
 
 public class GroupGetImpl extends GridEditImpl {
 
@@ -44,8 +44,8 @@ public class GroupGetImpl extends GridEditImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		GroupWidget widget = new GroupWidget();
-		widget.doGet(attributes, record);
+		GroupController controller = new GroupController();
+		controller.doGet(attributes, record);
 		
 	}
 

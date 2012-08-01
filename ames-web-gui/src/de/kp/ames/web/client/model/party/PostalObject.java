@@ -80,7 +80,7 @@ public class PostalObject extends ExtensibleObject {
       	/*
        	 * Build street number
        	 */
-		TextItem streetNumberItem = GuiFormFactory.createScTextItem("<b>Street Number</b>:", JaxrConstants.RIM_STREET, LABEL_STYLE, 120);
+		TextItem streetNumberItem = GuiFormFactory.createScTextItem("<b>Street Number</b>:", JaxrConstants.RIM_STREET_NUMBER, LABEL_STYLE, 120);
 		items.add(streetNumberItem);
 		
 		return items;

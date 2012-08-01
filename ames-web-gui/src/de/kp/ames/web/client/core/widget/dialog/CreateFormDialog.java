@@ -21,6 +21,7 @@ package de.kp.ames.web.client.core.widget.dialog;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.handler.FormHandler;
 
 public class CreateFormDialog extends FormDialog implements FormHandler {
@@ -38,6 +39,11 @@ public class CreateFormDialog extends FormDialog implements FormHandler {
 	 */
 	public CreateFormDialog(String title, String slogan) {
 		super(title, slogan);
+		/*
+		 * Overall editor title
+		 */
+		this.setTitle(FncGlobals.ADF_EDITOR);
+		
 	}
 
 	/* (non-Javadoc)

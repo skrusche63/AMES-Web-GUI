@@ -10,7 +10,11 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
+import de.kp.ames.web.client.core.form.DefaultFormImpl;
 import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.model.party.PersonNameObject;
+import de.kp.ames.web.client.model.party.PostalObject;
+import de.kp.ames.web.client.model.party.TelephoneObject;
 
 public class UserFormImpl extends FormImpl {
 
@@ -27,17 +31,17 @@ public class UserFormImpl extends FormImpl {
 	/*
 	 * Reference to PersonName
 	 */
-	private PersonNameImpl personName;
+	private DefaultFormImpl personName;
 	
 	/*
 	 * Reference to PostalAddress
 	 */
-	private PostalAddressImpl postalAddress;
+	private DefaultFormImpl postalAddress;
 	
 	/*
 	 * Reference to Telephone Number
 	 */
-	private TelephoneNumberImpl telephoneNumber;
+	private DefaultFormImpl telephoneNumber;
 	
 	/**
 	 * Constructor
@@ -90,7 +94,7 @@ public class UserFormImpl extends FormImpl {
 		/*
 		 * Build Telephone Number Form
 		 */
-		telephoneNumber = new TelephoneNumberImpl();
+		telephoneNumber = new DefaultFormImpl(new TelephoneObject());
 
         Tab tab = new Tab();   	
         tab.setWidth(80);
@@ -112,7 +116,7 @@ public class UserFormImpl extends FormImpl {
 		/*
 		 * Build Postal Address Form
 		 */
-		postalAddress = new PostalAddressImpl();
+		postalAddress = new DefaultFormImpl(new PostalObject());
 
         Tab tab = new Tab();   	
         tab.setWidth(80);
@@ -134,7 +138,7 @@ public class UserFormImpl extends FormImpl {
 		/*
 		 * Build Person Name Form
 		 */
-		personName = new PersonNameImpl();
+		personName = new DefaultFormImpl(new PersonNameObject());
 
         Tab tab = new Tab();   	
         tab.setWidth(80);

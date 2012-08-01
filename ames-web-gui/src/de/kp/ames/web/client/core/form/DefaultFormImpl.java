@@ -1,18 +1,18 @@
-package de.kp.ames.web.client.fnc.user.widget;
+package de.kp.ames.web.client.core.form;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 
-import de.kp.ames.web.client.model.party.PostalObject;
+import de.kp.ames.web.client.model.core.DataObject;
 
-public class PostalAddressImpl extends DynamicForm {
+public class DefaultFormImpl extends DynamicForm {
 
 	/**
 	 * Constructor
 	 */
-	public PostalAddressImpl() {
+	public DefaultFormImpl(DataObject dataObject) {
 		super();
 		
 		this.setTitleSuffix(""); // default ":"
@@ -26,7 +26,7 @@ public class PostalAddressImpl extends DynamicForm {
 		this.setAutoFocus(true);
 		this.setLayoutAlign(Alignment.CENTER);
 		
-		FormItem[] formItems = new PostalObject().createFormItemsAsArray();
+		FormItem[] formItems = dataObject.createFormItemsAsArray();
 		this.setFields(formItems);
 		
 	}	

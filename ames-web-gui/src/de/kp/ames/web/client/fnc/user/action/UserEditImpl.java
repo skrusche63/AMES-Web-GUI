@@ -26,7 +26,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.user.UserWidget;
+import de.kp.ames.web.client.fnc.user.UserController;
 
 public class UserEditImpl extends GridEditImpl {
 	
@@ -48,9 +48,9 @@ public class UserEditImpl extends GridEditImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final UserEditImpl self = this;		
-		UserWidget widget = new UserWidget();
+		UserController controller = new UserController();
 		
-		widget.doEdit(attributes, record, new ActivityImpl() {
+		controller.doEdit(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterEdit(jValue);
 			}

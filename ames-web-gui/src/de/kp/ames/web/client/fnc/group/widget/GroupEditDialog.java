@@ -21,21 +21,47 @@ package de.kp.ames.web.client.fnc.group.widget;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.GroupService;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class GroupEditDialog extends EditFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
-	private static String SLOGAN = "Use this widget to edit a certain group.";
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 490;
 	
 	/**
 	 * Constructor
 	 */
 	public GroupEditDialog(JSONValue jValue) {
-		super(TITLE, SLOGAN, jValue);
+		super(FncGlobals.GROUP_E_TITLE, FncGlobals.GROUP_E_SLOGAN, jValue);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	/* (non-Javadoc)

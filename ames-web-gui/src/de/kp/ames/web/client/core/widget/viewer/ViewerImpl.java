@@ -26,6 +26,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class ViewerImpl extends Window {
@@ -42,6 +43,10 @@ public class ViewerImpl extends Window {
 	 * @param slogan
 	 */
 	public ViewerImpl(String title, String slogan, Canvas body) {
+		/*
+		 * Set overall title for viewer
+		 */
+		this.setTitle(FncGlobals.ADF_VIEWER);
 		
 		VLayout vLayout = new VLayout();
 		vLayout.setShowEdges(false);

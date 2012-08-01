@@ -2,7 +2,6 @@ package de.kp.ames.web.client.test.data;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class ScData {
@@ -209,10 +208,49 @@ public class ScData {
     public static String TEST_POSTING = "";
     
     /*
+     * Group-Layer
+     */
+    
+    public static JSONObject getJsonTestGroup() {
+
+    	JSONObject jGroup = new JSONObject();
+    	
+    	/*
+    	 * Group Name
+    	 */
+    	jGroup.put(JaxrConstants.RIM_NAME,  new JSONString("Group name"));
+    	jGroup.put(JaxrConstants.RIM_EMAIL, new JSONString("email@address"));
+
+    	jGroup.put(JaxrConstants.RIM_DESC,  new JSONString("Group description"));
+
+    	/*
+    	 * Postal Address
+    	 */
+    	jGroup.put(JaxrConstants.RIM_COUNTRY,           new JSONString("Country"));
+    	jGroup.put(JaxrConstants.RIM_STATE_OR_PROVINCE, new JSONString("State or Province"));
+    	jGroup.put(JaxrConstants.RIM_POSTAL_CODE,       new JSONString("Postal code"));
+    	jGroup.put(JaxrConstants.RIM_CITY, 		       new JSONString("City"));
+    	jGroup.put(JaxrConstants.RIM_STREET,            new JSONString("Street"));
+    	jGroup.put(JaxrConstants.RIM_STREET_NUMBER,     new JSONString("Stree Number"));
+
+    	/*
+    	 * Telephone Number
+    	 */
+    	jGroup.put(JaxrConstants.RIM_COUNTRY_CODE, 	 new JSONString("Country code"));
+    	jGroup.put(JaxrConstants.RIM_AREA_CODE, 	  	 new JSONString("Area code"));
+    	jGroup.put(JaxrConstants.RIM_PHONE_NUMBER, 	 new JSONString("Number"));
+		jGroup.put(JaxrConstants.RIM_PHONE_EXTENSION, new JSONString("Extension"));
+
+		return jGroup;
+    
+    }
+    
+    /*
      * User-Layer
      */
     
     public static JSONObject getJsonTestUser() {
+ 
     	JSONObject jUser = new JSONObject();
     	
     	/*
@@ -227,14 +265,21 @@ public class ScData {
     	/*
     	 * Postal Address
     	 */
-    	
-    	// TODO
+    	jUser.put(JaxrConstants.RIM_COUNTRY,           new JSONString("Country"));
+    	jUser.put(JaxrConstants.RIM_STATE_OR_PROVINCE, new JSONString("State or Province"));
+    	jUser.put(JaxrConstants.RIM_POSTAL_CODE,       new JSONString("Postal code"));
+    	jUser.put(JaxrConstants.RIM_CITY, 		       new JSONString("City"));
+    	jUser.put(JaxrConstants.RIM_STREET,            new JSONString("Street"));
+    	jUser.put(JaxrConstants.RIM_STREET_NUMBER,     new JSONString("Stree Number"));
 
     	/*
     	 * Telephone Number
     	 */
+    	jUser.put(JaxrConstants.RIM_COUNTRY_CODE, 	 new JSONString("Country code"));
+    	jUser.put(JaxrConstants.RIM_AREA_CODE, 	  	 new JSONString("Area code"));
+    	jUser.put(JaxrConstants.RIM_PHONE_NUMBER, 	 new JSONString("Number"));
+		jUser.put(JaxrConstants.RIM_PHONE_EXTENSION, new JSONString("Extension"));
     	
-    	// TODO
     	return jUser;
     
     }

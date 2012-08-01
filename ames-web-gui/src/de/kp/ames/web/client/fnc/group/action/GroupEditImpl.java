@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.group.GroupWidget;
+import de.kp.ames.web.client.fnc.group.GroupController;
 
 public class GroupEditImpl extends GridEditImpl {
 	
@@ -46,10 +46,10 @@ public class GroupEditImpl extends GridEditImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 
-		final GroupEditImpl self = this;
+		final GroupEditImpl self = this;		
+		GroupController controller = new GroupController();
 		
-		GroupWidget widget = new GroupWidget();
-		widget.doEdit(attributes, record, new ActivityImpl() {
+		controller.doEdit(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterEdit(jValue);
 			}

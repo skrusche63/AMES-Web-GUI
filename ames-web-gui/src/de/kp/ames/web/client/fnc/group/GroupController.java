@@ -29,21 +29,21 @@ import com.smartgwt.client.util.SC;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
-import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.widget.GroupCreateDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupEditDialog;
-import de.kp.ames.web.client.model.GroupObject;
+import de.kp.ames.web.client.fnc.group.widget.GroupFormImpl;
+import de.kp.ames.web.client.fnc.group.widget.GroupGetViewer;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class GroupWidget {
+public class GroupController {
 	/**
 	 * Constructor
 	 */
-	public GroupWidget() {
+	public GroupController() {
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class GroupWidget {
 	 */
 	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 
-		final GroupWidget self = this;
+		final GroupController self = this;
 		
 		/*
 		 * Specify get activity
@@ -173,7 +173,7 @@ public class GroupWidget {
 	 */
 	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
-		final GroupWidget self = this;
+		final GroupController self = this;
 		
 		/*
 		 * Specify get activity
@@ -239,12 +239,10 @@ public class GroupWidget {
 	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
 
-		String html = new GroupObject().toHtml(jValue);
+		GroupFormImpl form = new GroupFormImpl();
+		form.addFormData(jValue);		
 		
-		String title  = FncGlobals.GROUP_G_TITLE;
-		String slogan = FncGlobals.GROUP_G_SLOGAN;
-		
-		ViewerFactory.createHtmlViewer(title, slogan, html);
+		new GroupGetViewer(form);
 		
 	}
 

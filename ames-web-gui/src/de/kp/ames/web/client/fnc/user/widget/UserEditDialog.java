@@ -46,8 +46,8 @@ public class UserEditDialog extends EditFormDialog {
 		/*
 		 * Button handling
 		 */
-		this.setShowCloseButton(false);
-		this.setShowMinimizeButton(false);
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
 		
 		/*
 		 * Set dimensions

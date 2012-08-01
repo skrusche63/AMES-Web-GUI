@@ -20,21 +20,47 @@ package de.kp.ames.web.client.fnc.group.widget;
 
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.GroupService;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class GroupCreateDialog extends CreateFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
-	private static String SLOGAN = "Use this widget to create a new group.";
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 490;
 	
 	/**
 	 * Constructor
 	 */
 	public GroupCreateDialog() {
-		super(TITLE, SLOGAN);
+		super(FncGlobals.GROUP_C_TITLE, FncGlobals.GROUP_C_SLOGAN);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	/* (non-Javadoc)

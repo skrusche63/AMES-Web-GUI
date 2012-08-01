@@ -48,8 +48,8 @@ public class UploadDeleteImpl extends GridDeleteImpl {
 
 		final UploadDeleteImpl self = this;
 		
-		UploadController widget = new UploadController();
-		widget.doDelete(attributes, record, new ActivityImpl() {
+		UploadController controller = new UploadController();
+		controller.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);		

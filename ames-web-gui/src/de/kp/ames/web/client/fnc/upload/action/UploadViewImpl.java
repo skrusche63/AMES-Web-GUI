@@ -44,8 +44,8 @@ public class UploadViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		UploadController widget = new UploadController();
-		widget.doView(attributes, record);
+		UploadController controller = new UploadController();
+		controller.doView(attributes, record);
 		
 	}
 	

@@ -26,7 +26,7 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.group.GroupWidget;
+import de.kp.ames.web.client.fnc.group.GroupController;
 
 public class AffiliationDeleteImpl extends GridDeleteImpl {
 	
@@ -49,7 +49,7 @@ public class AffiliationDeleteImpl extends GridDeleteImpl {
 		
 		final AffiliationDeleteImpl self = this;
 		
-		GroupWidget service = new GroupWidget();
+		GroupController service = new GroupController();
 		service.doDelete(attributes, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {

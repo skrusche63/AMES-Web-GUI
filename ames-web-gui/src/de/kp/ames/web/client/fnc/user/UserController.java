@@ -30,12 +30,12 @@ import de.kp.ames.web.client.fnc.user.widget.UserGetViewer;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
-public class UserWidget {
+public class UserController {
 
 	/**
 	 * Constructor
 	 */
-	public UserWidget() {
+	public UserController() {
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class UserWidget {
 	 */
 	public void doEdit(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
 		
-		final UserWidget self = this;
+		final UserController self = this;
 		
 		ActivityImpl afterGetActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {
@@ -63,7 +63,7 @@ public class UserWidget {
 	 */
 	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
-		final UserWidget self = this;
+		final UserController self = this;
 		
 		ActivityImpl afterGetActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {

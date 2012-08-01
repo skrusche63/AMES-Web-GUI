@@ -3,7 +3,10 @@ package de.kp.ames.web.client.fnc.globals;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 
 public class FncGlobals {
-
+	
+	public static String ADF_EDITOR = "ADF - Editor";
+	public static String ADF_VIEWER = "ADF - Viewer";
+	
 	/*
 	 * Classification Nodes
 	 */
@@ -100,6 +103,13 @@ public class FncGlobals {
 	/*
 	 * Group-Layer
 	 */
+
+	public static String GROUP_C_TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
+	public static String GROUP_C_SLOGAN = "Use this widget to create a new group.";
+
+	public static String GROUP_E_TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
+	public static String GROUP_E_SLOGAN = "Use this widget to edit a certain group.";
+	
 	public static String GROUP_G_TITLE  = GUIGlobals.APP_TITLE + ": Group Viewer";
 	public static String GROUP_G_SLOGAN = "Use this widget to view group specific information.";
 

@@ -7,7 +7,7 @@ import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.group.GroupWidget;
+import de.kp.ames.web.client.fnc.group.GroupController;
 
 public class AffiliationCreateImpl extends GridCreateImpl {
 	
@@ -28,7 +28,7 @@ public class AffiliationCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final AffiliationCreateImpl self = this;
-		GroupWidget widget = new GroupWidget();
+		GroupController widget = new GroupController();
 
 		widget.doCreate(attributes, new ActivityImpl() {
 			

@@ -47,8 +47,8 @@ public class UploadCreateImpl extends GridCreateImpl {
 		
 		final UploadCreateImpl self = this;
 		
-		UploadController widget = new UploadController();
-		widget.doUpload(attributes, new ActivityImpl() {
+		UploadController controller = new UploadController();
+		controller.doUpload(attributes, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);			

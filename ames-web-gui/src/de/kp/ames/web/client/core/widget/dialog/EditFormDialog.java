@@ -22,6 +22,7 @@ import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.handler.FormHandler;
 
 public class EditFormDialog extends FormDialog implements FormHandler {
@@ -39,6 +40,11 @@ public class EditFormDialog extends FormDialog implements FormHandler {
 	 */
 	public EditFormDialog(String title, String slogan) {
 		super(title, slogan);
+		/*
+		 * Set overall title for editor
+		 */
+		this.setTitle(FncGlobals.ADF_EDITOR);
+
 	}
 
 	/**
@@ -50,6 +56,10 @@ public class EditFormDialog extends FormDialog implements FormHandler {
 	 */
 	public EditFormDialog(String title, String slogan, JSONValue jValue) {
 		super(title, slogan, jValue);
+		/*
+		 * Set overall title for editor
+		 */
+		this.setTitle(FncGlobals.ADF_EDITOR);
 	}
 
 	/* (non-Javadoc)
