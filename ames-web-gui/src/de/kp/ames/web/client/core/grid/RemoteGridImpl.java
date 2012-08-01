@@ -137,8 +137,8 @@ public class RemoteGridImpl extends GridImpl {
 		requestMethod.setName(MethodConstants.METH_GET);
 		
 		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Grid);
+
 		requestMethod.setAttributes(attributes);
-		
 		return requestMethod;
 		
 	}

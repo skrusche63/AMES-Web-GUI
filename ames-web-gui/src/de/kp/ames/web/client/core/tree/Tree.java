@@ -75,14 +75,6 @@ public interface Tree {
 	public void createScTreeDS();
 
 	/**
-	 * @param url
-	 * @param method
-	 * @param title
-	 * @param fields
-	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final DataSourceField[] fields);
-
-	/**
 	 * @return
 	 */
 	public String getRequestUrl();

@@ -41,6 +41,7 @@ import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.fnc.symbol.event.SymbolEventManager;
 import de.kp.ames.web.client.model.GraphicObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -243,8 +244,10 @@ public class SymbolGridImpl extends TileGrid {
 	private RequestMethod createMethod() {
 
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
-		requestMethod.setName(MethodConstants.METH_SYMBOLS);
-		
+		requestMethod.setName(MethodConstants.METH_GET);
+
+		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Grid);
+
 		requestMethod.setAttributes(attributes);		
 		return requestMethod;
 		

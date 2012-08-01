@@ -19,6 +19,7 @@ package de.kp.ames.web.client.core.tree;
  */
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
@@ -262,45 +263,25 @@ public class TreeImpl extends TreeGrid implements Tree {
 		requestMethod.setName(MethodConstants.METH_GET);
 		
 		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Tree);
+
+		requestMethod.setAttributes(attributes);				
 		return requestMethod;
 		
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS(java.util.HashMap)
+	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS()
 	 */
 	public void createScTreeDS() {
-		/*
-		 * Retrieve request url
-		 */
+		
 		String requestUrl = getRequestUrl();
-		
-		/*
-		 * Retrieve request method
-		 */
-		RequestMethod requestMethod = createMethod();
-		
-		/*
-		 * Retrieve request fields
-		 */
-		DataSourceField[] requestFields = createDataFields();
-		
-		/*
-		 * Finally create data source
-		 */
-		createScTreeDS(requestUrl, requestMethod, requestFields);
-		
-	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createScTreeDS(java.lang.String, de.kp.ames.web.client.core.method.RequestMethod, com.smartgwt.client.data.DataSourceField[])
-	 */
-	public void createScTreeDS(final String url, final RequestMethod method, final DataSourceField[] fields) {
-		
+		DataSourceField[] requestFields = createDataFields();
+
 		dataSource = new DataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
-				dsRequest.setParams(method.toParams());				
+				dsRequest.setParams(getRequestParams());				
 				return super.transformRequest(dsRequest);  
 			}  
 
@@ -313,15 +294,27 @@ public class TreeImpl extends TreeGrid implements Tree {
 		dataSource.setDataFormat(DSDataFormat.JSON);
 		dataSource.setDataProtocol(DSProtocol.GETPARAMS);  
 		
-		dataSource.setDataURL(url);		
+		dataSource.setDataURL(requestUrl);		
 		
-		dataSource.setFields(fields);
+		dataSource.setFields(requestFields);
 		
 		/*
 		 * finally set data source
 		 */
 		setDataSource(dataSource);
 
+	}
+
+	/**
+	 * A helper method to create request parameters
+	 * 
+	 * @return
+	 */
+	protected Map<String,String> getRequestParams() {
+		
+		RequestMethod requestMethod = createMethod();
+		return requestMethod.toParams();
+	
 	}
 
 	/**
