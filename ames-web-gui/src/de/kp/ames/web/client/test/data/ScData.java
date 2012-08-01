@@ -36,24 +36,20 @@ public class ScData {
                 new ScNode("PostGridImpl",    PREFIX + "bulletin:data:PostGridImpl:leaf",    PREFIX + "bulletin:data:folder", "silk/table.png"),
                 new ScNode("Widget",          PREFIX + "bulletin:widget:folder",             PREFIX + "bulletin:folder", "silk/folder.png"),
 
-                new ScNode("BoardImpl",       PREFIX + "bulletin:widget:BoardImpl:leaf",       PREFIX + "bulletin:widget:folder", "silk/widget.png"),
                 new ScNode("BulletinImpl",    PREFIX + "bulletin:widget:BulletinImpl:leaf",    PREFIX + "bulletin:widget:folder", "silk/widget.png"),
                 new ScNode("CommentsViewer",  PREFIX + "bulletin:widget:CommentsViewer:leaf",  PREFIX + "bulletin:widget:folder", "silk/widget.png"),
-                new ScNode("ContactsImpl",    PREFIX + "bulletin:widget:ContactsImpl:leaf",    PREFIX + "bulletin:widget:folder", "silk/widget.png"),
-                new ScNode("DetailImpl",      PREFIX + "bulletin:widget:DetailImpl:leaf",      PREFIX + "bulletin:widget:folder", "silk/widget.png"),
-                new ScNode("GroupsImpl",      PREFIX + "bulletin:widget:GroupsImpl:leaf",      PREFIX + "bulletin:widget:folder", "silk/widget.png"),
+                new ScNode("MessageImpl",     PREFIX + "bulletin:widget:MessageImpl:leaf",     PREFIX + "bulletin:widget:folder", "silk/widget.png"),
                 new ScNode("MessageFormImpl", PREFIX + "bulletin:widget:MessageFormImpl:leaf", PREFIX + "bulletin:widget:folder", "silk/widget.png"),
-                new ScNode("OverviewImpl",    PREFIX + "bulletin:widget:OverviewImpl:leaf",    PREFIX + "bulletin:widget:folder", "silk/widget.png"),
-                new ScNode("UsersImpl",       PREFIX + "bulletin:widget:UsersImpl:leaf",       PREFIX + "bulletin:widget:folder", "silk/widget.png"),
 
         		/*
         		 * Comm-Layer
         		 */
                 new ScNode("<b>Comm</b>",  PREFIX + "comm:folder", "root", "silk/folder.png"),
-                new ScNode("Data",         PREFIX + "comm:data:folder",            PREFIX + "comm:folder", "silk/folder.png"),
-                new ScNode("CommGridImpl", PREFIX + "comm:data:CommGridImpl:leaf", PREFIX + "comm:data:folder", "silk/table.png"),
-                new ScNode("Widget",       PREFIX + "comm:widget:folder",          PREFIX + "comm:folder", "silk/folder.png"),
-                new ScNode("CommViewer",   PREFIX + "comm:widget:CommViewer:leaf", PREFIX + "comm:widget:folder", "silk/widget.png"),
+                new ScNode("Data",         PREFIX + "comm:data:folder",              PREFIX + "comm:folder", "silk/folder.png"),
+                new ScNode("CommGridImpl", PREFIX + "comm:data:CommGridImpl:leaf",   PREFIX + "comm:data:folder", "silk/table.png"),
+                new ScNode("Widget",       PREFIX + "comm:widget:folder",            PREFIX + "comm:folder", "silk/folder.png"),
+                new ScNode("CommFormImpl", PREFIX + "comm:widget:CommFormImpl:leaf", PREFIX + "comm:widget:folder", "silk/widget.png"),
+                new ScNode("CommViewer",   PREFIX + "comm:widget:CommViewer:leaf",   PREFIX + "comm:widget:folder", "silk/widget.png"),
 
         		/*
         		 * Dms-Layer
@@ -190,5 +186,21 @@ public class ScData {
     public static ScNode[] getScData() {
         return new ScData().getData();
     }
+    
+    /*
+     * Test data used with the Show case application
+     */
+    
+    /*
+     * Access-Layer
+     */
+    public static String TEST_ACCESSOR = "";
+    
+    /*
+     * Bulletin-Layer
+     */
+    public static String TEST_CONTACT = "";
+    public static String TEST_NAME    = "Test User";
+    public static String TEST_POSTING = "";
     
 }

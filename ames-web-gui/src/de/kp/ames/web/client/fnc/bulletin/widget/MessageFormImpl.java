@@ -23,6 +23,7 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.ItemKeyPressEvent;
@@ -48,6 +49,12 @@ public class MessageFormImpl extends FormImpl {
 	private static String RIM_MESSAGE = JaxrConstants.RIM_MESSAGE;
 	
 	/*
+	 * Form dimensions for proper rendering
+	 */
+	private static int FORM_WIDTH  = 578;
+	private static int FORM_HEIGHT = 420;
+
+	/*
 	 * Form fields
 	 */
 	private TextItem from;
@@ -65,14 +72,20 @@ public class MessageFormImpl extends FormImpl {
 	public MessageFormImpl() {
 
 		/*
+		 * Dimensions
+		 */
+		this.setWidth(FORM_WIDTH);
+		this.setHeight(FORM_HEIGHT);
+
+		/*
 		 * Note, that width and height used below are the result
 		 * of a boring rendering process to achieve the best user
 		 * experience, so be careful when changing these numbers
 		 */
 		VLayout wrapper = new VLayout();
 		
-		wrapper.setWidth100();
-		wrapper.setHeight100();
+		//wrapper.setWidth100();
+		//wrapper.setHeight100();
 		
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
@@ -80,7 +93,7 @@ public class MessageFormImpl extends FormImpl {
 		scForm.setColWidths(60, 480);
 		scForm.setFixedColWidths(true);
 		
-		scForm.setPadding(8);
+		scForm.setPadding(16);
 		scForm.setTitleOrientation(TitleOrientation.LEFT);
 		
 		scForm.setWidth100();
@@ -102,16 +115,7 @@ public class MessageFormImpl extends FormImpl {
 		/*
 		 * Subject field
 		 */
-		subject = GuiFormFactory.createScTextItem("<b>Subject</b>:", RIM_NAME, LABEL_STYLE, 470);
-		
-		/*
-		 * Body field
-		 */
-		
-		body = GuiFormFactory.createScRichTextEditor(546, 230);
-		
-		body.setBorder(GuiStyles.APP_BORDER);
-		body.setMargin(8);
+		subject = GuiFormFactory.createScTextItem("<b>Subject</b>:", RIM_NAME, LABEL_STYLE, 450);
 
 		/*
 		 * Space for rendering purpose only
@@ -129,12 +133,37 @@ public class MessageFormImpl extends FormImpl {
 		scForm.addItemKeyPressHandler(new ItemKeyPressHandler() {
 			public void onItemKeyPress(ItemKeyPressEvent event) {
 				if ("Enter".equals(event.getKeyName())) {
-					// TODO
+					doEnter();
 				}
 			}
 		});
+		
+		/*
+		 * Body field
+		 */
 
-		wrapper.setMembers(scForm, body);
+		VLayout layout = new VLayout();
+		layout.setShowEdges(false);
+		
+		layout.setWidth(546);
+		layout.setHeight(280);
+		
+		/*
+		 * REMARK:
+		 * 
+		 * The body field differs from other widgets as the
+		 * margin parameters of the surrounding vlayout lead
+		 * to a 'padding' for the body field
+		 */
+		layout.setLayoutMargin(16);
+		layout.setLayoutTopMargin(0);
+		
+		body = GuiFormFactory.createScRichTextEditor(546, 280);
+		body.setStyleName(GuiStyles.X_BD_STYLE_4);
+		
+		layout.addMember(body);
+		
+		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);
 		
 	}
@@ -144,6 +173,7 @@ public class MessageFormImpl extends FormImpl {
 	 */
 	public void addFormData(JSONValue jValue) {
 
+		SC.say("BP0:" +  jValue);
 		this.jTarget = jValue;
 		
 		/*
@@ -151,7 +181,7 @@ public class MessageFormImpl extends FormImpl {
 		 */
 		String name = (jTarget.isObject().containsKey(RIM_NAME)) ? jTarget.isObject().get(RIM_NAME).isString().stringValue() : jTarget.isObject().get(RIM_SUBJECT).isString().stringValue();
 		to.setValue(name);
-
+		SC.say("BP1");
 	}
 	
 	/* (non-Javadoc)
@@ -175,6 +205,13 @@ public class MessageFormImpl extends FormImpl {
 
 		return jForm.toString();
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#doEnter()
+	 */
+	public void doEnter() {
+		if (this.formHandler != null) this.formHandler.doSend();
 	}
 	
 	/**

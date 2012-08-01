@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridGetAllImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.bulletin.BulletinWidget;
+import de.kp.ames.web.client.fnc.bulletin.BulletinController;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -47,7 +47,7 @@ public class CommentGetAllImpl extends GridGetAllImpl {
 		HashMap<String,String> attributes = this.getParams();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Comment);
 		
-		BulletinWidget widget = new BulletinWidget();
+		BulletinController widget = new BulletinController();
 		widget.doGet(attributes, record);
 		
 	}

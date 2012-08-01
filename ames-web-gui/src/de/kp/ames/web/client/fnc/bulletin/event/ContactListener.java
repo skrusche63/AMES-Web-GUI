@@ -9,9 +9,6 @@ public interface ContactListener {
 	 */
 	public void onContactSelected(Record record);
 	
-	/**
-	 * @param record
-	 */
-	public void onPostingSubmitted(Record record);
+	public void onPostingSubmitted();
 	
 }

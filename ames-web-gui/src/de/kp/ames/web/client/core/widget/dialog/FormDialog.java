@@ -89,7 +89,6 @@ public class FormDialog extends BaseDialog implements FormHandler {
 		this.form = new FormImpl();
 		this.form.addFormHandler(this);
 
-		if (this.jValue != null) this.form.addFormData(this.jValue);		
 		return this.form;
 		
 	}

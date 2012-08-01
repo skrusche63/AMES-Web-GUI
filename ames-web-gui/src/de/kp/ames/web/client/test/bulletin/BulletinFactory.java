@@ -1,47 +1,170 @@
 package de.kp.ames.web.client.test.bulletin;
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.smartgwt.client.util.Page;
+import com.smartgwt.client.widgets.AnimationCallback;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.HTMLPane;
+import com.smartgwt.client.widgets.Window;
+import com.smartgwt.client.widgets.events.CloseClickEvent;
+import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-public class BulletinFactory {
+import de.kp.ames.web.client.fnc.bulletin.data.CommentGridImpl;
+import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
+import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
+import de.kp.ames.web.client.fnc.bulletin.widget.MessageFormImpl;
+import de.kp.ames.web.client.fnc.bulletin.widget.MessageImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.style.GuiStyles;
+import de.kp.ames.web.client.test.FncFactory;
+import de.kp.ames.web.client.test.ScAction;
+import de.kp.ames.web.client.test.data.ScData;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+
+public class BulletinFactory extends FncFactory {
 
 	public static VLayout createCommentGridImpl() {
 
-        VLayout layout = new VLayout();
-        // TODO
+		VLayout layout = new VLayout();
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+		/*
+		 * Label
+		 */
+		HTMLPane pane = getTeaser("View all registered comments for a certain posting.", 40);
+
+		/*
+		 * Grid
+		 */
+		String posting = ScData.TEST_POSTING;		
+		CommentGridImpl grid = new CommentGridImpl(posting);
+		
+		grid.setMargin(24);
+
+		grid.setWidth(480);
+		grid.setHeight(480);
+
+		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane, grid);
 		return layout;
 	
 	}
 
 	public static VLayout createPostGridImpl() {
 
-        VLayout layout = new VLayout();
-        // TODO
+		VLayout layout = new VLayout();
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+		/*
+		 * Label
+		 */
+		HTMLPane pane = getTeaser("View all registered postings for a certain contact.", 40);
+
+		/*
+		 * Grid
+		 */
+		String contact = ScData.TEST_CONTACT;
+		PostGridImpl grid = new PostGridImpl(contact);
+		
+		grid.setMargin(24);
+
+		grid.setWidth(480);
+		grid.setHeight(480);
+
+		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane, grid);
 		return layout;
 	
 	}
 
 	public static VLayout createBulletinImpl() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+		String message = "Click the button to open the BulletinImpl.";
+		return createDialog(message, "Show BulletinImpl", new ScAction() {
+			public void execute() {
+				startApp();
+			}			
+		});
 	
 	}
 
-	public static VLayout createBoardImpl() {
+	private static void startApp() {
+		
+        final Canvas animateOutline = new Canvas();
+ 
+        animateOutline.setBorder("1px solid #a0a0a0");
+        
+        /*
+         * Animation start point
+         */
+        animateOutline.setTop(0);
+        animateOutline.setLeft(0);
+        
+        animateOutline.setWidth(0);
+        animateOutline.setHeight(0);
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
+        animateOutline.show();
+        
+        animateOutline.animateRect(0, 0, Page.getWidth(), Page.getHeight(), new AnimationCallback() {
+            public void execute(boolean earlyFinish) {
+            	
+                animateOutline.hide();
+                
+                final Window app = createApp();
+                app.addCloseClickHandler(new CloseClickHandler() {
+                	
+                    public void onCloseClick(CloseClickEvent event) {
+                        
+                    	animateOutline.setRect(0, 0, Page.getWidth(), Page.getHeight());
+                        animateOutline.show();
+                        
+                        app.destroy();
+ 
+                        animateOutline.animateRect(0, 0, 0, 0, new AnimationCallback() {
+                            public void execute(boolean earlyFinish) {
+                                animateOutline.hide();
+                            }
+                        }, 500);
+
+                    }
+                });
+                
+                app.show();
+                
+            }
+        }, 500);
+		
 	}
-
-	public static VLayout createContactsImpl() {
-
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
 	
+	private static Window createApp() {
+
+		Window app = new Window();
+		app.setTitle("Bulletin Board");
+
+		/*
+		 * Dimensions
+		 */
+		app.setWidth100();
+		app.setHeight100();
+		
+		/*
+		 * Buttons
+		 */
+        app.setShowMinimizeButton(false);
+        app.setShowCloseButton(true);
+        
+        app.setCanDragReposition(false);
+        app.setCanDragResize(false);
+        
+        app.setShowShadow(false);		
+		app.addItem(new BulletinImpl());
+
+		return app;
 	}
 
 	public static VLayout createCommentsViewer() {
@@ -52,42 +175,53 @@ public class BulletinFactory {
 	
 	}
 
-	public static VLayout createDetailImpl() {
+	public static VLayout createMessageImpl() {
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
-	}
+		String message = "Click the button to open the MessageImpl.";
+		return createDialog(message, "Show Dialog", new ScAction() {
+			public void execute() {
+				
+				String type = ClassificationConstants.FNC_ID_Posting;
 
-	public static VLayout createGroupsImpl() {
+				String title  = FncGlobals.POSTING_TITLE;
+				String slogan = FncGlobals.POSTING_SLOGAN;
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
+				JSONObject jContact = new JSONObject();
+				
+				jContact.put(JaxrConstants.RIM_ID,   new JSONString(ScData.TEST_CONTACT));
+				jContact.put(JaxrConstants.RIM_NAME, new JSONString(ScData.TEST_NAME));
+
+				MessageImpl dialog = new MessageImpl(title, slogan, type, jContact);
+				dialog.setTitle(title);
+				
+			}			
+		});
 	
 	}
 
 	public static VLayout createMessageFormImpl() {
 
         VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
-	}
-	
-	public static VLayout createOverviewImpl() {
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
 
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
-	}
+        /*
+         * Label
+         */
+        HTMLPane pane = getTeaser("This is an example of a Message Form.", 40);
 
-	public static VLayout createUsersImpl() {
+        /*
+         * Message Form
+         */
+        MessageFormImpl messageForm = new MessageFormImpl();
+		messageForm.setMargin(24);
+		
+		/*
+		 * Style
+		 */
+		messageForm.setBackgroundColor("#F2F2F4");
+		messageForm.setStyleName(GuiStyles.X_BD_STYLE_4);
 
-        VLayout layout = new VLayout();
-        // TODO
+		layout.setMembers(pane,messageForm);
 		return layout;
 	
 	}

@@ -8,6 +8,8 @@ import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
@@ -17,7 +19,15 @@ public class DmsFormImpl extends FormImpl {
 	public enum FormAction {
 		CREATE, EDIT, GET
 	};
+
+	private static String SLOTS = "Slots";
 	
+	/*
+	 * Form dimensions for proper rendering
+	 */
+	private static int FORM_WIDTH  = 512;
+	private static int FORM_HEIGHT = 532;
+
 	/*
 	 * Reference to SlotGrid
 	 */
@@ -29,6 +39,12 @@ public class DmsFormImpl extends FormImpl {
 	 * @param action
 	 */
 	public DmsFormImpl(FormAction action) {
+
+		/*
+		 * Dimensions
+		 */
+		this.setWidth(FORM_WIDTH);
+		this.setHeight(FORM_HEIGHT);
 
 		/*
 		 * Note, that width and height used below are the result
@@ -43,7 +59,7 @@ public class DmsFormImpl extends FormImpl {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 480);
+		scForm.setColWidths(60, 320);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(8);
@@ -60,11 +76,27 @@ public class DmsFormImpl extends FormImpl {
 		scForm.setLayoutAlign(Alignment.CENTER);
 		
 		/*
+		 * Create Tabs
+		 */
+		VLayout layout = new VLayout();
+		layout.setShowEdges(false);
+		
+		layout.setWidth(480);
+		
+		layout.setLayoutMargin(16);
+		layout.setLayoutTopMargin(0);
+		
+		TabSet tabSet = createTabSet();
+		
+		tabSet.setWidth(480);
+		tabSet.setHeight(320);
+
+		/*
 		 * Build SlotGrid
 		 */
-		slotGrid = new SlotGridImpl();
-		
-		wrapper.setMembers(scForm, slotGrid);
+		tabSet.addTab(createSlotTab());
+				
+		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);
 		
 	}
@@ -93,6 +125,31 @@ public class DmsFormImpl extends FormImpl {
 	public ArrayList<FormItem> createFormItemsAsList() {
 		// TODO
 		return null;
+	}
+
+	/**
+	 * Create layout component for slots
+	 * 
+	 * @return
+	 */
+	private Tab createSlotTab() {
+		
+		/*
+		 * Build SlotGrid
+		 */
+		slotGrid = new SlotGridImpl();
+
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(SLOTS);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(slotGrid);
+		return tab;
+		
 	}
 
 }

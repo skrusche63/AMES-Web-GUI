@@ -10,6 +10,8 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.comm.data.CommGridImpl;
+import de.kp.ames.web.client.fnc.comm.widget.CommFormImpl;
+import de.kp.ames.web.client.fnc.comm.widget.CommViewer;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
@@ -44,8 +46,8 @@ public class CommFactory extends FncFactory {
          */
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();  
         
-        valueMap.put(ClassificationConstants.FNC_ID_Chat, 		"Chat");  
-        valueMap.put(ClassificationConstants.FNC_ID_Mail,    	"Mail");  
+        valueMap.put(ClassificationConstants.FNC_ID_Chat, "Chat");  
+        valueMap.put(ClassificationConstants.FNC_ID_Mail, "Mail");  
 
         SelectItem selectItem = createSelectItem(valueMap);
         selectItem.addChangedHandler(new ChangedHandler() {
@@ -84,12 +86,44 @@ public class CommFactory extends FncFactory {
 		
 	}
 
+	public VLayout createCommFormImpl() {
+		
+        VLayout layout = new VLayout();
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+        /*
+         * Label
+         */
+        HTMLPane pane = getTeaser("This is an example of a  Comm Form.", 40);
+
+        /*
+         * Comm Form
+         */
+        CommFormImpl commForm = new CommFormImpl();
+		commForm.setMargin(24);
+		
+		/*
+		 * Style
+		 */
+		commForm.setBackgroundColor("#F2F2F4");
+		commForm.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane,commForm);
+		return layout;
+	
+	}
+
 	public VLayout createCommViewer() {
 
 		String message = "Click the button to open the CommViewer.";
 		return createDialog(message, "Show Viewer", new ScAction() {
 			public void execute() {
-				// TODO
+
+				CommFormImpl form = new CommFormImpl();
+				
+				CommViewer viewer = new CommViewer(form);
+				viewer.setTitle("View Comm Object");
+				
 			}
 			
 		});

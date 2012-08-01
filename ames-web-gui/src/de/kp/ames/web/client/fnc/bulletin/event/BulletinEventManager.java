@@ -86,12 +86,12 @@ public class BulletinEventManager implements ContactListener, PostingListener {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.Record)
+	 * @see de.kp.ames.web.client.fnc.bulletin.event.ContactListener#onPostingSubmitted()
 	 */
-	public void onPostingSubmitted(Record record) {
+	public void onPostingSubmitted() {
 
 		for (ContactListener listener:contactListeners) {
-			listener.onPostingSubmitted(record);
+			listener.onPostingSubmitted();
 		}
 	
 	}

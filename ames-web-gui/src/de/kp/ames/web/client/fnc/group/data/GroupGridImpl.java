@@ -25,7 +25,6 @@ import de.kp.ames.web.client.fnc.group.handler.GroupGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.GroupObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
-import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -119,7 +118,11 @@ public class GroupGridImpl extends RemoteGridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		return JaxrConstants.RIM_DESC;
+		/*
+		 * Actually there is no need for a more
+		 * detailed description of a group
+		 */
+		return null;
 	}
 
 }

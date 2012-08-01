@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 
 import de.kp.ames.web.client.core.activity.Activity;
@@ -36,6 +37,13 @@ public interface Form {
 	 */
 	public void addFormData(JSONValue jValue);
 
+	/**
+	 * Add form data in terms of a record
+	 * 
+	 * @param record
+	 */
+	public void addFormData(Record record);
+	
 	/**
 	 * @return
 	 */
@@ -57,7 +65,12 @@ public interface Form {
 	 */
 	public ArrayList<FormItem> createFormItemsAsList();
 
-
+	/**
+	 * Activity after 'ENTER' has been pressed on a
+	 * form item
+	 */
+	public void doEnter();
+	
 	/**
 	 * @param afterSubmitActivity
 	 */

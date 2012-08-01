@@ -166,8 +166,8 @@ public class BaseDialog extends Window implements RemoveHandler {
 		VLayout vLayout = new VLayout();
 		vLayout.setShowEdges(false);
 		
-		vLayout.setWidth100();
-		vLayout.setHeight100();
+		//vLayout.setWidth100();
+		//vLayout.setHeight100();
 		
 		vLayout.setMembersMargin(0);
 		vLayout.setLayoutMargin(0);
@@ -182,10 +182,12 @@ public class BaseDialog extends Window implements RemoveHandler {
 		 * Create content
 		 */
 		VLayout wrapper = new VLayout();
+		
+		wrapper.setLayoutMargin(0);
 		wrapper.setStyleName(GuiStyles.X_BD_STYLE_2);
 
-		wrapper.setWidth100();		
-		wrapper.setHeight100();
+		//wrapper.setWidth100();		
+		//wrapper.setHeight100();
 		
 		wrapper.addMember(createContent());
 		vLayout.addMember(wrapper);

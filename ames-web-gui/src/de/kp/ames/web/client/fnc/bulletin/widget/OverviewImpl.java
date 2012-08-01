@@ -21,12 +21,15 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
 import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.fnc.bulletin.event.ContactListener;
 import de.kp.ames.web.client.fnc.bulletin.handler.PostGridRecordHandlerImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.handler.RemoveHandler;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
@@ -48,9 +51,19 @@ public class OverviewImpl extends VLayout implements ContactListener, RemoveHand
 		 */
 		setWidth100();
 		setHeight100();
-	
+
 		/*
-		 * Build member
+		 * Build label
+		 */
+		Label label = new Label(FncGlobals.POSTINGS_LABEL);
+		
+		label.setWidth100();
+		label.setHeight(22);
+		
+		label.setAlign(Alignment.CENTER);
+
+		/*
+		 * Build grid
 		 */
 		String recipient = null;
 		grid = new PostGridImpl(recipient);
@@ -59,7 +72,7 @@ public class OverviewImpl extends VLayout implements ContactListener, RemoveHand
 		 * Assign context specific record handler
 		 */
 		grid.addRecordHandler(new PostGridRecordHandlerImpl());		
-		this.addMember(grid);
+		this.setMembers(label, grid);
 		
 		/*
 		 * Context specific event handling
@@ -90,9 +103,9 @@ public class OverviewImpl extends VLayout implements ContactListener, RemoveHand
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.function.bulletin.event.ContactListener#onPostingSubmitted(com.smartgwt.client.widgets.grid.Record)
+	 * @see de.kp.ames.web.client.fnc.bulletin.event.ContactListener#onPostingSubmitted()
 	 */
-	public void onPostingSubmitted(Record record) {
+	public void onPostingSubmitted() {
 		/*
 		 * Reload posting grid to show the newly
 		 * submitted posting to the user

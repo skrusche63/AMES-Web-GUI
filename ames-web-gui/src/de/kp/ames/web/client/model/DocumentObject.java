@@ -18,50 +18,12 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import java.util.ArrayList;
-
-import com.smartgwt.client.widgets.grid.ListGridField;
-
-import de.kp.ames.web.client.core.grid.GridFieldFactory;
-import de.kp.ames.web.client.model.core.ExtrinsicObject;
-
-public class DocumentObject extends ExtrinsicObject {
+public class DocumentObject extends DmsObject {
 
 	/**
 	 * Constructor
 	 */
 	public DocumentObject() {	
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.core.RegistryObject#createGridFieldsAsList()
-	 */
-	public ArrayList<ListGridField> createListGridFieldsAsList() {
-
-		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
-
-		/*
-		 * Document icon
-		 */
-		fields.add(GridFieldFactory.createRimIconField());
-		
-		/*
-		 * Document name
-		 */
-		fields.add(GridFieldFactory.createRimNameField(160));
-
-		/*
-		 * Document mimetype
-		 */
-		fields.add(GridFieldFactory.createRimMimeField(120));
-
-		/*
-		 * Document author
-		 */
-		fields.add(GridFieldFactory.createRimAuthorField("*"));
-		
-		return fields;
-		
 	}
 
 }

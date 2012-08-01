@@ -48,20 +48,23 @@ public class FncGlobals {
 	public static String ACCESSOR_E_SLOGAN = "Use this widget to edit a certain accessor.";
 
 	/*
-	 * Bulletin Board
+	 * Bulletin-Layer
 	 */
 	public static String BULLETIN_TITLE  = "Bulletin Board";
 	public static String BULLETIN_SLOGAN = "Use the bulletin board to post information requests to other community members.";
 
-	/*
-	 * Comment
-	 */
 	public static String COMMENT_TITLE  = "Comment";
 	public static String COMMENT_SLOGAN = "Use this widget to comment a certain posting.";
 
 	public static String COMMENT_G_TITLE  = GUIGlobals.APP_TITLE + ": Comment Viewer";
 	public static String COMMENT_G_SLOGAN = "Use this widget to view posting specific comments.";
 
+	public static String COMMENTS_V_TITLE = "View comments";
+
+	public static String GROUPS_LABEL   = "<b>Groups</b>";
+	public static String USERS_LABEL    = "<b>Users</b>";
+	public static String POSTINGS_LABEL = "<b>Postings</b>";
+	
 	/*
 	 * Help
 	 */
@@ -75,6 +78,16 @@ public class FncGlobals {
 	public static String DISCLAIMER_TITLE  = "Disclaimer";
 	public static String DISCLAIMER_SLOGAN = "Please read this disclaimer carefully.";
 
+	/*
+	 * Comm-Layer
+	 */
+
+	public static String COMM_V_TITLE  = GUIGlobals.APP_TITLE + ": Comm Viewer";
+	public static String COMM_V_SLOGAN = "Use this widget to view a certain communication object.";
+
+	public static String COMM_V_CHAT = "View Chat Message";
+	public static String COMM_V_MAIL = "View Mail Message";
+	
 	/*
 	 * Dms-Layer
 	 */

@@ -67,8 +67,8 @@ public class BulletinImpl extends BaseApp {
 		/*
 		 * Set Dimensions and splitter
 		 */		
-		contacts.setWidth("25%");
-		board.setWidth("75%");
+		contacts.setWidth(240);
+		board.setWidth("*");
 		
 		/*
 		 * Show splitter for contacts

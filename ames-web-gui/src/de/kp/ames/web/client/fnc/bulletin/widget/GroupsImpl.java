@@ -20,10 +20,13 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.bulletin.handler.ContactGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.bulletin.handler.ContactGridRecordHandlerImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.data.GroupGridImpl;
 import de.kp.ames.web.client.handler.RemoveHandler;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
@@ -45,7 +48,17 @@ public class GroupsImpl extends VLayout implements RemoveHandler {
 		setHeight100();
 
 		/*
-		 * Build member
+		 * Build label
+		 */
+		Label label = new Label(FncGlobals.GROUPS_LABEL);
+		
+		label.setWidth100();
+		label.setHeight(22);
+		
+		label.setAlign(Alignment.CENTER);
+		
+		/*
+		 * Build grid
 		 */
 		grid = new GroupGridImpl();
 
@@ -65,7 +78,7 @@ public class GroupsImpl extends VLayout implements RemoveHandler {
 		 */
 		grid.addRecordHandler(new ContactGridRecordHandlerImpl());
 		
-		this.addMember(grid);
+		this.setMembers(label, grid);
 		
 	}
 

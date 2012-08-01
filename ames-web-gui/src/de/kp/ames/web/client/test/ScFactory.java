@@ -60,33 +60,18 @@ public class ScFactory {
 			
 		} else if (nid.equals(PREFIX + "bulletin:data:PostGridImpl:leaf")) {
 			return createPostGridImpl(nid);
-
-		} else if (nid.equals(PREFIX + "bulletin:widget:BoardImpl:leaf")) {
-			return createBoardImpl(nid);
 			
 		} else if (nid.equals(PREFIX + "bulletin:widget:BulletinImpl:leaf")) {
 			return createBulletinImpl(nid);
 
 		} else if (nid.equals(PREFIX + "bulletin:widget:CommentsViewer:leaf")) {
 			return createCommentsViewer(nid);
-		
-		} else if (nid.equals(PREFIX + "bulletin:widget:ContactsImpl:leaf")) {
-			return createContactsImpl(nid);
-		
-		} else if (nid.equals(PREFIX + "bulletin:widget:DetailImpl:leaf")) {
-			return createDetailImpl(nid);
-		
-		} else if (nid.equals(PREFIX + "bulletin:widget:GroupsImpl:leaf")) {
-			return createGroupsImpl(nid);
+
+		} else if (nid.equals(PREFIX + "bulletin:widget:MessageImpl:leaf")) {
+			return createMessageImpl(nid);
 
 		} else if (nid.equals(PREFIX + "bulletin:widget:MessageFormImpl:leaf")) {
 			return createMessageFormImpl(nid);
-		
-		} else if (nid.equals(PREFIX + "bulletin:widget:OverviewImpl:leaf")) {
-			return createOverviewImpl(nid);
-		
-		} else if (nid.equals(PREFIX + "bulletin:widget:UsersImpl:leaf")) {
-			return createUsersImpl(nid);
 
 		}
 
@@ -95,6 +80,9 @@ public class ScFactory {
 		 */
 		else if (nid.equals(PREFIX + "comm:data:CommGridImpl:leaf")) {
 			return createCommGridImpl(nid);
+
+		} else if (nid.equals(PREFIX + "comm:widget:CommFormImpl:leaf")) {
+			return createCommFormImpl(nid);
 
 		} else if (nid.equals(PREFIX + "comm:widget:CommViewer:leaf")) {
 			return createCommViewer(nid);
@@ -294,7 +282,7 @@ public class ScFactory {
 	 */
 	private static Tab createAccessGridImpl(String nid) {
 
-		VLayout content = AccessFactory.createAccessGridImpl();
+		VLayout content = AccessFactory.getInstance().createAccessGridImpl();
 		
 		Tab tab = createTab(nid, "AccessGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -303,7 +291,7 @@ public class ScFactory {
 
 	private static Tab createAccessorCreateDialog(String nid) {
 
-		VLayout content = AccessFactory.createAccessorCreateDialog();
+		VLayout content = AccessFactory.getInstance().createAccessorCreateDialog();
 		
 		Tab tab = createTab(nid, "AccessorCreateDialog", WIDGET_ICON, content);	
 		return tab;
@@ -312,7 +300,7 @@ public class ScFactory {
 
 	private static Tab createAccessorEditDialog(String nid) {
 
-		VLayout content = AccessFactory.createAccessorEditDialog();
+		VLayout content = AccessFactory.getInstance().createAccessorEditDialog();
 		
 		Tab tab = createTab(nid, "AccessorEditDialog", WIDGET_ICON, content);	
 		return tab;
@@ -321,7 +309,7 @@ public class ScFactory {
 
 	private static Tab createAccessorFormImpl(String nid) {
 
-		VLayout content = AccessFactory.createAccessorFormImpl();
+		VLayout content = AccessFactory.getInstance().createAccessorFormImpl();
 		
 		Tab tab = createTab(nid, "AccessorFormImpl", WIDGET_ICON, content);	
 		return tab;
@@ -330,7 +318,7 @@ public class ScFactory {
 
 	private static Tab createAccessorGetViewer(String nid) {
 
-		VLayout content = AccessFactory.createAccessorGetViewer();
+		VLayout content = AccessFactory.getInstance().createAccessorGetViewer();
 		
 		Tab tab = createTab(nid, "AccessorGetViewer", WIDGET_ICON, content);	
 		return tab;
@@ -339,7 +327,7 @@ public class ScFactory {
 
 	private static Tab createRemoteViewer(String nid) {
 
-		VLayout content = AccessFactory.createRemoteViewer();
+		VLayout content = AccessFactory.getInstance().createRemoteViewer();
 		
 		Tab tab = createTab(nid, "RemoteViewer", WIDGET_ICON, content);	
 		return tab;
@@ -369,27 +357,9 @@ public class ScFactory {
 
 	private static Tab createBulletinImpl(String nid) {
 		
-		Canvas content = new Canvas();
+		VLayout content = BulletinFactory.createBulletinImpl();
 		
 		Tab tab = createTab(nid, "BulletinImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createBoardImpl(String nid) {
-		
-		VLayout content = BulletinFactory.createBoardImpl();
-		
-		Tab tab = createTab(nid, "BoardImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createContactsImpl(String nid) {
-		
-		VLayout content = BulletinFactory.createContactsImpl();
-		
-		Tab tab = createTab(nid, "ContactsImpl", WIDGET_ICON, content);	
 		return tab;
 
 	}
@@ -403,20 +373,11 @@ public class ScFactory {
 
 	}
 
-	private static Tab createDetailImpl(String nid) {
+	private static Tab createMessageImpl(String nid) {
 		
-		VLayout content = BulletinFactory.createDetailImpl();
+		VLayout content = BulletinFactory.createMessageImpl();
 		
-		Tab tab = createTab(nid, "DetailImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createGroupsImpl(String nid) {
-		
-		VLayout content = BulletinFactory.createGroupsImpl();
-		
-		Tab tab = createTab(nid, "GroupsImpl", WIDGET_ICON, content);	
+		Tab tab = createTab(nid, "MessageImpl", WIDGET_ICON, content);	
 		return tab;
 
 	}
@@ -429,24 +390,6 @@ public class ScFactory {
 		return tab;
 
 	}
-	
-	private static Tab createOverviewImpl(String nid) {
-		
-		VLayout content = BulletinFactory.createOverviewImpl();
-		
-		Tab tab = createTab(nid, "OverviewImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createUsersImpl(String nid) {
-		
-		VLayout content = BulletinFactory.createUsersImpl();
-		
-		Tab tab = createTab(nid, "UsersImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
 
 	/*
 	 * Comm-Layer methods
@@ -456,6 +399,15 @@ public class ScFactory {
 		VLayout content = CommFactory.getInstance().createCommGridImpl();
 		
 		Tab tab = createTab(nid, "CommGridImpl", TABLE_ICON, content);	
+		return tab;
+
+	}
+
+	private static Tab createCommFormImpl(String nid) {
+		
+		VLayout content = CommFactory.getInstance().createCommFormImpl();
+		
+		Tab tab = createTab(nid, "CommFormImpl", WIDGET_ICON, content);	
 		return tab;
 
 	}

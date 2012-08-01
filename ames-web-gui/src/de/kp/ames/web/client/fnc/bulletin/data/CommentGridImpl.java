@@ -6,6 +6,7 @@ import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.CommentObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -55,7 +56,7 @@ public class CommentGridImpl extends RemoteGridImpl {
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		return null;
+		return JaxrConstants.RIM_MESSAGE;
 	}
 
 }

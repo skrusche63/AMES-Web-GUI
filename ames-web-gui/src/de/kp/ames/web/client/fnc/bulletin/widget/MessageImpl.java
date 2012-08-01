@@ -19,10 +19,15 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
  */
 
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.events.DrawEvent;
+import com.smartgwt.client.widgets.events.DrawHandler;
+
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.bulletin.BulletinService;
+import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
 
 /**
  * This class provides a mail-like user interface to send
@@ -38,8 +43,8 @@ public class MessageImpl extends CreateFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 560;
-	private static int HEIGHT = 480;
+	private static int WIDTH  = 592;
+	private static int HEIGHT = 556;
 	
 	/*
 	 * Reference to message type
@@ -68,6 +73,23 @@ public class MessageImpl extends CreateFormDialog {
 		 */
 		this.setWidth(WIDTH);
 		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		/*
+		 * Event handling
+		 */
+		final MessageImpl self = this;
+		
+		this.addDrawHandler(new DrawHandler() {
+			public void onDraw(DrawEvent event) {
+				self.afterDraw(event);				
+			}			
+		});
 
 		this.draw();
 
@@ -84,7 +106,6 @@ public class MessageImpl extends CreateFormDialog {
 		this.form = new MessageFormImpl();
 		this.form.addFormHandler(this);
 
-		this.form.addFormData(this.jValue);		
 		return this.form;
 		
 	}
@@ -93,38 +114,35 @@ public class MessageImpl extends CreateFormDialog {
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
-
+		
 		String target = ((MessageFormImpl)this.form).getTarget();
 		
 		String data = this.form.getFormData();
 		String type = this.type;
 
-		final MessageImpl self = this;
-
 		BulletinService service = new BulletinService();
 		service.doSubmit(type, target, data, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-				self.doAfterSend(jValue);
+				/*
+				 * The Bulletin Event Manager informs registered
+				 * listeners about the submission of a posting
+				 */
+				BulletinEventManager.getInstance().onPostingSubmitted();
 			}
 			
 		});
 
 	}
 
+
 	/**
-	 * After send processing
+	 * Provide form with data after window
+	 * has been drawn
 	 * 
-	 * @param jValue
+	 * @param event
 	 */
-	private void doAfterSend(JSONValue jValue) {
-
-		// TODO
-		
-		/*
-		 * BulletinEventManager.getInstance().onPostingSubmitted(record);
-		 */
-		this.destroy();
-
+	private void afterDraw(DrawEvent event) {
+		this.form.addFormData(this.jValue);		
 	}
 
 }

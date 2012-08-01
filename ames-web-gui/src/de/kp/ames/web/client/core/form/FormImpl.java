@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.Layout;
@@ -78,6 +79,15 @@ public class FormImpl extends VLayout implements Form {
 	}
 
 	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#addFormData(com.smartgwt.client.data.Record)
+	 */
+	public void addFormData(Record record) {
+		/*
+		 * Must be overridden
+		 */
+	}
+
+	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.Form#getFormData()
 	 */
 	public String getFormData() {
@@ -128,6 +138,16 @@ public class FormImpl extends VLayout implements Form {
 		/*
 		 * Must be overridden
 		 */
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.Form#doEnter()
+	 */
+	public void doEnter() {
+		/*
+		 * Must be overridden
+		 */
+		
 	}
 	
 	/**

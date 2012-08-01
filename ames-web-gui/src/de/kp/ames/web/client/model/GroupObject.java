@@ -89,7 +89,7 @@ public class GroupObject extends RegistryObject {
 		fields.add(GridFieldFactory.createRimIconField());
 
 		/*
-		 * User name
+		 * Group name
 		 */
 		fields.add(GridFieldFactory.createRimNameField("*"));
 		

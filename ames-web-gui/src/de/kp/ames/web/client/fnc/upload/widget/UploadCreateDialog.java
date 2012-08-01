@@ -90,7 +90,13 @@ public class UploadCreateDialog extends CreateFormDialog implements UploadListen
 		jResponse.put(JsonConstants.J_SUCCESS, JSONBoolean.getInstance(true));
 		jResponse.put(JsonConstants.J_MESSAGE, new JSONString(FncGlobals.UPLOAD_SUCCESS_MESSAGE));
 
-		sendActivity.execute(jResponse);
+		this.sendActivity.execute(jResponse);
+		
+		/*
+		 * Garbage collection
+		 */
+		this.beforeRemove();
+		this.destroy();
 		
 	}	
 
@@ -104,7 +110,7 @@ public class UploadCreateDialog extends CreateFormDialog implements UploadListen
 		jResponse.put(JsonConstants.J_SUCCESS, JSONBoolean.getInstance(false));
 		jResponse.put(JsonConstants.J_MESSAGE, new JSONString(FncGlobals.UPLOAD_ERROR_MESSAGE));
 
-		sendActivity.execute(jResponse);
+		this.sendActivity.execute(jResponse);
 
 	}	
 }

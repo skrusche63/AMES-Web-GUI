@@ -23,7 +23,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridViewImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.comm.CommWidget;
+import de.kp.ames.web.client.fnc.comm.CommController;
 
 public class CommViewImpl extends GridViewImpl {
 
@@ -44,8 +44,8 @@ public class CommViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		CommWidget widget = new CommWidget();
-		widget.doView(attributes, record);
+		CommController controller = new CommController();
+		controller.doView(attributes, record);
 		
 	}
 

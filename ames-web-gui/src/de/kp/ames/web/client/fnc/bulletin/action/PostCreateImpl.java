@@ -25,7 +25,7 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.bulletin.BulletinWidget;
+import de.kp.ames.web.client.fnc.bulletin.BulletinController;
 
 public class PostCreateImpl extends GridCreateImpl {
 
@@ -55,7 +55,7 @@ public class PostCreateImpl extends GridCreateImpl {
 
 		final PostCreateImpl self = this;
 		
-		BulletinWidget widget = new BulletinWidget();
+		BulletinController widget = new BulletinController();
 		widget.doCreate(attributes, this.contact, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
