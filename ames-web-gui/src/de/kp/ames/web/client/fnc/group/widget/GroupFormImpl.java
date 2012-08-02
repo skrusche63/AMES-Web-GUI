@@ -12,6 +12,7 @@ import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.form.DefaultFormImpl;
 import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.fnc.group.data.CategoryGridImpl;
 import de.kp.ames.web.client.model.party.GroupNameObject;
 import de.kp.ames.web.client.model.party.PostalObject;
 import de.kp.ames.web.client.model.party.TelephoneObject;
@@ -23,6 +24,8 @@ public class GroupFormImpl extends FormImpl {
 	private static int FORM_WIDTH  = 512;
 	private static int FORM_HEIGHT = 352;
 	
+	
+	private static String CATEGORY         = "Categories";
 	private static String GROUP_NAME       = "Name";
 	private static String POSTAL_ADDRESS   = "Address";
 	private static String TELEPHONE_NUMBER = "Telephone";
@@ -41,7 +44,7 @@ public class GroupFormImpl extends FormImpl {
 	 * Reference to Telephone Number
 	 */
 	private DefaultFormImpl telephoneNumber;
-
+	
 	/**
 	 * Constructor
 	 */
@@ -151,7 +154,7 @@ public class GroupFormImpl extends FormImpl {
 		return tab;
 
 	}	
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.FormImpl#addFormData(com.google.gwt.json.client.JSONValue)
 	 */

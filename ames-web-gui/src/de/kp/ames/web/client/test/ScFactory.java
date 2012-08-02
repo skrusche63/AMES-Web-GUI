@@ -100,10 +100,7 @@ public class ScFactory {
 		/*
 		 * Group-Layer
 		 */
-		else if (nid.equals(PREFIX + "group:data:CategoryGridImpl:leaf")) {
-			return createCategoryGridImpl(nid);
-
-		} else if (nid.equals(PREFIX + "group:data:GroupGridImpl:leaf")) {
+		else if (nid.equals(PREFIX + "group:data:GroupGridImpl:leaf")) {
 			return createGroupGridImpl(nid);
 
 		} else if (nid.equals(PREFIX + "group:widget:GroupCreateDialog:leaf")) {
@@ -429,18 +426,6 @@ public class ScFactory {
 		VLayout content = DmsFactory.getInstance().createDmsGridImpl();
 		
 		Tab tab = createTab(nid, "DmsGridImpl", TABLE_ICON, content);	
-		return tab;
-
-	}
-	
-	/*
-	 * Group-Layer methods
-	 */
-	private static Tab createCategoryGridImpl(String nid) {
-		
-		VLayout content = GroupFactory.createCategoryGridImpl();
-		
-		Tab tab = createTab(nid, "CategoryGridImpl", TABLE_ICON, content);	
 		return tab;
 
 	}

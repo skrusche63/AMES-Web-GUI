@@ -4,6 +4,8 @@ public class MenuConstants {
 
 	public static String MENU_APPLY    = "apply...";
 	public static String MENU_ASSIGN   = "assign...";
+	public static String MENU_CATEGORY = "category...";
+	
 	/*
 	 * Comment a certain posting
 	 */

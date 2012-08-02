@@ -4,6 +4,7 @@ public class IconConstants {
 
 	public static String ICON_APPLY    = "";
 	public static String ICON_ASSIGN   = "";
+	public static String ICON_CATEGORY = "";
 	public static String ICON_COMMENT  = "";
 	public static String ICON_COMMENTS = "";
 	public static String ICON_CREATE   = "silk/add.png";

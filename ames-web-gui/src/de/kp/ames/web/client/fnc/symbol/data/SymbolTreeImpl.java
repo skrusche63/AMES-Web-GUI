@@ -67,6 +67,12 @@ public class SymbolTreeImpl extends TreeImpl {
 	    
 	    this.addNodeHandler(nodeHandler);
 	    
+	    /*
+	     * Set icons for symbol tree
+	     */
+	    this.setFolderIcon("silk/folder.png");
+	    this.setNodeIcon("silk/image.png");
+	    
 	}
 
 	/**

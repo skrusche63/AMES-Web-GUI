@@ -23,9 +23,9 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.handler.FormHandler;
+import de.kp.ames.web.client.handler.DialogHandler;
 
-public class EditFormDialog extends FormDialog implements FormHandler {
+public class EditFormDialog extends FormDialog implements DialogHandler {
 	/*
 	 * Buttons labels
 	 */

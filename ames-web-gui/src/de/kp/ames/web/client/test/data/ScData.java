@@ -67,7 +67,6 @@ public class ScData {
         		 */
                 new ScNode("<b>Group</b>",      PREFIX + "group:folder", "root", "silk/folder.png"),
                 new ScNode("Data",              PREFIX + "group:data:folder",                   PREFIX + "group:folder", "silk/folder.png"),
-                new ScNode("CategoryGridImpl",  PREFIX + "group:data:CategoryGridImpl:leaf",    PREFIX + "group:data:folder", "silk/table.png"),
                 new ScNode("GroupGridImpl",     PREFIX + "group:data:GroupGridImpl:leaf",       PREFIX + "group:data:folder", "silk/table.png"),
                 new ScNode("Widget",            PREFIX + "group:widget:folder",                 PREFIX + "group:folder", "silk/folder.png"),
                 new ScNode("GroupCreateDialog", PREFIX + "group:widget:GroupCreateDialog:leaf", PREFIX + "group:widget:folder", "silk/widget.png"),

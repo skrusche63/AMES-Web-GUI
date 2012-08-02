@@ -21,7 +21,6 @@ package de.kp.ames.web.client.fnc.group.data;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
-import de.kp.ames.web.client.fnc.group.handler.CategoryGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.CategoryObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
@@ -34,15 +33,17 @@ public class CategoryGridImpl extends RemoteGridImpl {
 	/**
 	 * Constructor
 	 */
-	public CategoryGridImpl() {
+	public CategoryGridImpl(String item) {
 		super(ServiceConstants.COMMUNITY_SERVICE_ID);
 
 		/*
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Category);
 
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Category);
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		
 		/*
 		 * Create data object
 		 */
@@ -57,11 +58,6 @@ public class CategoryGridImpl extends RemoteGridImpl {
 		 * Create grid fields
 		 */
 		this.setFields(createGridFields());
-
-		/*
-		 * Add menu handler
-		 */
-		this.addMenuHandler(new CategoryGridMenuHandlerImpl(this));
 		
 	}
 

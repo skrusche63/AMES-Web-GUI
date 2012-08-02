@@ -33,13 +33,6 @@ public class CategoryObject extends ConceptObject {
 	 */
 	public CategoryObject() {
 	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.model.ConceptObject#createDataFieldsAsArray()
-	 */
-	public DataSourceField[] createDataFieldsAsArray() {
-		return super.createDataFieldsAsArray();		
-	}
 
 	public ArrayList<ListGridField> createListGridFieldsAsList() {
 

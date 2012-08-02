@@ -16,14 +16,6 @@ import de.kp.ames.web.client.test.data.ScData;
 
 public class GroupFactory extends FncFactory {
 
-	public static VLayout createCategoryGridImpl() {
-
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
-	}
-
 	public static VLayout createGroupGridImpl() {
 
         VLayout layout = new VLayout();

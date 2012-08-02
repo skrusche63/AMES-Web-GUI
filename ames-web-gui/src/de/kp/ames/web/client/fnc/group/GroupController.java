@@ -30,6 +30,7 @@ import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.group.widget.GroupCategoryDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupCreateDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupEditDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupGetViewer;
@@ -43,6 +44,17 @@ public class GroupController {
 	 * Constructor
 	 */
 	public GroupController() {
+	}
+
+	/**
+	 * Manage community categories
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param afterSendActivity
+	 */
+	public void doCategory(final HashMap<String,String> attributes, final Activity afterSendActivity) {
+		GroupCategoryDialog.create(attributes, afterSendActivity);
 	}
 
 	/**

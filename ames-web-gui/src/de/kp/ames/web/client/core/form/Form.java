@@ -26,7 +26,7 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.handler.FormHandler;
+import de.kp.ames.web.client.handler.DialogHandler;
 
 public interface Form {
 
@@ -53,7 +53,7 @@ public interface Form {
 	 * Assign form handler to process (submit)
 	 * form data
 	 */
-	public void addFormHandler(FormHandler formHandler);
+	public void addFormHandler(DialogHandler formHandler);
 
 	/**
 	 * @return

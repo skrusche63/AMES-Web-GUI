@@ -111,6 +111,8 @@ public class FncGlobals {
 	/*
 	 * Group-Layer
 	 */
+	public static String CATEGORY_E_TITLE  = GUIGlobals.APP_TITLE + ": Category Editor";
+	public static String CATEGORY_E_SLOGAN = "Use this widget to assign categories to a certain group.";
 
 	public static String GROUP_C_TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
 	public static String GROUP_C_SLOGAN = "Use this widget to create a new group.";

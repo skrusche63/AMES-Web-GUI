@@ -54,6 +54,11 @@ public class BaseDialog extends Window implements RemoveHandler {
 	private IButton b2;
 	
 	/*
+	 * Reference to an externally set canvas
+	 */
+	protected Canvas content;
+	
+	/*
 	 * Button dimensions
 	 */
 	private static int BTN_WIDTH  = GUIGlobals.BTN_WIDTH;
@@ -92,7 +97,31 @@ public class BaseDialog extends Window implements RemoveHandler {
 		this.setupDialog();
 		
 	}
-	
+
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param slogan
+	 * @param body
+	 */
+	public BaseDialog(String title, String slogan, Canvas content) {
+
+		/*
+		 * Register title & slogan
+		 */
+		this.title = title;
+		this.slogan = slogan;
+
+		/*
+		 * Register content (canvas)
+		 */
+		this.content = content;
+		
+		this.setupDialog();
+		
+	}
+
 	/**
 	 * Constructor
 	 * 
@@ -186,10 +215,19 @@ public class BaseDialog extends Window implements RemoveHandler {
 		wrapper.setLayoutMargin(0);
 		wrapper.setStyleName(GuiStyles.X_BD_STYLE_2);
 
-		//wrapper.setWidth100();		
-		//wrapper.setHeight100();
+		/*
+		 * Distinguish between an externally provided
+		 * content widget or the content that is computed
+		 * via 'createContent()'
+		 */
+		if (this.content != null) {
+			wrapper.addMember(content);
 		
-		wrapper.addMember(createContent());
+		} else { 
+			wrapper.addMember(createContent());
+		
+		}
+		
 		vLayout.addMember(wrapper);
 		
 		/*

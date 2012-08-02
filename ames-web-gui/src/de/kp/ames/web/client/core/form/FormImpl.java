@@ -12,7 +12,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.TabSet;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.handler.FormHandler;
+import de.kp.ames.web.client.handler.DialogHandler;
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class FormImpl extends VLayout implements Form {
@@ -27,7 +27,7 @@ public class FormImpl extends VLayout implements Form {
 	/*
 	 * Reference to Form Handler
 	 */
-	protected FormHandler formHandler;
+	protected DialogHandler formHandler;
 
 	/*
 	 * Request specific parameters
@@ -100,7 +100,7 @@ public class FormImpl extends VLayout implements Form {
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.Form#addFormHandler(de.kp.ames.web.client.core.form.FormHandler)
 	 */
-	public void addFormHandler(FormHandler formHandler) {
+	public void addFormHandler(DialogHandler formHandler) {
 		this.formHandler = formHandler;
 	}
 

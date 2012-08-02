@@ -2,7 +2,7 @@ package de.kp.ames.web.client.handler;
 
 import de.kp.ames.web.client.core.activity.Activity;
 
-public interface FormHandler {
+public interface DialogHandler {
 
 	/**
 	 * @param activity

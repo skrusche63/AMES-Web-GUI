@@ -25,11 +25,13 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.fnc.group.action.GroupCategoryImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupCreateImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupDeleteImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupEditImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupGetImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
+import de.kp.ames.web.client.menu.CategoryMenuItem;
 import de.kp.ames.web.client.menu.CreateMenuItem;
 import de.kp.ames.web.client.menu.DeleteMenuItem;
 import de.kp.ames.web.client.menu.EditMenuItem;
@@ -113,6 +115,24 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			get.addAction(getAction);
 			
 			items.add(get);
+
+			/////////
+			
+			/*
+			 * Separate category from get
+			 */
+			items.add(separator);
+			
+			/*
+			 * Get community
+			 */
+			GroupCategoryImpl categoryAction = new GroupCategoryImpl(grid, record);
+			categoryAction.setParams(this.getParams());
+			
+			CategoryMenuItem category = new CategoryMenuItem();
+			category.addAction(categoryAction);
+			
+			items.add(category);
 
 		}
 		

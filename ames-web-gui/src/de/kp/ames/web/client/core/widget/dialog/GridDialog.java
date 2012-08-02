@@ -1,40 +1,20 @@
 package de.kp.ames.web.client.core.widget.dialog;
-/**
- *	Copyright 2012 Dr. Krusche & Partner PartG
- *
- *	AMES-Web-GUI is free software: you can redistribute it and/or 
- *	modify it under the terms of the GNU General Public License 
- *	as published by the Free Software Foundation, either version 3 of 
- *	the License, or (at your option) any later version.
- *
- *	AMES- Web-GUI is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
- * 
- *  See the GNU General Public License for more details. 
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this software. If not, see <http://www.gnu.org/licenses/>.
- *
- */
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.handler.DialogHandler;
 
-public class FormDialog extends BaseDialog implements DialogHandler {
+public class GridDialog extends BaseDialog implements DialogHandler {
 
 	/*
-	 * Reference to form
+	 * Reference to grid
 	 */
-	protected FormImpl form;
+	protected GridImpl grid;
 
 	/*
 	 * Request specific parameters
@@ -63,36 +43,10 @@ public class FormDialog extends BaseDialog implements DialogHandler {
 	 * @param title
 	 * @param slogan
 	 */
-	public FormDialog(String title, String slogan) {
-		super(title, slogan);				
+	public GridDialog(String title, String slogan, GridImpl grid) {
+		super(title, slogan, grid);				
 	}
 	
-	/**
-	 * Constructor
-	 * 
-	 * @param title
-	 * @param slogan
-	 * @param jValue
-	 */
-	public FormDialog(String title, String slogan, JSONValue jValue) {
-		super(title, slogan, jValue);
-	}
-	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#createContent()
-	 */
-	public Canvas createContent() {
-
-		/*
-		 * Register form and assign form handler
-		 */
-		this.form = new FormImpl();
-		this.form.addFormHandler(this);
-
-		return this.form;
-		
-	}
-
 	/**
 	 * Get request specific parameters
 	 * 
@@ -111,12 +65,6 @@ public class FormDialog extends BaseDialog implements DialogHandler {
 	public void setParams(HashMap<String,String> params) {
 		if (this.params == null) this.params = new HashMap<String,String>();
 		this.params.putAll(params);
-
-		/*
-		 * Synchronize form
-		 */
-		this.form.setParams(this.params);
-
 	}
 
 	/**
@@ -128,12 +76,6 @@ public class FormDialog extends BaseDialog implements DialogHandler {
 	public void setParam(String key, String value) {
 		if (this.params == null) this.params = new HashMap<String,String>();
 		this.params.put(key, value);
-		
-		/*
-		 * Synchronize form
-		 */
-		this.form.setParams(this.params);
-		
 	}
 	
 	/**
@@ -230,4 +172,5 @@ public class FormDialog extends BaseDialog implements DialogHandler {
 		this.destroy();
 
 	}
+
 }

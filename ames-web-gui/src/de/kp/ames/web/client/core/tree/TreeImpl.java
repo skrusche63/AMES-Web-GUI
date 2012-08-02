@@ -132,10 +132,6 @@ public class TreeImpl extends TreeGrid implements Tree {
 		 */
 		this.setShowConnectors(true);
 
-		/*
-		 * Set base style
-		 */
-	    this.setBaseStyle(BASE_STYLE);  
 	    /*
 	     * By default no <open> or <drop>
 	     * icons are supported
