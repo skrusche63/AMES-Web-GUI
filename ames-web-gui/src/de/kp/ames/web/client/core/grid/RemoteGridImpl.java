@@ -217,5 +217,21 @@ public class RemoteGridImpl extends GridImpl {
 	public void afterDraw(DrawEvent event) {		
 		//this.fetchData();
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.grid.Grid#reload()
+	 */
+	public void reload() {
+		
+		/* 
+		 * REMARK:
+		 * 
+		 * To invalidate the cache is essential to 
+		 * retrieve data from the server again
+		 */
+		this.invalidateCache();
+		this.fetchData();
+
+	}
+
 }

@@ -23,9 +23,9 @@ import java.util.Map;
 
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
 import com.smartgwt.client.widgets.events.DrawEvent;
@@ -67,9 +67,9 @@ public class SymbolGridImpl extends TileGrid {
 	protected DataObject dataObject;
 
 	/*
-	 * Reference to DataSource
+	 * Reference to RestDataSource
 	 */
-	protected DataSource dataSource;
+	protected RestDataSource dataSource;
 	
 	/*
 	 * Reference to attributes
@@ -292,7 +292,7 @@ public class SymbolGridImpl extends TileGrid {
 		 */
 		DataSourceField[] fields = createDataFields(attributes);
 
-		dataSource = new DataSource() {
+		dataSource = new RestDataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
 				dsRequest.setParams(getRequestParams());				
