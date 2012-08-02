@@ -26,6 +26,7 @@ import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.fnc.user.widget.UserEditDialog;
 import de.kp.ames.web.client.fnc.user.widget.UserGetViewer;
+import de.kp.ames.web.client.fnc.user.widget.UserRoleDialog;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
@@ -95,6 +96,24 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * Manage user (affiliate) roles
+	 * 
+	 * @param attributes
+	 * @param record
+	 * @param afterSendActivity
+	 */
+	public void doRole(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
+
+		/*
+		 * Prepare data
+		 */
+		String source = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		UserRoleDialog.create(attributes, source, afterSendActivity);
+		
+	}
+		
+
 	/**
 	 * Build User Edit Dialog
 	 * 

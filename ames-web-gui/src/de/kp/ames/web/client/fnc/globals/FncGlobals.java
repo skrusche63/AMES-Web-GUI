@@ -112,7 +112,7 @@ public class FncGlobals {
 	 * Group-Layer
 	 */
 	public static String CATEGORY_E_TITLE  = GUIGlobals.APP_TITLE + ": Category Editor";
-	public static String CATEGORY_E_SLOGAN = "Use this widget to assign categories to a certain group.";
+	public static String CATEGORY_E_SLOGAN = "Use this widget to assign a category to a certain group.";
 
 	public static String GROUP_C_TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
 	public static String GROUP_C_SLOGAN = "Use this widget to create a new group.";
@@ -158,7 +158,13 @@ public class FncGlobals {
 	 */
 	public static String PRODUCT_E_TITLE  = GUIGlobals.APP_TITLE + ": Product Editor";;
 	public static String PRODUCT_E_SLOGAN = "Use this widget to edit a certain product.";
-	
+
+	public static String PRODUCT_V_TITLE  = GUIGlobals.APP_TITLE + ": Product Viewer";
+	public static String PRODUCT_V_SLOGAN = "Use this widget to view a certain product.";
+
+	public static String PRODUCTOR_A_TITLE  = GUIGlobals.APP_TITLE + ": Productor Engine";;
+	public static String PRODUCTOR_A_SLOGAN = "Use this widget to apply a certain productor.";
+
 	public static String PRODUCTOR_C_TITLE  = GUIGlobals.APP_TITLE + ": Productor Editor";;
 	public static String PRODUCTOR_C_SLOGAN = "Use this widget to create a new productor.";
 
@@ -205,6 +211,8 @@ public class FncGlobals {
 	/*
 	 * User-Layer
 	 */
+	public static String ROLE_E_TITLE  = GUIGlobals.APP_TITLE + ": Role Editor";
+	public static String ROLE_E_SLOGAN = "Use this widget to assign roles to a certain affiliate.";
 
 	public static String USER_E_TITLE  = GUIGlobals.APP_TITLE + ": User Editor";;
 	public static String USER_E_SLOGAN = "Use this widget to edit a certain user.";

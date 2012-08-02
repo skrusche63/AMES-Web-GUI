@@ -97,7 +97,10 @@ public class UserGridImpl extends RemoteGridImpl {
 		/*
 		 * Add menu handler
 		 */
-		this.addMenuHandler(new UserGridMenuHandlerImpl(this));
+		UserGridMenuHandlerImpl menuHandler = new UserGridMenuHandlerImpl(this);
+		menuHandler.setParams(attributes);
+		
+		this.addMenuHandler(menuHandler);
 		
 	}
 

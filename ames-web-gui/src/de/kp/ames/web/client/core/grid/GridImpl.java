@@ -327,4 +327,19 @@ public class GridImpl extends ListGrid implements Grid {
 		this.setContextMenu(menu);
 	}
 	
+	/**
+	 * @param attributes
+	 */
+	public void setAttributes(HashMap<String,String> attributes) {
+		if (this.attributes != null) this.attributes.putAll(attributes);
+	}
+	
+	/**
+	 * @return
+	 */
+	public HashMap<String,String> getAttributes() {
+		if (this.attributes != null) this.attributes = new HashMap<String,String>();
+		return this.attributes;
+	}
+	
 }

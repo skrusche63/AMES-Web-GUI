@@ -120,8 +120,6 @@ public class ScData {
 
                 new ScNode("ResponsibilityCreateDialog", PREFIX + "role:widget:ResponsibilityCreateDialog:leaf", PREFIX + "role:widget:folder", "silk/widget.png"),
                 new ScNode("ResponsibilityFormImpl",     PREFIX + "role:widget:ResponsibilityFormImpl:leaf",     PREFIX + "role:widget:folder", "silk/widget.png"),
-                new ScNode("RoleCreateDialog",           PREFIX + "role:widget:RoleCreateDialog:leaf",           PREFIX + "role:widget:folder", "silk/widget.png"),
-                new ScNode("RoleFormImpl",               PREFIX + "role:widget:RoleFormImpl:leaf",               PREFIX + "role:widget:folder", "silk/widget.png"),
 
                 /*
                  * Rule-Layer
@@ -271,6 +269,22 @@ public class ScData {
     /*
      * Product-Layer
      */
+    public static String TEST_PRODUCTOR = "";
+    
+    public static String TEST_PRODUCTOR_NAME = "Productor name";
+    public static String TEST_PRODUCTOR_DESC = "Productor description";
+
+    public static JSONObject getJsonProduct() {
+
+    	JSONObject jProduct = new JSONObject();
+
+    	jProduct.put(JaxrConstants.RIM_NAME,  new JSONString("Product name"));
+    	jProduct.put(JaxrConstants.RIM_DESC,  new JSONString("Product description"));
+
+    	return jProduct;
+    	
+    }
+
     public static JSONObject getJsonProductor() {
 
     	JSONObject jProductor = new JSONObject();

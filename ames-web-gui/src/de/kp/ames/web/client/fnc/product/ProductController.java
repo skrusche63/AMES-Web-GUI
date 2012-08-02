@@ -27,8 +27,11 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.service.FrameService;
+import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.product.widget.ProductEditDialog;
+import de.kp.ames.web.client.fnc.product.widget.ProductorApplyDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorCreateDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorEditDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorGetViewer;
@@ -36,6 +39,7 @@ import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class ProductController {
 
@@ -51,7 +55,17 @@ public class ProductController {
 	 * @param afterSendActivity
 	 */
 	public void doApply(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
-		// TODO
+		
+		/*
+		 * Prepare data
+		 */
+		attributes.put(MethodConstants.ATTR_SERVICE, record.getAttributeAsString(JaxrConstants.RIM_ID));
+		
+		String name = record.getAttributeAsString(JaxrConstants.RIM_NAME);
+		String desc = record.getAttributeAsString(JaxrConstants.RIM_DESC);
+		
+		ProductorApplyDialog.create(attributes, name, desc, afterSendActivity);
+		
 	}
 
 	/**
@@ -183,8 +197,45 @@ public class ProductController {
 		
 	}
 
+	/**
+	 * View product
+	 * 
+	 * @param attributes
+	 * @param record
+	 */
 	public void doView(HashMap<String,String> attributes, Record record) {
-		// TODO
+
+		/*
+		 * Prepare data for view request
+		 */
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+
+		/*
+		 * Redirect service
+		 */
+		attributes.put(MethodConstants.ATTR_SERVICE, ServiceConstants.PRODUCT_SERVICE_ID);
+
+		String format = FormatConstants.FNC_FORMAT_ID_File;
+		attributes.put(MethodConstants.ATTR_FORMAT, format);
+
+		/*
+		 * Reference to the registry object to be viewed
+		 */
+		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
+		attributes.put(MethodConstants.ATTR_ITEM, item);
+
+		/*
+		 * Build request uri
+		 */
+		FrameService service = new FrameService();
+		String uri = service.getUri(attributes);
+
+		/*
+		 * Build viewer
+		 */
+		ViewerFactory.createFrameViewer(FncGlobals.PRODUCT_V_TITLE, FncGlobals.PRODUCT_V_SLOGAN, uri);
+		
 	}
 
 	/**

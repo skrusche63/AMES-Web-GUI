@@ -35,24 +35,4 @@ public class RoleFactory extends FncFactory {
 	
 	}
 
-	public static VLayout createRoleCreateDialog() {
-
-		String message = "Click the button to open the RoleCreateDialog.";
-		return createDialog(message, new ScAction() {
-			public void execute() {
-				// TODO
-			}
-			
-		});
-	
-	}
-
-	public static VLayout createRoleFormImpl() {
-
-        VLayout layout = new VLayout();
-        // TODO
-		return layout;
-	
-	}
-
 }

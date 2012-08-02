@@ -27,9 +27,12 @@ import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.user.action.UserEditImpl;
 import de.kp.ames.web.client.fnc.user.action.UserGetImpl;
+import de.kp.ames.web.client.fnc.user.action.UserRoleImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.EditMenuItem;
 import de.kp.ames.web.client.menu.GetMenuItem;
+import de.kp.ames.web.client.menu.RoleMenuItem;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	
@@ -82,6 +85,28 @@ public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			get.addAction(getAction);
 			
 			items.add(get);
+			
+			/*
+			 * Determine whether this user is an affiliate of
+			 * a certain community
+			 */
+			String item = this.getParam(MethodConstants.ATTR_ITEM);
+			if (item != null) {
+				
+				/*
+				 * Seperate roles from get
+				 */
+				items.add(separator);
+
+				UserRoleImpl roleAction = new UserRoleImpl(grid, record);
+				roleAction.setParams(this.getParams());
+				
+				RoleMenuItem role = new RoleMenuItem();
+				role.addAction(roleAction);
+				
+				items.add(role);
+
+			}
 
 		}
 		

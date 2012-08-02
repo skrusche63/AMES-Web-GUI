@@ -20,8 +20,9 @@ package de.kp.ames.web.client.fnc.role.data;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.types.SelectionAppearance;
+import com.smartgwt.client.types.SelectionStyle;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
-import de.kp.ames.web.client.fnc.role.handler.RoleGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.ResponsibilityObject;
 import de.kp.ames.web.client.model.RoleObject;
 import de.kp.ames.web.client.model.core.DataObject;
@@ -38,9 +39,15 @@ public class RoleGridImpl extends RemoteGridImpl {
 	 * @param type
 	 * @param source
 	 */
-	public RoleGridImpl(String type, String source) {
+	public RoleGridImpl(String type, String source, String target) {
 		super(ServiceConstants.ROLE_SERVICE_ID);
 
+		/*
+		 * Multiple checkbox selection
+		 */
+        this.setSelectionType(SelectionStyle.MULTIPLE);  
+        this.setSelectionAppearance(SelectionAppearance.CHECKBOX);  
+			
 		/*
 		 * Register data
 		 */
@@ -48,6 +55,7 @@ public class RoleGridImpl extends RemoteGridImpl {
 		attributes.put(MethodConstants.ATTR_TYPE, type);
 
 		if (source != null) attributes.put(MethodConstants.ATTR_SOURCE, source);
+		if (target != null) attributes.put(MethodConstants.ATTR_TARGET, target);
 
 		/*
 		 * Create data object
@@ -64,11 +72,6 @@ public class RoleGridImpl extends RemoteGridImpl {
 		 */
 		this.setFields(createGridFields());
 
-		/*
-		 * Add menu handler
-		 */
-		RoleGridMenuHandlerImpl menuHandler = new RoleGridMenuHandlerImpl(this);
-		menuHandler.setParams(attributes);
 	}
 
 	/**

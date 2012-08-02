@@ -188,12 +188,6 @@ public class ScFactory {
 
 		} else if (nid.equals(PREFIX + "role:widget:ResponsibilityFormImpl:leaf")) {
 			return createResponsibilityFormImpl(nid);
-		
-		} else if (nid.equals(PREFIX + "role:widget:RoleCreateDialog:leaf")) {
-			return createRoleCreateDialog(nid);
-		
-		} else if (nid.equals(PREFIX + "role:widget:RoleFormImpl:leaf")) {
-			return createRoleFormImpl(nid);
 
 		}
 
@@ -630,24 +624,6 @@ public class ScFactory {
 		VLayout content = RoleFactory.createResponsibilityFormImpl();
 		
 		Tab tab = createTab(nid, "ResponsibilityFormImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createRoleCreateDialog(String nid) {
-		
-		VLayout content = RoleFactory.createRoleCreateDialog();
-		
-		Tab tab = createTab(nid, "RoleCreateDialog", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createRoleFormImpl(String nid) {
-		
-		VLayout content = RoleFactory.createRoleFormImpl();
-		
-		Tab tab = createTab(nid, "RoleFormImpl", WIDGET_ICON, content);	
 		return tab;
 
 	}

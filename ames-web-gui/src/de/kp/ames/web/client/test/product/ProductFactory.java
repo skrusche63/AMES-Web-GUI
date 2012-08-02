@@ -16,6 +16,8 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.fnc.product.data.ProductGridImpl;
+import de.kp.ames.web.client.fnc.product.widget.ProductEditDialog;
+import de.kp.ames.web.client.fnc.product.widget.ProductorApplyDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorCreateDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorEditDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorFormImpl;
@@ -93,11 +95,24 @@ public class ProductFactory extends FncFactory {
 	}
 
 	public VLayout createProductEditDialog() {
+		/*
+		 * Prepare data
+		 */
+		final HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Product);
+		
+		final JSONObject jValue = ScData.getJsonProduct();
+
+		final ActivityImpl afterSendActivity = new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				SC.say("Product successfully updated.");
+			}
+		};
 
 		String message = "Click the button to open the ProductEditDialog.";
 		return createDialog(message, new ScAction() {
 			public void execute() {
-				// TODO
+				ProductEditDialog.create(attributes, jValue, afterSendActivity);
 			}
 			
 		});
@@ -106,10 +121,25 @@ public class ProductFactory extends FncFactory {
 
 	public VLayout createProductorApplyDialog() {
 
+		/*
+		 * Prepare data
+		 */
+		final HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_SERVICE, ScData.TEST_PRODUCTOR);
+		
+		final String name = ScData.TEST_PRODUCTOR_NAME;
+		final String desc = ScData.TEST_PRODUCTOR_DESC;
+
+		final ActivityImpl afterSendActivity = new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				SC.say("Productor successfully applied.");
+			}
+		};
+		
 		String message = "Click the button to open the ProductorApplyDialog.";
 		return createDialog(message, new ScAction() {
 			public void execute() {
-				// TODO
+				ProductorApplyDialog.create(attributes, name, desc, afterSendActivity);
 			}
 			
 		});

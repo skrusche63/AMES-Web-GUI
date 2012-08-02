@@ -13,6 +13,7 @@ public class IconConstants {
 	public static String ICON_EDIT     = "";
 	public static String ICON_GET      = "";
 	public static String ICON_POST     = "";
+	public static String ICON_ROLE     = "";
 	public static String ICON_SYMBOL   = "";
 	public static String ICON_UPLOAD   = "";
 	public static String ICON_VIEW     = "";

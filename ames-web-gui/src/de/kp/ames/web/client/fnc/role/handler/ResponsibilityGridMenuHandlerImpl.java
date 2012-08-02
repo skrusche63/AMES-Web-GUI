@@ -35,13 +35,13 @@ import de.kp.ames.web.client.menu.DeleteMenuItem;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class RoleGridMenuHandlerImpl extends GridMenuHandlerImpl {
+public class ResponsibilityGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	/**
 	 * Constructor
 	 * 
 	 * @param grid
 	 */
-	public RoleGridMenuHandlerImpl(Grid grid) {
+	public ResponsibilityGridMenuHandlerImpl(Grid grid) {
 		super(grid);
 	}
 
@@ -56,80 +56,37 @@ public class RoleGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		 * Separator
 		 */
 		MenuItemSeparator separator = new MenuItemSeparator();
-
+			
 		/*
-		 * Distinguish between responsibilities & roles
+		 * Create responsibility
 		 */
-
-		String type = this.getParam(MethodConstants.ATTR_TYPE);
-		if (type.equals(ClassificationConstants.FNC_ID_Responsibility)) {
-			
-			/*
-			 * Create responsibility
-			 */
-			ResponsibilityCreateImpl createAction = new ResponsibilityCreateImpl(grid);
-			createAction.setParams(this.getParams());
-			
-			CreateMenuItem create = new CreateMenuItem();
-			create.addAction(createAction);
-			
-			items.add(create);
-			
-			if (record != null) {
-				
-				/*
-				 * Separate create from delete
-				 */
-				items.add(separator);
-				
-				/*
-				 * Delete responsibility
-				 */
-				ResponsibilityDeleteImpl deleteAction = new ResponsibilityDeleteImpl(grid, record);
-				deleteAction.setParams(this.getParams());
-				
-				DeleteMenuItem delete = new DeleteMenuItem();
-				delete.addAction(deleteAction);
-				
-				items.add(delete);
-
-			}
-			
-		} else if (type.equals(ClassificationConstants.FNC_ID_Role)) {
-
-			/*
-			 * Create role
-			 */
-			RoleCreateImpl createAction = new RoleCreateImpl(grid);
-			createAction.setParams(this.getParams());
-			
-			CreateMenuItem create = new CreateMenuItem();
-			create.addAction(createAction);
-			
-			items.add(create);
-			
-			if (record != null) {
-				
-				/*
-				 * Separate create from delete
-				 */
-				items.add(separator);
-				
-				/*
-				 * Delete role
-				 */
-				RoleDeleteImpl deleteAction = new RoleDeleteImpl(grid, record);
-				deleteAction.setParams(this.getParams());
-				
-				DeleteMenuItem delete = new DeleteMenuItem();
-				delete.addAction(deleteAction);
-				
-				items.add(delete);
-
-			}
-			
-		}
+		ResponsibilityCreateImpl createAction = new ResponsibilityCreateImpl(grid);
+		createAction.setParams(this.getParams());
 		
+		CreateMenuItem create = new CreateMenuItem();
+		create.addAction(createAction);
+		
+		items.add(create);
+		
+		if (record != null) {
+			
+			/*
+			 * Separate create from delete
+			 */
+			items.add(separator);
+			
+			/*
+			 * Delete responsibility
+			 */
+			ResponsibilityDeleteImpl deleteAction = new ResponsibilityDeleteImpl(grid, record);
+			deleteAction.setParams(this.getParams());
+			
+			DeleteMenuItem delete = new DeleteMenuItem();
+			delete.addAction(deleteAction);
+			
+			items.add(delete);
+
+		}		
 
 		return (MenuItem[])items.toArray(new MenuItem [items.size()]);
 

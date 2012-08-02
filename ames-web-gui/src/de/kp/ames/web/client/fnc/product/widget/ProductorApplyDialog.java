@@ -18,35 +18,20 @@ package de.kp.ames.web.client.fnc.product.widget;
  *
  */
 
-import com.smartgwt.client.widgets.Canvas;
+import java.util.HashMap;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
-import de.kp.ames.web.client.fnc.product.ProductService;
-import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.widget.dialog.ApplyGridDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
-public class ProductorApplyDialog extends ApplyFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Productor Engine";;
-	private static String SLOGAN = "Use this widget to apply a certain productor.";
+public class ProductorApplyDialog extends ApplyGridDialog {
 
 	/**
 	 * Constructor
 	 */
-	public ProductorApplyDialog() {
-		super(TITLE, SLOGAN);
-	}
-	public Canvas createContent() {
-
-		/*
-		 * Register form and assign form handler
-		 */
-		this.form = new ProductorApplyFormImpl();
-		this.form.addFormHandler(this);
-
-		this.form.addFormData(this.jValue);		
-		return this.form;
-		
+	public ProductorApplyDialog(GridImpl grid) {
+		super(FncGlobals.PRODUCTOR_A_TITLE, FncGlobals.PRODUCTOR_C_SLOGAN, grid);
 	}
 
 	/* (non-Javadoc)
@@ -54,19 +39,39 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 	 */
 	public void doSend() {
 
-		/*
-		 * Form data
-		 */
-		String data = this.form.getFormData();
+		// TODO
 		
 		/*
 		 * Request specific parameters
 		 */
-		String source  = this.form.getParam(MethodConstants.ATTR_SOURCE);
-		String service = this.form.getParam(MethodConstants.ATTR_SERVICE);
-
-		new ProductService().doApply(source, service, data, this.sendActivity);
+//		String source  = this.form.getParam(MethodConstants.ATTR_SOURCE);
+//		String service = this.form.getParam(MethodConstants.ATTR_SERVICE);
+//
+//		new ProductService().doApply(source, service, data, this.sendActivity);
 
 	}	
+
+	/**
+	 * @param attributes
+	 * @param name
+	 * @param desc
+	 * @param afterSendActivity
+	 */
+	public  static void create(HashMap<String,String> attributes, String name, String desc, Activity afterSendActivity) {
+	
+		GridImpl grid = null;
+		
+		/*
+		 * Create dialog
+		 */
+		ProductorApplyDialog dialog = new ProductorApplyDialog(grid);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(afterSendActivity);
+	
+	}
 
 }
