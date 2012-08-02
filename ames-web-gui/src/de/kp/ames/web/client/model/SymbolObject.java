@@ -28,15 +28,26 @@ public class SymbolObject extends ExternalObject {
 		/*
 		 * Identifier (without label)
 		 */
-	    fields.add(new DataSourceTextField(JsonConstants.J_ID));
+		DataSourceTextField id = new DataSourceTextField(JsonConstants.J_ID);
+		id.setPrimaryKey(true);
+		
+		fields.add(id);
 
-	    /*
+		/*
+		 * Parent Identifier (without label)
+		 */
+		DataSourceTextField pid = new DataSourceTextField(JsonConstants.J_PID);
+
+		pid.setForeignKey(JsonConstants.J_ID);
+		fields.add(pid);
+
+		/*
 		 * Name
 		 */
 	    fields.add(new DataSourceTextField(JsonConstants.J_NAME, LabelConstants.NAME_LABEL));
 		
 		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
-	
+		
 	}
 
 	/* (non-Javadoc)

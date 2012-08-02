@@ -23,14 +23,15 @@ import java.util.Map;
 
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.events.RightMouseDownEvent;
 import com.smartgwt.client.widgets.events.RightMouseDownHandler;
+import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
@@ -51,9 +52,9 @@ import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class TreeImpl extends TreeGrid implements Tree {
 	/*
-	 * Reference to DataSource
+	 * Reference to RestDataSource
 	 */
-	protected DataSource dataSource;
+	protected RestDataSource dataSource;
 	
 	/*
 	 * Reference to DataObject
@@ -278,7 +279,7 @@ public class TreeImpl extends TreeGrid implements Tree {
 
 		DataSourceField[] requestFields = createDataFields();
 
-		dataSource = new DataSource() {
+		dataSource = new RestDataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
 				dsRequest.setParams(getRequestParams());				
@@ -331,6 +332,13 @@ public class TreeImpl extends TreeGrid implements Tree {
 	 */
 	public void afterDraw(DrawEvent event) {
 		this.fetchData();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.Tree#setMenu(com.smartgwt.client.widgets.menu.Menu)
+	 */
+	public void setMenu(Menu menu) {
+		this.setContextMenu(menu);
 	}
 
 }  

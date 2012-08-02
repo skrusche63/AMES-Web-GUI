@@ -65,7 +65,12 @@ public class TreeMenuHandlerImpl implements TreeMenuHandler {
 		menu.showContextMenu();
 
 		menu.setItems(createMenuItems(node));
-
+		
+		/*
+		 * Assign menu to underlying tree
+		 */
+		this.tree.setMenu(menu);
+		
 	}
 
 	/* (non-Javadoc)
