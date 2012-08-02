@@ -44,8 +44,8 @@ public class ProductViewImpl extends GridViewImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		ProductController widget = new ProductController();
-		widget.doView(attributes, record);
+		ProductController controller = new ProductController();
+		controller.doView(attributes, record);
 		
 	}
 

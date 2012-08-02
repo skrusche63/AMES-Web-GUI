@@ -46,10 +46,10 @@ public class ProductDeleteImpl extends GridDeleteImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		final ProductDeleteImpl self = this;
+		final ProductDeleteImpl self = this;	
+		ProductController controller = new ProductController();
 		
-		ProductController widget = new ProductController();
-		widget.doDelete(attributes, record, new ActivityImpl() {
+		controller.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				
 			}

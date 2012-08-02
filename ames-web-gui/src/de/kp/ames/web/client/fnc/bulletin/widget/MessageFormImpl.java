@@ -35,7 +35,6 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.core.apps.UserController;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
-import de.kp.ames.web.client.fnc.globals.FncAttrs;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
@@ -101,7 +100,7 @@ public class MessageFormImpl extends FormImpl {
 		 * From field (this is a GUI field only)
 		 */
 		
-		from = GuiFormFactory.createScTextItem("<b>From</b>:", FncAttrs.FROM, LABEL_STYLE, 280);
+		from = GuiFormFactory.createScTextItem("<b>From</b>:", JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
 
 		UserController uctrl = UserController.getInstance();		
 		from.setValue(uctrl.getUserName());
@@ -109,7 +108,7 @@ public class MessageFormImpl extends FormImpl {
 		/*
 		 * To field (this is a GUI field only)
 		 */
-		to = GuiFormFactory.createScTextItem("<b>To</b>:", FncAttrs.TO, LABEL_STYLE, 280);
+		to = GuiFormFactory.createScTextItem("<b>To</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
 
 		/*
 		 * Subject field

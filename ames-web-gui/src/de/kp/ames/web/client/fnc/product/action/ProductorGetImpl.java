@@ -44,8 +44,8 @@ public class ProductorGetImpl extends GridGetImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		ProductController widget = new ProductController();
-		widget.doGet(attributes, record);
+		ProductController controller = new ProductController();
+		controller.doGet(attributes, record);
 
 	}
 	

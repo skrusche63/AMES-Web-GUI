@@ -16,6 +16,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
@@ -49,7 +50,7 @@ public class ProductorFormImpl extends FormImpl {
 	/**
 	 * Constructor
 	 */
-	public ProductorFormImpl() {
+	public ProductorFormImpl(FormAction action) {
 
 		/*
 		 * Dimensions

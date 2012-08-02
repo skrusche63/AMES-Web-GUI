@@ -18,17 +18,25 @@ package de.kp.ames.web.client.fnc.product.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.product.ProductService;
 
 public class ProductEditDialog extends EditFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Product Editor";;
-	private static String SLOGAN = "Use this widget to edit a certain product.";
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 490;
 	
 	/**
 	 * Constructor
@@ -36,7 +44,28 @@ public class ProductEditDialog extends EditFormDialog {
 	 * @param jValue
 	 */
 	public ProductEditDialog(JSONValue jValue) {
-		super(TITLE, SLOGAN, jValue);
+		super(FncGlobals.PRODUCT_E_TITLE, FncGlobals.PRODUCT_E_SLOGAN, jValue);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	/* (non-Javadoc)
@@ -66,5 +95,25 @@ public class ProductEditDialog extends EditFormDialog {
 		service.doSubmit(data, this.sendActivity);
 
 	}	
+
+	/**
+	 * @param attributes
+	 * @param jValue
+	 * @param afterSendActivity
+	 */
+	public static void create(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+		
+		/*
+		 * Create dialog
+		 */
+		ProductEditDialog dialog = new ProductEditDialog(jValue);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(afterSendActivity);
+		
+	}
 
 }

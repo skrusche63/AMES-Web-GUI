@@ -28,7 +28,12 @@ import com.smartgwt.client.util.SC;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.product.widget.ProductEditDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorCreateDialog;
+import de.kp.ames.web.client.fnc.product.widget.ProductorEditDialog;
+import de.kp.ames.web.client.fnc.product.widget.ProductorGetViewer;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -39,7 +44,16 @@ public class ProductController {
 	 */
 	public ProductController() {
 	}
-	
+
+	/**
+	 * @param attributes
+	 * @param record
+	 * @param afterSendActivity
+	 */
+	public void doApply(final HashMap<String,String> attributes, final Record record, final Activity afterSendActivity) {
+		// TODO
+	}
+
 	/**
 	 * Create productor
 	 * 
@@ -47,18 +61,7 @@ public class ProductController {
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-
-		/*
-		 * Create dialog
-		 */
-		ProductorCreateDialog createDialog = new ProductorCreateDialog();
-		
-		/*
-		 * Provide request specific information
-		 */
-		createDialog.setParams(attributes);
-		createDialog.addSendActivity(activity);
-		
+		ProductorCreateDialog.create(attributes, activity);
 	}
 
 	/**
@@ -184,21 +187,55 @@ public class ProductController {
 		// TODO
 	}
 
+	/**
+	 * @param attributes
+	 * @param record
+	 * @param afterGetActivity
+	 */
 	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
-		// TODO
+
+		/*
+		 * Prepare get request
+		 */
+		String format = FormatConstants.FNC_FORMAT_ID_Object;
+		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		
+		/*
+		 * Invoke get request
+		 */
+		ProductService service = new ProductService();
+		service.doGet(format, type, item, afterGetActivity);
+		
 	}
 
 	/**
-	 * Build Accessor Edit Dialog
+	 * Build Product or Productor Edit Dialog
 	 * 
 	 * @param jValue
 	 */
-	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSubmitActivity) {
-		// TODO
+	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Product)) {
+			ProductEditDialog.create(attributes, jValue, afterSendActivity);
+			
+		} else {
+			ProductorEditDialog.create(attributes, jValue, afterSendActivity);
+			
+		}
+		
 	}
 
+	/**
+	 * Build Productor Get Viewer
+	 * 
+	 * @param attributes
+	 * @param jValue
+	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
-		// TODO
+		ProductorGetViewer.create(attributes, jValue);
 	}
 
 }

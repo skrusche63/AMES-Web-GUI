@@ -48,8 +48,8 @@ public class ProductorDeleteImpl extends GridDeleteImpl {
 		
 		final ProductorDeleteImpl self = this;
 		
-		ProductController widget = new ProductController();
-		widget.doDelete(attributes, record, new ActivityImpl() {
+		ProductController controller = new ProductController();
+		controller.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				
 			}

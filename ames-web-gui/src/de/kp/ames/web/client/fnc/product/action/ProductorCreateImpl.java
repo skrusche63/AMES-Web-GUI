@@ -28,9 +28,9 @@ public class ProductorCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final ProductorCreateImpl self = this;
+		ProductController controller = new ProductController();
 		
-		ProductController widget = new ProductController();
-		widget.doCreate(attributes, new ActivityImpl() {
+		controller.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			

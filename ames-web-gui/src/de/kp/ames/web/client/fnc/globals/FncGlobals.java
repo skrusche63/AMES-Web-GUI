@@ -150,6 +150,21 @@ public class FncGlobals {
 	public static String POSTING_SLOGAN = "Use this widget to post a certain message.";
 
 	/*
+	 * Product-Layer
+	 */
+	public static String PRODUCT_E_TITLE  = GUIGlobals.APP_TITLE + ": Product Editor";;
+	public static String PRODUCT_E_SLOGAN = "Use this widget to edit a certain product.";
+	
+	public static String PRODUCTOR_C_TITLE  = GUIGlobals.APP_TITLE + ": Productor Editor";;
+	public static String PRODUCTOR_C_SLOGAN = "Use this widget to create a new productor.";
+
+	public static String PRODUCTOR_E_TITLE  = GUIGlobals.APP_TITLE + ": Productor Editor";;
+	public static String PRODUCTOR_E_SLOGAN = "Use this widget to edit a certain productor.";
+
+	public static String PRODUCTOR_G_TITLE  = GUIGlobals.APP_TITLE + ": Productor Viewe";;
+	public static String PRODUCTOR_G_SLOGAN = "Use this widget to view a certain productor.";
+
+	/*
 	 * Source Code Management System
 	 */
 	public static String SCM_TITLE  = "Source Code Management";

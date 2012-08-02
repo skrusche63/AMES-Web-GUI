@@ -573,7 +573,7 @@ public class ScFactory {
 	 */
 	private static Tab createProductGridImpl(String nid) {
 		
-		VLayout content = ProductFactory.createProductGridImpl();
+		VLayout content = ProductFactory.getInstance().createProductGridImpl();
 		
 		Tab tab = createTab(nid, "ProductGridImpl", TABLE_ICON, content);	
 		return tab;
@@ -582,7 +582,7 @@ public class ScFactory {
 
 	private static Tab createProductEditDialog(String nid) {
 		
-		VLayout content = ProductFactory.createProductEditDialog();
+		VLayout content = ProductFactory.getInstance().createProductEditDialog();
 		
 		Tab tab = createTab(nid, "ProductEditDialog", WIDGET_ICON, content);	
 		return tab;
@@ -591,7 +591,7 @@ public class ScFactory {
 
 	private static Tab createProductorApplyDialog(String nid) {
 		
-		VLayout content = ProductFactory.createProductorApplyDialog();
+		VLayout content = ProductFactory.getInstance().createProductorApplyDialog();
 		
 		Tab tab = createTab(nid, "ProductorApplyDialog", WIDGET_ICON, content);	
 		return tab;
@@ -600,7 +600,7 @@ public class ScFactory {
 
 	private static Tab createProductorCreateDialog(String nid) {
 		
-		VLayout content = ProductFactory.createProductorCreateDialog();
+		VLayout content = ProductFactory.getInstance().createProductorCreateDialog();
 		
 		Tab tab = createTab(nid, "ProductorCreateDialog", WIDGET_ICON, content);	
 		return tab;
@@ -609,7 +609,7 @@ public class ScFactory {
 
 	private static Tab createProductorEditDialog(String nid) {
 		
-		VLayout content = ProductFactory.createProductorEditDialog();
+		VLayout content = ProductFactory.getInstance().createProductorEditDialog();
 		
 		Tab tab = createTab(nid, "ProductorEditDialog", WIDGET_ICON, content);	
 		return tab;
@@ -618,7 +618,7 @@ public class ScFactory {
 
 	private static Tab createProductorFormImpl(String nid) {
 		
-		VLayout content = ProductFactory.createProductorFormImpl();
+		VLayout content = ProductFactory.getInstance().createProductorFormImpl();
 		
 		Tab tab = createTab(nid, "ProductorFormImpl", WIDGET_ICON, content);	
 		return tab;

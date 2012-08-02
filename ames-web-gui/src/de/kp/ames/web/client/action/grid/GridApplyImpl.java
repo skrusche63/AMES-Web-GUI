@@ -18,8 +18,12 @@ package de.kp.ames.web.client.action.grid;
  *
  */
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.action.ActionImpl;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.grid.Grid;
 
 public class GridApplyImpl extends ActionImpl {
@@ -43,6 +47,29 @@ public class GridApplyImpl extends ActionImpl {
 	public GridApplyImpl(Grid grid, Record record) {	
 		this.grid = grid;
 		this.record = record;
+	}
+	
+	/**
+	 * A typical after apply activity (may be overridden)
+	 * 
+	 * @param jValue (server response)
+	 */
+	public void doAfterApply(JSONValue jValue) {
+
+		this.registerResponse(jValue);
+		if (this.isSuccess()) {					
+			/*
+			 * Must be overridden
+			 */
+		} else {
+			/*
+			 * Fail message
+			 */
+			String message = this.getMessage();
+			SC.say(GUIGlobals.APP_TITLE + ": Request Error", message);		
+
+		}
+
 	}
 
 }

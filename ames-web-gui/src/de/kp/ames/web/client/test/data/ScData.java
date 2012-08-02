@@ -272,6 +272,20 @@ public class ScData {
     }
 
     /*
+     * Product-Layer
+     */
+    public static JSONObject getJsonProductor() {
+
+    	JSONObject jProductor = new JSONObject();
+
+    	jProductor.put(JaxrConstants.RIM_NAME,  new JSONString("Productor name"));
+    	jProductor.put(JaxrConstants.RIM_DESC,  new JSONString("Productor description"));
+
+    	return jProductor;
+    	
+    }
+
+    /*
      * User-Layer
      */
     
