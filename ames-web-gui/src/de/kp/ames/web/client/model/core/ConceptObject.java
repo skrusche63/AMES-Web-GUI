@@ -29,7 +29,6 @@ import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
 import de.kp.ames.web.shared.constants.JaxrConstants;
-import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class ConceptObject implements DataObject {
 
@@ -79,12 +78,17 @@ public class ConceptObject implements DataObject {
 		/*
 		 * Identifier    	
 		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL));
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_ID));
 		
 		/* 
 		 * Name
 		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL));
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_NAME));
+
+		/* 
+		 * Description
+		 */
+	    fields.add(new DataSourceTextField(JaxrConstants.RIM_DESC));
 
 	    return fields;
 	

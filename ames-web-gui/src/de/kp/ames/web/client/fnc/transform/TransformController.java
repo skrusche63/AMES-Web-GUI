@@ -68,17 +68,7 @@ public class TransformController {
 		}
 
 		if (type.equals(ClassificationConstants.FNC_ID_Transformator)) {
-		
-			/*
-			 * Create dialog
-			 */
-			TransformCreateDialog createDialog = new TransformCreateDialog();
-			
-			/*
-			 * Provide request specific information
-			 */
-			createDialog.setParams(attributes);
-			createDialog.addSendActivity(activity);
+			TransformCreateDialog.create(attributes, activity);
 			
 		}
 

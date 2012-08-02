@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
-import com.smartgwt.client.widgets.form.fields.TextAreaItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 
 import de.kp.ames.web.client.core.form.GuiFormFactory;

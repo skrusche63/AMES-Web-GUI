@@ -20,7 +20,6 @@ package de.kp.ames.web.client.model;
 
 import java.util.ArrayList;
 
-import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.grid.GridFieldFactory;

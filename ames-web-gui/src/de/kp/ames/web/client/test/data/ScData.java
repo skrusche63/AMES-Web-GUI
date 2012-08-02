@@ -148,11 +148,9 @@ public class ScData {
                  */
                 new ScNode("<b>Transform</b>",      PREFIX + "transform:folder", "root", "silk/folder.png"),
                 new ScNode("Data",                  PREFIX + "transform:data:folder",                       PREFIX + "transform:folder", "silk/folder.png"),
-                new ScNode("SpecGridImpl",          PREFIX + "transform:data:SpecGridImpl:leaf",            PREFIX + "transform:data:folder", "silk/table.png"),
                 new ScNode("TransformGridImpl",     PREFIX + "transform:data:TransformGridImpl:leaf",       PREFIX + "transform:data:folder", "silk/table.png"),
                 new ScNode("Widget",                PREFIX + "transform:widget:folder",                     PREFIX + "transform:folder", "silk/folder.png"),
 
-                new ScNode("SpecCreateDialog",      PREFIX + "transform:widget:SpecCreateDialog:leaf",      PREFIX + "transform:widget:folder", "silk/widget.png"),
                 new ScNode("TransformCreateDialog", PREFIX + "transform:widget:TransformCreateDialog:leaf", PREFIX + "transform:widget:folder", "silk/widget.png"),
                 new ScNode("TransformFormImpl",     PREFIX + "transform:widget:TransformFormImpl:leaf",     PREFIX + "transform:widget:folder", "silk/widget.png"),
                 

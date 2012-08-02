@@ -222,14 +222,8 @@ public class ScFactory {
         /*
          * Transform-Layer
          */
-		else if (nid.equals(PREFIX + "transform:data:SpecGridImpl:leaf")) {
-			return createSpecGridImpl(nid);
-
-		} else if (nid.equals(PREFIX + "transform:data:TransformGridImpl:leaf")) {
+		else if (nid.equals(PREFIX + "transform:data:TransformGridImpl:leaf")) {
 			return createTransformGridImpl(nid);
-
-		} else if (nid.equals(PREFIX + "transform:widget:SpecCreateDialog:leaf")) {
-			return createSpecCreateDialog(nid);
 
 		} else if (nid.equals(PREFIX + "transform:widget:TransformCreateDialog:leaf")) {
 			return createTransformCreateDialog(nid);
@@ -703,29 +697,11 @@ public class ScFactory {
 	/*
 	 * Transform-Layer methods
 	 */
-	private static Tab createSpecGridImpl(String nid) {
-		
-		VLayout content = TransformFactory.createSpecGridImpl();
-		
-		Tab tab = createTab(nid, "SpecGridImpl", TABLE_ICON, content);	
-		return tab;
-
-	}
-
 	private static Tab createTransformGridImpl(String nid) {
 		
 		VLayout content = TransformFactory.createTransformGridImpl();
 		
 		Tab tab = createTab(nid, "TransformGridImpl", WIDGET_ICON, content);	
-		return tab;
-
-	}
-
-	private static Tab createSpecCreateDialog(String nid) {
-		
-		VLayout content = TransformFactory.createSpecCreateDialog();
-		
-		Tab tab = createTab(nid, "SpecCreateDialog", WIDGET_ICON, content);	
 		return tab;
 
 	}

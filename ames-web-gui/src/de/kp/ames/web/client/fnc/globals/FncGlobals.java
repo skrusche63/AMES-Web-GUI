@@ -123,6 +123,8 @@ public class FncGlobals {
 	public static String GROUP_G_TITLE  = GUIGlobals.APP_TITLE + ": Group Viewer";
 	public static String GROUP_G_SLOGAN = "Use this widget to view group specific information.";
 
+	public static String CATEGORY_ERROR = "Please select a certain category.";
+
 	/*
 	 * Map-Layer
 	 */

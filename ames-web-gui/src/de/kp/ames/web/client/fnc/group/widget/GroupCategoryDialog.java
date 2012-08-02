@@ -2,11 +2,19 @@ package de.kp.ames.web.client.fnc.group.widget;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.core.widget.dialog.ApplyGridDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.group.GroupService;
 import de.kp.ames.web.client.fnc.group.data.CategoryGridImpl;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class GroupCategoryDialog extends ApplyGridDialog {
@@ -48,7 +56,38 @@ public class GroupCategoryDialog extends ApplyGridDialog {
 	 * @see de.kp.ames.web.client.core.widget.dialog.GridDialog#doSend()
 	 */
 	public void doSend() {
-		// TODO
+
+		Record selected = this.grid.getSelectedRecord();
+		if (selected == null) {
+
+			String message = FncGlobals.CATEGORY_ERROR;
+			SC.say(GUIGlobals.APP_TITLE + ": Category Error", message);		
+
+			this.setAutoClose(false);
+			return;
+		
+		}
+		
+		this.setAutoClose(true);
+
+		/*
+		 * Retrieve category
+		 */
+		String cate = selected.getAttributeAsString(JaxrConstants.RIM_ID);
+		
+		JSONObject jData = new JSONObject();
+		jData.put(JaxrConstants.RIM_CATE, new JSONString(cate));
+		
+		String data = jData.toString();
+
+		/*
+		 * Request specific parameters
+		 */
+		String type = this.getParam(MethodConstants.ATTR_TYPE);
+		String item = this.getParam(MethodConstants.ATTR_ITEM);;
+		
+		new GroupService().doSubmit(type, item, data, this.sendActivity);
+		
 	}
 
 	/**
@@ -60,7 +99,13 @@ public class GroupCategoryDialog extends ApplyGridDialog {
 		String item = attributes.get(MethodConstants.ATTR_ITEM);
 		CategoryGridImpl grid = new CategoryGridImpl(item);
 	
-		new GroupCategoryDialog(grid);
+		GroupCategoryDialog dialog = new GroupCategoryDialog(grid);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(activity);
 		
 	}
 	

@@ -18,9 +18,12 @@ package de.kp.ames.web.client.fnc.transform.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
@@ -33,9 +36,38 @@ import de.kp.ames.web.client.fnc.transform.event.TransformListener;
  * already exists as a cache entry on the server side
  */
 public class TransformCreateDialog extends CreateFormDialog {
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 630;
 
 	public TransformCreateDialog() {
 		super(FncGlobals.TRANSFORM_C_TITLE, FncGlobals.TRANSFORM_C_SLOGAN);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	/* (non-Javadoc)
@@ -89,6 +121,27 @@ public class TransformCreateDialog extends CreateFormDialog {
 		 */
 		TransformEventManager.getInstance().removeTransformListener((TransformListener)this.form);
 		
-	}	
+	}
+	
+	/**
+	 * @param attributes
+	 * @param activity
+	 */
+	public static void create(HashMap<String,String> attributes, Activity activity) {
+		
+		/*
+		 * Create dialog
+		 */
+		TransformCreateDialog dialog = new TransformCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(activity);
+	
+	}
+
+	
 
 }
