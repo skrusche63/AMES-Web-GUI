@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.access.widget;
+package de.kp.ames.web.client.fnc.ns.widget;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,16 +20,14 @@ package de.kp.ames.web.client.fnc.access.widget;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FormAction;
-import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
-import de.kp.ames.web.client.fnc.access.AccessService;
+import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
-public class AccessorCreateDialog extends CreateFormDialog {
+public class NsGetViewer extends ViewerImpl {
 	
 	/*
 	 * Dimensions (width & height below are the result
@@ -38,12 +36,14 @@ public class AccessorCreateDialog extends CreateFormDialog {
 	 */
 	private static int WIDTH  = 530;
 	private static int HEIGHT = 630;
-	
+
 	/**
 	 * Constructor
+	 * 
+	 * @param body
 	 */
-	public AccessorCreateDialog(Grid grid) {
-		super(FncGlobals.ACCESS_C_TITLE, FncGlobals.ACCESS_C_SLOGAN);	
+	public NsGetViewer(Canvas body) {
+		super(FncGlobals.NS_G_TITLE, FncGlobals.NS_G_SLOGAN, body);
 		
 		/*
 		 * Button handling
@@ -66,57 +66,52 @@ public class AccessorCreateDialog extends CreateFormDialog {
 		this.draw();
 
 	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#createContent()
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param slogan
+	 * @param body
 	 */
-	public Canvas createContent() {
-
-		/*
-		 * Register form and assign form handler
-		 */
-		this.form = new AccessorFormImpl(FormAction.CREATE);
-		this.form.addFormHandler(this);
-
-		return this.form;
+	public NsGetViewer(String title, String slogan, Canvas body) {
+		super(title, slogan, body);
 		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
-	 */
-	public void doSend() {
-
-		String data = this.form.getFormData();
-		
-		AccessService service = new AccessService();
-		service.doSubmit(data, this.sendActivity);
-
-		/*
-		 * REMARK: This is a remote grid; the after submit
-		 * activity is used to reload the content of the grid
-		 */
-		
-	}	
 	
 	/**
 	 * @param attributes
-	 * @param grid
-	 * @param activity
+	 * @param jValue
 	 */
-	public static void create(HashMap<String,String> attributes, Grid grid, Activity activity) {
+	public static void create(HashMap<String,String> attributes, JSONValue jValue) {
 		
-		/*
-		 * Create dialog
-		 */
-		AccessorCreateDialog createDialog = new AccessorCreateDialog(grid);
+		NsFormImpl form = new NsFormImpl(FormAction.GET);
 		
-		/*
-		 * Provide request specific information
-		 */
-		createDialog.setParams(attributes);
-		createDialog.addSendActivity(activity);
+		form.addFormData(jValue);	
+		form.setParams(attributes);
 		
+		new NsGetViewer(form);
+
 	}
 
 }

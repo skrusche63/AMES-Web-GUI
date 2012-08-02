@@ -34,6 +34,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
@@ -67,7 +68,7 @@ public class AccessorFormImpl extends FormImpl {
 	/**
 	 * Constructor
 	 */
-	public AccessorFormImpl() {
+	public AccessorFormImpl(FormAction action) {
 
 		/*
 		 * Dimensions
@@ -228,7 +229,7 @@ public class AccessorFormImpl extends FormImpl {
 		/*
 		 * Slots
 		 */
-		JSONObject jSlot = new SlotObject().toJObject(specGrid.getRecords());
+		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
 		jForm.put(JaxrConstants.RIM_SPEC, jSlot);
 		
 		/*

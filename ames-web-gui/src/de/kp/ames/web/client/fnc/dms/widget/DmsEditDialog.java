@@ -18,15 +18,27 @@ package de.kp.ames.web.client.fnc.dms.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.dms.DmsService;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsEditDialog extends EditFormDialog {
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 630;
 	
 	/**
 	 * Constructor
@@ -35,6 +47,27 @@ public class DmsEditDialog extends EditFormDialog {
 	 */
 	public DmsEditDialog(JSONValue jValue) {
 		super(FncGlobals.DMS_E_TITLE, FncGlobals.DMS_E_SLOGAN, jValue);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	/* (non-Javadoc)
@@ -45,7 +78,7 @@ public class DmsEditDialog extends EditFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new DmsFormImpl(DmsFormImpl.FormAction.EDIT);
+		this.form = new DmsFormImpl(FormAction.EDIT);
 		this.form.addFormHandler(this);
 
 		this.form.addFormData(this.jValue);		
@@ -65,4 +98,22 @@ public class DmsEditDialog extends EditFormDialog {
 
 	}
 	
+	/**
+	 * @param attributes
+	 * @param jValue
+	 * @param afterSendActivity
+	 */
+	public static void create(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+		/*
+		 * Create dialog
+		 */
+		DmsEditDialog dialog = new DmsEditDialog(jValue);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(afterSendActivity);
+
+	}
 }

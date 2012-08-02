@@ -18,14 +18,26 @@ package de.kp.ames.web.client.fnc.access.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.access.AccessService;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
 public class AccessorEditDialog extends EditFormDialog {
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 630;
 
 	/**
 	 * Constructor
@@ -33,7 +45,28 @@ public class AccessorEditDialog extends EditFormDialog {
 	 * @param jValue
 	 */
 	public AccessorEditDialog(JSONValue jValue) {
-		super(FncGlobals.ACCESSOR_E_TITLE, FncGlobals.ACCESSOR_E_SLOGAN, jValue);
+		super(FncGlobals.ACCESS_E_TITLE, FncGlobals.ACCESS_E_SLOGAN, jValue);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	/* (non-Javadoc)
@@ -44,7 +77,7 @@ public class AccessorEditDialog extends EditFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new AccessorFormImpl();
+		this.form = new AccessorFormImpl(FormAction.EDIT);
 		this.form.addFormHandler(this);
 
 		this.form.addFormData(jValue);
@@ -68,5 +101,25 @@ public class AccessorEditDialog extends EditFormDialog {
 		 */
 
 	}	
+	
+	/**
+	 * @param attributes
+	 * @param jValue
+	 * @param afterSendActivity
+	 */
+	public  static void create(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+	
+		/*
+		 * Create dialog
+		 */
+		AccessorEditDialog dialog = new AccessorEditDialog(jValue);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(afterSendActivity);
+	
+	}
 	
 }

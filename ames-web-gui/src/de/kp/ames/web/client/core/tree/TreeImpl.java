@@ -29,6 +29,8 @@ import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.events.RightMouseDownEvent;
+import com.smartgwt.client.widgets.events.RightMouseDownHandler;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.TreeNode;
@@ -149,7 +151,8 @@ public class TreeImpl extends TreeGrid implements Tree {
 	    
 	    this.addNodeContextClickHandler(new NodeContextClickHandler() {
 			public void onNodeContextClick(NodeContextClickEvent event) {
-				self.afterContextMenu(event);
+				TreeNode node = event.getNode();
+				self.openMenu(node);
 			}		
 	    });
 
@@ -164,6 +167,16 @@ public class TreeImpl extends TreeGrid implements Tree {
 			public void onDraw(DrawEvent event) {
 				self.afterDraw(event);				
 			}			
+		});
+
+		this.addRightMouseDownHandler(new RightMouseDownHandler() {
+			/* (non-Javadoc)
+			 * @see com.smartgwt.client.widgets.events.RightMouseDownHandler#onRightMouseDown(com.smartgwt.client.widgets.events.RightMouseDownEvent)
+			 */
+			public void onRightMouseDown(RightMouseDownEvent event) {
+				TreeNode node = null;
+				self.openMenu(node);
+			}
 		});
 
 	}
@@ -202,20 +215,7 @@ public class TreeImpl extends TreeGrid implements Tree {
 		this.nodeHandler.setTree(this);		
 	}
 	
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#afterContextMenu(com.smartgwt.client.widgets.tree.events.NodeContextClickEvent)
-	 */
-	public void afterContextMenu(NodeContextClickEvent event) {
-		/*
-		 * Stop event propagation
-		 */
-		event.cancel();
-		
-		/*
-		 * Retrieve affected tree node
-		 */
-		TreeNode node = event.getNode();
-		
+	public void openMenu(TreeNode node) {
 		/*
 		 * Invoke Tree MenuHandler
 		 */

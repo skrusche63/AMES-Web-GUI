@@ -24,7 +24,7 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.tree.TreeGetImpl;
 import de.kp.ames.web.client.core.tree.Tree;
-import de.kp.ames.web.client.fnc.ns.NsWidget;
+import de.kp.ames.web.client.fnc.ns.NsController;
 
 public class NsGetImpl extends TreeGetImpl {
 
@@ -45,8 +45,8 @@ public class NsGetImpl extends TreeGetImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		NsWidget widget = new NsWidget();
-		widget.doGet(attributes, node);
+		NsController controller = new NsController();
+		controller.doGet(attributes, node);
 	}
 
 }

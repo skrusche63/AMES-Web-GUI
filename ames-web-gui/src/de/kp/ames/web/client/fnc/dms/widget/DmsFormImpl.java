@@ -1,7 +1,12 @@
 package de.kp.ames.web.client.fnc.dms.widget;
 
 import java.util.ArrayList;
+import java.util.Set;
 
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
@@ -11,14 +16,15 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
+import de.kp.ames.web.client.model.DmsObject;
+import de.kp.ames.web.client.model.SlotObject;
+import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsFormImpl extends FormImpl {
-
-	public enum FormAction {
-		CREATE, EDIT, GET
-	};
 
 	private static String SLOTS = "Slots";
 	
@@ -62,7 +68,7 @@ public class DmsFormImpl extends FormImpl {
 		scForm.setColWidths(60, 320);
 		scForm.setFixedColWidths(true);
 		
-		scForm.setPadding(8);
+		scForm.setPadding(16);
 		scForm.setTitleOrientation(TitleOrientation.LEFT);
 		
 		scForm.setWidth100();
@@ -101,30 +107,102 @@ public class DmsFormImpl extends FormImpl {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#addFormData(com.google.gwt.json.client.JSONValue)
+	 */
 	public void addFormData(JSONValue jValue) {
 		/*
 		 * Register form data
 		 */
 		this.jData = jValue;
+		JSONObject jForm = jData.isObject();
+		
+		Set<String> keys = jForm.keySet();
+		for (String key:keys) {
+			
+			if (key.equals(JaxrConstants.RIM_NAME)) {
+				/*
+				 * Form data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+				
+			} else if (key.equals(JaxrConstants.RIM_DESC)) {
+				/*
+				 * Form data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+				
+			} else if (key.equals(JaxrConstants.RIM_SLOT)) {
+				/*
+				 * Slot data
+				 */
+				String val = jForm.get(key).isString().stringValue();
+				JSONObject jSlots = JSONParser.parseStrict(val).isObject();
+				
+				slotGrid.setSlots(jSlots);
+				
+			}
+			
+		}
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.form.FormImpl#getFormData()
+	 */
+	public String getFormData() {
+
+		JSONObject jForm = new JSONObject();
 		
 		/*
-		 * Assign form data
+		 * Name & description
 		 */
-		// TODO
+		String name = "";
+		String desc = "";
+		
+		FormItem[] items = scForm.getFields();
+		for (FormItem item:items) {
+			
+			if (JaxrConstants.RIM_NAME.equals(item.getName())) {
+				name = (String)item.getValue();
+				
+			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
+				desc = (String)item.getValue();
+				
+			}
+			
+		}
+		
+		jForm.put(JaxrConstants.RIM_NAME, new JSONString(name));
+		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
 		
 		/*
-		 * Assign slot data
+		 * Classification
 		 */
-		// TODO
+		String type = this.params.get(MethodConstants.ATTR_TYPE);
 		
+		JSONArray jClas = new JSONArray();
+		jClas.set(0, new JSONString(type));
+		
+		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
+				
+		/*
+		 * Slots
+		 */
+		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
+		jForm.put(JaxrConstants.RIM_SPEC, jSlot);
+		
+		return jForm.toString();
+	
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.FormImpl#createFormItemsAsList()
 	 */
 	public ArrayList<FormItem> createFormItemsAsList() {
-		// TODO
-		return null;
+		return new DmsObject().createFormItemsAsList();
 	}
 
 	/**

@@ -54,9 +54,9 @@ public class PostCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final PostCreateImpl self = this;
+		BulletinController controller = new BulletinController();
 		
-		BulletinController widget = new BulletinController();
-		widget.doCreate(attributes, this.contact, new ActivityImpl() {
+		controller.doCreate(attributes, this.contact, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			

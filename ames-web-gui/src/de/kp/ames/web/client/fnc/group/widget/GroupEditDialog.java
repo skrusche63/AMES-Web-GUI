@@ -18,9 +18,12 @@ package de.kp.ames.web.client.fnc.group.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.GroupService;
@@ -95,6 +98,21 @@ public class GroupEditDialog extends EditFormDialog {
 		
 		new GroupService().doSubmit(type, item, data, this.sendActivity);
 
+	}
+
+	public static void create(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+
+		/*
+		 * Create dialog
+		 */
+		GroupEditDialog dialog = new GroupEditDialog(jValue);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(afterSendActivity);
+	
 	}
 
 }

@@ -25,7 +25,6 @@ import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.fnc.user.widget.UserEditDialog;
-import de.kp.ames.web.client.fnc.user.widget.UserFormImpl;
 import de.kp.ames.web.client.fnc.user.widget.UserGetViewer;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
@@ -114,12 +113,7 @@ public class UserController {
 	 * @param jValue
 	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
-
-		UserFormImpl form = new UserFormImpl();
-		form.addFormData(jValue);		
-		
-		new UserGetViewer(form);
-		
+		UserGetViewer.create(attributes,  jValue);
 	}
 	
 }

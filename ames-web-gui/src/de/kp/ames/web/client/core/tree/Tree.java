@@ -21,8 +21,6 @@ package de.kp.ames.web.client.core.tree;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
-import com.smartgwt.client.widgets.tree.events.NodeContextClickEvent;
-
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
 import de.kp.ames.web.client.handler.TreeNodeHandler;
@@ -38,14 +36,6 @@ public interface Tree {
 	 * @param nodeHandler
 	 */
 	public void addNodeHandler(TreeNodeHandler nodeHandler);
-	
-	/**
-	 * Event handling after right mouse click
-	 * on tree entry (row)
-	 * 
-	 * @param event
-	 */
-	public void afterContextMenu(NodeContextClickEvent event);
 
 	/**
 	 * @param event

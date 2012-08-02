@@ -26,7 +26,7 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import de.kp.ames.web.client.action.tree.TreeDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.tree.Tree;
-import de.kp.ames.web.client.fnc.ns.NsWidget;
+import de.kp.ames.web.client.fnc.ns.NsController;
 
 public class NsDeleteImpl extends TreeDeleteImpl {
 
@@ -48,9 +48,9 @@ public class NsDeleteImpl extends TreeDeleteImpl {
 		HashMap<String,String> attributes = this.getParams();
 		
 		final NsDeleteImpl self = this;
+		NsController controller = new NsController();
 		
-		NsWidget widget = new NsWidget();
-		widget.doDelete(attributes, node, new ActivityImpl() {
+		controller.doDelete(attributes, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				
 			}

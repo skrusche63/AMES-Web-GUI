@@ -24,6 +24,8 @@ import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.fnc.ns.handler.NsTreeMenuHandlerImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class NsTreeImpl extends TreeImpl {
@@ -38,6 +40,7 @@ public class NsTreeImpl extends TreeImpl {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Namespace);
 
 		/*
 		 * Create data object
@@ -58,6 +61,8 @@ public class NsTreeImpl extends TreeImpl {
 	     * Set menu handler
 	     */
 	    NsTreeMenuHandlerImpl menuHandler = new NsTreeMenuHandlerImpl(this);
+	    menuHandler.setParams(attributes);
+	    
 	    this.addMenuHandler(menuHandler);
 	    
 	}

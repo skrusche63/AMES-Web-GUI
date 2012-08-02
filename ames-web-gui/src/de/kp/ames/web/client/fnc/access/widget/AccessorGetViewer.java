@@ -18,15 +18,24 @@ package de.kp.ames.web.client.fnc.access.widget;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
 public class AccessorGetViewer extends ViewerImpl {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Accessor Viewer";
-	private static String SLOGAN = "Use this widget to view a certain accessor.";
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 630;
 
 	/**
 	 * Constructor
@@ -34,7 +43,28 @@ public class AccessorGetViewer extends ViewerImpl {
 	 * @param body
 	 */
 	public AccessorGetViewer(Canvas body) {
-		super(TITLE, SLOGAN, body);
+		super(FncGlobals.ACCESS_G_TITLE, FncGlobals.ACCESS_G_SLOGAN, body);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 	
 	/**
@@ -46,6 +76,21 @@ public class AccessorGetViewer extends ViewerImpl {
 	 */
 	public AccessorGetViewer(String title, String slogan, Canvas body) {
 		super(title, slogan, body);
+	}
+	
+	/**
+	 * @param attributes
+	 * @param jValue
+	 */
+	public static void create(HashMap<String,String> attributes, JSONValue jValue) {
+		
+		AccessorFormImpl form = new AccessorFormImpl(FormAction.GET);
+		
+		form.addFormData(jValue);	
+		form.setParams(attributes);
+		
+		new AccessorGetViewer(form);
+
 	}
 	
 }

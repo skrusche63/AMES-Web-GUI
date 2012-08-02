@@ -18,6 +18,9 @@ package de.kp.ames.web.client.fnc.access.widget;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
@@ -46,6 +49,10 @@ public class RemoteGetViewer extends ViewerImpl {
 	 */
 	public RemoteGetViewer(String title, String slogan, Canvas body) {
 		super(title, slogan, body);
+	}
+
+	public static void create(HashMap<String,String> attributes, JSONValue jValue) {
+		// TODO
 	}
 
 }

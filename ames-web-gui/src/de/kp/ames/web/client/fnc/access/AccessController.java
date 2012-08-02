@@ -33,6 +33,8 @@ import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorEditDialog;
+import de.kp.ames.web.client.fnc.access.widget.AccessorGetViewer;
+import de.kp.ames.web.client.fnc.access.widget.RemoteGetViewer;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
@@ -54,18 +56,7 @@ public class AccessController {
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Grid grid, Activity activity) {
-		
-		/*
-		 * Create dialog
-		 */
-		AccessorCreateDialog createDialog = new AccessorCreateDialog(grid);
-		
-		/*
-		 * Provide request specific information
-		 */
-		createDialog.setParams(attributes);
-		createDialog.addSendActivity(activity);
-		
+		AccessorCreateDialog.create(attributes, grid, activity);
 	}
 
 	/**
@@ -235,8 +226,7 @@ public class AccessController {
 	 * @param jValue
 	 */
 	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
-		AccessorEditDialog dialog = new AccessorEditDialog(jValue);
-		dialog.addSendActivity(afterSendActivity);
+		AccessorEditDialog.create(attributes, jValue, afterSendActivity);
 	}
 
 	/**
@@ -248,11 +238,13 @@ public class AccessController {
 
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {
-			// TODO
+			AccessorGetViewer.create(attributes, jValue);
 		
 		} else {
-			// TODO
+			RemoteGetViewer.create(attributes, jValue);
+			
 		}
+	
 	}
 
 }

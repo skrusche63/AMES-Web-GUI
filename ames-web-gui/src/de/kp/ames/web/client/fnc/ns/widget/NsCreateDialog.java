@@ -18,22 +18,52 @@ package de.kp.ames.web.client.fnc.ns.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.Canvas;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.ns.NsService;
 
 public class NsCreateDialog extends CreateFormDialog {
-
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Ns Editor";;
-	private static String SLOGAN = "Use this widget to create a new namespace.";
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 630;
 
 	/**
 	 * Constructor
 	 */
 	public NsCreateDialog() {
-		super(TITLE, SLOGAN);
+		super(FncGlobals.NS_C_TITLE, FncGlobals.NS_C_SLOGAN);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
 	}
 
 	public Canvas createContent() {
@@ -41,7 +71,7 @@ public class NsCreateDialog extends CreateFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new NsFormImpl();
+		this.form = new NsFormImpl(FormAction.CREATE);
 		this.form.addFormHandler(this);
 
 		return this.form;
@@ -57,5 +87,24 @@ public class NsCreateDialog extends CreateFormDialog {
 		new NsService().doSubmit(data, this.sendActivity);
 
 	}	
+
+	/**
+	 * @param attributes
+	 * @param afterSendActivity
+	 */
+	public static void create(HashMap<String,String> attributes, final Activity afterSendActivity) {
+
+		/*
+		 * Create dialog
+		 */
+		NsCreateDialog dialog = new NsCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(afterSendActivity);
+		
+	}
 
 }

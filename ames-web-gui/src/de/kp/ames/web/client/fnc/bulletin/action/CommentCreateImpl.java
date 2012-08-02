@@ -35,10 +35,10 @@ public class CommentCreateImpl extends GridCreateImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 
-		final CommentCreateImpl self = this;
+		final CommentCreateImpl self = this;		
+		BulletinController controller = new BulletinController();
 		
-		BulletinController widget = new BulletinController();
-		widget.doCreate(attributes, this.posting, new ActivityImpl() {
+		controller.doCreate(attributes, this.posting, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			

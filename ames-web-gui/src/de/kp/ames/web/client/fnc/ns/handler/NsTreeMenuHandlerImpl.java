@@ -43,7 +43,7 @@ public class NsTreeMenuHandlerImpl extends TreeMenuHandlerImpl {
 		/*
 		 * Create namespace (= folder)
 		 */
-		NsCreateImpl createAction = new NsCreateImpl(tree);
+		NsCreateImpl createAction = new NsCreateImpl(tree, node);
 		createAction.setParams(this.getParams());
 		
 		CreateMenuItem create = new CreateMenuItem();

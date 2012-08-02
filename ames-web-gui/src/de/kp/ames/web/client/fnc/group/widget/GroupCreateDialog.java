@@ -18,8 +18,11 @@ package de.kp.ames.web.client.fnc.group.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.widgets.Canvas;
 
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.GroupService;
@@ -93,6 +96,25 @@ public class GroupCreateDialog extends CreateFormDialog {
 		
 		new GroupService().doSubmit(type, item, data, this.sendActivity);
 
+	}
+
+	/**
+	 * @param attributes
+	 * @param activity
+	 */
+	public static void create(HashMap<String,String> attributes, Activity activity) {
+
+		/*
+		 * Create dialog
+		 */
+		GroupCreateDialog createDialog = new GroupCreateDialog();
+		
+		/*
+		 * Provide request specific information
+		 */
+		createDialog.setParams(attributes);
+		createDialog.addSendActivity(activity);
+		
 	}
 
 

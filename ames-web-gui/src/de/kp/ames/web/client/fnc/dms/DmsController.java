@@ -31,8 +31,9 @@ import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.dms.widget.DmsCreateDialog;
+import de.kp.ames.web.client.fnc.dms.widget.DmsEditDialog;
+import de.kp.ames.web.client.fnc.dms.widget.DmsGetViewer;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.fnc.user.UserService;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
@@ -52,18 +53,7 @@ public class DmsController {
 	 * @param afterSendActivity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity afterSendActivity) {
-		
-		/*
-		 * Create dialog
-		 */
-		DmsCreateDialog createDialog = new DmsCreateDialog();
-		
-		/*
-		 * Provide request specific information
-		 */
-		createDialog.setParams(attributes);
-		createDialog.addSendActivity(afterSendActivity);
-
+		DmsCreateDialog.create(attributes, afterSendActivity);
 	}
 
 	/**
@@ -244,20 +234,19 @@ public class DmsController {
 	 */
 	private void doGet(HashMap<String,String> attributes, Record record, ActivityImpl afterGetActivity) {
 
-		// TODO
-	
-
 		/*
 		 * Prepare get request
 		 */
 		String format = FormatConstants.FNC_FORMAT_ID_Object;
 		String item = record.getAttributeAsString(JaxrConstants.RIM_ID);
+
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		
 		/*
 		 * Invoke get request
 		 */
-		UserService service = new UserService();
-		service.doGet(format, item, afterGetActivity);
+		DmsService service = new DmsService();
+		service.doGet(format, type, item, afterGetActivity);
 
 	
 	}
@@ -267,8 +256,8 @@ public class DmsController {
 	 * 
 	 * @param jValue
 	 */
-	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSubmitActivity) {
-		// TODO
+	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+		DmsEditDialog.create(attributes, jValue, afterSendActivity);
 	}
 
 	/**
@@ -277,7 +266,7 @@ public class DmsController {
 	 * @param jValue
 	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
-		// TODO
+		DmsGetViewer.create(attributes, jValue);
 	}
 
 }

@@ -39,16 +39,32 @@ public class FncGlobals {
 	 * Classification of ShowCase
 	 */
 	public static String FNC_APP_ID_ShowCase = FNC_ID_App + ":ShowCase";
+	
+	/*
+	 * Help
+	 */
+	public static String HELP_TITLE  = "Online Help";
+	public static String HELP_SLOGAN = "Use the online help to answer your questions.";
+
+	
+	/*
+	 * Disclaimer
+	 */
+	public static String DISCLAIMER_TITLE  = "Disclaimer";
+	public static String DISCLAIMER_SLOGAN = "Please read this disclaimer carefully.";
+
 
 	/*
-	 * Accessor
+	 * Access-Layer
 	 */
+	public static String ACCESS_C_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
+	public static String ACCESS_C_SLOGAN = "Use this widget to create a new accessor.";
 
-	public static String ACCESSOR_C_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
-	public static String ACCESSOR_C_SLOGAN = "Use this widget to create a new accessor.";
+	public static String ACCESS_E_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
+	public static String ACCESS_E_SLOGAN = "Use this widget to edit a certain accessor.";
 
-	public static String ACCESSOR_E_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
-	public static String ACCESSOR_E_SLOGAN = "Use this widget to edit a certain accessor.";
+	public static String ACCESS_G_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Viewer";
+	public static String ACCESS_G_SLOGAN = "Use this widget to view a certain accessor.";
 
 	/*
 	 * Bulletin-Layer
@@ -71,19 +87,6 @@ public class FncGlobals {
 	public static String POSTINGS_LABEL = "<b>Postings</b>";
 	
 	/*
-	 * Help
-	 */
-	public static String HELP_TITLE  = "Online Help";
-	public static String HELP_SLOGAN = "Use the online help to answer your questions.";
-
-	
-	/*
-	 * Disclaimer
-	 */
-	public static String DISCLAIMER_TITLE  = "Disclaimer";
-	public static String DISCLAIMER_SLOGAN = "Please read this disclaimer carefully.";
-
-	/*
 	 * Comm-Layer
 	 */
 
@@ -101,6 +104,9 @@ public class FncGlobals {
 
 	public static String DMS_E_TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
 	public static String DMS_E_SLOGAN = "Use this widget to edit a certain Dms entry.";
+
+	public static String DMS_G_TITLE   = GUIGlobals.APP_TITLE + ": Dms Viewer";
+	public static String DMS_G_SLOGAN = "Use this widget to view a certain Dms Entry.";
 
 	/*
 	 * Group-Layer
@@ -124,6 +130,18 @@ public class FncGlobals {
 	public static String MAP_C_SLOGAN = "Use this widget to select a map layer.";
 	
 	public static String LAYER_ERROR = "Please select one layer.";
+
+	/*
+	 * Ns-Layer
+	 */
+	public static String NS_C_TITLE  = GUIGlobals.APP_TITLE + ": Ns Editor";;
+	public static String NS_C_SLOGAN = "Use this widget to create a new namespace.";
+
+	public static String NS_E_TITLE  = GUIGlobals.APP_TITLE + ": Ns Editor";;
+	public static String NS_E_SLOGAN = "Use this widget to edit a certain namespace.";
+
+	public static String NS_G_TITLE  = GUIGlobals.APP_TITLE + ": NS Viewer";
+	public static String NS_G_SLOGAN = "Use this widget to view a certain namespace.";
 
 	/*
 	 * Posting

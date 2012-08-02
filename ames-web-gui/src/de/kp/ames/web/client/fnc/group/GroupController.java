@@ -32,7 +32,6 @@ import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.widget.GroupCreateDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupEditDialog;
-import de.kp.ames.web.client.fnc.group.widget.GroupFormImpl;
 import de.kp.ames.web.client.fnc.group.widget.GroupGetViewer;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
@@ -53,18 +52,7 @@ public class GroupController {
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-
-		/*
-		 * Create dialog
-		 */
-		GroupCreateDialog createDialog = new GroupCreateDialog();
-		
-		/*
-		 * Provide request specific information
-		 */
-		createDialog.setParams(attributes);
-		createDialog.addSendActivity(activity);
-		
+		GroupCreateDialog.create(attributes, activity);
 	}
 
 	/**
@@ -226,10 +214,7 @@ public class GroupController {
 	 * @param jValue
 	 */
 	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
-
-		GroupEditDialog dialog = new GroupEditDialog(jValue);
-		dialog.addSendActivity(afterSendActivity);
-	
+		GroupEditDialog.create(attributes, jValue, afterSendActivity);
 	}
 
 	/**
@@ -238,12 +223,7 @@ public class GroupController {
 	 * @param jValue
 	 */
 	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
-
-		GroupFormImpl form = new GroupFormImpl();
-		form.addFormData(jValue);		
-		
-		new GroupGetViewer(form);
-		
+		GroupGetViewer.create(attributes, jValue);
 	}
 
 }

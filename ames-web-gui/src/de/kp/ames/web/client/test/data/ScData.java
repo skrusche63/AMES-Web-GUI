@@ -200,6 +200,17 @@ public class ScData {
      */
     public static String TEST_ACCESSOR = "";
     
+    public static JSONObject getJsonAccessor() {
+
+    	JSONObject jAccessor = new JSONObject();
+
+    	jAccessor.put(JaxrConstants.RIM_NAME,  new JSONString("Accessor name"));
+    	jAccessor.put(JaxrConstants.RIM_DESC,  new JSONString("Accessor description"));
+
+    	return jAccessor;
+    	
+    }
+    
     /*
      * Bulletin-Layer
      */
@@ -245,6 +256,21 @@ public class ScData {
     
     }
     
+    /*
+     * Ns-Layer
+     */
+     
+    public static JSONObject getJsonNamespace() {
+
+    	JSONObject jNamespace = new JSONObject();
+
+    	jNamespace.put(JaxrConstants.RIM_NAME,  new JSONString("Namespace name"));
+    	jNamespace.put(JaxrConstants.RIM_DESC,  new JSONString("Namespace description"));
+
+    	return jNamespace;
+    	
+    }
+
     /*
      * User-Layer
      */

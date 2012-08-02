@@ -18,6 +18,9 @@ package de.kp.ames.web.client.fnc.user.widget;
  *
  */
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
@@ -93,6 +96,19 @@ public class UserGetViewer extends ViewerImpl {
 
 		this.draw();
 
+	}
+
+	/**
+	 * @param attributes
+	 * @param jValue
+	 */
+	public static void create(HashMap<String,String> attributes, JSONValue jValue) {
+
+		UserFormImpl form = new UserFormImpl();
+		form.addFormData(jValue);		
+		
+		new UserGetViewer(form);
+		
 	}
 
 }

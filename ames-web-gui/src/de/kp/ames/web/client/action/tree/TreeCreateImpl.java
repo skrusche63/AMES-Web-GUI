@@ -20,6 +20,7 @@ package de.kp.ames.web.client.action.tree;
 
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.ActionImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
@@ -32,13 +33,19 @@ public class TreeCreateImpl extends ActionImpl {
 	 */
 	protected Tree tree;
 	
+	/*
+	 * Reference to (parent) node
+	 */
+	protected TreeNode node;
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param tree
 	 */
-	public TreeCreateImpl(Tree tree) {
+	public TreeCreateImpl(Tree tree, TreeNode node) {
 		this.tree = tree;
+		this.node = node;
 	}
 
 	/**

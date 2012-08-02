@@ -1,5 +1,8 @@
 package de.kp.ames.web.client.fnc.group.widget;
 
+import java.util.HashMap;
+
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.widget.viewer.ViewerImpl;
@@ -75,6 +78,17 @@ public class GroupGetViewer extends ViewerImpl {
 
 		this.draw();
 
+	}
+
+	public static void create(HashMap<String,String> attributes, JSONValue jValue) {
+		
+		GroupFormImpl form = new GroupFormImpl();
+		
+		form.addFormData(jValue);		
+		form.setParams(attributes);
+		
+		new GroupGetViewer(form);
+		
 	}
 
 }
