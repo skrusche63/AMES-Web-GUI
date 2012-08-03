@@ -141,63 +141,37 @@ public class AccessController {
 	 */
 	public void doGet(final HashMap<String,String> attributes, final Record record) {
 
-		final AccessController self = this;
-		
-		/*
-		 * Specify get activity
-		 */
-		ActivityImpl afterGetActivity = new ActivityImpl() {
-			public void execute(JSONValue jValue) {
-				self.buildGetViewer(attributes, jValue);
-			}			
-		};
-
-		/*
-		 * Retrieve actual version of accessor or remote object
-		 */
-		doGet(attributes, record, afterGetActivity);
-		
-	}
-
-	/**
-	 * View remote object
-	 * 
-	 * @param attributes
-	 * @param record
-	 */
-	public void doView(HashMap<String,String> attributes, Record record) {
-
-		/*
-		 * Reference to the remote object to be viewed
-		 */
-		String source = record.getAttributeAsString(JaxrConstants.RIM_ID);
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
-
-		/*
-		 * The retrieval of remote information objects is
-		 * actually restricted to office documents
-		 */
-		String format = FormatConstants.FNC_FORMAT_ID_File;
-		attributes.put(MethodConstants.ATTR_FORMAT, format);
-
-		/*
-		 * Build request uri
-		 */
-		FrameService service = new FrameService();
-		String uri = service.getUri(attributes);
-
-		/*
-		 * Build viewer
-		 */
-		String title  = GUIGlobals.APP_TITLE + ": Remote Viewer";
-		String slogan = "Use this widget to view a certain remote object.";
-		
-		ViewerFactory.createFrameViewer(title, slogan, uri);
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {
+			
+			final AccessController self = this;
+			
+			/*
+			 * Specify get activity
+			 */
+			ActivityImpl afterGetActivity = new ActivityImpl() {
+				public void execute(JSONValue jValue) {
+					AccessorGetViewer.create(attributes, jValue);
+				}			
+			};
 	
+			/*
+			 * Retrieve actual version of accessor
+			 */
+			doGet(attributes, record, afterGetActivity);
+			
+		} else {
+			/*
+			 * Retrieve a single remote object
+			 */
+			RemoteGetViewer.create(attributes, record);
+
+		}
+		
 	}
 
 	/**
-	 * Get accessor or remote object
+	 * Get accessor
 	 * 
 	 * @param attributes
 	 * @param record
@@ -227,24 +201,6 @@ public class AccessController {
 	 */
 	private void buildEditDialog(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
 		AccessorEditDialog.create(attributes, jValue, afterSendActivity);
-	}
-
-	/**
-	 * Build Accessor or Remote Viewer
-	 * 
-	 * @param jValue
-	 */
-	private void buildGetViewer(HashMap<String,String> attributes, JSONValue jValue) {
-
-		String type = attributes.get(MethodConstants.ATTR_TYPE);
-		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {
-			AccessorGetViewer.create(attributes, jValue);
-		
-		} else {
-			RemoteGetViewer.create(attributes, jValue);
-			
-		}
-	
 	}
 
 }

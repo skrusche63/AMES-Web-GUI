@@ -17,6 +17,7 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.access.data.AccessGridImpl;
+import de.kp.ames.web.client.fnc.access.data.DatabaseGridImpl;
 import de.kp.ames.web.client.fnc.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorEditDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorFormImpl;
@@ -58,7 +59,8 @@ public class AccessFactory extends FncFactory {
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();  
         
         valueMap.put(ClassificationConstants.FNC_ID_Accessor, "Accessor");  
-        valueMap.put(ClassificationConstants.FNC_ID_Remote,   "Remote Object");  
+        valueMap.put(ClassificationConstants.FNC_ID_Mail,     "Remote Mail Object");  
+        valueMap.put(ClassificationConstants.FNC_ID_WebDav,   "Remote WebDAV Object");  
 
         SelectItem selectItem = createSelectItem(valueMap);
         selectItem.addChangedHandler(new ChangedHandler() {
@@ -83,11 +85,46 @@ public class AccessFactory extends FncFactory {
         accessGridLayout.setMembers(pane, scForm, createPlaceHolder());      
         return accessGridLayout;
  	}
+
+	public VLayout createDatabaseGridImpl() {
+
+		VLayout layout = new VLayout();
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+        /*
+         * Label
+         */
+        HTMLPane pane = getTeaser("This is an example of a Remote DatabaseGrid.", 40);
+
+        /*
+         * Build grid
+         */
+        JSONObject jDatabase = ScData.getJsonDatabase();
+
+        DatabaseGridImpl grid = new DatabaseGridImpl(jDatabase);
+		grid.setMargin(24);
+		
+		/*
+		 * Dimensions
+		 */
+		grid.setWidth(640);
+		grid.setHeight(480);
+		
+		/*
+		 * Style
+		 */
+		grid.setBackgroundColor("#F2F2F4");
+		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane,grid);
+		return layout;
+		
+	}
 	
 	private void replacePlaceHolder(String type) {
 		
 		String item = null;
-		if (type.equals(ClassificationConstants.FNC_ID_Remote))
+		if (type.equals(ClassificationConstants.FNC_ID_Accessor) == false)
 			item = ScData.TEST_ACCESSOR;
 		
 		AccessGridImpl grid = new AccessGridImpl(type, item);
@@ -202,7 +239,7 @@ public class AccessFactory extends FncFactory {
 		 * Prepare data
 		 */
 		final HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Remote);
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Mail);
 				
 		final JSONObject jValue = ScData.getJsonAccessor();
 

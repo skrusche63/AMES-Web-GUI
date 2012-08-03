@@ -66,6 +66,9 @@ public class FncGlobals {
 	public static String ACCESS_G_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Viewer";
 	public static String ACCESS_G_SLOGAN = "Use this widget to view a certain accessor.";
 
+	public static String REMOTE_G_TITLE  = GUIGlobals.APP_TITLE + ": Remote Viewer";
+	public static String REMOTE_G_SLOGAN = "Use this widget to view a certain remote object.";
+
 	/*
 	 * Bulletin-Layer
 	 */

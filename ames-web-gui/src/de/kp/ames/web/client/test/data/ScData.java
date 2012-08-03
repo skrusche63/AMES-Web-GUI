@@ -1,5 +1,6 @@
 package de.kp.ames.web.client.test.data;
 
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import de.kp.ames.web.shared.constants.JaxrConstants;
@@ -24,6 +25,7 @@ public class ScData {
                 new ScNode("<b>Access</b>",        PREFIX + "access:folder", "root", "silk/folder.png"),
                 new ScNode("Data",                 PREFIX + "access:data:folder",                      PREFIX + "access:folder", "silk/folder.png"),
                 new ScNode("AccessGridImpl",       PREFIX + "access:data:AccessGridImpl:leaf",         PREFIX + "access:data:folder", "silk/table.png"),
+                new ScNode("DatabaseGridImpl",     PREFIX + "access:data:DatabaseGridImpl:leaf",       PREFIX + "access:data:folder", "silk/table.png"),
                 new ScNode("Widget",               PREFIX + "access:widget:folder",                    PREFIX + "access:folder", "silk/folder.png"),
                 new ScNode("AccessorCreateDialog", PREFIX + "access:widget:AccessorCreateDialog:leaf", PREFIX + "access:widget:folder", "silk/widget.png"),
                 new ScNode("AccessorEditDialog",   PREFIX + "access:widget:AccessorEditDialog:leaf",   PREFIX + "access:widget:folder", "silk/widget.png"),
@@ -203,6 +205,38 @@ public class ScData {
     	jAccessor.put(JaxrConstants.RIM_DESC,  new JSONString("Accessor description"));
 
     	return jAccessor;
+    	
+    }
+    
+    public static JSONObject getJsonDatabase() {
+    	
+    	JSONObject jDatabase = new JSONObject();
+    	
+    	/*
+    	 * Columns
+    	 */
+    	JSONArray jColumns = new JSONArray();
+    	
+    	jColumns.set(0, new JSONString("Column #1"));
+    	jColumns.set(1, new JSONString("Column #2"));
+    	jColumns.set(2, new JSONString("Column #3"));
+    	
+    	jDatabase.put("columns", jColumns);
+    	
+    	/*
+    	 * Rows
+    	 */
+    	JSONArray jRows = new JSONArray();
+    	JSONObject jRow = new JSONObject();
+    	
+    	jRow.put("Column #1", new JSONString("Data #1"));
+       	jRow.put("Column #2", new JSONString("Data #2"));
+       	jRow.put("Column #3", new JSONString("Data #3"));
+           	
+    	jRows.set(0, jRow);
+    	jDatabase.put("records", jRows);
+    	
+    	return jDatabase;
     	
     }
     

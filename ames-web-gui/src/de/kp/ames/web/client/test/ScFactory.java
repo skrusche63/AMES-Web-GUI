@@ -34,7 +34,10 @@ public class ScFactory {
 		 */
 		if (nid.equals(PREFIX + "access:data:AccessGridImpl:leaf")) {
 			return createAccessGridImpl(nid);
-			
+
+		} else if (nid.equals(PREFIX + "access:data:DatabaseGridImpl:leaf")) {
+			return createDatabaseGridImpl(nid);
+
 		} else if (nid.equals(PREFIX + "access:widget:AccessorCreateDialog:leaf")) {
 			return createAccessorCreateDialog(nid);
 			
@@ -273,6 +276,16 @@ public class ScFactory {
 		return tab;
 	
 	}
+
+	private static Tab createDatabaseGridImpl(String nid) {
+
+		VLayout content = AccessFactory.getInstance().createDatabaseGridImpl();
+		
+		Tab tab = createTab(nid, "DatabaseGridImpl", TABLE_ICON, content);	
+		return tab;
+	
+	}
+
 
 	private static Tab createAccessorCreateDialog(String nid) {
 

@@ -30,13 +30,11 @@ import de.kp.ames.web.client.fnc.access.action.AccessorDeleteImpl;
 import de.kp.ames.web.client.fnc.access.action.AccessorEditImpl;
 import de.kp.ames.web.client.fnc.access.action.AccessorGetImpl;
 import de.kp.ames.web.client.fnc.access.action.RemoteGetImpl;
-import de.kp.ames.web.client.fnc.access.action.RemoteViewImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.CreateMenuItem;
 import de.kp.ames.web.client.menu.DeleteMenuItem;
 import de.kp.ames.web.client.menu.EditMenuItem;
 import de.kp.ames.web.client.menu.GetMenuItem;
-import de.kp.ames.web.client.menu.ViewMenuItem;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -153,20 +151,6 @@ public class AccessGridMenuHandlerImpl extends GridMenuHandlerImpl {
 				
 				GetMenuItem get = new GetMenuItem();
 				get.addAction(getAction);
-	
-				/*
-				 * Separate get from view
-				 */
-				items.add(separator);
-	
-				/*
-				 * View remote object
-				 */
-				RemoteViewImpl viewAction = new RemoteViewImpl(grid, record);
-				viewAction.setParams(this.getParams());
-				
-				ViewMenuItem view = new ViewMenuItem();
-				view.addAction(viewAction);
 				
 				items.add(get);
 
