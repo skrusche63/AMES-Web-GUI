@@ -21,6 +21,7 @@ import de.kp.ames.web.client.fnc.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorEditDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorFormImpl;
 import de.kp.ames.web.client.fnc.access.widget.AccessorGetViewer;
+import de.kp.ames.web.client.fnc.access.widget.RemoteGetViewer;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
@@ -197,10 +198,18 @@ public class AccessFactory extends FncFactory {
 
 	public VLayout createRemoteViewer() {
 
+		/*
+		 * Prepare data
+		 */
+		final HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Remote);
+				
+		final JSONObject jValue = ScData.getJsonAccessor();
+
 		String message = "Click the button to open the RemoteViewer.";
 		return createDialog(message, "Show Viewer", new ScAction() {
 			public void execute() {
-				// TODO
+				RemoteGetViewer.create(attributes, jValue);
 			}
 			
 		});

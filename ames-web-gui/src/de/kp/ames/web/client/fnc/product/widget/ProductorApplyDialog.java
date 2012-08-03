@@ -20,18 +20,68 @@ package de.kp.ames.web.client.fnc.product.widget;
 
 import java.util.HashMap;
 
-import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.grid.GridImpl;
-import de.kp.ames.web.client.core.widget.dialog.ApplyGridDialog;
-import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.Canvas;
 
-public class ProductorApplyDialog extends ApplyGridDialog {
+import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormAction;
+import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.product.ProductService;
+import de.kp.ames.web.shared.constants.MethodConstants;
+
+public class ProductorApplyDialog extends ApplyFormDialog {
+	
+	/*
+	 * Dimensions (width & height below are the result
+	 * of an interactive rendering approach to achieve
+	 * the best user experience
+	 */
+	private static int WIDTH  = 530;
+	private static int HEIGHT = 630;
 
 	/**
 	 * Constructor
 	 */
-	public ProductorApplyDialog(GridImpl grid) {
-		super(FncGlobals.PRODUCTOR_A_TITLE, FncGlobals.PRODUCTOR_C_SLOGAN, grid);
+	public ProductorApplyDialog() {
+		super(FncGlobals.PRODUCTOR_A_TITLE, FncGlobals.PRODUCTOR_C_SLOGAN);
+		
+		/*
+		 * Button handling
+		 */
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
+		
+		/*
+		 * Set dimensions
+		 */
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
+		
+		/*
+		 * The Comm Viewer is a form-based window
+		 * and therefore equipped with a fixed size
+		 */
+		this.setCanDragResize(false);
+
+		this.draw();
+
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#createContent()
+	 */
+	public Canvas createContent() {
+
+		/*
+		 * Register form and assign form handler
+		 */
+		this.form = new ProductorApplyFormImpl(FormAction.CREATE);
+		this.form.addFormHandler(this);
+
+		return this.form;
+		
 	}
 
 	/* (non-Javadoc)
@@ -39,15 +89,27 @@ public class ProductorApplyDialog extends ApplyGridDialog {
 	 */
 	public void doSend() {
 
-		// TODO
-		
 		/*
-		 * Request specific parameters
+		 * Prepare data
 		 */
-//		String source  = this.form.getParam(MethodConstants.ATTR_SOURCE);
-//		String service = this.form.getParam(MethodConstants.ATTR_SERVICE);
-//
-//		new ProductService().doApply(source, service, data, this.sendActivity);
+		String source = ((ProductorApplyFormImpl)this.form).getSource();
+		if (source == null) {
+
+			String message = FncGlobals.NAMESPACE_ERROR;
+			SC.say(GUIGlobals.APP_TITLE + ": Productor Error", message);		
+
+			this.setAutoClose(false);
+			return;
+		
+		}
+		
+		HashMap<String,String> attributes = this.getParams();
+		attributes.put(MethodConstants.ATTR_SOURCE, source);
+		
+		String data = this.form.getFormData();
+		
+		this.setAutoClose(true);
+		new ProductService().doApply(attributes, data, this.sendActivity);
 
 	}	
 
@@ -58,13 +120,12 @@ public class ProductorApplyDialog extends ApplyGridDialog {
 	 * @param afterSendActivity
 	 */
 	public  static void create(HashMap<String,String> attributes, String name, String desc, Activity afterSendActivity) {
-	
-		GridImpl grid = null;
 		
 		/*
 		 * Create dialog
 		 */
-		ProductorApplyDialog dialog = new ProductorApplyDialog(grid);
+		ProductorApplyDialog dialog = new ProductorApplyDialog();
+		dialog.setTitle(name);
 		
 		/*
 		 * Provide request specific information

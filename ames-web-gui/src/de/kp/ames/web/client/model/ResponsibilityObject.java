@@ -21,7 +21,9 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.RegistryObject;
 
 public class ResponsibilityObject extends RegistryObject {
@@ -42,6 +44,20 @@ public class ResponsibilityObject extends RegistryObject {
 				
 	}
 
-	// TODO
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.ConceptObject#createGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createListGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+				
+		/*
+		 * Responsibilty (or namespace) name
+		 */
+		fields.add(GridFieldFactory.createRimNameField("*"));
+		
+		return fields;
+		
+	}
 	
 }

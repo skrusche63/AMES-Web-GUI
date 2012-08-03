@@ -98,6 +98,15 @@ public class ProductObject extends ExtrinsicObject {
 		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
 		items.add(descItem);
 
+		items.add(spacer);
+		items.add(spacer);
+		
+		/*
+		 * Build date
+		 */
+		TextItem dateItem = GuiFormFactory.createScTextItem("<b>Date</b>:", JaxrConstants.RIM_DATE, LABEL_STYLE, 280);
+		items.add(dateItem);
+
 		return items;
 		
 	}

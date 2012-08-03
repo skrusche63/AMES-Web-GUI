@@ -173,6 +173,8 @@ public class FncGlobals {
 
 	public static String PRODUCTOR_G_TITLE  = GUIGlobals.APP_TITLE + ": Productor Viewer";;
 	public static String PRODUCTOR_G_SLOGAN = "Use this widget to view a certain productor.";
+	
+	public static String NAMESPACE_ERROR = "Please select a certain namespace.";
 
 	/*
 	 * Role-Layer

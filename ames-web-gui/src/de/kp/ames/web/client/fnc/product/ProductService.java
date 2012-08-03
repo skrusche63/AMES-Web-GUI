@@ -36,25 +36,6 @@ public class ProductService extends ServiceImpl {
 	}
 
 	/**
-	 * A JSON based non-widget APPLY request
-	 * 
-	 * @param source
-	 * @param service
-	 * @param data
-	 * @param activity
-	 */
-	public void doApply(String source, String service, String data, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
-		attributes.put(MethodConstants.ATTR_SERVICE, service);
-
-		doApply(attributes, data, activity);
-
-	}
-
-	/**
 	 * A JSON based non-widget GET request
 	 * 
 	 * @param format
