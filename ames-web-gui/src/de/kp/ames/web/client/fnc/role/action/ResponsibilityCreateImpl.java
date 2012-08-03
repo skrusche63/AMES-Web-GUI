@@ -44,9 +44,9 @@ public class ResponsibilityCreateImpl extends GridCreateImpl {
 		HashMap<String,String> attributes = this.getParams();
 
 		final ResponsibilityCreateImpl self = this;
+		RoleController responsibility = new RoleController();
 		
-		RoleController widget = new RoleController();
-		widget.doCreate(attributes, new ActivityImpl() {
+		responsibility.doCreate(attributes, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterCreate(jValue);
 			}			

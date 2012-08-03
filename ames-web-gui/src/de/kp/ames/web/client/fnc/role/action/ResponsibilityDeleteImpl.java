@@ -46,10 +46,10 @@ public class ResponsibilityDeleteImpl extends GridDeleteImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		final ResponsibilityDeleteImpl self = this;
+		final ResponsibilityDeleteImpl self = this;		
+		RoleController controller = new RoleController();
 		
-		RoleController widget = new RoleController();
-		widget.doDelete(attributes, record, new ActivityImpl() {
+		controller.doDelete(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				
 			}

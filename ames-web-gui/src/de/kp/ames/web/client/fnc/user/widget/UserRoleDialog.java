@@ -3,6 +3,7 @@ package de.kp.ames.web.client.fnc.user.widget;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.data.Record;
 
@@ -80,7 +81,10 @@ public class UserRoleDialog extends ApplyGridDialog {
 			
 		}
 		
-		String data = jRoles.toString();
+		JSONObject jData = new JSONObject();
+		jData.put(JaxrConstants.RIM_ROLE, new JSONString(jRoles.toString()));
+		
+		String data = jData.toString();
 		
 		RoleService service = new RoleService();
 		service.doSubmit(attributes, data, this.sendActivity);

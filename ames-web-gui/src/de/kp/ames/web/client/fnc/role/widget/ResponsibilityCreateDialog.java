@@ -18,35 +18,26 @@ package de.kp.ames.web.client.fnc.role.widget;
  *
  */
 
-import com.smartgwt.client.widgets.Canvas;
+import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.SC;
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
+import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.core.widget.dialog.CreateGridDialog;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.ns.data.NsGridImpl;
 import de.kp.ames.web.client.fnc.role.RoleService;
-import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
-public class ResponsibilityCreateDialog extends CreateFormDialog {
+public class ResponsibilityCreateDialog extends CreateGridDialog {
 
-	private static String TITLE  = GUIGlobals.APP_TITLE + ": Responsibility Editor";;
-	private static String SLOGAN = "Use this widget to create a new responsibility.";
-
-	public ResponsibilityCreateDialog() {
-		super(TITLE, SLOGAN);
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#createContent()
-	 */
-	public Canvas createContent() {
-
-		/*
-		 * Register form and assign form handler
-		 */
-		this.form = new ResponsibilityFormImpl();
-		this.form.addFormHandler(this);
-
-		return this.form;
-		
+	public ResponsibilityCreateDialog(GridImpl grid) {
+		super(FncGlobals.RESPONSIBILITY_C_TITLE, FncGlobals.RESPONSIBILITY_C_SLOGAN, grid);
 	}
 
 	/* (non-Javadoc)
@@ -54,11 +45,60 @@ public class ResponsibilityCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
-		String data = this.form.getFormData();
-		String type = this.form.getParam(MethodConstants.ATTR_TYPE);
+		JSONArray jNamespaces = new JSONArray();
+		Record[] selected = this.grid.getSelectedRecords();
+		
+		if (selected.length == 0) {
+
+			String message = FncGlobals.RESPONSIBILITY_ERROR;
+			SC.say(GUIGlobals.APP_TITLE + ": Responsibility Error", message);		
+
+			this.setAutoClose(false);
+			return;
+		
+		}
+		
+		this.setAutoClose(true);
+
+		/*
+		 * Retrieve namespaces
+		 */
+		
+		for (Record record:selected) {
+			String namespace = record.getAttributeAsString(JaxrConstants.RIM_ID);
+			jNamespaces.set(jNamespaces.size(), new JSONString(namespace));
+			
+		}
+		
+		JSONObject jData = new JSONObject();
+		jData.put(JaxrConstants.RIM_NAMESPACE, new JSONString(jNamespaces.toString()));
+		
+		String data = jData.toString();
 		
 		RoleService service = new RoleService();
-		service.doSubmit(type, data, this.sendActivity);
-
+		service.doSubmit(this.getParams(), data, this.sendActivity);
+		
 	}	
+	
+	/**
+	 * @param attributes
+	 * @param activity
+	 */
+	public static void create(HashMap<String,String> attributes, Activity activity) {
+		
+		GridImpl grid = new NsGridImpl();
+		
+		/*
+		 * Create dialog
+		 */
+		ResponsibilityCreateDialog dialog = new ResponsibilityCreateDialog(grid);
+		
+		/*
+		 * Provide request specific information
+		 */
+		dialog.setParams(attributes);
+		dialog.addSendActivity(activity);
+	
+	}
+
 }

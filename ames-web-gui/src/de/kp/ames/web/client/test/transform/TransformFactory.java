@@ -27,7 +27,7 @@ public class TransformFactory extends FncFactory {
 		/*
          * Label
          */
-        HTMLPane pane = getTeaser("View all registered users in the TransformGrid.", 40);
+        HTMLPane pane = getTeaser("View all registered transformators in the TransformGrid.", 40);
         
         /*
          * Grid

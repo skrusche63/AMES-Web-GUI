@@ -30,12 +30,15 @@ import de.kp.ames.web.client.fnc.group.action.GroupCreateImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupDeleteImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupEditImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupGetImpl;
+import de.kp.ames.web.client.fnc.group.action.GroupResponsibilityImpl;
+import de.kp.ames.web.client.fnc.role.action.ResponsibilityGetImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.CategoryMenuItem;
 import de.kp.ames.web.client.menu.CreateMenuItem;
 import de.kp.ames.web.client.menu.DeleteMenuItem;
 import de.kp.ames.web.client.menu.EditMenuItem;
 import de.kp.ames.web.client.menu.GetMenuItem;
+import de.kp.ames.web.client.menu.ResponsibilityMenuItem;
 
 public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	
@@ -115,8 +118,6 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			get.addAction(getAction);
 			
 			items.add(get);
-
-			/////////
 			
 			/*
 			 * Separate category from get
@@ -124,7 +125,7 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			items.add(separator);
 			
 			/*
-			 * Get community
+			 * Category
 			 */
 			GroupCategoryImpl categoryAction = new GroupCategoryImpl(grid, record);
 			categoryAction.setParams(this.getParams());
@@ -133,6 +134,22 @@ public class GroupGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			category.addAction(categoryAction);
 			
 			items.add(category);
+
+			/*
+			 * Separate responsibility from category
+			 */
+			items.add(separator);
+			
+			/*
+			 * Responsibilities
+			 */
+			ResponsibilityGetImpl responsibilityAction = new ResponsibilityGetImpl(grid, record);
+			responsibilityAction.setParams(this.getParams());
+			
+			ResponsibilityMenuItem responsibility = new ResponsibilityMenuItem();
+			responsibility.addAction(responsibilityAction);
+			
+			items.add(responsibility);
 
 		}
 		

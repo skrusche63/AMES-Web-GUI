@@ -216,6 +216,7 @@ public class ScData {
     /*
      * Group-Layer
      */
+    public static String TEST_GROUP = "";
     
     public static JSONObject getJsonTestGroup() {
 

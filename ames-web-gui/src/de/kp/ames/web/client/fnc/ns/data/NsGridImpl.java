@@ -20,11 +20,12 @@ package de.kp.ames.web.client.fnc.ns.data;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.types.SelectionAppearance;
+import com.smartgwt.client.types.SelectionStyle;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
-import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class NsGridImpl extends RemoteGridImpl {
@@ -35,16 +36,16 @@ public class NsGridImpl extends RemoteGridImpl {
 	 * @param item
 	 * @param parent
 	 */
-	public NsGridImpl(String item, String parent) {
+	public NsGridImpl() {
 		super(ServiceConstants.NAMESPACE_SERVICE_ID);
 
+		this.setSelectionType(SelectionStyle.MULTIPLE);
+        this.setSelectionAppearance(SelectionAppearance.CHECKBOX);  
+		
 		/*
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-		if (parent != null) attributes.put(MethodConstants.ATTR_PARENT, parent);
 
 		/*
 		 * Create data object

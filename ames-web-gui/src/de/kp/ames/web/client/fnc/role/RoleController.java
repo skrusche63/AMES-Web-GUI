@@ -27,8 +27,7 @@ import com.smartgwt.client.util.SC;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.role.widget.ResponsibilityCreateDialog;
-import de.kp.ames.web.client.fnc.role.widget.RoleCreateDialog;
-import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.client.fnc.role.widget.ResponsibilityGetViewer;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -41,42 +40,13 @@ public class RoleController {
 	}
 
 	/**
-	 * Create responsibility or role
+	 * Create responsibility
 	 * 
 	 * @param attributes
 	 * @param activity
 	 */
 	public void doCreate(HashMap<String,String> attributes, Activity activity) {
-
-		String type = attributes.get(MethodConstants.ATTR_TYPE);
-		if (type.equals(ClassificationConstants.FNC_ID_Responsibility)) {
-			
-			/*
-			 * Create dialog
-			 */
-			ResponsibilityCreateDialog createDialog = new ResponsibilityCreateDialog();
-			
-			/*
-			 * Provide request specific information
-			 */
-			createDialog.setParams(attributes);
-			createDialog.addSendActivity(activity);
-			
-		} else if (type.equals(ClassificationConstants.FNC_ID_Role)) {
-			
-			/*
-			 * Create dialog
-			 */
-			RoleCreateDialog createDialog = new RoleCreateDialog();
-			
-			/*
-			 * Provide request specific information
-			 */
-			createDialog.setParams(attributes);
-			createDialog.addSendActivity(activity);
-			
-		}
-	
+		ResponsibilityCreateDialog.create(attributes, activity);
 	}
 
 	/**
@@ -124,6 +94,15 @@ public class RoleController {
 		RoleService service = new RoleService();
 		service.doDelete(attributes, activity);
 
+	}
+
+	public void doGet(final HashMap<String,String> attributes, final Record record) {
+		/*
+		 * Prepare data
+		 */
+		attributes.put(MethodConstants.ATTR_SOURCE, record.getAttributeAsString(JaxrConstants.RIM_ID));
+		ResponsibilityGetViewer.create(attributes);
+		
 	}
 
 }

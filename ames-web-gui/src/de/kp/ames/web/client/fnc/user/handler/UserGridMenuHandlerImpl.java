@@ -25,12 +25,14 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.fnc.role.action.ResponsibilityGetImpl;
 import de.kp.ames.web.client.fnc.user.action.UserEditImpl;
 import de.kp.ames.web.client.fnc.user.action.UserGetImpl;
 import de.kp.ames.web.client.fnc.user.action.UserRoleImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.EditMenuItem;
 import de.kp.ames.web.client.menu.GetMenuItem;
+import de.kp.ames.web.client.menu.ResponsibilityMenuItem;
 import de.kp.ames.web.client.menu.RoleMenuItem;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -107,6 +109,22 @@ public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 				items.add(role);
 
 			}
+
+			/*
+			 * Separate responsibility from get or roles
+			 */
+			items.add(separator);
+			
+			/*
+			 * Responsibilities
+			 */
+			ResponsibilityGetImpl responsibilityAction = new ResponsibilityGetImpl(grid, record);
+			responsibilityAction.setParams(this.getParams());
+			
+			ResponsibilityMenuItem responsibility = new ResponsibilityMenuItem();
+			responsibility.addAction(responsibilityAction);
+			
+			items.add(responsibility);
 
 		}
 		

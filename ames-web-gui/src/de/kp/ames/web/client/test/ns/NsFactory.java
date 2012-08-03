@@ -10,6 +10,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.form.FormAction;
+import de.kp.ames.web.client.fnc.ns.data.NsGridImpl;
 import de.kp.ames.web.client.fnc.ns.data.NsTreeImpl;
 import de.kp.ames.web.client.fnc.ns.widget.NsCreateDialog;
 import de.kp.ames.web.client.fnc.ns.widget.NsEditDialog;
@@ -27,7 +28,25 @@ public class NsFactory extends FncFactory {
 	public static VLayout createNsGridImpl() {
 
         VLayout layout = new VLayout();
-        // TODO
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+		/*
+         * Label
+         */
+        HTMLPane pane = getTeaser("View all registered namespaces in the NsGrid.", 40);
+        
+        /*
+         * Grid
+         */       
+		NsGridImpl grid = new NsGridImpl();
+		grid.setMargin(24);
+
+		grid.setWidth(480);
+		grid.setHeight(480);
+
+		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane, grid);
 		return layout;
 	
 	}

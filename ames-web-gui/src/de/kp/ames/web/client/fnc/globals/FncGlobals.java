@@ -171,9 +171,20 @@ public class FncGlobals {
 	public static String PRODUCTOR_E_TITLE  = GUIGlobals.APP_TITLE + ": Productor Editor";;
 	public static String PRODUCTOR_E_SLOGAN = "Use this widget to edit a certain productor.";
 
-	public static String PRODUCTOR_G_TITLE  = GUIGlobals.APP_TITLE + ": Productor Viewe";;
+	public static String PRODUCTOR_G_TITLE  = GUIGlobals.APP_TITLE + ": Productor Viewer";;
 	public static String PRODUCTOR_G_SLOGAN = "Use this widget to view a certain productor.";
 
+	/*
+	 * Role-Layer
+	 */
+	public static String RESPONSIBILITY_C_TITLE  = GUIGlobals.APP_TITLE + ": Responsibility Editor";;
+	public static String RESPONSIBILITY_C_SLOGAN = "Use this widget to create a new responsibility.";
+
+	public static String RESPONSIBILITY_G_TITLE  = GUIGlobals.APP_TITLE + ": Responsibility Viewer";;
+	public static String RESPONSIBILITY_G_SLOGAN = "Use this widget to view assigned namespaces.";
+	
+	public static String RESPONSIBILITY_ERROR = "Please select a certain namespace.";
+	
 	/*
 	 * Source Code Management System
 	 */
