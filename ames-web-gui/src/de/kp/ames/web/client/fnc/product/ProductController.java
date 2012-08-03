@@ -206,12 +206,6 @@ public class ProductController {
 	public void doView(HashMap<String,String> attributes, Record record) {
 
 		/*
-		 * Prepare data for view request
-		 */
-
-		String type = attributes.get(MethodConstants.ATTR_TYPE);
-
-		/*
 		 * Redirect service
 		 */
 		attributes.put(MethodConstants.ATTR_SERVICE, ServiceConstants.PRODUCT_SERVICE_ID);

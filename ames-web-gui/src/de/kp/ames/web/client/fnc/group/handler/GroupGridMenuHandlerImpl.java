@@ -30,7 +30,6 @@ import de.kp.ames.web.client.fnc.group.action.GroupCreateImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupDeleteImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupEditImpl;
 import de.kp.ames.web.client.fnc.group.action.GroupGetImpl;
-import de.kp.ames.web.client.fnc.group.action.GroupResponsibilityImpl;
 import de.kp.ames.web.client.fnc.role.action.ResponsibilityGetImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.CategoryMenuItem;

@@ -1,20 +1,12 @@
 package de.kp.ames.web.client.fnc.access.data;
 
 import java.util.HashMap;
-import java.util.Set;
-
 import com.google.gwt.json.client.JSONObject;
-import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.RowEndEditAction;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
 import de.kp.ames.web.client.core.grid.LocalGridImpl;
-import de.kp.ames.web.client.core.slot.handler.SlotGridMenuHandlerImpl;
-import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.client.model.remote.DatabaseObject;
-import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class DatabaseGridImpl extends LocalGridImpl {
 

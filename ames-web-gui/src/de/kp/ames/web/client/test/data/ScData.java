@@ -3,6 +3,8 @@ package de.kp.ames.web.client.test.data;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
+import com.smartgwt.client.data.Record;
+
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class ScData {
@@ -121,8 +123,7 @@ public class ScData {
                 new ScNode("Widget",                     PREFIX + "role:widget:folder",                          PREFIX + "role:folder", "silk/folder.png"),
 
                 new ScNode("ResponsibilityCreateDialog", PREFIX + "role:widget:ResponsibilityCreateDialog:leaf", PREFIX + "role:widget:folder", "silk/widget.png"),
-                new ScNode("ResponsibilityFormImpl",     PREFIX + "role:widget:ResponsibilityFormImpl:leaf",     PREFIX + "role:widget:folder", "silk/widget.png"),
-
+ 
                 /*
                  * Rule-Layer
                  */
@@ -205,6 +206,12 @@ public class ScData {
     	jAccessor.put(JaxrConstants.RIM_DESC,  new JSONString("Accessor description"));
 
     	return jAccessor;
+    	
+    }
+    
+    public static Record getRecordMail() {
+    	
+    	return new Record();
     	
     }
     

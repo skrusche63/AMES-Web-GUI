@@ -27,13 +27,9 @@ import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.role.action.ResponsibilityCreateImpl;
 import de.kp.ames.web.client.fnc.role.action.ResponsibilityDeleteImpl;
-import de.kp.ames.web.client.fnc.role.action.RoleCreateImpl;
-import de.kp.ames.web.client.fnc.role.action.RoleDeleteImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.CreateMenuItem;
 import de.kp.ames.web.client.menu.DeleteMenuItem;
-import de.kp.ames.web.shared.constants.ClassificationConstants;
-import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class ResponsibilityGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	/**

@@ -27,10 +27,7 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.core.service.FrameService;
-import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorEditDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorGetViewer;
@@ -143,8 +140,6 @@ public class AccessController {
 
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {
-			
-			final AccessController self = this;
 			
 			/*
 			 * Specify get activity

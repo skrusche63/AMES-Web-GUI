@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -241,12 +242,12 @@ public class AccessFactory extends FncFactory {
 		final HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Mail);
 				
-		final JSONObject jValue = ScData.getJsonAccessor();
+		final Record record = ScData.getRecordMail();
 
 		String message = "Click the button to open the RemoteViewer.";
 		return createDialog(message, "Show Viewer", new ScAction() {
 			public void execute() {
-				RemoteGetViewer.create(attributes, jValue);
+				RemoteGetViewer.create(attributes, record);
 			}
 			
 		});
