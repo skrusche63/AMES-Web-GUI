@@ -200,6 +200,12 @@ public class FncGlobals {
 	public static String SCM_MODULE   = "Module Viewer";
 
 	/*
+	 * Rule-Layer
+	 */
+	public static String REASONER_C_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Editor";;
+	public static String REASONER_C_SLOGAN = "Use this widget to create a new reasoner.";
+
+	/*
 	 * Symbol-Layer
 	 */
 	public static String SYMBOL_V_TITLE  = GUIGlobals.APP_TITLE + ": Symbol Viewer";

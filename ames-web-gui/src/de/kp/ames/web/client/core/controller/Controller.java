@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.handler;
+package de.kp.ames.web.client.core.controller;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -21,54 +21,31 @@ package de.kp.ames.web.client.handler;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.widgets.menu.MenuItem;
 
-import de.kp.ames.web.client.core.controller.Controller;
+import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.grid.Grid;
 
-public interface GridMenuHandler {
+public interface Controller {
 
 	/**
+	 * @param attributes
+	 * @param grid
+	 * @param activity
+	 */
+	public void doCreate(HashMap<String,String> attributes, Grid grid, Activity activity);
+
+	/**
+	 * @param attributes
+	 * @param grid
+	 * @param record
+	 * @param activity
+	 */
+	public void doDelete(HashMap<String,String> attributes, Grid grid, Record record, Activity activity);
+
+	/**
+	 * @param attributes
 	 * @param record
 	 */
-	public void doOpen(Record record);
-
-	/**
-	 * @return
-	 */
-	public MenuItem[] createMenuItems(Record record);
-
-	/**
-	 * @param key
-	 * @return
-	 */
-	public String getParam(String key);
-
-	/**
-	 * @return
-	 */
-	public HashMap<String,String> getParams();
-	
-	/**
-	 * @param key
-	 * @param value
-	 */
-	public void setParam(String key, String value);
-
-	/**
-	 * @param params
-	 */
-	public void setParams(HashMap<String,String> params);
-
-
-	/**
-	 * @param controller
-	 */
-	public void setController(Controller controller);
-	
-	/**
-	 * @param grid
-	 */
-	public void setGrid(Grid grid);
+	public void doView(HashMap<String,String> attributes, Record record);
 
 }

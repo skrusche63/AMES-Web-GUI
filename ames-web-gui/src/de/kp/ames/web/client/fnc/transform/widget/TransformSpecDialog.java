@@ -23,9 +23,9 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.core.spec.data.SpecGridImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
 import de.kp.ames.web.client.fnc.transform.data.TransformGridImpl;
 import de.kp.ames.web.client.fnc.transform.event.TransformEventManager;
 import de.kp.ames.web.client.fnc.transform.event.TransformListener;
@@ -37,7 +37,7 @@ import de.kp.ames.web.shared.constants.JaxrConstants;
  * from the registered transformators of an OASIS
  * ebXML RegRep
  */
-public class SpecCreateDialog extends CreateFormDialog implements TransformListener {
+public class TransformSpecDialog extends CreateFormDialog implements TransformListener {
 
 	/*
 	 * Reference grid
@@ -61,7 +61,7 @@ public class SpecCreateDialog extends CreateFormDialog implements TransformListe
 	 * 
 	 * @param refGrid
 	 */
-	public SpecCreateDialog(Grid refGrid) {
+	public TransformSpecDialog(Grid refGrid) {
 		super(FncGlobals.SPEC_C_TITLE, FncGlobals.SPEC_C_SLOGAN);
 		
 		/*

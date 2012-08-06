@@ -20,6 +20,8 @@ package de.kp.ames.web.client.action;
 
 import java.util.HashMap;
 
+import de.kp.ames.web.client.core.controller.Controller;
+
 public interface Action {
 
 	/**
@@ -41,5 +43,11 @@ public interface Action {
 	 * @return
 	 */
 	public HashMap<String,String> getParams();
+	
+	
+	/**
+	 * @param controller
+	 */
+	public void setController(Controller controller);
 	
 }

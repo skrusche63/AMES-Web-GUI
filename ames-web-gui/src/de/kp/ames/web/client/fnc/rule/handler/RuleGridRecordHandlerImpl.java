@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.fnc.rule.handler;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,15 +18,25 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import de.kp.ames.web.client.model.core.ServiceObject;
+import com.smartgwt.client.data.Record;
 
-public class ReasonerObject extends ServiceObject {
+import de.kp.ames.web.client.fnc.rule.event.RuleEventManager;
+import de.kp.ames.web.client.handler.GridRecordHandlerImpl;
+
+public class RuleGridRecordHandlerImpl extends GridRecordHandlerImpl {
 
 	/**
 	 * Constructor
 	 */
-	public ReasonerObject() {
-		// TODO
+	public RuleGridRecordHandlerImpl() {
+		super();
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.GridRecordHandlerImpl#doSelect(com.smartgwt.client.data.Record)
+	 */
+	public void doSelect(Record record) {
+		RuleEventManager.getInstance().onRuleSelected(record);
+	}
+
 }

@@ -23,10 +23,16 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 
+import de.kp.ames.web.client.core.controller.Controller;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class ActionImpl implements Action {
 
+	/*
+	 * Reference to Controller
+	 */
+	protected Controller controller;
+	
 	/*
 	 * Request specific parameters
 	 */
@@ -49,6 +55,10 @@ public class ActionImpl implements Action {
 		 */
 	}
 
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.action.Action#getParams()
 	 */

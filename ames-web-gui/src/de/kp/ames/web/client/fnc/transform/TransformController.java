@@ -22,19 +22,20 @@ import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.controller.ControllerImpl;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.service.FrameService;
+import de.kp.ames.web.client.core.spec.data.SpecGridImpl;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
-import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
-import de.kp.ames.web.client.fnc.transform.widget.SpecCreateDialog;
+import de.kp.ames.web.client.fnc.transform.widget.TransformSpecDialog;
 import de.kp.ames.web.client.fnc.transform.widget.TransformCreateDialog;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class TransformController {
+public class TransformController extends ControllerImpl {
 
 	/**
 	 * Constructor
@@ -45,9 +46,8 @@ public class TransformController {
 	/**
 	 * Create (local) specification or (remote) transformator
 	 * 
-	 * @param attributes
-	 * @param grid
-	 * @param activity
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.controller.ControllerImpl#doCreate(java.util.HashMap, de.kp.ames.web.client.core.grid.Grid, de.kp.ames.web.client.core.activity.Activity)
 	 */
 	public void doCreate(HashMap<String,String> attributes, Grid grid, Activity activity) {
 		
@@ -57,7 +57,7 @@ public class TransformController {
 			/*
 			 * Create dialog: the referenced grid is the SpecGrid
 			 */
-			SpecCreateDialog createDialog = new SpecCreateDialog(grid);
+			TransformSpecDialog createDialog = new TransformSpecDialog(grid);
 			
 			/*
 			 * Provide request specific information
@@ -77,9 +77,8 @@ public class TransformController {
 	/**
 	 * Delete (local) specification or (remote) transformator
 	 * 
-	 * @param attributes
-	 * @param record
-	 * @param activity
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.controller.ControllerImpl#doDelete(java.util.HashMap, de.kp.ames.web.client.core.grid.Grid, com.smartgwt.client.data.Record, de.kp.ames.web.client.core.activity.Activity)
 	 */
 	public void doDelete(HashMap<String,String> attributes, Grid grid, Record record, Activity activity) {
 
@@ -111,8 +110,8 @@ public class TransformController {
 	/**
 	 * View specification or transformator (XSL file)
 	 * 
-	 * @param attributes
-	 * @param record
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.controller.ControllerImpl#doView(java.util.HashMap, com.smartgwt.client.data.Record)
 	 */
 	public void doView(HashMap<String,String> attributes, Record record) {
 

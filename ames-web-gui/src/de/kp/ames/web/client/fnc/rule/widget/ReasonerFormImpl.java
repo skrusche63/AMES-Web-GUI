@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.product.widget;
+package de.kp.ames.web.client.fnc.rule.widget;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,18 +22,18 @@ import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.core.spec.data.SpecGridImpl;
 import de.kp.ames.web.client.core.spec.handler.SpecGridMenuHandlerImpl;
-import de.kp.ames.web.client.fnc.transform.TransformController;
-import de.kp.ames.web.client.model.AccessorObject;
+import de.kp.ames.web.client.fnc.rule.RuleController;
+import de.kp.ames.web.client.model.ReasonerObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.client.model.SpecObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class ProductorFormImpl extends FormImpl {
+public class ReasonerFormImpl extends FormImpl {
 
 	private static String SLOTS = "Slots";
-	private static String SPECS = "Specifications";
+	private static String SPECS = "Rules";
 	
 	/*
 	 * Form dimensions for proper rendering
@@ -54,7 +54,7 @@ public class ProductorFormImpl extends FormImpl {
 	/**
 	 * Constructor
 	 */
-	public ProductorFormImpl(FormAction action) {
+	public ReasonerFormImpl(FormAction action) {
 
 		/*
 		 * Dimensions
@@ -208,7 +208,7 @@ public class ProductorFormImpl extends FormImpl {
 		 * Classification
 		 */
 		JSONArray jClas = new JSONArray();
-		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Productor));
+		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Reasoner));
 		
 		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
 				
@@ -232,7 +232,7 @@ public class ProductorFormImpl extends FormImpl {
 	 * @see de.kp.ames.web.client.core.form.FormImpl#createFormItemsAsList()
 	 */
 	public ArrayList<FormItem> createFormItemsAsList() {
-		return new AccessorObject().createFormItemsAsList();
+		return new ReasonerObject().createFormItemsAsList();
 	}
 	
 	/**
@@ -277,9 +277,9 @@ public class ProductorFormImpl extends FormImpl {
 		
 		/*
 		 * The responsible controller for the handling of
-		 * accessor related specification is the TransformController
+		 * accessor related specification is the RuleController
 		 */
-		menuHandler.setController(new TransformController());
+		menuHandler.setController(new RuleController());
 		specGrid.addMenuHandler(menuHandler);
 		
         Tab tab = new Tab();   	
@@ -294,4 +294,5 @@ public class ProductorFormImpl extends FormImpl {
 		return tab;
 		
 	}
+
 }

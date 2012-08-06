@@ -24,10 +24,16 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.menu.MenuItem;
 
+import de.kp.ames.web.client.core.controller.Controller;
 import de.kp.ames.web.client.core.grid.Grid;
 
 public class GridMenuHandlerImpl implements GridMenuHandler {
 
+	/*
+	 * Reference to Controller
+	 */
+	protected Controller controller;
+	
 	/*
 	 * Reference to Grid
 	 */
@@ -81,6 +87,13 @@ public class GridMenuHandlerImpl implements GridMenuHandler {
 		 * Must be overridden
 		 */
 		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.GridMenuHandler#setController(de.kp.ames.web.client.core.controller.Controller)
+	 */
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 	
 	/* (non-Javadoc)

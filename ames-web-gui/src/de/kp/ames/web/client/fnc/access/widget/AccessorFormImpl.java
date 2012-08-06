@@ -19,6 +19,7 @@ package de.kp.ames.web.client.fnc.access.widget;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import com.google.gwt.json.client.JSONArray;
@@ -37,12 +38,15 @@ import com.smartgwt.client.widgets.tab.TabSet;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
-import de.kp.ames.web.client.fnc.transform.data.SpecGridImpl;
+import de.kp.ames.web.client.core.spec.data.SpecGridImpl;
+import de.kp.ames.web.client.core.spec.handler.SpecGridMenuHandlerImpl;
+import de.kp.ames.web.client.fnc.transform.TransformController;
 import de.kp.ames.web.client.model.AccessorObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.client.model.SpecObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class AccessorFormImpl extends FormImpl {
 
@@ -284,8 +288,25 @@ public class AccessorFormImpl extends FormImpl {
 		/*
 		 * Build SpecGrid
 		 */
+		
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Specification);
+
 		specGrid = new SpecGridImpl();
 		
+		SpecGridMenuHandlerImpl menuHandler = new SpecGridMenuHandlerImpl();		
+		menuHandler.setParams(attributes);
+		
+		/*
+		 * The responsible controller for the handling of
+		 * accessor related specification is the TransformController
+		 */
+		menuHandler.setController(new TransformController());
+		specGrid.addMenuHandler(menuHandler);
+
+		/*
+		 * Build Tab
+		 */
         Tab tab = new Tab();   	
         tab.setWidth(80);
         

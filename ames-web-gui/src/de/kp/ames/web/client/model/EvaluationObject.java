@@ -2,9 +2,9 @@ package de.kp.ames.web.client.model;
 
 import de.kp.ames.web.client.model.core.RegistryPackage;
 
-public class RuleObject extends RegistryPackage {
+public class EvaluationObject extends RegistryPackage {
 
-	public RuleObject() {
+	public EvaluationObject() {
+		// TODO
 	}
-	
 }

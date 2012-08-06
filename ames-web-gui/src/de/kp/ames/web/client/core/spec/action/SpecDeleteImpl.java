@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.handler;
+package de.kp.ames.web.client.core.spec.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,57 +18,36 @@ package de.kp.ames.web.client.handler;
  *
  */
 
-import java.util.HashMap;
-
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.widgets.menu.MenuItem;
-
-import de.kp.ames.web.client.core.controller.Controller;
+import de.kp.ames.web.client.action.grid.GridDeleteImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 
-public interface GridMenuHandler {
+public class SpecDeleteImpl extends GridDeleteImpl {
 
 	/**
+	 * Constructor
+	 * 
+	 * @param grid
 	 * @param record
 	 */
-	public void doOpen(Record record);
+	public SpecDeleteImpl(Grid grid, Record record) {
+		super(grid, record);
+	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
 	 */
-	public MenuItem[] createMenuItems(Record record);
+	public void execute() {
 
-	/**
-	 * @param key
-	 * @return
-	 */
-	public String getParam(String key);
+		this.controller.doDelete(this.params, grid, record, new ActivityImpl() {
+			public void execute() {
+				/*
+				 * No action invoked for local delete			
+				 */
+			}
+		});
 
-	/**
-	 * @return
-	 */
-	public HashMap<String,String> getParams();
-	
-	/**
-	 * @param key
-	 * @param value
-	 */
-	public void setParam(String key, String value);
-
-	/**
-	 * @param params
-	 */
-	public void setParams(HashMap<String,String> params);
-
-
-	/**
-	 * @param controller
-	 */
-	public void setController(Controller controller);
-	
-	/**
-	 * @param grid
-	 */
-	public void setGrid(Grid grid);
+	}
 
 }

@@ -103,9 +103,18 @@ public class RemoteGetViewer extends ViewerImpl {
 		String type = attributes.get(MethodConstants.ATTR_TYPE);
 		if (type.equals(ClassificationConstants.FNC_ID_Database)) {
 			/*
-			 * View a single database entry
+			 * A Database SQL result is actually not supported
 			 */
-	 		// TODO
+			String html = "<div style=\"padding:16px;font-size:14px;\">A Database SQL result is no supported by this wigdet.</div>";
+			
+			/*
+			 * Build Html Pane
+			 */
+			HTMLPane pane = new HTMLPane();
+		    pane.setShowEdges(false);
+
+		    pane.setContents(html);			
+			new RemoteGetViewer(pane);
 			
 		} else if (type.equals(ClassificationConstants.FNC_ID_Mail)) {
 	

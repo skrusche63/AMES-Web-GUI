@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.model;
+package de.kp.ames.web.client.fnc.rule.event;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,15 +18,13 @@ package de.kp.ames.web.client.model;
  *
  */
 
-import de.kp.ames.web.client.model.core.ServiceObject;
+import com.smartgwt.client.data.Record;
 
-public class ReasonerObject extends ServiceObject {
+public interface RuleListener {
 
 	/**
-	 * Constructor
+	 * @param record
 	 */
-	public ReasonerObject() {
-		// TODO
-	}
+	public void onRuleSelected(Record record);
 	
 }

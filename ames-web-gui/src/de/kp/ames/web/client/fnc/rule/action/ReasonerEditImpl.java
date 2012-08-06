@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.transform.action;
+package de.kp.ames.web.client.fnc.rule.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -20,12 +20,16 @@ package de.kp.ames.web.client.fnc.transform.action;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
-import de.kp.ames.web.client.action.grid.GridViewImpl;
+import de.kp.ames.web.client.action.grid.GridEditImpl;
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.transform.TransformController;
+import de.kp.ames.web.client.fnc.rule.RuleController;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class SpecViewImpl extends GridViewImpl {
+public class ReasonerEditImpl extends GridEditImpl {
 
 	/**
 	 * Constructor
@@ -33,7 +37,7 @@ public class SpecViewImpl extends GridViewImpl {
 	 * @param grid
 	 * @param record
 	 */
-	public SpecViewImpl(Grid grid, Record record) {
+	public ReasonerEditImpl(Grid grid, Record record) {
 		super(grid, record);
 	}
 
@@ -43,9 +47,16 @@ public class SpecViewImpl extends GridViewImpl {
 	public void execute() {
 
 		HashMap<String,String> attributes = this.getParams();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Reasoner);
 		
-		TransformController controller = new TransformController();
-		controller.doView(attributes, record);
+		final ReasonerEditImpl self = this;		
+		RuleController controller = new RuleController();
+		
+		controller.doEdit(attributes, record, new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				self.doAfterEdit(jValue);
+			}
+		});
 
 	}
 

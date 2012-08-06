@@ -21,8 +21,12 @@ package de.kp.ames.web.client.fnc.rule.data;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
+import de.kp.ames.web.client.model.EvaluationObject;
+import de.kp.ames.web.client.model.ReasonerObject;
 import de.kp.ames.web.client.model.RuleObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -34,7 +38,7 @@ public class RuleGridImpl extends RemoteGridImpl {
 	 * @param type
 	 * @param item
 	 */
-	public RuleGridImpl(String type, String item) {
+	public RuleGridImpl(String type) {
 		super(ServiceConstants.RULE_SERVICE_ID);
 
 		/*
@@ -42,8 +46,6 @@ public class RuleGridImpl extends RemoteGridImpl {
 		 */
 		attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, type);
-
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
 
 		/*
 		 * Create data object
@@ -63,19 +65,43 @@ public class RuleGridImpl extends RemoteGridImpl {
 	}
 
 	/**
-	 * @param attributes
 	 * @return
 	 */
 	private DataObject createDataObject() {
-		return new RuleObject();
+
+		/*
+		 * Distinguish between evaluations & reasoners
+		 */
+		String type = attributes.get(MethodConstants.ATTR_TYPE);
+		if (type.equals(ClassificationConstants.FNC_ID_Evaluation)) {			
+			/*
+			 * Create data fields for evaluation grid
+			 */
+			return new EvaluationObject();
+			
+		} else if (type.equals(ClassificationConstants.FNC_ID_Reasoner)) {
+			/*
+			 * Create data fields for reasoner grid
+			 */
+			return new ReasonerObject();
+
+		} else if (type.equals(ClassificationConstants.FNC_ID_Rule)) {
+			/*
+			 * Create data fields for rule grid
+			 */
+			return new RuleObject();
+
+		}
+
+		return null;
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.grid.GridImpl#getDetailFieldName()
 	 */
 	public String getDetailFieldName() {
-		// TODO
-		return null;
+		return JaxrConstants.RIM_DESC;
 	}
 
 }

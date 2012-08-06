@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.transform.handler;
+package de.kp.ames.web.client.core.spec.handler;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -25,15 +25,22 @@ import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.transform.action.SpecCreateImpl;
-import de.kp.ames.web.client.fnc.transform.action.SpecDeleteImpl;
-import de.kp.ames.web.client.fnc.transform.action.SpecViewImpl;
+import de.kp.ames.web.client.core.spec.action.SpecCreateImpl;
+import de.kp.ames.web.client.core.spec.action.SpecDeleteImpl;
+import de.kp.ames.web.client.core.spec.action.SpecViewImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
 import de.kp.ames.web.client.menu.CreateMenuItem;
 import de.kp.ames.web.client.menu.DeleteMenuItem;
 import de.kp.ames.web.client.menu.ViewMenuItem;
 
 public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
+
+	/**
+	 * Constructor
+	 */
+	public SpecGridMenuHandlerImpl() {
+		super();
+	}
 
 	/**
 	 * Constructor
@@ -59,8 +66,13 @@ public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		/*
 		 * Create spec
 		 */
-		SpecCreateImpl createAction = new SpecCreateImpl(grid);
-		createAction.setParams(this.getParams());
+		SpecCreateImpl createAction = new SpecCreateImpl(this.grid);
+		
+		/*
+		 * Delegate Controller & Paramts
+		 */
+		createAction.setParams(this.params);
+		createAction.setController(this.controller);
 		
 		CreateMenuItem create = new CreateMenuItem();
 		create.addAction(createAction);
@@ -78,7 +90,11 @@ public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			 * Delete spec
 			 */
 			SpecDeleteImpl deleteAction = new SpecDeleteImpl(grid, record);
-			deleteAction.setParams(this.getParams());
+			/*
+			 * Delegate Controller & Paramts
+			 */
+			deleteAction.setParams(this.params);
+			deleteAction.setController(this.controller);
 			
 			DeleteMenuItem delete = new DeleteMenuItem();
 			delete.addAction(deleteAction);
@@ -94,7 +110,11 @@ public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			 * View upload
 			 */
 			SpecViewImpl viewAction = new SpecViewImpl(grid, record);
-			viewAction.setParams(this.getParams());
+			/*
+			 * Delegate Controller & Paramts
+			 */
+			viewAction.setParams(this.params);
+			viewAction.setController(this.controller);
 			
 			ViewMenuItem view = new ViewMenuItem();
 			view.addAction(viewAction);

@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.transform.data;
+package de.kp.ames.web.client.core.spec.data;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -8,7 +8,7 @@ import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.grid.LocalGridImpl;
-import de.kp.ames.web.client.fnc.transform.handler.SpecGridMenuHandlerImpl;
+import de.kp.ames.web.client.core.spec.handler.SpecGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.SpecObject;
 import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
@@ -32,7 +32,6 @@ public class SpecGridImpl extends LocalGridImpl {
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Specification);
 
 		/*
 		 * Create data object
@@ -48,14 +47,6 @@ public class SpecGridImpl extends LocalGridImpl {
 		 * Create Grid Data
 		 */
 		this.setData(createGridRecords());
-		
-		/*
-		 * Add menu handler
-		 */
-		SpecGridMenuHandlerImpl menuHandler = new SpecGridMenuHandlerImpl(this);
-		menuHandler.setParams(attributes);
-		
-		this.addMenuHandler(menuHandler);
 		
 	}
 	

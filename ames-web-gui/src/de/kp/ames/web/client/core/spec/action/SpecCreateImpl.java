@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.fnc.transform.action;
+package de.kp.ames.web.client.core.spec.action;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
@@ -18,12 +18,9 @@ package de.kp.ames.web.client.fnc.transform.action;
  *
  */
 
-import java.util.HashMap;
-
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.transform.TransformController;
 
 public class SpecCreateImpl extends GridCreateImpl {
 	
@@ -41,10 +38,7 @@ public class SpecCreateImpl extends GridCreateImpl {
 	 */
 	public void execute() {
 
-		HashMap<String,String> attributes = this.getParams();
-
-		TransformController controller = new TransformController();		
-		controller.doCreate(attributes, grid, new ActivityImpl() {
+		this.controller.doCreate(this.params, this.grid, new ActivityImpl() {
 			public void execute() {
 				/*
 				 * No action invoked for local create
