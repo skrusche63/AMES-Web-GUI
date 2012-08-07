@@ -8,6 +8,7 @@ import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.access.AccessFactory;
 import de.kp.ames.web.client.test.bulletin.BulletinFactory;
 import de.kp.ames.web.client.test.comm.CommFactory;
+import de.kp.ames.web.client.test.data.ScNode;
 import de.kp.ames.web.client.test.dms.DmsFactory;
 import de.kp.ames.web.client.test.group.GroupFactory;
 import de.kp.ames.web.client.test.map.MapFactory;
@@ -196,9 +197,24 @@ public class ScFactory {
          */
 		else if (nid.equals(PREFIX + "rule:data:RuleGridImpl:leaf")) {
 			return createRuleGridImpl(nid);
-			
-		}
 
+		} else if (nid.equals(PREFIX + "rule:widget:EvaluationEditDialog:leaf")) {
+			return createEvaluationEditDialog(nid);
+			
+		} else if (nid.equals(PREFIX + "rule:widget:ReasonerApplyDialog:leaf")) {
+			return createReasonerApplyDialog(nid);
+			
+		} else if (nid.equals(PREFIX + "rule:widget:ReasonerCreateDialog:leaf")) {
+			return createReasonerCreateDialog(nid);
+		
+		} else if (nid.equals(PREFIX + "rule:widget:ReasonerEditDialog:leaf")) {
+			return createReasonerEditDialog(nid);
+
+		} else if (nid.equals(PREFIX + "rule:widget:ReasonerFormImpl:leaf")) {
+			return createReasonerFormImpl(nid);
+	
+		}
+		
         /*
          * Symbol-Layer
          */
@@ -634,13 +650,59 @@ public class ScFactory {
 	 */
 	private static Tab createRuleGridImpl(String nid) {
 		
-		VLayout content = RuleFactory.createRuleGridImpl();
+		VLayout content = RuleFactory.getInstance().createRuleGridImpl();
 		
 		Tab tab = createTab(nid, "RuleGridImpl", TABLE_ICON, content);	
 		return tab;
 
 	}
-	
+
+	private static Tab createReasonerFormImpl(String nid) {
+		
+		VLayout content = RuleFactory.getInstance().createReasonerFormImpl();
+		
+		Tab tab = createTab(nid, "ReasonerFormImpl", WIDGET_ICON, content);	
+		return tab;
+
+	}
+
+	private static Tab createReasonerEditDialog(String nid) {
+		
+		VLayout content = RuleFactory.getInstance().createReasonerEditDialog();
+		
+		Tab tab = createTab(nid, "ReasonerEditDialog", WIDGET_ICON, content);	
+		return tab;
+
+	}
+
+	private static Tab createReasonerCreateDialog(String nid) {
+		
+		VLayout content = RuleFactory.getInstance().createReasonerCreateDialog();
+		
+		Tab tab = createTab(nid, "ReasonerCreateDialog", WIDGET_ICON, content);	
+		return tab;
+
+	}
+
+	private static Tab createReasonerApplyDialog(String nid) {
+		
+		VLayout content = RuleFactory.getInstance().createReasonerApplyDialog();
+		
+		Tab tab = createTab(nid, "ReasonerApplyDialog", WIDGET_ICON, content);	
+		return tab;
+
+	}
+
+	private static Tab createEvaluationEditDialog(String nid) {
+		
+		VLayout content = RuleFactory.getInstance().createEvaluationEditDialog();
+		
+		Tab tab = createTab(nid, "EvaluationEditDialog", WIDGET_ICON, content);	
+		return tab;
+
+	}
+
+
 	/*
 	 * Symbol-Layer methods
 	 */

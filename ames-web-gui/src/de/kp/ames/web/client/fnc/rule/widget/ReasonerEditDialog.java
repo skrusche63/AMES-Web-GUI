@@ -24,11 +24,13 @@ import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.product.ProductService;
 import de.kp.ames.web.client.fnc.rule.RuleService;
 
-public class EvaluationEditDialog extends EditFormDialog {
+public class ReasonerEditDialog extends EditFormDialog {
 	
 	/*
 	 * Dimensions (width & height below are the result
@@ -36,15 +38,15 @@ public class EvaluationEditDialog extends EditFormDialog {
 	 * the best user experience
 	 */
 	private static int WIDTH  = 530;
-	private static int HEIGHT = 490;
-	
+	private static int HEIGHT = 630;
+
 	/**
 	 * Constructor
 	 * 
 	 * @param jValue
 	 */
-	public EvaluationEditDialog(JSONValue jValue) {
-		super(FncGlobals.EVALUATION_E_TITLE, FncGlobals.EVALUATION_E_SLOGAN, jValue);
+	public ReasonerEditDialog(JSONValue jValue) {
+		super(FncGlobals.REASONER_E_TITLE, FncGlobals.REASONER_E_SLOGAN, jValue);
 		
 		/*
 		 * Button handling
@@ -76,7 +78,7 @@ public class EvaluationEditDialog extends EditFormDialog {
 		/*
 		 * Register form and assign form handler
 		 */
-		this.form = new EvaluationFormImpl();
+		this.form = new ReasonerFormImpl(FormAction.EDIT);
 		this.form.addFormHandler(this);
 
 		this.form.addFormData(this.jValue);		
@@ -101,19 +103,20 @@ public class EvaluationEditDialog extends EditFormDialog {
 	 * @param jValue
 	 * @param afterSendActivity
 	 */
-	public static void create(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
-		
+	public  static void create(HashMap<String,String> attributes, JSONValue jValue, Activity afterSendActivity) {
+	
 		/*
 		 * Create dialog
 		 */
-		EvaluationEditDialog dialog = new EvaluationEditDialog(jValue);
+		ReasonerEditDialog dialog = new ReasonerEditDialog(jValue);
 		
 		/*
 		 * Provide request specific information
 		 */
 		dialog.setParams(attributes);
 		dialog.addSendActivity(afterSendActivity);
-		
+	
 	}
+
 
 }

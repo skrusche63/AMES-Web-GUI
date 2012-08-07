@@ -42,6 +42,7 @@ public class ProductFactory extends FncFactory {
 	}
 
 	public VLayout createProductGridImpl() {
+
 		productGridLayout = new VLayout();
 		productGridLayout.setStyleName(GuiStyles.X_BD_STYLE_0);
 
@@ -177,7 +178,7 @@ public class ProductFactory extends FncFactory {
 		final HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Productor);
 		
-		final JSONObject jValue = ScData.getJsonAccessor();
+		final JSONObject jValue = ScData.getJsonProductor();
 
 		final ActivityImpl afterSendActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {

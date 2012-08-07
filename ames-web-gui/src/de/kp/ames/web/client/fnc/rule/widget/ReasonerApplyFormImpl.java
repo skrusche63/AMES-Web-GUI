@@ -1,32 +1,45 @@
 package de.kp.ames.web.client.fnc.rule.widget;
 
 import java.util.ArrayList;
-import java.util.Set;
-
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
-import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
+
+import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
+import de.kp.ames.web.client.fnc.ns.data.NsGridImpl;
 import de.kp.ames.web.client.model.EvaluationObject;
-import de.kp.ames.web.client.model.ProductObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
-public class EvaluationFormImpl extends FormImpl {
+public class ReasonerApplyFormImpl extends FormImpl {
 
+	private static String NAMESPACES = "Namespaces";
+	
 	/*
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 352;
+	private static int FORM_HEIGHT = 532;
+	
+	/*
+	 * Reference to NsGrid
+	 */
+	private NsGridImpl nsGrid;
 
-	public EvaluationFormImpl() {
+	/**
+	 * Constructor
+	 */
+	public ReasonerApplyFormImpl(FormAction action) {
 
 		/*
 		 * Dimensions
@@ -62,44 +75,31 @@ public class EvaluationFormImpl extends FormImpl {
 		
 		scForm.setAutoFocus(true);
 		scForm.setLayoutAlign(Alignment.CENTER);
+
+		/*
+		 * Create Tabs
+		 */
+		VLayout layout = new VLayout();
+		layout.setShowEdges(false);
 		
-		wrapper.setMembers(scForm);
+		layout.setWidth(480);
+		
+		layout.setLayoutMargin(16);
+		layout.setLayoutTopMargin(0);
+		
+		TabSet tabSet = createTabSet();
+		
+		tabSet.setWidth(480);
+		tabSet.setHeight(320);
+
+		/*
+		 * Build Nsrid
+		 */
+		tabSet.addTab(createNamespaceTab());
+		
+		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);
 
-	}
-
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.form.FormImpl#addFormData(com.google.gwt.json.client.JSONValue)
-	 */
-	public void addFormData(JSONValue jValue) {
-		/*
-		 * Register form data
-		 */
-		this.jData = jValue;
-		JSONObject jForm = jData.isObject();
-		
-		Set<String> keys = jForm.keySet();
-		for (String key:keys) {
-			
-			if (key.equals(JaxrConstants.RIM_NAME)) {
-				/*
-				 * Form data
-				 */
-				FormItem field = scForm.getField(key);
-				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
-				
-			} else if (key.equals(JaxrConstants.RIM_DESC)) {
-				/*
-				 * Form data
-				 */
-				FormItem field = scForm.getField(key);
-				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
-				
-			}
-			
-		}
-		
-		
 	}
 
 	/* (non-Javadoc)
@@ -114,6 +114,7 @@ public class EvaluationFormImpl extends FormImpl {
 		 */
 		String name = "";
 		String desc = "";
+		String date = "";
 		
 		FormItem[] items = scForm.getFields();
 		for (FormItem item:items) {
@@ -123,31 +124,73 @@ public class EvaluationFormImpl extends FormImpl {
 				
 			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
 				desc = (String)item.getValue();
-				
+
+			} else if (JaxrConstants.RIM_DATE.equals(item.getName())) {
+				date = (String)item.getValue();
+
 			}
 			
 		}
 		
 		jForm.put(JaxrConstants.RIM_NAME, new JSONString(name));
 		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
+		jForm.put(JaxrConstants.RIM_DATE, new JSONString(date));
 		
 		/*
 		 * Classification
 		 */
 		JSONArray jClas = new JSONArray();
-		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Product));
+		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Evaluation));
 		
 		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
-
+		
 		return jForm.toString();
 	
 	}
 
+	/**
+	 * @return
+	 */
+	public String getSource() {
+		
+		Record selected = nsGrid.getSelectedRecord();
+		if (selected == null) return null;
+		
+		return selected.getAttributeAsString(JaxrConstants.RIM_ID);
+		
+	}
+	
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.FormImpl#createFormItemsAsList()
 	 */
 	public ArrayList<FormItem> createFormItemsAsList() {
 		return new EvaluationObject().createFormItemsAsList();
+	}
+	
+	/**
+	 * Create layout component for namespaces
+	 * 
+	 * @return
+	 */
+	private Tab createNamespaceTab() {
+		
+		/*
+		 * Build SlotGrid
+		 */
+		nsGrid = new NsGridImpl();
+		nsGrid.setSelectionType(SelectionStyle.SINGLE);
+
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(NAMESPACES);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(nsGrid);
+		return tab;
+		
 	}
 
 }

@@ -87,7 +87,7 @@ public class ProductController {
 	 */
 	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
 
-		SC.confirm(FncGlobals.CONFIRM_ACCESSOR_DELETE, new BooleanCallback() {  
+		SC.confirm(FncGlobals.CONFIRM_PRODUCT_DELETE, new BooleanCallback() {  
  
 			public void execute(Boolean value) {  
                 if (value != null && value) {  

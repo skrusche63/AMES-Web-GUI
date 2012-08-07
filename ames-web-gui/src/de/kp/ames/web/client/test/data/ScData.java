@@ -132,7 +132,11 @@ public class ScData {
                 new ScNode("RuleGridImpl",               PREFIX + "rule:data:RuleGridImpl:leaf",                 PREFIX + "rule:data:folder", "silk/table.png"),
                 new ScNode("Widget",                     PREFIX + "rule:widget:folder",                          PREFIX + "rule:folder", "silk/folder.png"),
 
-                // TODO
+                new ScNode("EvaluationEditDialog",       PREFIX + "rule:widget:EvaluationEditDialog:leaf",       PREFIX + "rule:widget:folder", "silk/widget.png"),
+                new ScNode("ReasonerApplyDialog",        PREFIX + "rule:widget:ReasonerApplyDialog:leaf",  	     PREFIX + "rule:widget:folder", "silk/widget.png"),
+                new ScNode("ReasonerCreateDialog",       PREFIX + "rule:widget:ReasonerCreateDialog:leaf",       PREFIX + "rule:widget:folder", "silk/widget.png"),
+                new ScNode("ReasonerEditDialog",         PREFIX + "rule:widget:ReasonerEditDialog:leaf",         PREFIX + "rule:widget:folder", "silk/widget.png"),
+                new ScNode("ReasonerFormImpl",           PREFIX + "rule:widget:ReasonerFormImpl:leaf",           PREFIX + "rule:widget:folder", "silk/widget.png"),
 
                 /*
                  * Symbol-Layer
@@ -338,6 +342,36 @@ public class ScData {
     	
     }
 
+    /*
+     * Rule-Layer
+     */
+    public static String TEST_REASONER = "";
+    
+    public static String TEST_REASONER_NAME = "Reasoner name";
+    public static String TEST_REASONER_DESC = "Reasoner description";
+
+    public static JSONObject getJsonEvaluation() {
+
+    	JSONObject jEvaluation = new JSONObject();
+
+    	jEvaluation.put(JaxrConstants.RIM_NAME,  new JSONString("Evaluation name"));
+    	jEvaluation.put(JaxrConstants.RIM_DESC,  new JSONString("Evaluation description"));
+
+    	return jEvaluation;
+    	
+    }
+
+    public static JSONObject getJsonReasoner() {
+
+    	JSONObject jReasoner = new JSONObject();
+
+    	jReasoner.put(JaxrConstants.RIM_NAME,  new JSONString("Reasoner name"));
+    	jReasoner.put(JaxrConstants.RIM_DESC,  new JSONString("Reasoner description"));
+
+    	return jReasoner;
+    	
+    }
+    
     /*
      * User-Layer
      */

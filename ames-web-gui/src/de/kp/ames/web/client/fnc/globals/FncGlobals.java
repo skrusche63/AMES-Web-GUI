@@ -202,8 +202,20 @@ public class FncGlobals {
 	/*
 	 * Rule-Layer
 	 */
+	public static String EVALUATION_E_TITLE  = GUIGlobals.APP_TITLE + ": Evaluation Editor";;
+	public static String EVALUATION_E_SLOGAN = "Use this widget to edit a certain evaluation.";
+
+	public static String REASONER_A_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Engine";;
+	public static String REASONER_A_SLOGAN = "Use this widget to apply a certain reasoner.";
+
 	public static String REASONER_C_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Editor";;
 	public static String REASONER_C_SLOGAN = "Use this widget to create a new reasoner.";
+
+	public static String REASONER_E_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Editor";;
+	public static String REASONER_E_SLOGAN = "Use this widget to edit a certain reasoner.";
+
+	public static String REASONER_G_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Viewer";;
+	public static String REASONER_G_SLOGAN = "Use this widget to view a certain reasoner.";
 
 	/*
 	 * Symbol-Layer
@@ -253,6 +265,7 @@ public class FncGlobals {
 	public static String CONFIRM_GROUP_DELETE    = CONFIRM_DELETE_PREFIX + "<b>Group</b>?";
 	public static String CONFIRM_NS_DELETE       = CONFIRM_DELETE_PREFIX + "<b>Namespace</b>?";
 	public static String CONFIRM_PRODUCT_DELETE  = CONFIRM_DELETE_PREFIX + "<b>Product</b> or <b>Productor</b>?";
+	public static String CONFIRM_RULE_DELETE     = CONFIRM_DELETE_PREFIX + "<b>Evaluation</b> or <b>Reasoner</b>?";
 	public static String CONFIRM_ROLE_DELETE     = CONFIRM_DELETE_PREFIX + "<b>Responsibility</b> or <b>Role</b>?";
 
 	/*
