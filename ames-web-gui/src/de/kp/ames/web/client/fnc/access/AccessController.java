@@ -27,6 +27,7 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.controller.ControllerImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.access.widget.AccessorCreateDialog;
 import de.kp.ames.web.client.fnc.access.widget.AccessorEditDialog;
@@ -38,7 +39,7 @@ import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
-public class AccessController {
+public class AccessController extends ControllerImpl {
 	
 	/**
 	 * Constructor
@@ -63,7 +64,7 @@ public class AccessController {
 	 * @param record
 	 * @param activity
 	 */
-	public void doDelete(final HashMap<String,String> attributes, final Record record, final Activity activity) {
+	public void doDelete(final HashMap<String,String> attributes, final Grid grid, final Record record, final Activity activity) {
 
 		SC.confirm(FncGlobals.CONFIRM_ACCESSOR_DELETE, new BooleanCallback() {  
  

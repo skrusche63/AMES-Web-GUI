@@ -8,7 +8,6 @@ import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.access.AccessFactory;
 import de.kp.ames.web.client.test.bulletin.BulletinFactory;
 import de.kp.ames.web.client.test.comm.CommFactory;
-import de.kp.ames.web.client.test.data.ScNode;
 import de.kp.ames.web.client.test.dms.DmsFactory;
 import de.kp.ames.web.client.test.group.GroupFactory;
 import de.kp.ames.web.client.test.map.MapFactory;

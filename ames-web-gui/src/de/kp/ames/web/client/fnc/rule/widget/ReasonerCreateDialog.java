@@ -126,9 +126,5 @@ public class ReasonerCreateDialog extends CreateFormDialog {
 	
 	}
 
-	
-
-}
-
 
 }

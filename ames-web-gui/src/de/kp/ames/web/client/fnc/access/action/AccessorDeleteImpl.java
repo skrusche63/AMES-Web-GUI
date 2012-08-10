@@ -49,7 +49,7 @@ public class AccessorDeleteImpl extends GridDeleteImpl {
 		final AccessorDeleteImpl self = this;		
 		AccessController controller = new AccessController();
 		
-		controller.doDelete(attributes, record, new ActivityImpl() {
+		controller.doDelete(attributes, grid, record, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				

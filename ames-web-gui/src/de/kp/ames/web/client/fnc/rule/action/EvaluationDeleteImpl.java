@@ -49,7 +49,7 @@ public class EvaluationDeleteImpl extends GridDeleteImpl {
 		final EvaluationDeleteImpl self = this;	
 		RuleController controller = new RuleController();
 		
-		controller.doDelete(attributes, record, new ActivityImpl() {
+		controller.doDelete(attributes, grid, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterDelete(jValue);				
 			}

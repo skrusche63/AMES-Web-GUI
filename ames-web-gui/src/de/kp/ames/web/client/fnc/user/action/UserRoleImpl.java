@@ -5,7 +5,6 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
 
-import de.kp.ames.web.client.action.grid.GridEditImpl;
 import de.kp.ames.web.client.action.grid.GridRoleImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
