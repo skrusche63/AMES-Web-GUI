@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.fnc.rule.action;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.rule.action
+ *  Module: ReasonerCreateImpl
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #action #client #create #fnc #reasoner #rule #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import com.google.gwt.json.client.JSONValue;
 

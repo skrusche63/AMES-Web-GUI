@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.test.data;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.test.data
+ *  Module: ScData
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #data #sc #test #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;

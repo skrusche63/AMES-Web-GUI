@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.fnc.upload.widget;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.upload.widget
+ *  Module: UploadCreateDialog
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #create #dialog #fnc #upload #web #widget
+ * </SemanticAssist>
+ *
+ */
+
 
 import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONObject;

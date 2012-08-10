@@ -1,5 +1,23 @@
 package de.kp.ames.web.client;
 /**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client
+ *  Module: main
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #main #web
+ * </SemanticAssist>
+ *
+ */
+
+/**
  * This file is part of the AMES Web GUI.
  *
  * AMES Web GUI is free software: you can redistribute it and/or modify

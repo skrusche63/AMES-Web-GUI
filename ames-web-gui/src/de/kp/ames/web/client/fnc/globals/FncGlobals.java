@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.fnc.globals;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.globals
+ *  Module: FncGlobals
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #fnc #globals #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 

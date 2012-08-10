@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.action.grid;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.action.grid
+ *  Module: GridRecordSelectImpl
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #action #client #grid #record #select #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.action.ActionImpl;

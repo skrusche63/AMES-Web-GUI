@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.fnc.rule.widget;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.rule.widget
+ *  Module: ReasonerGetViewer
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #fnc #get #reasoner #rule #viewer #web #widget
+ * </SemanticAssist>
+ *
+ */
+
 
 import java.util.HashMap;
 

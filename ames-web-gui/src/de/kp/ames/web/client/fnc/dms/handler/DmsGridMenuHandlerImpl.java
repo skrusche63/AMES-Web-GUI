@@ -1,5 +1,23 @@
 package de.kp.ames.web.client.fnc.dms.handler;
 /**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.dms.handler
+ *  Module: DmsGridMenuHandlerImpl
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #dms #fnc #grid #handler #menu #web
+ * </SemanticAssist>
+ *
+ */
+
+/**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
  *	AMES-Web-GUI is free software: you can redistribute it and/or 

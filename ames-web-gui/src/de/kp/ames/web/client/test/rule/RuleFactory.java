@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.test.rule;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.test.rule
+ *  Module: RuleFactory
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #factory #rule #test #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

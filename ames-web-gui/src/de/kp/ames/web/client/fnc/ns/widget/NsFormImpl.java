@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.fnc.ns.widget;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.ns.widget
+ *  Module: NsFormImpl
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #fnc #form #ns #web #widget
+ * </SemanticAssist>
+ *
+ */
+
 
 import java.util.ArrayList;
 import java.util.Set;

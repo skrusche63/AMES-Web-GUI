@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.core.spec.data;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.core.spec.data
+ *  Module: SpecGridImpl
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #core #data #grid #spec #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import java.util.HashMap;
 import java.util.Set;

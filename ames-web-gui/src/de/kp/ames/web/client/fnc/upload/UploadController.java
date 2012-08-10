@@ -1,5 +1,23 @@
 package de.kp.ames.web.client.fnc.upload;
 /**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.fnc.upload
+ *  Module: UploadController
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #controller #fnc #upload #web
+ * </SemanticAssist>
+ *
+ */
+
+/**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
  *	AMES-Web-GUI is free software: you can redistribute it and/or 

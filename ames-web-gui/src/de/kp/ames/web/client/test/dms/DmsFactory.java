@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.test.dms;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.test.dms
+ *  Module: DmsFactory
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #dms #factory #test #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import java.util.LinkedHashMap;
 

@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.test.role;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.test.role
+ *  Module: RoleFactory
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #factory #role #test #web
+ * </SemanticAssist>
+ *
+ */
+
 
 import java.util.HashMap;
 

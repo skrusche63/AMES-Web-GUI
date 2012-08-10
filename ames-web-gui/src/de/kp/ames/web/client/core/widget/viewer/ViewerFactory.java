@@ -1,4 +1,22 @@
 package de.kp.ames.web.client.core.widget.viewer;
+/**
+ * This Java module is part of the
+ *  Application Developer Framework
+ *
+ *  Project: AMES-Web-GUI
+ *  Package: de.kp.ames.web.client.core.widget.viewer
+ *  Module: ViewerFactory
+ *  @author krusche@dr-kruscheundpartner.de
+ *
+ * Add your semantic annotations within the SemanticAssist tags and
+ * mark them with a leading hashtag #:
+ *
+ * <SemanticAssist>
+ *     #client #core #factory #viewer #web #widget
+ * </SemanticAssist>
+ *
+ */
+
 
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.widgets.HTMLPane;
