@@ -1,4 +1,4 @@
-package de.kp.ames.web.client.core.http;
+package de.kp.ames.web.client.core.service;
 /**
  * This Java module is part of the
  *  Application Developer Framework
@@ -37,7 +37,6 @@ package de.kp.ames.web.client.core.http;
  */
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.service.Service;
 
 public class GetTextCallbackImpl extends GetCallbackImpl {
 	

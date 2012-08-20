@@ -26,12 +26,9 @@ import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
 import de.kp.ames.web.client.core.grid.LocalGridImpl;
-import de.kp.ames.web.client.core.spec.handler.SpecGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.SpecObject;
 import de.kp.ames.web.client.model.core.DataObject;
-import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
-import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class SpecGridImpl extends LocalGridImpl {
 	

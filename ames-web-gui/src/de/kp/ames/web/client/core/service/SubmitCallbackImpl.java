@@ -1,18 +1,18 @@
-package de.kp.ames.web.client.core.http;
+package de.kp.ames.web.client.core.service;
 /**
  * This Java module is part of the
  *  Application Developer Framework
  *
  *  Project: AMES-Web-GUI
  *  Package: de.kp.ames.web.client.core.http
- *  Module: GetJsonCallbackImpl
+ *  Module: SubmitCallbackImpl
  *  @author krusche@dr-kruscheundpartner.de
  *
  * Add your semantic annotations within the SemanticAssist tags and
  * mark them with a leading hashtag #:
  *
  * <SemanticAssist>
- *     #callback #client #core #get #http #json #web
+ *     #callback #client #core #http #submit #web
  * </SemanticAssist>
  *
  */
@@ -40,9 +40,20 @@ import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.service.Service;
+import de.kp.ames.web.client.core.http.ConnectionCallback;
+import de.kp.ames.web.client.core.widget.base.ActionIndicator;
 
-public class GetJsonCallbackImpl extends GetCallbackImpl {
+public class SubmitCallbackImpl implements ConnectionCallback {
+
+	/*
+	 * Reference to After Request Activity
+	 */
+	private Activity activity;
+	
+	/*
+	 * Reference to Service
+	 */
+	private Service service;
 	
 	/**
 	 * Constructor
@@ -50,8 +61,9 @@ public class GetJsonCallbackImpl extends GetCallbackImpl {
 	 * @param activity
 	 * @param service
 	 */
-	public GetJsonCallbackImpl(Activity activity, Service service) {
-		super(activity, service);
+	public SubmitCallbackImpl(Activity activity, Service service) {
+		this.activity = activity;
+		this.service  = service;
 	}
 	
 	/* (non-Javadoc)
@@ -67,10 +79,45 @@ public class GetJsonCallbackImpl extends GetCallbackImpl {
 			this.activity.execute(jValue);
 			
 		} catch (NullPointerException e) {
-			doGetFailure();
+			doSubmitFailure();
 			
 		}
 
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.callback.ConnectionCallback#onError(java.lang.Throwable)
+	 */
+	public void onError(Throwable throwable) {
+		doSubmitFailure();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.callback.ConnectionCallback#onTimeout(java.lang.String)
+	 */
+	public void onTimeout(String message) {
+		doSubmitFailure();
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.callback.ConnectionCallback#onFailure(java.lang.String)
+	 */
+	public void onFailure(String message) {
+		doSubmitFailure();
+	}
+	
+	/**
+	 * Submit request failure
+	 */
+	protected void doSubmitFailure() {
+		/*
+		 * Reset any action indicator
+		 */
+		ActionIndicator.getInstance().reset();	
+	
+		String message = "Submit request failed due to server error.";
+		service.doRequestError(message);		
+	
 	}
 
 }

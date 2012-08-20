@@ -42,13 +42,8 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.core.http.ApplyCallbackImpl;
 import de.kp.ames.web.client.core.http.ConnectionCallback;
 import de.kp.ames.web.client.core.http.ConnectionManager;
-import de.kp.ames.web.client.core.http.DeleteCallbackImpl;
-import de.kp.ames.web.client.core.http.ExtractCallbackImpl;
-import de.kp.ames.web.client.core.http.GetJsonCallbackImpl;
-import de.kp.ames.web.client.core.http.SubmitCallbackImpl;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.util.DownloadFrame;
 import de.kp.ames.web.shared.constants.MethodConstants;
