@@ -50,8 +50,8 @@ import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
-import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
+import de.kp.ames.web.shared.constants.ApplicationConstants;
 
 public class Viewport extends VLayout {
 	
@@ -338,7 +338,18 @@ public class Viewport extends VLayout {
 	}
 
 	private void doCommunication(ClickEvent e) {
+
+		comm.setSelected(true);
+
+		int x = comm.getAbsoluteLeft();
+		int y = comm.getAbsoluteTop() + TOP_SC_HEIGHT - 1;
 		
+		Menu menu = comm.getMenu();
+		menu.setItems(MainController.getInstance().getRegisteredCommsAsItems(comm));
+		
+		menu.moveTo(x, y);		
+		menu.draw();
+
 	}
 	
 	/**
@@ -367,7 +378,7 @@ public class Viewport extends VLayout {
 	 * @param e
 	 */
 	private void doLogo(ClickEvent e) {
-		MainController.getInstance().createApp(FncGlobals.FNC_APP_ID_Desktop);		
+		MainController.getInstance().createApp(ApplicationConstants.FNC_APP_ID_Desktop);		
 	}
 	
 	private void doSearch(ClickEvent e) {

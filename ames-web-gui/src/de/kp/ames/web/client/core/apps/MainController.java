@@ -59,12 +59,14 @@ import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.core.widget.base.ControlLabel;
 import de.kp.ames.web.client.core.widget.base.Viewport;
 import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
-import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.client.fnc.comm.widget.ChatImpl;
+import de.kp.ames.web.client.fnc.comm.widget.MailImpl;
 import de.kp.ames.web.client.fnc.help.HelpImpl;
 import de.kp.ames.web.client.fnc.login.DisclaimerDialog;
 import de.kp.ames.web.client.fnc.scm.ScmSysImpl;
 import de.kp.ames.web.client.fnc.service.DisclaimerService;
 import de.kp.ames.web.client.test.ShowCaseImpl;
+import de.kp.ames.web.shared.constants.ApplicationConstants;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
 /**
@@ -133,7 +135,7 @@ public class MainController {
 		/*
 		 * Create ShowCase
 		 */
-		createApp(FncGlobals.FNC_APP_ID_ShowCase);
+		createApp(ApplicationConstants.FNC_APP_ID_ShowCase);
 
 	}
 	
@@ -178,7 +180,7 @@ public class MainController {
 		 * viewport to enable the user to select
 		 * specific apps
 		 */
-		createApp(FncGlobals.FNC_APP_ID_Desktop);
+		createApp(ApplicationConstants.FNC_APP_ID_Desktop);
 
 		/*
 		 * Show disclaimer dialog
@@ -187,6 +189,10 @@ public class MainController {
 		
 	}
 
+	/**
+	 * @param control
+	 * @return
+	 */
 	public MenuItem[] getRegisteredAppsAsItems(final ControlLabel control) {
 
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
@@ -229,6 +235,68 @@ public class MainController {
 	}
 
 	/**
+	 * @param control
+	 * @return
+	 */
+	public MenuItem[] getRegisteredCommsAsItems(final ControlLabel control) {
+
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+		
+		/*
+		 * Chat
+		 */		
+		final String chatId    = ApplicationConstants.FNC_APP_ID_Chat;
+		final String chatTitle = "Chat Communicator";
+		
+		MenuItem chatItem = new MenuItem(chatTitle);		
+		
+		chatItem.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
+			public void onClick(MenuItemClickEvent event) {
+				 
+				/*
+				 * Deselect respective control
+				 */
+				control.setSelected(false);
+				/*
+				 * Invoke main controller to create the app
+				 */ 
+				MainController.getInstance().createApp(chatId);
+				
+			}				
+		});
+
+		items.add(chatItem);
+
+		/*
+		 * Mail
+		 */		
+		final String mailId    = ApplicationConstants.FNC_APP_ID_Mail;
+		final String mailTitle = "Mail Communicator";
+		
+		MenuItem mailItem = new MenuItem(mailTitle);		
+		
+		mailItem.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
+			public void onClick(MenuItemClickEvent event) {
+				 
+				/*
+				 * Deselect respective control
+				 */
+				control.setSelected(false);
+				/*
+				 * Invoke main controller to create the app
+				 */ 
+				MainController.getInstance().createApp(mailId);
+				
+			}				
+		});
+
+		items.add(mailItem);
+
+		return (MenuItem[])items.toArray(new MenuItem[items.size()]);
+		
+	}
+
+	/**
 	 * A helper method to append a selected application
 	 * to the viewport, depending on the specific profile
 	 * 
@@ -240,36 +308,48 @@ public class MainController {
 		 * All apps are derived from an HLayout
 		 */
 		BaseApp app = null;		
-		if (profile.equals(FncGlobals.FNC_APP_ID_Bulletin)) {
+		if (profile.equals(ApplicationConstants.FNC_APP_ID_Bulletin)) {
 			/*
 			 * Create Bulletin Board application
 			 */
 			app = new BulletinImpl();
 
-		} else if (profile.equals(FncGlobals.FNC_APP_ID_Desktop)) {
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Chat)) {
+			/*
+			 * Create Chat Communicator application
+			 */
+			app = new ChatImpl();
+
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Desktop)) {
 			/*
 			 * Create Web Desktop
 			 */
 			createDesktop();
 			return;
 		
-		} else if (profile.equals(FncGlobals.FNC_APP_ID_Help)) {
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Help)) {
 			app = new HelpImpl();
 
-		} else if (profile.equals(FncGlobals.FNC_APP_ID_Portal)) {
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Mail)) {
+			/*
+			 * Create Mail Communicator application
+			 */
+			app = new MailImpl();
+
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Portal)) {
 			/*
 			 * Create Web Portal
 			 */
 			createPortal();
 			return;
 
-		} else if (profile.equals(FncGlobals.FNC_APP_ID_ScmSys)) {
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_ScmSys)) {
 			/*
 			 * Create Source Code Discovery application
 			 */
 			app = new ScmSysImpl();
 
-		} else if (profile.equals(FncGlobals.FNC_APP_ID_ShowCase)) {
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_ShowCase)) {
 			/*
 			 * Create ShowCase application for testing
 			 * and presentation purpose

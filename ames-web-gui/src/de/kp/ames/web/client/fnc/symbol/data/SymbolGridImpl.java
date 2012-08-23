@@ -215,7 +215,6 @@ public class SymbolGridImpl extends TileGrid {
 	 * A helper method to reload the content of the grid
 	 */
 	private void reload() {
-		
 		/* 
 		 * REMARK:
 		 * 
@@ -223,8 +222,7 @@ public class SymbolGridImpl extends TileGrid {
 		 * retrieve data from the server again
 		 */
 		this.invalidateCache();
-		this.redraw();
-
+		this.fetchData();
 	}
 
 	/**

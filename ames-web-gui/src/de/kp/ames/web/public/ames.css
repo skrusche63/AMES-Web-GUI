@@ -14,6 +14,8 @@ iframe {border:0;}
 .x-bd-style-4 {border:1px solid #C0C0C0;}
 .x-bd-style-5 {border-right:1px solid #C0C0C0;border-bottom:1px solid #C0C0C0;}
 
+.x-frame {margin:0px;border:0;overflow:hidden;}
+
 .x-app-title {font:bold 10px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:center;padding-top:1px;}
 
 /*

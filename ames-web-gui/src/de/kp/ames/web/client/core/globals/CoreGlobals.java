@@ -68,6 +68,14 @@ public class CoreGlobals {
 	public static String REG_ID  = "urn:de:kp:reg:url";	
 	public static String REG_URL = DOM.getElementById(REG_ID).getAttribute("content");
 
+	/* 
+	 * Property (in index.html) that describes the URL to the
+	 * Communication Service
+	 */
+
+	public static String COM_ID  = "urn:de:kp:com:url";	
+	public static String COM_URL = DOM.getElementById(COM_ID).getAttribute("content");
+
 	/*
 	 * Property (in index.html) that describes the URL to the WMS Service
 	 */

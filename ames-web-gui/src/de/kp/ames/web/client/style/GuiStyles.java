@@ -74,6 +74,8 @@ public class GuiStyles {
 	public static String X_TOPLINE      = "x-topline";
 	public static String X_USER         = "x-user";
 
+	public static String X_FRAME = "x-frame";
+	
 	/*
 	 * Showcase styles
 	 */

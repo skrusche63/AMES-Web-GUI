@@ -24,40 +24,7 @@ public class FncGlobals {
 	
 	public static String ADF_EDITOR = "ADF - Editor";
 	public static String ADF_VIEWER = "ADF - Viewer";
-	
-	/*
-	 * Classification Nodes
-	 */
-	public static String FNC_ID = "urn:oasis:names:tc:ebxml-regrep:FNC";
-	
-	public static String FNC_ID_App = FNC_ID   + ":App";	
-	public static String FNC_ID_Field = FNC_ID + ":Field";
-	
-	/*
-	 * Classification of bulletin board
-	 */
-	public static String FNC_APP_ID_Bulletin = FNC_ID_App + ":Bulletin";	
-	/*
-	 * Classification of desktop
-	 */
-	public static String FNC_APP_ID_Desktop = FNC_ID_App + ":Desktop";	
-	/*
-	 * Classification of online help
-	 */
-	public static String FNC_APP_ID_Help = FNC_ID_App + ":Help";
-	/*
-	 * Classification of portal
-	 */
-	public static String FNC_APP_ID_Portal = FNC_ID_App + ":Portal";
-	/*
-	 * Classification of Source Code Management System
-	 */
-	public static String FNC_APP_ID_ScmSys = FNC_ID_App + ":ScmSys";
-	/*
-	 * Classification of ShowCase
-	 */
-	public static String FNC_APP_ID_ShowCase = FNC_ID_App + ":ShowCase";
-	
+		
 	/*
 	 * Help
 	 */
@@ -110,6 +77,11 @@ public class FncGlobals {
 	/*
 	 * Comm-Layer
 	 */
+	public static String CHAT_TITLE  = "Chat Communicator";
+	public static String CHAT_SLOGAN = "Use this communicator to send, receive and share chat messages.";
+
+	public static String MAIL_TITLE  = "Mail Communicator";
+	public static String MAIL_SLOGAN = "Use this communicator to send, receive and share mail messages.";
 
 	public static String COMM_V_TITLE  = GUIGlobals.APP_TITLE + ": Comm Viewer";
 	public static String COMM_V_SLOGAN = "Use this widget to view a certain communication object.";
