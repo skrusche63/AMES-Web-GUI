@@ -55,8 +55,10 @@ public class SymbolIconImpl extends VLayout implements RemoveHandler {
 
 	public SymbolIconImpl(String type) {
 		
-		setWidth100();
-		setHeight100();
+		this.setShowEdges(false);
+		
+		this.setWidth100();
+		this.setHeight100();
 
 		/*
 		 * Build label

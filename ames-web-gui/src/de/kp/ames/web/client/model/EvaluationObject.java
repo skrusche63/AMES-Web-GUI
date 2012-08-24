@@ -30,6 +30,7 @@ import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.client.model.core.RegistryPackage;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class EvaluationObject extends RegistryPackage {
 
@@ -78,7 +79,7 @@ public class EvaluationObject extends RegistryPackage {
 		/*
 		 * Build name
 		 */
-		TextItem nameItem = GuiFormFactory.createScTextItem("<b>Name</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		TextItem nameItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_NAME_LABEL, JaxrConstants.RIM_NAME, LABEL_STYLE, 360);
 		items.add(nameItem);
 		
 		items.add(spacer);
@@ -87,7 +88,7 @@ public class EvaluationObject extends RegistryPackage {
 		/*
 		 * Build description
 		 */
-		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
+		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem(LabelConstants.FORM_DESC_LABEL, JaxrConstants.RIM_DESC, LABEL_STYLE, 360);
 		items.add(descItem);
 
 		items.add(spacer);
@@ -96,7 +97,7 @@ public class EvaluationObject extends RegistryPackage {
 		/*
 		 * Build date
 		 */
-		TextItem dateItem = GuiFormFactory.createScTextItem("<b>Date</b>:", JaxrConstants.RIM_DATE, LABEL_STYLE, 280);
+		TextItem dateItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_DATE_LABEL, JaxrConstants.RIM_DATE, LABEL_STYLE, 360);
 		items.add(dateItem);
 
 		return items;

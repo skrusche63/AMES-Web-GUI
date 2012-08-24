@@ -54,8 +54,8 @@ public class ProductorEditDialog extends EditFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 640;
 
 	/**
 	 * Constructor
@@ -78,7 +78,7 @@ public class ProductorEditDialog extends EditFormDialog {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The Comm Viewer is a form-based window
+		 * The Productor Editor is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);

@@ -58,7 +58,6 @@ public class RuleGridImpl extends RemoteGridImpl {
 	 */
 	public RuleGridImpl(String type) {
 		super(ServiceConstants.RULE_SERVICE_ID);
-
 		/*
 		 * Register data
 		 */
@@ -69,7 +68,7 @@ public class RuleGridImpl extends RemoteGridImpl {
 		 * Create data object
 		 */
 		this.dataObject = createDataObject();
-		
+
 		/*
 		 * Create data source
 		 */

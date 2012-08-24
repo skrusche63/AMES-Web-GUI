@@ -35,6 +35,7 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.fnc.product.data.ProductGridImpl;
 import de.kp.ames.web.client.fnc.product.widget.ProductorEditDialog;
+import de.kp.ames.web.client.fnc.rule.data.RuleGridImpl;
 import de.kp.ames.web.client.fnc.rule.widget.EvaluationEditDialog;
 import de.kp.ames.web.client.fnc.rule.widget.ReasonerApplyDialog;
 import de.kp.ames.web.client.fnc.rule.widget.ReasonerCreateDialog;
@@ -106,9 +107,12 @@ public class RuleFactory extends FncFactory {
 	
 	private void replacePlaceHolder(String type) {
 				
-		ProductGridImpl grid = new ProductGridImpl(type);
+		RuleGridImpl grid = new RuleGridImpl(type);
 		grid.setMargin(24);
 
+		grid.setWidth(480);
+		grid.setHeight(480);
+		
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
 
 		ruleGridLayout.removeMember(ruleGridLayout.getMember(2));

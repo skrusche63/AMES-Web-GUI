@@ -45,7 +45,6 @@ import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.fnc.product.ProductService;
 import de.kp.ames.web.client.fnc.rule.RuleService;
 
 public class ReasonerEditDialog extends EditFormDialog {
@@ -55,8 +54,8 @@ public class ReasonerEditDialog extends EditFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 640;
 
 	/**
 	 * Constructor
@@ -79,7 +78,7 @@ public class ReasonerEditDialog extends EditFormDialog {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The Comm Viewer is a form-based window
+		 * The Reasoner Editor is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);

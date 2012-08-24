@@ -38,8 +38,8 @@ public class ReasonerApplyDialog extends ApplyFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 675;
 
 	/**
 	 * Constructor

@@ -17,7 +17,6 @@ package de.kp.ames.web.client.test;
  *
  */
 
-
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
@@ -182,7 +181,7 @@ public class ScFactory {
 			return createProductEditDialog(nid);
 
 		} else if (nid.equals(PREFIX + "product:widget:ProductFormImpl:leaf")) {
-			return createProductorFormImpl(nid);
+			return createProductFormImpl(nid);
 
 		} else if (nid.equals(PREFIX + "product:widget:ProductorApplyDialog:leaf")) {
 			return createProductorApplyDialog(nid);
@@ -531,7 +530,7 @@ public class ScFactory {
 	 * Ns-Layer methods
 	 */
 	private static Tab createNsGridImpl(String nid) {
-		
+
 		VLayout content = NsFactory.createNsGridImpl();
 		
 		Tab tab = createTab(nid, "NsGridImpl", TABLE_ICON, content);	
@@ -632,6 +631,14 @@ public class ScFactory {
 
 	}
 
+	private static Tab createProductFormImpl(String nid) {
+		
+		VLayout content = ProductFactory.getInstance().createProductFormImpl();
+		
+		Tab tab = createTab(nid, "ProductFormImpl", WIDGET_ICON, content);	
+		return tab;
+
+	}
 	private static Tab createProductorFormImpl(String nid) {
 		
 		VLayout content = ProductFactory.getInstance().createProductorFormImpl();

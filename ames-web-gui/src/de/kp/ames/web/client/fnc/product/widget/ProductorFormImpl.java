@@ -41,7 +41,7 @@ import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.core.spec.data.SpecGridImpl;
 import de.kp.ames.web.client.core.spec.handler.SpecGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.transform.TransformController;
-import de.kp.ames.web.client.model.AccessorObject;
+import de.kp.ames.web.client.model.ProductorObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.client.model.SpecObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
@@ -57,7 +57,7 @@ public class ProductorFormImpl extends FormImpl {
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 532;
+	private static int FORM_HEIGHT = 504;
 	
 	/*
 	 * Reference to SlotGrid
@@ -93,7 +93,7 @@ public class ProductorFormImpl extends FormImpl {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 320);
+		scForm.setColWidths(60, 360);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(16);
@@ -250,7 +250,7 @@ public class ProductorFormImpl extends FormImpl {
 	 * @see de.kp.ames.web.client.core.form.FormImpl#createFormItemsAsList()
 	 */
 	public ArrayList<FormItem> createFormItemsAsList() {
-		return new AccessorObject().createFormItemsAsList();
+		return new ProductorObject().createFormItemsAsList();
 	}
 	
 	/**

@@ -56,14 +56,16 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 675;
 
 	/**
 	 * Constructor
 	 */
 	public ProductorApplyDialog() {
 		super(FncGlobals.PRODUCTOR_A_TITLE, FncGlobals.PRODUCTOR_C_SLOGAN);
+		
+		this.setTitle(FncGlobals.ADF_ENGINE);
 		
 		/*
 		 * Button handling
@@ -78,7 +80,7 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The Comm Viewer is a form-based window
+		 * The Productor Engine is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);
@@ -143,7 +145,6 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 		 * Create dialog
 		 */
 		ProductorApplyDialog dialog = new ProductorApplyDialog();
-		dialog.setTitle(name);
 		
 		/*
 		 * Provide request specific information

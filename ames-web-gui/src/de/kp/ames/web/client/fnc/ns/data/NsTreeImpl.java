@@ -38,6 +38,8 @@ package de.kp.ames.web.client.fnc.ns.data;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.fnc.ns.handler.NsTreeMenuHandlerImpl;
 import de.kp.ames.web.client.model.NsObject;
@@ -53,7 +55,7 @@ public class NsTreeImpl extends TreeImpl {
 	 */
 	public NsTreeImpl() {
 		super(ServiceConstants.NAMESPACE_SERVICE_ID);
-
+		
 		/*
 		 * Register data
 		 */

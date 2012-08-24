@@ -209,6 +209,9 @@ public class SymbolFactory extends FncFactory {
 		SymbolTreeImpl tree = new SymbolTreeImpl(type);
 		tree.setMargin(24);
 
+		tree.setWidth(480);
+		tree.setHeight(480);
+
 		tree.setStyleName(GuiStyles.X_BD_STYLE_4);
 
 		symbolTreeLayout.removeMember(symbolTreeLayout.getMember(2));

@@ -52,7 +52,7 @@ public class NsFactory extends FncFactory {
          * Label
          */
         HTMLPane pane = getTeaser("View all registered namespaces in the NsGrid.", 40);
-        
+
         /*
          * Grid
          */       
@@ -88,8 +88,8 @@ public class NsFactory extends FncFactory {
 		/*
 		 * Dimensions
 		 */
-		nsTree.setWidth(240);
-		nsTree.setHeight(640);
+		nsTree.setWidth(480);
+		nsTree.setHeight(480);
 		
 		/*
 		 * Style

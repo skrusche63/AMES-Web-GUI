@@ -49,6 +49,7 @@ public class RegistryObject extends ExtensibleObject {
 	 * Constructor
 	 */
 	public RegistryObject() {
+		super();
 	}
 
 	/* (non-Javadoc)

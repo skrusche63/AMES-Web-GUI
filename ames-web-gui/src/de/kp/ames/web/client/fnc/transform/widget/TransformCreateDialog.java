@@ -60,8 +60,8 @@ public class TransformCreateDialog extends CreateFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 640;
 
 	public TransformCreateDialog() {
 		super(FncGlobals.TRANSFORM_C_TITLE, FncGlobals.TRANSFORM_C_SLOGAN);
@@ -79,7 +79,7 @@ public class TransformCreateDialog extends CreateFormDialog {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The Comm Viewer is a form-based window
+		 * The Transform Editor is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);

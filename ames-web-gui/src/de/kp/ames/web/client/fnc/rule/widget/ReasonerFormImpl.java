@@ -57,7 +57,7 @@ public class ReasonerFormImpl extends FormImpl {
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 532;
+	private static int FORM_HEIGHT = 504;
 	
 	/*
 	 * Reference to SlotGrid
@@ -93,7 +93,7 @@ public class ReasonerFormImpl extends FormImpl {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 320);
+		scForm.setColWidths(60, 360);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(16);

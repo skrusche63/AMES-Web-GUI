@@ -35,6 +35,7 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.fnc.product.data.ProductGridImpl;
 import de.kp.ames.web.client.fnc.product.widget.ProductEditDialog;
+import de.kp.ames.web.client.fnc.product.widget.ProductFormImpl;
 import de.kp.ames.web.client.fnc.product.widget.ProductorApplyDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorCreateDialog;
 import de.kp.ames.web.client.fnc.product.widget.ProductorEditDialog;
@@ -105,6 +106,9 @@ public class ProductFactory extends FncFactory {
 				
 		ProductGridImpl grid = new ProductGridImpl(type);
 		grid.setMargin(24);
+
+		grid.setWidth(480);
+		grid.setHeight(480);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
 
@@ -211,6 +215,33 @@ public class ProductFactory extends FncFactory {
 			}
 			
 		});
+	
+	}
+
+	public VLayout createProductFormImpl() {
+
+        VLayout layout = new VLayout();
+		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
+
+        /*
+         * Label
+         */
+        HTMLPane pane = getTeaser("This is an example of a Product Form.", 40);
+
+        /*
+         * Product Form
+         */
+        ProductFormImpl productForm = new ProductFormImpl();
+		productForm.setMargin(24);
+		
+		/*
+		 * Style
+		 */
+		productForm.setBackgroundColor("#F2F2F4");
+		productForm.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		layout.setMembers(pane,productForm);
+		return layout;
 	
 	}
 

@@ -59,8 +59,8 @@ public class NsGridImpl extends RemoteGridImpl {
 
 		this.setSelectionType(SelectionStyle.MULTIPLE);
         this.setSelectionAppearance(SelectionAppearance.CHECKBOX);  
-		
-		/*
+
+        /*
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
@@ -79,7 +79,7 @@ public class NsGridImpl extends RemoteGridImpl {
 		 * Create grid fields
 		 */
 		this.setFields(createGridFields());
-		
+
 	}
 
 	/**

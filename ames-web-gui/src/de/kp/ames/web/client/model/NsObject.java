@@ -52,6 +52,16 @@ public class NsObject extends RegistryPackage {
 	}
 
 	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.ExtensibleObject#createTreeGridFieldsAsArray()
+	 */
+	public TreeGridField[] createTreeGridFieldsAsArray() {
+
+		ArrayList<TreeGridField> fields = createTreeGridFieldsAsList();
+		return (TreeGridField[])fields.toArray(new TreeGridField [fields.size()]);
+				
+	}
+
+	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.model.core.RegistryObject#createTreeGridFieldsAsList()
 	 */
 	public ArrayList<TreeGridField> createTreeGridFieldsAsList() {

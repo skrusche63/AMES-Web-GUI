@@ -27,6 +27,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.model.core.ExtensibleObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class PersonNameObject extends ExtensibleObject {
 
@@ -47,7 +48,7 @@ public class PersonNameObject extends ExtensibleObject {
 		/*
 		 * Build first name
 		 */
-		TextItem firstNameItem = GuiFormFactory.createScTextItem("<b>First Name</b>:", JaxrConstants.RIM_FIRST_NAME, LABEL_STYLE, 240);
+		TextItem firstNameItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_FIRST_NAME_LABEL, JaxrConstants.RIM_FIRST_NAME, LABEL_STYLE, 240);
 		items.add(firstNameItem);
 		
 		items.add(spacer);
@@ -56,7 +57,7 @@ public class PersonNameObject extends ExtensibleObject {
 		/*
 		 * Build middle name
 		 */
-		TextItem middleNameItem = GuiFormFactory.createScTextItem("<b>Middle Name</b>:", JaxrConstants.RIM_MIDDLE_NAME, LABEL_STYLE, 240);
+		TextItem middleNameItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_MIDDLE_NAME_LABEL, JaxrConstants.RIM_MIDDLE_NAME, LABEL_STYLE, 240);
 		items.add(middleNameItem);
 		
 		items.add(spacer);
@@ -65,7 +66,7 @@ public class PersonNameObject extends ExtensibleObject {
 		/*
 		 * Build last name
 		 */
-		TextItem lastNameItem = GuiFormFactory.createScTextItem("<b>Last Name</b>:", JaxrConstants.RIM_LAST_NAME, LABEL_STYLE, 280);
+		TextItem lastNameItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_LAST_NAME_LABEL, JaxrConstants.RIM_LAST_NAME, LABEL_STYLE, 280);
 		items.add(lastNameItem);
 		
 		items.add(spacer);
@@ -74,7 +75,7 @@ public class PersonNameObject extends ExtensibleObject {
 		/*
 		 * Build email
 		 */
-		TextItem emailItem = GuiFormFactory.createScTextItem("<b>Email Address</b>:", JaxrConstants.RIM_EMAIL, LABEL_STYLE, 280);
+		TextItem emailItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_EMAIL_LABEL, JaxrConstants.RIM_EMAIL, LABEL_STYLE, 280);
 		items.add(emailItem);
 
 		return items;

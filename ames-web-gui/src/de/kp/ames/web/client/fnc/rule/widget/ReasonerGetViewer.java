@@ -34,8 +34,8 @@ public class ReasonerGetViewer extends ViewerImpl {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 640;
 
 	/**
 	 * Constructor
@@ -58,7 +58,7 @@ public class ReasonerGetViewer extends ViewerImpl {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The Comm Viewer is a form-based window
+		 * The Reasoner Viewer is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);

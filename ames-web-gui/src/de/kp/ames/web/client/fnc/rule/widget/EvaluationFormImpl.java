@@ -17,7 +17,6 @@ package de.kp.ames.web.client.fnc.rule.widget;
  *
  */
 
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -32,7 +31,6 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.model.EvaluationObject;
-import de.kp.ames.web.client.model.ProductObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
@@ -42,7 +40,7 @@ public class EvaluationFormImpl extends FormImpl {
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 352;
+	private static int FORM_HEIGHT = 300;
 
 	public EvaluationFormImpl() {
 

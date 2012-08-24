@@ -164,7 +164,7 @@ public class ScData {
                 new ScNode("SymbolGridImpl", PREFIX + "symbol:data:SymbolGridImpl:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
                 new ScNode("SymbolTreeImpl", PREFIX + "symbol:data:SymbolTreeImpl:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
                 new ScNode("Widget",         PREFIX + "symbol:widget:folder",            PREFIX + "symbol:folder", "silk/folder.png"),
-                new ScNode("SymbolViewer",   PREFIX + "symbol:widget:SymbolViewer:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
+                new ScNode("SymbolViewer",   PREFIX + "symbol:widget:SymbolViewer:leaf", PREFIX + "symbol:widget:folder", "silk/table.png"),
 
                 /*
                  * Transform-Layer

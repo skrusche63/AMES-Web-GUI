@@ -42,6 +42,7 @@ public class ServiceObject extends RegistryObject {
 	 * Constructor
 	 */
 	public ServiceObject() {
+		super();
 	}
 
 }

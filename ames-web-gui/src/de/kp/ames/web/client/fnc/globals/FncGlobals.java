@@ -20,6 +20,7 @@ package de.kp.ames.web.client.fnc.globals;
 public class FncGlobals {
 	
 	public static String ADF_EDITOR = "ADF - Editor";
+	public static String ADF_ENGINE = "ADF - Engine";
 	public static String ADF_VIEWER = "ADF - Viewer";
 		
 	/*

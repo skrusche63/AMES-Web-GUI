@@ -17,7 +17,6 @@ package de.kp.ames.web.client.test.transform;
  *
  */
 
-
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
@@ -27,6 +26,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.fnc.transform.data.TransformGridImpl;
+import de.kp.ames.web.client.fnc.transform.handler.TransformGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.transform.widget.TransformCreateDialog;
 import de.kp.ames.web.client.fnc.transform.widget.TransformFormImpl;
 import de.kp.ames.web.client.style.GuiStyles;
@@ -57,6 +57,14 @@ public class TransformFactory extends FncFactory {
 		grid.setHeight(480);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Transformator);
+		
+		TransformGridMenuHandlerImpl menuHandler = new TransformGridMenuHandlerImpl(grid);
+		menuHandler.setParams(attributes);
+		
+		grid.addMenuHandler(menuHandler);
 
 		layout.setMembers(pane, grid);
 		return layout;

@@ -36,11 +36,14 @@ package de.kp.ames.web.client.test.user;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.user.data.UserGridImpl;
+import de.kp.ames.web.client.fnc.user.handler.UserGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.user.widget.UserEditDialog;
 import de.kp.ames.web.client.fnc.user.widget.UserFormImpl;
 import de.kp.ames.web.client.fnc.user.widget.UserGetViewer;
@@ -48,6 +51,8 @@ import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
 import de.kp.ames.web.client.test.data.ScData;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class UserFactory extends FncFactory {
 	
@@ -78,6 +83,14 @@ public class UserFactory extends FncFactory {
 		grid.setHeight(480);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_User);
+		
+		UserGridMenuHandlerImpl menuHandler = new UserGridMenuHandlerImpl(grid);
+		menuHandler.setParams(attributes);
+		
+		grid.addMenuHandler(menuHandler);
 
 		layout.setMembers(pane, grid);
 		return layout;

@@ -82,7 +82,7 @@ public class ExtensibleObject implements DataObject {
 	 * @see de.kp.ames.web.client.model.DataObject#createDataFieldsAsArray()
 	 */
 	public DataSourceField[] createDataFieldsAsArray() {
-		
+
 		ArrayList<DataSourceField> fields = createDataFieldsAsList();
 		return (DataSourceField[])fields.toArray(new DataSourceField [fields.size()]);
 		

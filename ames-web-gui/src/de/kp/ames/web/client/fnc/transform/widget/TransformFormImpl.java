@@ -67,7 +67,7 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 532;
+	private static int FORM_HEIGHT = 504;
 
 	/*
 	 * Reference to the UploadGrid as transformators
@@ -105,7 +105,7 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 320);
+		scForm.setColWidths(60, 360);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(8);
@@ -141,6 +141,7 @@ public class TransformFormImpl extends FormImpl implements TransformListener {
 		 * Build UploadGrid
 		 */
 		tabSet.addTab(createUploadTab());
+		layout.addMember(tabSet);
 		
 		/*
 		 * Build ClassificiationGrid

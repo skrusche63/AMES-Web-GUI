@@ -49,7 +49,12 @@ public class TreeFieldFactory {
 	 * @return
 	 */
 	public static TreeGridField createRimNameField() {
-		return createRimNameField(160);
+
+		TreeGridField nameField = new TreeGridField(JaxrConstants.RIM_NAME, LabelConstants.NAME_LABEL);
+		nameField.setWidth("*");
+		
+		return nameField;
+	
 	}
 
 	/**

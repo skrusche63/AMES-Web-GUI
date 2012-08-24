@@ -17,7 +17,6 @@ package de.kp.ames.web.client.fnc.rule.widget;
  *
  */
 
-
 import java.util.HashMap;
 
 import com.smartgwt.client.util.SC;
@@ -31,11 +30,6 @@ import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.rule.RuleService;
 import de.kp.ames.web.client.fnc.rule.event.RuleEventManager;
 import de.kp.ames.web.client.fnc.rule.event.RuleListener;
-import de.kp.ames.web.client.fnc.transform.TransformService;
-import de.kp.ames.web.client.fnc.transform.event.TransformEventManager;
-import de.kp.ames.web.client.fnc.transform.event.TransformListener;
-import de.kp.ames.web.client.fnc.transform.widget.TransformCreateDialog;
-import de.kp.ames.web.client.fnc.transform.widget.TransformFormImpl;
 
 public class ReasonerCreateDialog extends CreateFormDialog {
 	
@@ -44,8 +38,8 @@ public class ReasonerCreateDialog extends CreateFormDialog {
 	 * of an interactive rendering approach to achieve
 	 * the best user experience
 	 */
-	private static int WIDTH  = 530;
-	private static int HEIGHT = 630;
+	private static int WIDTH  = 525;
+	private static int HEIGHT = 640;
 
 	public ReasonerCreateDialog() {
 		super(FncGlobals.REASONER_C_TITLE, FncGlobals.REASONER_C_SLOGAN);
@@ -63,7 +57,7 @@ public class ReasonerCreateDialog extends CreateFormDialog {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The dialog is a form-based window
+		 * The Reasoner Editor is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);

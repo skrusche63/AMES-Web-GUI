@@ -47,7 +47,7 @@ public class ProductorApplyFormImpl extends FormImpl {
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 532;
+	private static int FORM_HEIGHT = 504;
 	
 	/*
 	 * Reference to NsGrid
@@ -78,7 +78,7 @@ public class ProductorApplyFormImpl extends FormImpl {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 320);
+		scForm.setColWidths(60, 360);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(16);
@@ -114,6 +114,7 @@ public class ProductorApplyFormImpl extends FormImpl {
 		 * Build Nsrid
 		 */
 		tabSet.addTab(createNamespaceTab());
+		layout.addMember(tabSet);
 		
 		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);

@@ -24,9 +24,12 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.grid.ListGridField;
 
 import de.kp.ames.web.client.core.form.GuiFormFactory;
+import de.kp.ames.web.client.core.grid.GridFieldFactory;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
@@ -71,7 +74,7 @@ public class RegistryPackage extends RegistryObject {
 		/*
 		 * Build name
 		 */
-		TextItem nameItem = GuiFormFactory.createScTextItem("<b>Name</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		TextItem nameItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_NAME_LABEL, JaxrConstants.RIM_NAME, LABEL_STYLE, 360);
 		items.add(nameItem);
 		
 		items.add(spacer);
@@ -80,10 +83,36 @@ public class RegistryPackage extends RegistryObject {
 		/*
 		 * Build description
 		 */
-		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
+		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem(LabelConstants.FORM_DESC_LABEL, JaxrConstants.RIM_DESC, LABEL_STYLE, 360);
 		items.add(descItem);
 
 		return items;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.model.core.ExtensibleObject#createListGridFieldsAsList()
+	 */
+	public ArrayList<ListGridField> createListGridFieldsAsList() {
+
+		ArrayList<ListGridField> fields = new ArrayList<ListGridField>();
+
+		/*
+		 * RegistryPackage icon
+		 */
+		fields.add(GridFieldFactory.createRimIconField());
+		
+		/*
+		 * RegistryPackage name
+		 */
+		fields.add(GridFieldFactory.createRimNameField(160));
+
+		/*
+		 * RegistryPackage author
+		 */
+		fields.add(GridFieldFactory.createRimAuthorField("*"));
+		
+		return fields;
 		
 	}
 

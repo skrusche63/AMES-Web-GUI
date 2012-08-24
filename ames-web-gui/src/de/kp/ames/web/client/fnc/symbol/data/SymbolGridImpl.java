@@ -116,6 +116,7 @@ public class SymbolGridImpl extends TileGrid {
 		 * No border style
 		 */
 		this.setBorder("0");
+		this.setShowEdges(false);
 		
 		/*
 		 * Dimensions
@@ -183,7 +184,7 @@ public class SymbolGridImpl extends TileGrid {
 	public void afterDraw(DrawEvent event) {
 
 		if (this.attributes.isEmpty()) return;
-		this.fetchData();
+		//this.fetchData();
 	
 	}
 
