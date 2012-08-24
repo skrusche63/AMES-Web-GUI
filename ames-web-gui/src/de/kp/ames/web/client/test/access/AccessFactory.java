@@ -149,6 +149,9 @@ public class AccessFactory extends FncFactory {
 		AccessGridImpl grid = new AccessGridImpl(type, item);
 		grid.setMargin(24);
 
+		grid.setWidth(480);
+		grid.setHeight(480);
+
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
 
 		accessGridLayout.removeMember(accessGridLayout.getMember(2));

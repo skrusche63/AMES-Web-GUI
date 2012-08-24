@@ -38,6 +38,7 @@ package de.kp.ames.web.client.fnc.access.data;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.types.ExpansionMode;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.fnc.access.handler.AccessGridMenuHandlerImpl;
 import de.kp.ames.web.client.model.AccessorObject;
@@ -58,6 +59,19 @@ public class AccessGridImpl extends RemoteGridImpl {
 	 */
 	public AccessGridImpl(String type, String item) {
 		super(ServiceConstants.ACCESS_SERVICE_ID);
+
+		/*
+		 * Set a detail field for an AccessorObject as for
+		 * a RemoteObject no such field is supported
+		 */
+		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {	
+
+			this.setCanExpandRecords(true);
+			this.setExpansionMode(ExpansionMode.DETAIL_FIELD);
+
+			this.setDetailField(JaxrConstants.RIM_DESC);
+
+		}
 		
 		/*
 		 * Register data
@@ -75,17 +89,17 @@ public class AccessGridImpl extends RemoteGridImpl {
 		 * Create data object
 		 */
 		this.dataObject = createDataObject();
-
+		
 		/*
 		 * Create data source
 		 */
 		this.createScGridDS();
-
+		
 		/*
 		 * Create grid fields
 		 */
 		this.setFields(createGridFields());
-		
+
 		/*
 		 * Add Menu Handler
 		 */
@@ -93,7 +107,7 @@ public class AccessGridImpl extends RemoteGridImpl {
 		menuHandler.setParams(attributes);
 
 		this.addMenuHandler(menuHandler);
-		
+
 	}
 
 	/**
@@ -125,15 +139,9 @@ public class AccessGridImpl extends RemoteGridImpl {
 	 */
 	public String getDetailFieldName() {
 		/*
-		 * Distinguish between accessor and remote object
+		 * The description field is NULL for RemoteObjects
 		 */
-		String type = attributes.get(MethodConstants.ATTR_TYPE);
-		if (type.equals(ClassificationConstants.FNC_ID_Accessor)) {	
-			return JaxrConstants.RIM_DESC;
-		}
-		
-		return null;
-		
+		return null;		
 	}
 	
 }

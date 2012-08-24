@@ -229,8 +229,11 @@ public class BaseDialog extends Window implements RemoveHandler {
 		 * Create content
 		 */
 		VLayout wrapper = new VLayout();
+		wrapper.setShowEdges(false);
 		
+		wrapper.setMembersMargin(0);
 		wrapper.setLayoutMargin(0);
+
 		wrapper.setStyleName(GuiStyles.X_BD_STYLE_2);
 
 		/*
@@ -238,13 +241,8 @@ public class BaseDialog extends Window implements RemoveHandler {
 		 * content widget or the content that is computed
 		 * via 'createContent()'
 		 */
-		if (this.content != null) {
-			wrapper.addMember(content);
-		
-		} else { 
-			wrapper.addMember(createContent());
-		
-		}
+		if (this.content == null) this.content = createContent();
+		wrapper.addMember(content);
 		
 		vLayout.addMember(wrapper);
 		

@@ -94,7 +94,7 @@ public class RemoteGridImpl extends GridImpl {
 	 */
 	public RemoteGridImpl(String base, String sid) {
 		super();
-		
+
 		/*
 		 * Register basic connection parameters
 		 */

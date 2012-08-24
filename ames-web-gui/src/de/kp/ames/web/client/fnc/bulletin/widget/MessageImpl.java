@@ -82,8 +82,8 @@ public class MessageImpl extends CreateFormDialog {
 		 */
 		this.jValue = jValue;
 		
-		this.setShowCloseButton(false);
-		this.setShowMinimizeButton(false);
+		this.setShowCloseButton(true);
+		this.setShowMinimizeButton(true);
 		
 		/*
 		 * Set dimensions
@@ -92,7 +92,7 @@ public class MessageImpl extends CreateFormDialog {
 		this.setHeight(HEIGHT);
 		
 		/*
-		 * The Comm Viewer is a form-based window
+		 * The Posting Editor is a form-based window
 		 * and therefore equipped with a fixed size
 		 */
 		this.setCanDragResize(false);

@@ -42,19 +42,19 @@ public class PostGridMenuHandlerImpl extends GridMenuHandlerImpl {
 	public MenuItem[] createMenuItems(Record record) {
 		
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-
-		/*
-		 * Build comment
-		 */
-		CommentCreateImpl createAction = new CommentCreateImpl(grid, record);
-		createAction.setParams(this.getParams());
-		
-		CommentMenuItem comment = new CommentMenuItem();
-		comment.addAction(createAction);
-		
-		items.add(comment);
 		
 		if (record != null) {
+
+			/*
+			 * Build comment
+			 */
+			CommentCreateImpl createAction = new CommentCreateImpl(grid, record);
+			createAction.setParams(this.getParams());
+			
+			CommentMenuItem comment = new CommentMenuItem();
+			comment.addAction(createAction);
+			
+			items.add(comment);
 		
 			/*
 			 * Separate create from get all

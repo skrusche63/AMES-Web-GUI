@@ -55,6 +55,7 @@ import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class MessageFormImpl extends FormImpl {
 	
@@ -118,7 +119,7 @@ public class MessageFormImpl extends FormImpl {
 		 * From field (this is a GUI field only)
 		 */
 		
-		from = GuiFormFactory.createScTextItem("<b>From</b>:", JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
+		from = GuiFormFactory.createScTextItem(LabelConstants.FORM_FROM_LABEL, JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
 
 		UserController uctrl = UserController.getInstance();		
 		from.setValue(uctrl.getUserName());
@@ -126,12 +127,12 @@ public class MessageFormImpl extends FormImpl {
 		/*
 		 * To field (this is a GUI field only)
 		 */
-		to = GuiFormFactory.createScTextItem("<b>To</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		to = GuiFormFactory.createScTextItem(LabelConstants.FORM_TO_LABEL, JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
 
 		/*
 		 * Subject field
 		 */
-		subject = GuiFormFactory.createScTextItem("<b>Subject</b>:", RIM_NAME, LABEL_STYLE, 450);
+		subject = GuiFormFactory.createScTextItem(LabelConstants.FORM_SUBJECT_LABEL, RIM_NAME, LABEL_STYLE, 450);
 
 		/*
 		 * Space for rendering purpose only

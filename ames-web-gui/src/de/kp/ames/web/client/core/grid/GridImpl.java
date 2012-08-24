@@ -99,7 +99,6 @@ public class GridImpl extends ListGrid implements Grid {
 	 * Constructor
 	 */
 	public GridImpl() {	
-
 		/*
 		 * No border style
 		 */

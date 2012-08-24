@@ -42,16 +42,16 @@ public class FncGlobals {
 	/*
 	 * Access-Layer
 	 */
-	public static String ACCESS_C_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
+	public static String ACCESS_C_TITLE  = "Accessor Editor";;
 	public static String ACCESS_C_SLOGAN = "Use this widget to create a new accessor.";
 
-	public static String ACCESS_E_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Editor";;
+	public static String ACCESS_E_TITLE  = "Accessor Editor";;
 	public static String ACCESS_E_SLOGAN = "Use this widget to edit a certain accessor.";
 
-	public static String ACCESS_G_TITLE  = GUIGlobals.APP_TITLE + ": Accessor Viewer";
+	public static String ACCESS_G_TITLE  = "Accessor Viewer";
 	public static String ACCESS_G_SLOGAN = "Use this widget to view a certain accessor.";
 
-	public static String REMOTE_G_TITLE  = GUIGlobals.APP_TITLE + ": Remote Viewer";
+	public static String REMOTE_G_TITLE  = "Remote Viewer";
 	public static String REMOTE_G_SLOGAN = "Use this widget to view a certain remote object.";
 
 	/*

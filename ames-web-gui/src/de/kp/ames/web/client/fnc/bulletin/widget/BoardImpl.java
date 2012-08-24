@@ -46,8 +46,10 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
 import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
 import de.kp.ames.web.client.fnc.bulletin.event.ContactListener;
+import de.kp.ames.web.client.fnc.bulletin.handler.PostGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.handler.RemoveHandler;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -84,7 +86,18 @@ public class BoardImpl extends VLayout implements ContactListener, RemoveHandler
 		 */
 		String recipient = null;
 		grid = new PostGridImpl(recipient);
+
+		/*
+		 * Assign context specific menu handler
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Posting);
 		
+		PostGridMenuHandlerImpl menuHandler = new PostGridMenuHandlerImpl();
+		menuHandler.setParams(attributes);
+		
+		grid.addMenuHandler(menuHandler);
+
 		this.setMembers(label, grid);
 		
 		/*

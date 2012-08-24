@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<module>
+<module rename-to='adf_client'>
   
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
@@ -19,7 +19,9 @@
   <!-- Other module inherits                                      -->
   <inherits name="com.smartgwt.SmartGwt"/>
   <!-- <inherits name="com.smartclient.theme.fleet.Fleet"/> -->
- 
+  <!-- Access to Developer Console                                -->
+  <inherits name="com.smartgwt.tools.SmartGwtTools"/>
+  
   <inherits name='de.kp.ames.web.shared.constants'/> 
   <inherits name='de.kp.ames.map.openlayers'/> 
   

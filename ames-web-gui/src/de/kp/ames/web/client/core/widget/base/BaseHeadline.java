@@ -36,6 +36,7 @@ package de.kp.ames.web.client.core.widget.base;
  *
  */
 
+import com.smartgwt.client.types.BkgndRepeat;
 import com.smartgwt.client.widgets.HTMLPane;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
@@ -60,7 +61,10 @@ public class BaseHeadline extends HTMLPane {
 		this.setStyleName(GuiStyles.X_TOPLINE);
 		
 		this.setShowEdges(false);
-		
+
+		this.setBackgroundImage(GuiStyles.APP_BG_IMAGE);
+		this.setBackgroundRepeat(BkgndRepeat.REPEAT);
+
 		this.setWidth100();
 		this.setHeight(64);
 

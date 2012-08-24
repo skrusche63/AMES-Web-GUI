@@ -40,7 +40,6 @@ package de.kp.ames.web.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.json.client.JSONValue;
-
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.apps.MainController;
 import de.kp.ames.web.client.core.apps.MainService;
@@ -62,13 +61,13 @@ public class main implements EntryPoint {
 		 * native JavaScript
 		 */
 		UploadEventManager.exportStaticMethods();
-		
+
 		/*
 		 * Call main functionality either the showcase
 		 * or the operational one
 		 */
 		if (CoreGlobals.SHOWCASE_FLAG == true) {
-			
+
 			/*
 			 * Showcase use of ADF
 			 */

@@ -25,8 +25,8 @@ iframe {border:0;}
 .x-control-over {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#f2f4f4;text-align:center;cursor:pointer;background:#708491;}
 
 .x-header {background-color:#C6D3D3;border:0;border-bottom:1px solid #C0C0C0;}
-.x-headline {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#708491;}
-.x-topline {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#708491;background-color:#f2f4f4;}
+.x-headline {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#777777;}
+.x-topline {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#777777;}
 
 .x-user {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:right;}
 
