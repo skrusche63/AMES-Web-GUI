@@ -41,18 +41,18 @@ public class IconConstants {
 	public static String ICON_APPLY          = "";
 	public static String ICON_ASSIGN         = "";
 	public static String ICON_CATEGORY       = "";
-	public static String ICON_COMMENT        = "";
-	public static String ICON_COMMENTS       = "";
+	public static String ICON_COMMENT        = "silk/comment.png";
+	public static String ICON_COMMENTS       = "silk/comments.png";
 	public static String ICON_CREATE         = "silk/add.png";
 	public static String ICON_DELETE         = "silk/cross.png";
 	public static String ICON_DOWNLOAD       = "gnome/download.png";
-	public static String ICON_EDIT           = "";
+	public static String ICON_EDIT           = "silk/pencil.png";
 	public static String ICON_GET            = "";
 	public static String ICON_POST           = "";
 	public static String ICON_RESPONSIBILITY = "";
 	public static String ICON_ROLE           = "";
 	public static String ICON_SYMBOL         = "";
 	public static String ICON_UPLOAD         = "";
-	public static String ICON_VIEW           = "";
+	public static String ICON_VIEW           = "silk/application_view_tile.png";
 	
 }

@@ -28,6 +28,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.model.core.ExtensibleObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class GroupNameObject extends ExtensibleObject {
 
@@ -48,7 +49,7 @@ public class GroupNameObject extends ExtensibleObject {
 		/*
 		 * Build name
 		 */
-		TextItem nameItem = GuiFormFactory.createScTextItem("<b>Name</b>:", JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		TextItem nameItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_NAME_LABEL, JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
 		items.add(nameItem);
 		
 		items.add(spacer);
@@ -57,7 +58,7 @@ public class GroupNameObject extends ExtensibleObject {
 		/*
 		 * Build description
 		 */
-		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem("<b>Description</b>:", JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
+		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem(LabelConstants.FORM_DESC_LABEL, JaxrConstants.RIM_DESC, LABEL_STYLE, 280);
 		items.add(descItem);
 
 		items.add(spacer);
@@ -66,7 +67,7 @@ public class GroupNameObject extends ExtensibleObject {
 		/*
 		 * Build email
 		 */
-		TextItem emailItem = GuiFormFactory.createScTextItem("<b>Email Address</b>:", JaxrConstants.RIM_EMAIL, LABEL_STYLE, 280);
+		TextItem emailItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_EMAIL_LABEL, JaxrConstants.RIM_EMAIL, LABEL_STYLE, 280);
 		items.add(emailItem);
 
 		return items;

@@ -17,9 +17,6 @@ package de.kp.ames.web.client.fnc.globals;
  *
  */
 
-
-import de.kp.ames.web.client.core.globals.GUIGlobals;
-
 public class FncGlobals {
 	
 	public static String ADF_EDITOR = "ADF - Editor";
@@ -63,7 +60,7 @@ public class FncGlobals {
 	public static String COMMENT_TITLE  = "Comment";
 	public static String COMMENT_SLOGAN = "Use this widget to comment a certain posting.";
 
-	public static String COMMENT_G_TITLE  = GUIGlobals.APP_TITLE + ": Comment Viewer";
+	public static String COMMENT_G_TITLE  = "Comment Viewer";
 	public static String COMMENT_G_SLOGAN = "Use this widget to view posting specific comments.";
 
 	public static String COMMENTS_V_TITLE = "View comments";
@@ -83,7 +80,7 @@ public class FncGlobals {
 	public static String MAIL_TITLE  = "Mail Communicator";
 	public static String MAIL_SLOGAN = "Use this communicator to send, receive and share mail messages.";
 
-	public static String COMM_V_TITLE  = GUIGlobals.APP_TITLE + ": Comm Viewer";
+	public static String COMM_V_TITLE  = "Comm Viewer";
 	public static String COMM_V_SLOGAN = "Use this widget to view a certain communication object.";
 
 	public static String COMM_V_CHAT = "View Chat Message";
@@ -92,28 +89,28 @@ public class FncGlobals {
 	/*
 	 * Dms-Layer
 	 */
-	public static String DMS_C_TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
+	public static String DMS_C_TITLE  = "Dms Editor";
 	public static String DMS_C_SLOGAN = "Use this widget to create a Dms entry.";
 
-	public static String DMS_E_TITLE  = GUIGlobals.APP_TITLE + ": Dms Editor";
+	public static String DMS_E_TITLE  = "Dms Editor";
 	public static String DMS_E_SLOGAN = "Use this widget to edit a certain Dms entry.";
 
-	public static String DMS_G_TITLE   = GUIGlobals.APP_TITLE + ": Dms Viewer";
+	public static String DMS_G_TITLE   = "Dms Viewer";
 	public static String DMS_G_SLOGAN = "Use this widget to view a certain Dms Entry.";
 
 	/*
 	 * Group-Layer
 	 */
-	public static String CATEGORY_E_TITLE  = GUIGlobals.APP_TITLE + ": Category Editor";
+	public static String CATEGORY_E_TITLE  = "Category Editor";
 	public static String CATEGORY_E_SLOGAN = "Use this widget to assign a category to a certain group.";
 
-	public static String GROUP_C_TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
+	public static String GROUP_C_TITLE  = "Group Editor";
 	public static String GROUP_C_SLOGAN = "Use this widget to create a new group.";
 
-	public static String GROUP_E_TITLE  = GUIGlobals.APP_TITLE + ": Group Editor";
+	public static String GROUP_E_TITLE  = "Group Editor";
 	public static String GROUP_E_SLOGAN = "Use this widget to edit a certain group.";
 	
-	public static String GROUP_G_TITLE  = GUIGlobals.APP_TITLE + ": Group Viewer";
+	public static String GROUP_G_TITLE  = "Group Viewer";
 	public static String GROUP_G_SLOGAN = "Use this widget to view group specific information.";
 
 	public static String CATEGORY_ERROR = "Please select a certain category.";
@@ -123,7 +120,7 @@ public class FncGlobals {
 	 */
 	public static String MAP_TITLE 	  = "Map Layer Selector";
 
-	public static String MAP_C_TITLE  = GUIGlobals.APP_TITLE + ": " + MAP_TITLE;
+	public static String MAP_C_TITLE  = MAP_TITLE;
 	public static String MAP_C_SLOGAN = "Use this widget to select a map layer.";
 	
 	public static String LAYER_ERROR = "Please select one layer.";
@@ -131,13 +128,13 @@ public class FncGlobals {
 	/*
 	 * Ns-Layer
 	 */
-	public static String NS_C_TITLE  = GUIGlobals.APP_TITLE + ": Ns Editor";;
+	public static String NS_C_TITLE  = "Ns Editor";;
 	public static String NS_C_SLOGAN = "Use this widget to create a new namespace.";
 
-	public static String NS_E_TITLE  = GUIGlobals.APP_TITLE + ": Ns Editor";;
+	public static String NS_E_TITLE  = "Ns Editor";;
 	public static String NS_E_SLOGAN = "Use this widget to edit a certain namespace.";
 
-	public static String NS_G_TITLE  = GUIGlobals.APP_TITLE + ": NS Viewer";
+	public static String NS_G_TITLE  = "NS Viewer";
 	public static String NS_G_SLOGAN = "Use this widget to view a certain namespace.";
 
 	/*
@@ -149,22 +146,22 @@ public class FncGlobals {
 	/*
 	 * Product-Layer
 	 */
-	public static String PRODUCT_E_TITLE  = GUIGlobals.APP_TITLE + ": Product Editor";;
+	public static String PRODUCT_E_TITLE  = "Product Editor";;
 	public static String PRODUCT_E_SLOGAN = "Use this widget to edit a certain product.";
 
-	public static String PRODUCT_V_TITLE  = GUIGlobals.APP_TITLE + ": Product Viewer";
+	public static String PRODUCT_V_TITLE  = "Product Viewer";
 	public static String PRODUCT_V_SLOGAN = "Use this widget to view a certain product.";
 
-	public static String PRODUCTOR_A_TITLE  = GUIGlobals.APP_TITLE + ": Productor Engine";;
+	public static String PRODUCTOR_A_TITLE  = "Productor Engine";;
 	public static String PRODUCTOR_A_SLOGAN = "Use this widget to apply a certain productor.";
 
-	public static String PRODUCTOR_C_TITLE  = GUIGlobals.APP_TITLE + ": Productor Editor";;
+	public static String PRODUCTOR_C_TITLE  = "Productor Editor";;
 	public static String PRODUCTOR_C_SLOGAN = "Use this widget to create a new productor.";
 
-	public static String PRODUCTOR_E_TITLE  = GUIGlobals.APP_TITLE + ": Productor Editor";;
+	public static String PRODUCTOR_E_TITLE  = "Productor Editor";;
 	public static String PRODUCTOR_E_SLOGAN = "Use this widget to edit a certain productor.";
 
-	public static String PRODUCTOR_G_TITLE  = GUIGlobals.APP_TITLE + ": Productor Viewer";;
+	public static String PRODUCTOR_G_TITLE  = "Productor Viewer";;
 	public static String PRODUCTOR_G_SLOGAN = "Use this widget to view a certain productor.";
 	
 	public static String NAMESPACE_ERROR = "Please select a certain namespace.";
@@ -172,10 +169,10 @@ public class FncGlobals {
 	/*
 	 * Role-Layer
 	 */
-	public static String RESPONSIBILITY_C_TITLE  = GUIGlobals.APP_TITLE + ": Responsibility Editor";;
+	public static String RESPONSIBILITY_C_TITLE  = "Responsibility Editor";;
 	public static String RESPONSIBILITY_C_SLOGAN = "Use this widget to create a new responsibility.";
 
-	public static String RESPONSIBILITY_G_TITLE  = GUIGlobals.APP_TITLE + ": Responsibility Viewer";;
+	public static String RESPONSIBILITY_G_TITLE  = "Responsibility Viewer";;
 	public static String RESPONSIBILITY_G_SLOGAN = "Use this widget to view assigned namespaces.";
 	
 	public static String RESPONSIBILITY_ERROR = "Please select a certain namespace.";
@@ -192,41 +189,41 @@ public class FncGlobals {
 	/*
 	 * Rule-Layer
 	 */
-	public static String EVALUATION_E_TITLE  = GUIGlobals.APP_TITLE + ": Evaluation Editor";;
+	public static String EVALUATION_E_TITLE  = "Evaluation Editor";;
 	public static String EVALUATION_E_SLOGAN = "Use this widget to edit a certain evaluation.";
 
-	public static String REASONER_A_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Engine";;
+	public static String REASONER_A_TITLE  = "Reasoner Engine";;
 	public static String REASONER_A_SLOGAN = "Use this widget to apply a certain reasoner.";
 
-	public static String REASONER_C_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Editor";;
+	public static String REASONER_C_TITLE  = "Reasoner Editor";;
 	public static String REASONER_C_SLOGAN = "Use this widget to create a new reasoner.";
 
-	public static String REASONER_E_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Editor";;
+	public static String REASONER_E_TITLE  = "Reasoner Editor";;
 	public static String REASONER_E_SLOGAN = "Use this widget to edit a certain reasoner.";
 
-	public static String REASONER_G_TITLE  = GUIGlobals.APP_TITLE + ": Reasoner Viewer";;
+	public static String REASONER_G_TITLE  = "Reasoner Viewer";;
 	public static String REASONER_G_SLOGAN = "Use this widget to view a certain reasoner.";
 
 	/*
 	 * Symbol-Layer
 	 */
-	public static String SYMBOL_V_TITLE  = GUIGlobals.APP_TITLE + ": Symbol Viewer";
+	public static String SYMBOL_V_TITLE  = "Symbol Viewer";
 	public static String SYMBOL_V_SLOGAN = "Use this widget to assign symbols to information objects.";
 	
 	/*
 	 * Transform-Layer
 	 */
-	public static String SPEC_C_TITLE  = GUIGlobals.APP_TITLE + ": Specification Editor";;
+	public static String SPEC_C_TITLE  = "Specification Editor";;
 	public static String SPEC_C_SLOGAN = "Use this widget to add a new specification.";
 
-	public static String TRANSFORM_C_TITLE  = GUIGlobals.APP_TITLE + ": Transformator Editor";;
+	public static String TRANSFORM_C_TITLE  = "Transformator Editor";;
 	public static String TRANSFORM_C_SLOGAN = "Use this widget to create a new transformator.";
 
 	/*
 	 * Upload-Layer
 	 */
 	public static String UPLOAD_TITLE = "Upload Editor";
-	public static String UPLOAD_C_TITLE  = GUIGlobals.APP_TITLE + ": " + UPLOAD_TITLE;
+	public static String UPLOAD_C_TITLE  = UPLOAD_TITLE;
 	public static String UPLOAD_C_SLOGAN = "Use this widget to upload files to the server cache.";
 
 	public static String UPLOAD_SUCCESS_MESSAGE = "File Upload has been successfully performed.";
@@ -235,13 +232,13 @@ public class FncGlobals {
 	/*
 	 * User-Layer
 	 */
-	public static String ROLE_E_TITLE  = GUIGlobals.APP_TITLE + ": Role Editor";
+	public static String ROLE_E_TITLE  = "Role Editor";
 	public static String ROLE_E_SLOGAN = "Use this widget to assign roles to a certain affiliate.";
 
-	public static String USER_E_TITLE  = GUIGlobals.APP_TITLE + ": User Editor";;
+	public static String USER_E_TITLE  = "User Editor";;
 	public static String USER_E_SLOGAN = "Use this widget to edit a certain user.";
 
-	public static String USER_G_TITLE  = GUIGlobals.APP_TITLE + ": User Viewer";
+	public static String USER_G_TITLE  = "User Viewer";
 	public static String USER_G_SLOGAN = "Use this widget to view user specific information.";
 
 	/*

@@ -27,6 +27,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.model.core.ExtensibleObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class TelephoneObject extends ExtensibleObject {
 
@@ -53,7 +54,7 @@ public class TelephoneObject extends ExtensibleObject {
 		/*
 		 * Build country code
 		 */
-		TextItem countryCodeItem = GuiFormFactory.createScTextItem("<b>Country Code</b>:", JaxrConstants.RIM_COUNTRY_CODE, LABEL_STYLE, 120);
+		TextItem countryCodeItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_COUNTRY_CODE_LABEL, JaxrConstants.RIM_COUNTRY_CODE, LABEL_STYLE, 120);
 		items.add(countryCodeItem);
 		
 		items.add(spacer);
@@ -62,7 +63,7 @@ public class TelephoneObject extends ExtensibleObject {
 		/*
 		 * Build area code
 		 */
-		TextItem areaCodeItem = GuiFormFactory.createScTextItem("<b>Area Code</b>:", JaxrConstants.RIM_AREA_CODE, LABEL_STYLE, 120);
+		TextItem areaCodeItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_AREA_CODE_LABEL, JaxrConstants.RIM_AREA_CODE, LABEL_STYLE, 120);
 		items.add(areaCodeItem);
 		
 		items.add(spacer);
@@ -71,7 +72,7 @@ public class TelephoneObject extends ExtensibleObject {
 		/*
 		 * Build phone number
 		 */
-		TextItem phoneNumberItem = GuiFormFactory.createScTextItem("<b>Phone Number</b>:", JaxrConstants.RIM_PHONE_NUMBER, LABEL_STYLE, 120);
+		TextItem phoneNumberItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_PHONE_NUMBER_LABEL, JaxrConstants.RIM_PHONE_NUMBER, LABEL_STYLE, 120);
 		items.add(phoneNumberItem);
 		
 		items.add(spacer);
@@ -80,7 +81,7 @@ public class TelephoneObject extends ExtensibleObject {
 		/*
 		 * Build phone extension
 		 */
-		TextItem extensionItem = GuiFormFactory.createScTextItem("<b>Extension</b>:", JaxrConstants.RIM_PHONE_EXTENSION, LABEL_STYLE, 120);
+		TextItem extensionItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_PHONE_EXTENSION_LABEL, JaxrConstants.RIM_PHONE_EXTENSION, LABEL_STYLE, 120);
 		items.add(extensionItem);
 
 		return items;

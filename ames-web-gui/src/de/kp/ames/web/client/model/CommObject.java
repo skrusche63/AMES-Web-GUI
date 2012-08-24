@@ -90,7 +90,7 @@ public class CommObject extends ExtrinsicObject {
 		/*
 		 * Build timestamp
 		 */
-		TextItem timeStampItem = GuiFormFactory.createScTextItem("<b>Timestap</b>:", JaxrConstants.RIM_TIMESTAMP, LABEL_STYLE, 280);
+		TextItem timeStampItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_TIMESTAMP_LABEL, JaxrConstants.RIM_TIMESTAMP, LABEL_STYLE, 280);
 		items.add(timeStampItem);
 		
 		items.add(spacer);
@@ -99,7 +99,7 @@ public class CommObject extends ExtrinsicObject {
 		/*
 		 * Build from
 		 */
-		TextItem fromItem = GuiFormFactory.createScTextItem("<b>From</b>:", JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
+		TextItem fromItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_FROM_LABEL, JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
 		items.add(fromItem);
 		
 		items.add(spacer);
@@ -108,7 +108,7 @@ public class CommObject extends ExtrinsicObject {
 		/*
 		 * Build subject
 		 */
-		TextItem subjectItem = GuiFormFactory.createScTextItem("<b>Subject</b>:", JaxrConstants.RIM_SUBJECT, LABEL_STYLE, 280);
+		TextItem subjectItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_SUBJECT_LABEL, JaxrConstants.RIM_SUBJECT, LABEL_STYLE, 280);
 		items.add(subjectItem);
 
 		return items;

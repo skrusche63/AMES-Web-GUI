@@ -18,11 +18,14 @@ package de.kp.ames.web.client.test.group;
  */
 
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.group.data.GroupGridImpl;
+import de.kp.ames.web.client.fnc.group.handler.GroupGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.group.widget.GroupCreateDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupEditDialog;
 import de.kp.ames.web.client.fnc.group.widget.GroupFormImpl;
@@ -31,6 +34,8 @@ import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
 import de.kp.ames.web.client.test.ScAction;
 import de.kp.ames.web.client.test.data.ScData;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class GroupFactory extends FncFactory {
 
@@ -55,6 +60,14 @@ public class GroupFactory extends FncFactory {
 		grid.setHeight(480);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Community);
+		
+		GroupGridMenuHandlerImpl menuHandler = new GroupGridMenuHandlerImpl(grid);
+		menuHandler.setParams(attributes);
+		
+		grid.addMenuHandler(menuHandler);
 
 		layout.setMembers(pane, grid);
 		return layout;

@@ -17,7 +17,6 @@ package de.kp.ames.web.client.test.dms;
  *
  */
 
-
 import java.util.LinkedHashMap;
 
 import com.smartgwt.client.widgets.HTMLPane;
@@ -26,6 +25,7 @@ import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
+
 import de.kp.ames.web.client.fnc.dms.data.DmsGridImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
@@ -91,6 +91,9 @@ public class DmsFactory extends FncFactory {
 		
 		DmsGridImpl grid = new DmsGridImpl(type);
 		grid.setMargin(24);
+
+		grid.setWidth(480);
+		grid.setHeight(480);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
 

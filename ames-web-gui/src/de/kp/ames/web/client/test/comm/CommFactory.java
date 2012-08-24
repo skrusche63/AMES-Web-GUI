@@ -97,6 +97,9 @@ public class CommFactory extends FncFactory {
 		CommGridImpl grid = new CommGridImpl(type);
 		grid.setMargin(24);
 
+		grid.setWidth(480);
+		grid.setHeight(480);
+
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
 
 		commGridLayout.removeMember(commGridLayout.getMember(2));
@@ -112,7 +115,7 @@ public class CommFactory extends FncFactory {
         /*
          * Label
          */
-        HTMLPane pane = getTeaser("This is an example of a  Comm Form.", 40);
+        HTMLPane pane = getTeaser("This is an example of a Comm Form.", 40);
 
         /*
          * Comm Form
@@ -137,10 +140,8 @@ public class CommFactory extends FncFactory {
 		return createDialog(message, "Show Viewer", new ScAction() {
 			public void execute() {
 
-				CommFormImpl form = new CommFormImpl();
-				
-				CommViewer viewer = new CommViewer(form);
-				viewer.setTitle("View Comm Object");
+				CommFormImpl form = new CommFormImpl();				
+				new CommViewer(form);
 				
 			}
 			

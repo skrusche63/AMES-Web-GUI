@@ -17,7 +17,6 @@ package de.kp.ames.web.client.fnc.dms.widget;
  *
  */
 
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -50,7 +49,7 @@ public class DmsFormImpl extends FormImpl {
 	 * Form dimensions for proper rendering
 	 */
 	private static int FORM_WIDTH  = 512;
-	private static int FORM_HEIGHT = 532;
+	private static int FORM_HEIGHT = 504;
 
 	/*
 	 * Reference to SlotGrid
@@ -83,7 +82,7 @@ public class DmsFormImpl extends FormImpl {
 		scForm = new DynamicForm();
 		scForm.setTitleSuffix(""); // default ":"
 		
-		scForm.setColWidths(60, 320);
+		scForm.setColWidths(60, 360);
 		scForm.setFixedColWidths(true);
 		
 		scForm.setPadding(16);
@@ -98,7 +97,7 @@ public class DmsFormImpl extends FormImpl {
 		
 		scForm.setAutoFocus(true);
 		scForm.setLayoutAlign(Alignment.CENTER);
-		
+
 		/*
 		 * Create Tabs
 		 */
@@ -119,7 +118,8 @@ public class DmsFormImpl extends FormImpl {
 		 * Build SlotGrid
 		 */
 		tabSet.addTab(createSlotTab());
-				
+		layout.addMember(tabSet);
+
 		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);
 		

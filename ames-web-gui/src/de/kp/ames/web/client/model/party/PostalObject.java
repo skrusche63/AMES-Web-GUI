@@ -27,6 +27,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.model.core.ExtensibleObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class PostalObject extends ExtensibleObject {
 
@@ -53,7 +54,7 @@ public class PostalObject extends ExtensibleObject {
 		/*
 		 * Build country
 		 */
-		TextItem countryItem = GuiFormFactory.createScTextItem("<b>Country</b>:", JaxrConstants.RIM_COUNTRY, LABEL_STYLE, 280);
+		TextItem countryItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_COUNTRY_LABEL, JaxrConstants.RIM_COUNTRY, LABEL_STYLE, 280);
 		items.add(countryItem);
 		
 		items.add(spacer);
@@ -62,7 +63,7 @@ public class PostalObject extends ExtensibleObject {
        	/*
        	 * Build state or province
        	 */
-		TextItem stateItem = GuiFormFactory.createScTextItem("<b>State</b>:", JaxrConstants.RIM_STATE_OR_PROVINCE, LABEL_STYLE, 280);
+		TextItem stateItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_STATE_LABEL, JaxrConstants.RIM_STATE_OR_PROVINCE, LABEL_STYLE, 280);
 		items.add(stateItem);
 		
 		items.add(spacer);
@@ -71,7 +72,7 @@ public class PostalObject extends ExtensibleObject {
       	/*
        	 * Build postal code
        	 */
-		TextItem postalCodeItem = GuiFormFactory.createScTextItem("<b>Postal Code</b>:", JaxrConstants.RIM_POSTAL_CODE, LABEL_STYLE, 120);
+		TextItem postalCodeItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_POSTAL_CODE, JaxrConstants.RIM_POSTAL_CODE, LABEL_STYLE, 120);
 		items.add(postalCodeItem);
 		
 		items.add(spacer);
@@ -80,7 +81,7 @@ public class PostalObject extends ExtensibleObject {
       	/*
        	 * Build city
        	 */
-		TextItem cityItem = GuiFormFactory.createScTextItem("<b>City</b>:", JaxrConstants.RIM_CITY, LABEL_STYLE, 280);
+		TextItem cityItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_CITY_LABEL, JaxrConstants.RIM_CITY, LABEL_STYLE, 280);
 		items.add(cityItem);
 		
 		items.add(spacer);
@@ -89,7 +90,7 @@ public class PostalObject extends ExtensibleObject {
       	/*
        	 * Build street
        	 */
-		TextItem streetItem = GuiFormFactory.createScTextItem("<b>Street</b>:", JaxrConstants.RIM_STREET, LABEL_STYLE, 280);
+		TextItem streetItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_STREET_LABEL, JaxrConstants.RIM_STREET, LABEL_STYLE, 280);
 		items.add(streetItem);
 		
 		items.add(spacer);
@@ -98,7 +99,7 @@ public class PostalObject extends ExtensibleObject {
       	/*
        	 * Build street number
        	 */
-		TextItem streetNumberItem = GuiFormFactory.createScTextItem("<b>Street Number</b>:", JaxrConstants.RIM_STREET_NUMBER, LABEL_STYLE, 120);
+		TextItem streetNumberItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_STREET_NUMBER_LABEL, JaxrConstants.RIM_STREET_NUMBER, LABEL_STYLE, 120);
 		items.add(streetNumberItem);
 		
 		return items;
