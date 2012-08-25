@@ -1,59 +1,25 @@
 package de.kp.ames.web.client.core.widget.base;
-/**
- * This Java module is part of the
- *  Application Developer Framework
- *
- *  Project: AMES-Web-GUI
- *  Package: de.kp.ames.web.client.core.widget.base
- *  Module: BaseHeadline
- *  @author krusche@dr-kruscheundpartner.de
- *
- * Add your semantic annotations within the SemanticAssist tags and
- * mark them with a leading hashtag #:
- *
- * <SemanticAssist>
- *     #base #client #core #headline #web #widget
- * </SemanticAssist>
- *
- */
 
-/**
- *	Copyright 2012 Dr. Krusche & Partner PartG
- *
- *	AMES-Web-GUI is free software: you can redistribute it and/or 
- *	modify it under the terms of the GNU General Public License 
- *	as published by the Free Software Foundation, either version 3 of 
- *	the License, or (at your option) any later version.
- *
- *	AMES- Web-GUI is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
- * 
- *  See the GNU General Public License for more details. 
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this software. If not, see <http://www.gnu.org/licenses/>.
- *
- */
-
-import com.smartgwt.client.types.BkgndRepeat;
 import com.smartgwt.client.widgets.HTMLPane;
+import com.smartgwt.client.widgets.layout.HLayout;
 
 import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
 
-public class BaseHeadline extends HTMLPane {
+public class DialogHeadline extends HLayout {
 
 	private String title;
 	private String slogan;
 
+	private HTMLPane pane;
+	
 	/**
 	 * Constructor requires title and slogan
 	 * 
 	 * @param title
 	 * @param slogan
 	 */
-	public BaseHeadline(String title, String slogan) {
+	public DialogHeadline(String title, String slogan) {
 		
 		this.title  = title;
 		this.slogan = slogan;
@@ -62,12 +28,29 @@ public class BaseHeadline extends HTMLPane {
 		
 		this.setShowEdges(false);
 
-		this.setBackgroundImage(GuiStyles.APP_BG_IMAGE);
-		this.setBackgroundRepeat(BkgndRepeat.REPEAT);
+		/*
+		 * May be used as an alternative header style
+		 * 
+		 * this.setBackgroundImage(GuiStyles.APP_BG_IMAGE); 
+		 * this.setBackgroundRepeat(BkgndRepeat.REPEAT);
+		 */
 
+		this.setBackgroundColor(GuiStyles.TOPLINE_BG_COLOR);		
+		this.pane = new HTMLPane();
+		
+		/*
+		 * Left Pane dimensions
+		 */
+		this.pane.setWidth("*");
+		this.pane.setHeight100();
+
+		/*
+		 * Headline dimneions
+		 */
 		this.setWidth100();
 		this.setHeight(64);
 
+		this.setMembers(pane);		
 		this.setHeadline(title, slogan);
 		
 	}
@@ -83,7 +66,7 @@ public class BaseHeadline extends HTMLPane {
 		this.title  = title;
 		this.slogan = slogan;
 
-		setContents(getHtml());
+		this.pane.setContents(getHtml());
 		
 	}
 
@@ -95,8 +78,7 @@ public class BaseHeadline extends HTMLPane {
 	public void setHeading(String title) {
 
 		this.title = title;
-
-		this.setContents(getHtml());
+		this.pane.setContents(getHtml());
 		
 	}
 
@@ -115,7 +97,7 @@ public class BaseHeadline extends HTMLPane {
 			 * Showcase
 			 */
 			html = "<div class='x-topline'>";
-			html += "<div style='padding:8px 0px 0px 8px;font-size:20px;vertical-align:top;'><b>" + this.title + "</b><br/>";
+			html += "<div style='padding:8px 0px 0px 8px;font-size:22px;vertical-align:top;'><b>" + this.title + "</b><br/>";
 			html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
 			html += "</div";
 		
@@ -126,7 +108,7 @@ public class BaseHeadline extends HTMLPane {
 			 */
 			html = "<div class='x-topline'>";
 			html += "<img src='" + GuiStyles.APP_ICON + "' height='48' width='48' style='display:block;float:left;margin:8px 4px 4px 4px;'>";
-			html += "<div style='padding:8px 0px 0px 8px;font-size:20px;vertical-align:top;'><b>" + this.title + "</b><br/>";
+			html += "<div style='padding:8px 0px 0px 8px;font-size:22px;vertical-align:top;'><b>" + this.title + "</b><br/>";
 			html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
 			html += "</div";
 		
@@ -135,4 +117,5 @@ public class BaseHeadline extends HTMLPane {
 		return html;
 
 	}
+	
 }

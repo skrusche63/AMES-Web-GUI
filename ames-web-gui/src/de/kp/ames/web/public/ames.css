@@ -21,12 +21,13 @@ iframe {border:0;}
 /*
  * Stylesheet to render control elements in the main toolstrip
  */
-.x-control {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:center;}
-.x-control-over {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#f2f4f4;text-align:center;cursor:pointer;background:#708491;}
+.x-control {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#091d28;text-align:center;}
+.x-control-over {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#9cb0c7;text-align:center;cursor:pointer;background:#091d28;}
 
-.x-header {background-color:#C6D3D3;border:0;border-bottom:1px solid #C0C0C0;}
+.x-header {background-color:#9cb0c7;border:0;border-bottom:1px solid #C0C0C0;}
 .x-headline {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#777777;}
-.x-topline {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#777777;}
+
+.x-topline {font:normal 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#9cb0c7;}
 
 .x-user {font:bold 11px tahoma, arial, helvetica, sans-serif;white-space:normal;color:#333333;text-align:right;}
 

@@ -82,6 +82,9 @@ public class ChatImpl extends BaseApp {
 		frame = new Frame();
 		frame.setStyleName(GuiStyles.X_FRAME);
 		
+		frame.setWidth("100%");
+		frame.setHeight("100%");
+		
 		/*
 		 * Event handling
 		 */

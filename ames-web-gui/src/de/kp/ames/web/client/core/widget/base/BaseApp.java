@@ -48,7 +48,7 @@ import de.kp.ames.web.client.handler.RemoveHandler;
  */
 public class BaseApp extends VLayout implements RemoveHandler {
 
-	private BaseHeadline headline;
+	private AppHeadline headline;
 	private BaseContent content;
 	
 	/**
@@ -75,7 +75,7 @@ public class BaseApp extends VLayout implements RemoveHandler {
 	 */
 	public BaseApp(String title, String slogan) {		
 		
-		headline = new BaseHeadline(title, slogan);
+		headline = new AppHeadline(title, slogan);
 		content  = new BaseContent();
 		
 		this.setWidth100();

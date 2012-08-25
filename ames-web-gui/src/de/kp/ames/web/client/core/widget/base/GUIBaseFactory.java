@@ -66,7 +66,7 @@ public class GUIBaseFactory {
 		vLayout.setBackgroundImage(GuiStyles.APP_BG_IMAGE);
 		vLayout.setBackgroundRepeat(BkgndRepeat.REPEAT);
 	
-		vLayout.addMember(new BaseHeadline(title, slogan));		
+		vLayout.addMember(new DialogHeadline(title, slogan));		
 		return vLayout;
 	
 	}

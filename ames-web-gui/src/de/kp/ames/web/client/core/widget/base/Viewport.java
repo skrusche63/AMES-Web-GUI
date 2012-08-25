@@ -48,7 +48,6 @@ import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
 import de.kp.ames.web.client.core.apps.MainController;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.core.globals.GUIGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.constants.ApplicationConstants;
@@ -62,8 +61,6 @@ public class Viewport extends VLayout {
 	private ControlLabel comm;
 	private ControlLabel help;
 	
-	private static String TITLE = GUIGlobals.APP_TITLE;
-	
 	/* 
 	 * A reference to the user label to enable change 
 	 * and also provisioning of additional information
@@ -71,8 +68,7 @@ public class Viewport extends VLayout {
 	
 	private Label user;
 	
-	private static int TOP_OPS_HEIGHT = 32;
-	private static int TOP_SC_HEIGHT  = 58;
+	private static int TOP_HEIGHT = 24;
 	
 	public Viewport() {
 
@@ -82,22 +78,10 @@ public class Viewport extends VLayout {
 		this.setWidth100();
 		this.setHeight100();
 
-		this.setBackgroundColor(GuiStyles.BG_COLOR);
+		this.setBackgroundColor(GuiStyles.TOPLINE_BG_COLOR);
 		this.setOverflow(Overflow.HIDDEN);
-		
-		if (CoreGlobals.SHOWCASE_FLAG) {
-			/*
-			 * Create showcase header
-			 */
-			this.addMember(createScToolStrip());
-			
-		} else {
-			/*
-			 * Create toolstrip in case of operational use
-			 */
-			this.addMember(createOpsToolStrip());
-			
-		}
+
+		this.addMember(createOpsToolStrip());
 		/*
 		 * Create place holder
 		 */
@@ -129,38 +113,6 @@ public class Viewport extends VLayout {
 
 	}
 
-	private ToolStrip createScToolStrip() {
-		
-		ToolStrip ts = new ToolStrip();
-		ts.setStyleName(GuiStyles.X_SC_HEADER);
-		
-		ts.setWidth100();
-		ts.setHeight(TOP_SC_HEIGHT);
-		
-		ts.addFill();
-		
-		ts.addSpacer(5);
-				
-		ImgButton logo = new ImgButton();
-		logo.setSrc(GuiStyles.LOGO_IMAGE);
-		
-		logo.setWidth(221);
-		logo.setHeight(58);
-
-	    logo.setHoverStyle(GuiStyles.X_IMAGEHOVER);
-	    
-	    logo.setShowRollOver(false);
-	    logo.setShowDownIcon(false);
-
-	    logo.setShowDown(false);
-		
-		ts.addMember(logo);
-		ts.addSpacer(5);
-
-		return ts;
-		
-	}
-
 	/**
 	 * Create Toolstrip
 	 * 
@@ -172,52 +124,10 @@ public class Viewport extends VLayout {
 		ts.setStyleName(GuiStyles.X_HEADER);
 		
 		ts.setWidth100();
-		ts.setHeight(TOP_OPS_HEIGHT);
+		ts.setHeight(TOP_HEIGHT);
 		
 		ts.addSpacer(5);
 		
-		/* 
-		 * Application Logo
-		 */
-		
-		ImgButton logo = new ImgButton();
-		logo.setSrc(GuiStyles.ADF_IMAGE);
-		
-		logo.setWidth(16);
-		logo.setHeight(16);
-
-	    logo.setPrompt(TITLE);
-	    logo.setHoverStyle(GuiStyles.X_IMAGEHOVER);
-	    
-	    logo.setShowRollOver(false);
-	    logo.setShowDownIcon(false);
-
-	    logo.setShowDown(false);
-
-		logo.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				doLogo(event);
-			}
-		});
-		
-		ts.addMember(logo);
-		ts.addSpacer(5);
-
-		/*
-		 * Application title
-		 */
-
-	    Label title = new Label(TITLE);
-	    title.setStyleName(GuiStyles.X_HEADLINE);
-
-	    title.setWidth(GUIGlobals.APP_TITLE_WIDTH);
-	    ts.addMember(title);
-
-	    /*
-	     * Supported functions
-	     */
-	    
-	    ts.addSpacer(10);
 
 	    ts.addMember(createApplication());	    
 
@@ -327,7 +237,7 @@ public class Viewport extends VLayout {
 		apps.setSelected(true);
 
 		int x = apps.getAbsoluteLeft();
-		int y = apps.getAbsoluteTop() + TOP_SC_HEIGHT - 1;
+		int y = apps.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = apps.getMenu();
 		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(apps));
@@ -342,7 +252,7 @@ public class Viewport extends VLayout {
 		comm.setSelected(true);
 
 		int x = comm.getAbsoluteLeft();
-		int y = comm.getAbsoluteTop() + TOP_SC_HEIGHT - 1;
+		int y = comm.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = comm.getMenu();
 		menu.setItems(MainController.getInstance().getRegisteredCommsAsItems(comm));
@@ -362,7 +272,7 @@ public class Viewport extends VLayout {
 		help.setSelected(true);
 
 		int x = help.getAbsoluteLeft();
-		int y = help.getAbsoluteTop() + TOP_SC_HEIGHT - 1;
+		int y = help.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = help.getMenu();
 		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(help));

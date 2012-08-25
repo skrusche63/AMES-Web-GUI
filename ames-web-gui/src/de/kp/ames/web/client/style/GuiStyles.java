@@ -37,18 +37,16 @@ package de.kp.ames.web.client.style;
  */
 
 public class GuiStyles {
-
-	public static String BG_COLOR = "#CCCCCC;";
 	
 	/*
 	 * Background color
 	 */
-	public static String BTN_BG_COLOR = "#E2E2E2";
-	public static String SEA_BG_COLOR = "#F18103";
-	public static String TOP_BG_COLOR = "#708491";
-	
-	public static String DIA_BG_COLOR = "#F0F0F0";
-	public static String VWR_BG_COLOR = "#F0F0F0";
+	public static String BG_COLOR         = "#CCCCCC;";
+	public static String BTN_BG_COLOR     = "#E0E0E0"; // "#E2E2E2";
+	public static String SEA_BG_COLOR     = "#F18103";
+	public static String TOPLINE_BG_COLOR = "#091d28";	
+	public static String DIA_BG_COLOR     = "#E0E0E0;"; // "#F0F0F0";
+	public static String VWR_BG_COLOR     = "#F0F0F0";
 	
 	/*
 	 * Border
