@@ -26,7 +26,7 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.core.widget.dialog.ApplyGridDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
@@ -79,7 +79,7 @@ public class GroupCategoryDialog extends ApplyGridDialog {
 		if (selected == null) {
 
 			String message = FncGlobals.CATEGORY_ERROR;
-			SC.say(GUIGlobals.APP_TITLE + ": Category Error", message);		
+			SC.say(GuiConstants.APP_TITLE + ": Category Error", message);		
 
 			this.setAutoClose(false);
 			return;

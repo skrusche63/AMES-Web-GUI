@@ -20,7 +20,7 @@ package de.kp.ames.web.client.core.widget.dialog;
 
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.grid.GridImpl;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
@@ -29,8 +29,8 @@ public class CreateGridDialog extends GridDialog {
 	/*
 	 * Buttons labels
 	 */
-	private static String LABEL1 = GUIGlobals.BTN_CREATE_LABEL;
-	private static String LABEL2 = GUIGlobals.BTN_CAN_LABEL;
+	private static String LABEL1 = GuiConstants.BTN_CREATE_LABEL;
+	private static String LABEL2 = GuiConstants.BTN_CAN_LABEL;
 
 	public CreateGridDialog(String title, String slogan, GridImpl grid) {
 		super(title, slogan, grid);

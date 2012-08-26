@@ -47,7 +47,7 @@ import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.base.ActionIndicator;
 import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
 import de.kp.ames.web.client.handler.RemoveHandler;
@@ -79,14 +79,14 @@ public class BaseDialog extends Window implements RemoveHandler {
 	/*
 	 * Button dimensions
 	 */
-	private static int BTN_WIDTH  = GUIGlobals.BTN_WIDTH;
-	private static int BTN_HEIGHT = GUIGlobals.BTN_HEIGHT;
+	private static int BTN_WIDTH  = GuiConstants.BTN_WIDTH;
+	private static int BTN_HEIGHT = GuiConstants.BTN_HEIGHT;
 
 	/*
 	 * Default labels of dialog window
 	 */
-	private static String LABEL1 = GUIGlobals.BTN_OK_LABEL;
-	private static String LABEL2 = GUIGlobals.BTN_CAN_LABEL;
+	private static String LABEL1 = GuiConstants.BTN_OK_LABEL;
+	private static String LABEL2 = GuiConstants.BTN_CAN_LABEL;
 	
 	/*
 	 * Border styles
@@ -96,7 +96,7 @@ public class BaseDialog extends Window implements RemoveHandler {
 	/*
 	 * Default dimensions
 	 */
-	private static int DIM = GUIGlobals.DIALOG_DIM;
+	private static int DIM = GuiConstants.DIALOG_DIM;
 	
 	/**
 	 * Constructor

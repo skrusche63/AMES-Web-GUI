@@ -42,7 +42,7 @@ import com.smartgwt.client.widgets.events.CloseClickEvent;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.base.GUIBaseFactory;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.style.GuiStyles;
@@ -52,7 +52,7 @@ public class ViewerImpl extends Window {
 	/*
 	 * Default dimensions
 	 */
-	private static int DIM = GUIGlobals.VIEWER_DIM;
+	private static int DIM = GuiConstants.VIEWER_DIM;
 
 	/**
 	 * Constructor

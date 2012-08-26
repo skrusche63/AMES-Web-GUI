@@ -49,7 +49,7 @@ import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 
-import de.kp.ames.web.client.core.apps.MainController;
+import de.kp.ames.web.client.core.apps.CustomAppsManager;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
 /**
@@ -134,7 +134,7 @@ public class PortletImpl extends Window implements Portlet {
 	public void start() {
 
 		String profile = jApp.get(JsonConstants.J_ID).isString().stringValue();
-        MainController.getInstance().createApp(profile);
+        CustomAppsManager.getInstance().createApp(profile);
 	
 	}
 }

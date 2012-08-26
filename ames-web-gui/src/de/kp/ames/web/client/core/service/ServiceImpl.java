@@ -41,7 +41,7 @@ import java.util.HashMap;
 import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.http.ConnectionCallback;
 import de.kp.ames.web.client.core.http.ConnectionManager;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
@@ -308,7 +308,7 @@ public class ServiceImpl implements Service {
 	 * @param message
 	 */
 	public void doRequestError(String message) {
-		SC.say(GUIGlobals.APP_TITLE + ": Request Error", message);		
+		SC.say(GuiConstants.APP_TITLE + ": Request Error", message);		
 	}
 
 }

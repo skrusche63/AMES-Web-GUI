@@ -41,7 +41,7 @@ import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.fnc.map.data.LayerGridImpl;
 import de.kp.ames.web.client.fnc.map.event.MapEventManager;
 import de.kp.ames.web.client.fnc.map.event.MapListener;
@@ -81,7 +81,7 @@ public class MapFactory extends FncFactory implements MapListener {
 		/*
 		 * Grid
 		 */
-		LayerGridImpl grid = new LayerGridImpl(CoreGlobals.WMS_URL, new ActivityImpl() {
+		LayerGridImpl grid = new LayerGridImpl(GuiConstants.WMS_URL, new ActivityImpl() {
 			public void execute() {
 				// No activity required as this is a local operation
 			}

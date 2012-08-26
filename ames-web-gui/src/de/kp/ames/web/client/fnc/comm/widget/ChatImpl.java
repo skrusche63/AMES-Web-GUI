@@ -43,7 +43,7 @@ import com.google.gwt.user.client.ui.Frame;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.base.ActionIndicator;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
@@ -66,7 +66,7 @@ public class ChatImpl extends BaseApp {
 		/*
 		 * Build endpoint
 		 */
-		String endpoint = CoreGlobals.COM_URL + "?service=chat&security=saml";
+		String endpoint = GuiConstants.COM_URL + "?service=chat&security=saml";
 		
 		/*
 		 * VLayout

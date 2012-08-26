@@ -37,7 +37,7 @@ package de.kp.ames.web.client.fnc.service;
  */
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.GetTextCallbackImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
@@ -47,7 +47,7 @@ import de.kp.ames.web.shared.constants.ServiceConstants;
 public class DisclaimerService extends ServiceImpl {
 
 	public DisclaimerService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.DISCLAIMER_SERVICE_ID);
+		super(GuiConstants.REG_URL, ServiceConstants.DISCLAIMER_SERVICE_ID);
 	}
 
 	/**

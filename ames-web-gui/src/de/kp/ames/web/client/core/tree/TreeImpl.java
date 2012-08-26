@@ -59,7 +59,7 @@ import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
 import com.smartgwt.client.widgets.tree.events.NodeContextClickEvent;
 import com.smartgwt.client.widgets.tree.events.NodeContextClickHandler;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
@@ -117,7 +117,7 @@ public class TreeImpl extends TreeGrid implements Tree {
 	 * @param sid
 	 */
 	public TreeImpl(String sid) {
-		this(CoreGlobals.REG_URL, sid);
+		this(GuiConstants.REG_URL, sid);
 	}
 	
 	/**

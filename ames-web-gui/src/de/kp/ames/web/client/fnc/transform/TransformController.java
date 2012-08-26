@@ -41,7 +41,7 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.controller.ControllerImpl;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.spec.data.SpecGridImpl;
@@ -151,7 +151,7 @@ public class TransformController extends ControllerImpl {
 		/*
 		 * Build viewer
 		 */
-		String title  = GUIGlobals.APP_TITLE + ": Transform Viewer";
+		String title  = GuiConstants.APP_TITLE + ": Transform Viewer";
 		String slogan = "Use this widget to view a certain transformator.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);

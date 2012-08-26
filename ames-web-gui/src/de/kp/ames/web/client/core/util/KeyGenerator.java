@@ -36,7 +36,7 @@ package de.kp.ames.web.client.core.util;
  *
  */
 
-import de.kp.ames.web.client.core.apps.UserController;
+import de.kp.ames.web.client.core.apps.UserManager;
 
 public class KeyGenerator {
 
@@ -57,7 +57,7 @@ public class KeyGenerator {
 	 * @return
 	 */
 	public String getKey() {
-		return UserController.getInstance().getUserId() + ":" + UUID.uuid();
+		return UserManager.getInstance().getUserId() + ":" + UUID.uuid();
 	}
 	
 }

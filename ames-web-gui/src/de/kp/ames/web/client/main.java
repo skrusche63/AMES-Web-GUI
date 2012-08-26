@@ -41,9 +41,9 @@ package de.kp.ames.web.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.json.client.JSONValue;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.apps.MainController;
-import de.kp.ames.web.client.core.apps.MainService;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.apps.CustomAppsManager;
+import de.kp.ames.web.client.core.apps.AppsService;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.fnc.upload.event.UploadEventManager;
 
 /**
@@ -66,23 +66,23 @@ public class main implements EntryPoint {
 		 * Call main functionality either the showcase
 		 * or the operational one
 		 */
-		if (CoreGlobals.SHOWCASE_FLAG == true) {
+		if (GuiConstants.SHOWCASE_FLAG == true) {
 
 			/*
 			 * Showcase use of ADF
 			 */
-			MainController.getInstance().createShowCase();
+			CustomAppsManager.getInstance().createShowCase();
 			
 		} else {
 			
 			/*
 			 * Operational use of ADF
 			 */
-			MainService service = new MainService();
+			AppsService service = new AppsService();
 
 			service.doGetCallersApps(new ActivityImpl() {
 				public void execute(JSONValue jValue) {
-					MainController.getInstance().createOpsCase(jValue);
+					CustomAppsManager.getInstance().createOpsCase(jValue);
 				}
 			});
 			

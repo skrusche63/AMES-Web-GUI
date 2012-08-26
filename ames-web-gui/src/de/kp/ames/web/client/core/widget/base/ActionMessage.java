@@ -40,7 +40,7 @@ import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.style.GuiStyles;
 
 /**
@@ -80,7 +80,7 @@ public class ActionMessage extends Window {
 		vLayout.addMember(flow);
 		this.addItem(vLayout);
 		
-		this.setTitle(GUIGlobals.APP_TITLE);
+		this.setTitle(GuiConstants.APP_TITLE);
 		
 		this.setShowCloseButton(false);
 		this.setShowMinimizeButton(false);

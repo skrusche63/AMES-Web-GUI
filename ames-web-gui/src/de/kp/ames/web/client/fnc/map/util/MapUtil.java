@@ -40,7 +40,7 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.smartgwt.client.data.Record;
 import de.kp.ames.map.client.MapConfig;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class MapUtil {
@@ -55,7 +55,7 @@ public class MapUtil {
 	public static MapConfig buildMapConfig(Record record) {
 
 		MapConfig config = new MapConfig();
-		config.setWmsLayers(CoreGlobals.WMS_URL);
+		config.setWmsLayers(GuiConstants.WMS_URL);
 		
 		/*
 		 * Bounding Box

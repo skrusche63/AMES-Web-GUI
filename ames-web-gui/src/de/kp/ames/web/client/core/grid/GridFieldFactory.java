@@ -39,7 +39,7 @@ package de.kp.ames.web.client.core.grid;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.grid.ListGridField;
 
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.LabelConstants;
 
@@ -106,8 +106,8 @@ public class GridFieldFactory {
 		
 		iconField.setImageSize(16);
 		
-		iconField.setImageURLPrefix(GUIGlobals.ICON_DIR);
-		iconField.setImageURLSuffix(GUIGlobals.ICON_SUFFIX);
+		iconField.setImageURLPrefix(GuiConstants.ICON_DIR);
+		iconField.setImageURLSuffix(GuiConstants.ICON_SUFFIX);
 
 		return iconField;
 		

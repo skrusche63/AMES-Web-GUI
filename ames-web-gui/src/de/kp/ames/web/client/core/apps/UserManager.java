@@ -38,17 +38,17 @@ package de.kp.ames.web.client.core.apps;
 
 import com.google.gwt.json.client.JSONObject;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 
-public class UserController {
+public class UserManager {
 
-	private static UserController instance = new UserController();
+	private static UserManager instance = new UserManager();
 	
 	/*
 	 * Default values for user id & name
 	 */
-	private String uid   = CoreGlobals.GUEST_ID;
-	private String uname = CoreGlobals.GUEST_NAME;
+	private String uid   = GuiConstants.GUEST_ID;
+	private String uname = GuiConstants.GUEST_NAME;
 	
 	/*
 	 * User credentials
@@ -59,15 +59,15 @@ public class UserController {
 	/*
 	 * Default value for user role
 	 */
-	private String urole = CoreGlobals.GUEST_ROLE;
+	private String urole = GuiConstants.GUEST_ROLE;
 
 	/**
 	 * Constructor
 	 */
-	private UserController() {}
+	private UserManager() {}
 	
-	public static UserController getInstance() {
-		if (instance == null) instance = new UserController();
+	public static UserManager getInstance() {
+		if (instance == null) instance = new UserManager();
 		return instance;
 	}
 	
@@ -137,10 +137,10 @@ public class UserController {
 		 * Reset user parameters to default
 		 * parameters
 		 */
-		uid   = CoreGlobals.GUEST_ID;
-		uname = CoreGlobals.GUEST_NAME;
+		uid   = GuiConstants.GUEST_ID;
+		uname = GuiConstants.GUEST_NAME;
 		
-		urole = CoreGlobals.GUEST_ROLE;
+		urole = GuiConstants.GUEST_ROLE;
 		
 		/*
 		 * Reset user credentials

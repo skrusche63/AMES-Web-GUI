@@ -1,23 +1,5 @@
 package de.kp.ames.web.client.core.apps;
 /**
- * This Java module is part of the
- *  Application Developer Framework
- *
- *  Project: AMES-Web-GUI
- *  Package: de.kp.ames.web.client.core.apps
- *  Module: MainController
- *  @author krusche@dr-kruscheundpartner.de
- *
- * Add your semantic annotations within the SemanticAssist tags and
- * mark them with a leading hashtag #:
- *
- * <SemanticAssist>
- *     #apps #client #controller #core #main #web
- * </SemanticAssist>
- *
- */
-
-/**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
  *	AMES-Web-GUI is free software: you can redistribute it and/or 
@@ -37,9 +19,9 @@ package de.kp.ames.web.client.core.apps;
  */
 
 import java.util.ArrayList;
+
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -49,9 +31,8 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
-import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.desktop.DesktopImpl;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.portal.PortalImpl;
 import de.kp.ames.web.client.core.search.SearchHandler;
 import de.kp.ames.web.client.core.search.SearchWidget;
@@ -61,146 +42,110 @@ import de.kp.ames.web.client.core.widget.base.Viewport;
 import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
 import de.kp.ames.web.client.fnc.comm.widget.ChatImpl;
 import de.kp.ames.web.client.fnc.comm.widget.MailImpl;
-import de.kp.ames.web.client.fnc.help.HelpImpl;
-import de.kp.ames.web.client.fnc.login.DisclaimerDialog;
-import de.kp.ames.web.client.fnc.scm.ScmSysImpl;
-import de.kp.ames.web.client.fnc.service.DisclaimerService;
-import de.kp.ames.web.client.test.ShowCaseImpl;
 import de.kp.ames.web.shared.constants.ApplicationConstants;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
-/**
- * @author Stefan Krusche (krusche@dr-kruscheundpartner.de)
- *
- */
-public class MainController {
+public class AppsManager {
 
-	private static MainController instance = new MainController();
-	
 	/* 
 	 * The viewport for the application
 	 */
-	private VLayout container;
-	private Viewport viewport;
+	protected VLayout container;
+	protected Viewport viewport;
 	
 	/*
 	 * 
 	 * Reference to accessible apps for callers user
 	 */
-	private JSONArray jRegisteredApps;
+	protected JSONArray jRegisteredApps;
 	
 	/*
 	 * Reference to the selected application
 	 */
-	private BaseApp selectedApp;
+	protected BaseApp selectedApp;
 	
 	/*
 	 * Reference to the SearchWidget
 	 */
-	private SearchWidget searchWidget;
+	protected SearchWidget searchWidget;
 		
 	/*
 	 * Reference to the search query
 	 */
-	private String searchQuery;
+	protected String searchQuery;
 	
 	/*
 	 * Search (result) handler
 	 */
-	private SearchHandler searchHandler;
-	
+	protected SearchHandler searchHandler;
+
 	/**
-	 * Constructor
+	 * A helper method to remove the initial 
+	 * splash screen
 	 */
-	private MainController() {}
-	
-	public static MainController getInstance() {		
-		if (instance == null) instance = new MainController();
-		return instance;
-	}
-	
-	public void createShowCase() {
-		
+	public void removeSplash() {
 		/* 
 		 * Remove the initial splash screen
 		 */
-		Element splash = DOM.getElementById(GUIGlobals.SPLASH_ID);
+		Element splash = DOM.getElementById(GuiConstants.SPLASH_ID);
 		DOM.removeChild(RootPanel.getBodyElement(), splash);
-
-		/*
-		 * Create viewport
-		 */
-		createViewport();
-
-		/*
-		 * Create ShowCase
-		 */
-		createApp(ApplicationConstants.FNC_APP_ID_ShowCase);
-
+		
 	}
 	
-	
 	/**
-	 * Create introduction viewport when
-	 * starting the AMES Web application
+	 * Create desktop application as initial
+	 * viewport to enable the user to select
+	 * specific apps
 	 */
-	public void createOpsCase(JSONValue jValue) {
-		
-		JSONObject jObject = jValue.isObject();
-		
-		/*
-		 * Retrieve User
-		 */
-		JSONObject jUser = jObject.get("user").isObject();
-		UserController.getInstance().setUser(jUser);
-		
-		/*
-		 * Register callers apps
-		 */
-		this.jRegisteredApps = jObject.get("apps").isArray();
-		
-		/* 
-		 * Remove the initial splash screen
-		 */
-		Element splash = DOM.getElementById(GUIGlobals.SPLASH_ID);
-		DOM.removeChild(RootPanel.getBodyElement(), splash);
-		
-		/*
-		 * Create viewport
-		 */
-		createViewport();
-
-		/* 
-		 * Add the user to main topline
-		 */
-		viewport.setUser(UserController.getInstance().getUserName());	
-
-		/*
-		 * Create desktop application as initial
-		 * viewport to enable the user to select
-		 * specific apps
-		 */
+	public void createDesktop() {
 		createApp(ApplicationConstants.FNC_APP_ID_Desktop);
-
-		/*
-		 * Show disclaimer dialog
-		 */
-		createDisclaimer();
-		
 	}
 
 	/**
+	 * Create portal application as initial
+	 * viewport to enable the user to select
+	 * specific apps
+	 */
+	public void createPortal() {
+		createApp(ApplicationConstants.FNC_APP_ID_Portal);
+	}
+	
+	/**
+	 * A helper method to create the viewport
+	 */
+	public void createViewport() {
+	
+		/*
+		 * Build view port of the application
+		 */
+		container = new VLayout();
+		container.setShowEdges(false);
+		
+		container.setWidth100();
+		container.setHeight100();
+	
+		container.setOverflow(Overflow.HIDDEN);
+		
+		viewport = new Viewport();
+		container.addMember(viewport);
+		
+		container.draw();
+	
+	}
+
+	/**
+	 * Populate the main application menu
+	 * with registered apps as items
+	 * 
 	 * @param control
 	 * @return
 	 */
 	public MenuItem[] getRegisteredAppsAsItems(final ControlLabel control) {
 
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+	
 		if (jRegisteredApps != null) {
 
-			/*
-			 * In case of the ShowCase application no registered apps are provided
-			 */
 			for (int i=0; i < jRegisteredApps.size(); i++) {
 			
 				JSONObject jRegisteredApp = jRegisteredApps.get(i).isObject();
@@ -212,16 +157,7 @@ public class MainController {
 				
 				item.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 					public void onClick(MenuItemClickEvent event) {
-						 
-						/*
-						 * Deselect respective control
-						 */
-						control.setSelected(false);
-						/*
-						 * Invoke main controller to create the app
-						 */ 
-						MainController.getInstance().createApp(id);
-						
+						afterControlSelected(id, control);
 					}				
 				});
 	
@@ -235,6 +171,9 @@ public class MainController {
 	}
 
 	/**
+	 * Populates the main communications menu
+	 * with chat mail as items
+	 * 
 	 * @param control
 	 * @return
 	 */
@@ -252,16 +191,7 @@ public class MainController {
 		
 		chatItem.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 			public void onClick(MenuItemClickEvent event) {
-				 
-				/*
-				 * Deselect respective control
-				 */
-				control.setSelected(false);
-				/*
-				 * Invoke main controller to create the app
-				 */ 
-				MainController.getInstance().createApp(chatId);
-				
+				afterControlSelected(chatId, control);
 			}				
 		});
 
@@ -277,23 +207,26 @@ public class MainController {
 		
 		mailItem.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 			public void onClick(MenuItemClickEvent event) {
-				 
-				/*
-				 * Deselect respective control
-				 */
-				control.setSelected(false);
-				/*
-				 * Invoke main controller to create the app
-				 */ 
-				MainController.getInstance().createApp(mailId);
-				
+				afterControlSelected(mailId, control);
 			}				
 		});
 
 		items.add(mailItem);
-
 		return (MenuItem[])items.toArray(new MenuItem[items.size()]);
 		
+	}
+
+	/**
+	 * A helper method to specify the action that is
+	 * invoked after a control label has been clicked
+	 * 
+	 * @param id
+	 * @param control
+	 */
+	public void afterControlSelected(final String id, final ControlLabel control) {
+		/*
+		 * Must be overridden
+		 */
 	}
 
 	/**
@@ -303,126 +236,71 @@ public class MainController {
 	 * @param profile
 	 */
 	public void createApp(String profile) {
-		
 		/*
-		 * All apps are derived from an HLayout
+		 * Must be overridden
 		 */
-		BaseApp app = null;		
+	}
+	
+	/**
+	 * A helper metod to create the bulletin board or
+	 * chat and mai application from the respective profile
+	 * 
+	 * @param profile
+	 * @return
+	 */
+	public BaseApp createCommApp(String profile) {
+
 		if (profile.equals(ApplicationConstants.FNC_APP_ID_Bulletin)) {
 			/*
 			 * Create Bulletin Board application
 			 */
-			app = new BulletinImpl();
+			return new BulletinImpl();
 
 		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Chat)) {
 			/*
 			 * Create Chat Communicator application
 			 */
-			app = new ChatImpl();
-
-		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Desktop)) {
-			/*
-			 * Create Web Desktop
-			 */
-			createDesktop();
-			return;
-		
-		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Help)) {
-			app = new HelpImpl();
-
+			return new ChatImpl();
+			
 		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Mail)) {
 			/*
 			 * Create Mail Communicator application
 			 */
-			app = new MailImpl();
+			return new MailImpl();
+
+		}
+		
+		return null;
+	
+	}
+	
+	/**
+	 * A helper metod to either create a web desktop
+	 * or portal as the initial application
+	 * 
+	 * @param profile
+	 * @return
+	 */
+	public BaseApp createInitialApp(String profile) {
+		
+		if (profile.equals(ApplicationConstants.FNC_APP_ID_Desktop)) {
+			/*
+			 * Create Web Desktop
+			 */
+			return new DesktopImpl(jRegisteredApps);
 
 		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Portal)) {
 			/*
 			 * Create Web Portal
 			 */
-			createPortal();
-			return;
-
-		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_ScmSys)) {
-			/*
-			 * Create Source Code Discovery application
-			 */
-			app = new ScmSysImpl();
-
-		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_ShowCase)) {
-			/*
-			 * Create ShowCase application for testing
-			 * and presentation purpose
-			 */
-			app = new ShowCaseImpl();
+			return new PortalImpl(4, jRegisteredApps);
 
 		}
-
-		if (app == null) return;
-
-		/*
-		 * Append selected app
-		 */
-		replaceApp(app);
 		
-	}
-
-	/**
-	 * Show disclaimer dialog
-	 */
-	private void createDisclaimer() {
-
-		DisclaimerService service = new DisclaimerService();
-		service.doGetRequest(new ActivityImpl() {
-			public void execute(String response) {
-				new DisclaimerDialog(response);				
-			}
-		});
-
+		return null;
+		
 	}
 	
-	/**
-	 * A helper method to create a web desktop
-	 * from the registered apps of the callers 
-	 * user
-	 */
-	private void createDesktop() {
-		replaceApp(new DesktopImpl(jRegisteredApps));
-
-	}
-	
-	/**
-	 * A helper method to create a web portal
-	 * from the registered apps of the callers 
-	 * user
-	 */
-	private void createPortal() {
-		replaceApp(new PortalImpl(4, jRegisteredApps));
-	}
-	
-	/**
-	 * A helper method to create the viewport
-	 */
-	public void createViewport() {
-
-		/*
-		 * Build view port of the application
-		 */
-		container = new VLayout();
-		container.setShowEdges(false);
-		
-		container.setWidth100();
-		container.setHeight100();
-
-		container.setOverflow(Overflow.HIDDEN);
-		
-		viewport = new Viewport();
-		container.addMember(viewport);
-		
-		container.draw();
-
-	}
-
 	/**
 	 * A helper method to replace the actual
 	 * app with a new app
@@ -462,7 +340,7 @@ public class MainController {
 		container.draw();
 
 	}
-	
+
 	/**
 	 * This method controls all actions that have to be
 	 * taken after the main application as changed its size
@@ -534,4 +412,5 @@ public class MainController {
 			closeSearch();
 		
 	}
+
 }

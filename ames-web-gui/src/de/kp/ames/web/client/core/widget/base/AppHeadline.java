@@ -40,7 +40,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.layout.HLayout;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class AppHeadline extends HLayout {
@@ -110,7 +110,7 @@ public class AppHeadline extends HLayout {
 		this.slogan = slogan;
 
 		this.leftPane.setContents(getHtml());
-		if (CoreGlobals.SHOWCASE_FLAG) rightPane.addChild(createLogo());
+		if (GuiConstants.SHOWCASE_FLAG) rightPane.addChild(createLogo());
 		
 	}
 
@@ -124,7 +124,7 @@ public class AppHeadline extends HLayout {
 		this.title = title;
 
 		this.leftPane.setContents(getHtml());
-		if (CoreGlobals.SHOWCASE_FLAG) rightPane.addChild(createLogo());
+		if (GuiConstants.SHOWCASE_FLAG) rightPane.addChild(createLogo());
 		
 	}
 
@@ -161,7 +161,7 @@ public class AppHeadline extends HLayout {
 
 		String html = "";
 		
-		if (CoreGlobals.SHOWCASE_FLAG) {
+		if (GuiConstants.SHOWCASE_FLAG) {
 
 			/*
 			 * Showcase

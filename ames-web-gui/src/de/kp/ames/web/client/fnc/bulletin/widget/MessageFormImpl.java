@@ -50,7 +50,7 @@ import com.smartgwt.client.widgets.form.fields.SpacerItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import de.kp.ames.web.client.core.apps.UserController;
+import de.kp.ames.web.client.core.apps.UserManager;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
 import de.kp.ames.web.client.style.GuiStyles;
@@ -121,7 +121,7 @@ public class MessageFormImpl extends FormImpl {
 		
 		from = GuiFormFactory.createScTextItem(LabelConstants.FORM_FROM_LABEL, JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
 
-		UserController uctrl = UserController.getInstance();		
+		UserManager uctrl = UserManager.getInstance();		
 		from.setValue(uctrl.getUserName());
 		
 		/*

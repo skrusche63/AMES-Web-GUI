@@ -53,7 +53,7 @@ import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.fnc.symbol.event.SymbolEventManager;
@@ -109,7 +109,7 @@ public class SymbolGridImpl extends TileGrid {
 		/*
 		 * Register connection parameter
 		 */
-		this.base = CoreGlobals.REG_URL;
+		this.base = GuiConstants.REG_URL;
 		this.sid  = ServiceConstants.SYMBOL_SERVICE_ID;
 		
 		/*

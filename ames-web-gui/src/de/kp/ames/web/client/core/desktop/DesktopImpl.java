@@ -46,7 +46,7 @@ import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 
-import de.kp.ames.web.client.core.apps.MainController;
+import de.kp.ames.web.client.core.apps.CustomAppsManager;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
@@ -142,7 +142,7 @@ public class DesktopImpl extends BaseApp {
 	            if (record == null) return;
 	            
 	            String profile = record.getAttributeAsString("id");
-	            MainController.getInstance().createApp(profile);
+	            CustomAppsManager.getInstance().createApp(profile);
 	            
 	        }
 	    });

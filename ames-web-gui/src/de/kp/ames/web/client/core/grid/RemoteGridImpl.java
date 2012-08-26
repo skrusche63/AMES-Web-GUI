@@ -48,7 +48,7 @@ import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.grid.events.DataArrivedHandler;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.shared.constants.FormatConstants;
@@ -83,7 +83,7 @@ public class RemoteGridImpl extends GridImpl {
 	 * @param sid
 	 */
 	public RemoteGridImpl(String sid) {
-		this(CoreGlobals.REG_URL, sid);
+		this(GuiConstants.REG_URL, sid);
 	}
 
 	/**

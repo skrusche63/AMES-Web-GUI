@@ -46,7 +46,7 @@ import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.scm.event.ExplorerListener;
 import de.kp.ames.web.client.style.GuiStyles;
@@ -117,7 +117,7 @@ public class ModuleImpl extends VLayout implements ExplorerListener {
 			public void onTabSelected(TabSelectedEvent event) {
                 
 				Tab selectedTab = event.getTab();
-                String historyToken = selectedTab.getAttribute(CoreGlobals.HISTORY_TOKEN);
+                String historyToken = selectedTab.getAttribute(GuiConstants.HISTORY_TOKEN);
                 
                 if (historyToken != null) {
                     History.newItem(historyToken, false);

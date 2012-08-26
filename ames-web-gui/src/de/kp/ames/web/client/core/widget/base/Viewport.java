@@ -47,8 +47,8 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
-import de.kp.ames.web.client.core.apps.MainController;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.apps.CustomAppsManager;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.constants.ApplicationConstants;
 
@@ -92,7 +92,7 @@ public class Viewport extends VLayout {
 		 */
 		this.addResizedHandler(new ResizedHandler() {
 			public void onResized(ResizedEvent event) {
-				MainController.getInstance().afterResized(event);
+				CustomAppsManager.getInstance().afterResized(event);
 			}
 			
 		});
@@ -140,7 +140,7 @@ public class Viewport extends VLayout {
 	     * User label
 	     */
 
-	    user = new Label(GUIGlobals.ANONYMOUS_USER);
+	    user = new Label(GuiConstants.ANONYMOUS_USER);
 	    user.setStyleName(GuiStyles.X_USER);
 
 	    user.setWidth(160);
@@ -240,7 +240,7 @@ public class Viewport extends VLayout {
 		int y = apps.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = apps.getMenu();
-		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(apps));
+		menu.setItems(CustomAppsManager.getInstance().getRegisteredAppsAsItems(apps));
 		
 		menu.moveTo(x, y);		
 		menu.draw();
@@ -255,7 +255,7 @@ public class Viewport extends VLayout {
 		int y = comm.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = comm.getMenu();
-		menu.setItems(MainController.getInstance().getRegisteredCommsAsItems(comm));
+		menu.setItems(CustomAppsManager.getInstance().getRegisteredCommsAsItems(comm));
 		
 		menu.moveTo(x, y);		
 		menu.draw();
@@ -275,7 +275,7 @@ public class Viewport extends VLayout {
 		int y = help.getAbsoluteTop() + TOP_HEIGHT - 1;
 		
 		Menu menu = help.getMenu();
-		menu.setItems(MainController.getInstance().getRegisteredAppsAsItems(help));
+		menu.setItems(CustomAppsManager.getInstance().getRegisteredAppsAsItems(help));
 		
 		menu.moveTo(x, y);		
 		menu.draw();
@@ -288,11 +288,11 @@ public class Viewport extends VLayout {
 	 * @param e
 	 */
 	private void doLogo(ClickEvent e) {
-		MainController.getInstance().createApp(ApplicationConstants.FNC_APP_ID_Desktop);		
+		CustomAppsManager.getInstance().createApp(ApplicationConstants.FNC_APP_ID_Desktop);		
 	}
 	
 	private void doSearch(ClickEvent e) {
-		MainController.getInstance().toggleSearch();
+		CustomAppsManager.getInstance().toggleSearch();
 	}
 
 

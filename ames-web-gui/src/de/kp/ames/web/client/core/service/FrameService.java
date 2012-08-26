@@ -18,7 +18,7 @@ package de.kp.ames.web.client.core.service;
  */
 
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class FrameService extends ServiceImpl {
@@ -27,7 +27,7 @@ public class FrameService extends ServiceImpl {
 	 * Constructor
 	 */
 	public FrameService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.FRAME_SERVICE_ID);
+		super(GuiConstants.REG_URL, ServiceConstants.FRAME_SERVICE_ID);
 	}
 	
 }

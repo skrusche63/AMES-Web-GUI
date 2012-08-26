@@ -29,7 +29,7 @@ import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FileUploadItem;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.form.GuiFormFactory;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.util.KeyGenerator;
 import de.kp.ames.web.shared.constants.JaxrConstants;
@@ -153,7 +153,7 @@ public class UploadFormImpl extends FormImpl {
 	 * @return
 	 */
 	private String getRequestUrl() {
-		return CoreGlobals.REG_URL + "/" + ServiceConstants.UPLOAD_SERVICE_ID;
+		return GuiConstants.REG_URL + "/" + ServiceConstants.UPLOAD_SERVICE_ID;
 		
 	}
 

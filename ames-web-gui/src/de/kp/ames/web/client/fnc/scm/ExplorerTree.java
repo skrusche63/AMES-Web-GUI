@@ -52,8 +52,6 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
 import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 
-import de.kp.ames.web.client.core.globals.CoreAttrs;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.scm.event.ScmEventManager;
 import de.kp.ames.web.client.style.GuiStyles;

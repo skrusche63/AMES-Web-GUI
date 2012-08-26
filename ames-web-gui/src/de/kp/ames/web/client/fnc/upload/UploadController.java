@@ -43,7 +43,7 @@ import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
@@ -189,7 +189,7 @@ public class UploadController {
 		/*
 		 * Build viewer
 		 */
-		String title  = GUIGlobals.APP_TITLE + ": Cache Viewer";
+		String title  = GuiConstants.APP_TITLE + ": Cache Viewer";
 		String slogan = "Use this widget to view transient information objects.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);

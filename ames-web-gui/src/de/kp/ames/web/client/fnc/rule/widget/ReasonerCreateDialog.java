@@ -24,7 +24,7 @@ import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FormAction;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.rule.RuleService;
@@ -98,7 +98,7 @@ public class ReasonerCreateDialog extends CreateFormDialog {
 		if (data == null) {
 			
 			String message = FncGlobals.FORM_ERROR;
-			SC.say(GUIGlobals.APP_TITLE + ": Form Error", message);		
+			SC.say(GuiConstants.APP_TITLE + ": Form Error", message);		
 			
 			return;
 

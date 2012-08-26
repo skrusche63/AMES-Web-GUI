@@ -23,7 +23,7 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.action.ActionImpl;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.grid.Grid;
 
 public class GridCategoryImpl extends ActionImpl {
@@ -62,14 +62,14 @@ public class GridCategoryImpl extends ActionImpl {
 			 * Success message
 			 */
 			String message = this.getMessage();
-			SC.say(GUIGlobals.APP_TITLE + ": Request Success", message);		
+			SC.say(GuiConstants.APP_TITLE + ": Request Success", message);		
 		
 		} else {
 			/*
 			 * Fail message
 			 */
 			String message = this.getMessage();
-			SC.say(GUIGlobals.APP_TITLE + ": Request Error", message);		
+			SC.say(GuiConstants.APP_TITLE + ": Request Error", message);		
 
 		}
 

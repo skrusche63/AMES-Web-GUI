@@ -25,7 +25,7 @@ import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FormAction;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.rule.RuleService;
@@ -96,7 +96,7 @@ public class ReasonerApplyDialog extends ApplyFormDialog {
 		if (source == null) {
 
 			String message = FncGlobals.NAMESPACE_ERROR;
-			SC.say(GUIGlobals.APP_TITLE + ": Reasoner Error", message);		
+			SC.say(GuiConstants.APP_TITLE + ": Reasoner Error", message);		
 
 			this.setAutoClose(false);
 			return;

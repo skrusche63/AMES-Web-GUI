@@ -45,8 +45,8 @@ import com.smartgwt.client.widgets.grid.events.RecordDoubleClickHandler;
 import de.kp.ames.map.client.MapConfig;
 import de.kp.ames.map.client.listener.MapListener;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.map.data.LayerGridImpl;
@@ -90,7 +90,7 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 	 */
 	public Canvas createContent() {
 
-		LayerGridImpl grid = new LayerGridImpl(CoreGlobals.WMS_URL, new ActivityImpl() {
+		LayerGridImpl grid = new LayerGridImpl(GuiConstants.WMS_URL, new ActivityImpl() {
 			public void execute() {
 				// No activity required as this is a synchronous action
 			}
@@ -123,7 +123,7 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 		if (this.layerRecord == null) {
 
 			String message = FncGlobals.LAYER_ERROR;
-			SC.say(GUIGlobals.APP_TITLE + ": Layer Select Error", message);		
+			SC.say(GuiConstants.APP_TITLE + ": Layer Select Error", message);		
 
 			this.setAutoClose(false);
 			return;
@@ -176,7 +176,7 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 	private void openMap() {
 		
 		MapConfig jGeoInfo = MapUtil.buildMapConfig(this.layerRecord);
-		jGeoInfo.setWmsServer(CoreGlobals.WMS_URL);
+		jGeoInfo.setWmsServer(GuiConstants.WMS_URL);
 
 		/*
 		 * A map listener (for dragging) is not supported for

@@ -46,7 +46,7 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.RequestTimeoutException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 
 /**
@@ -81,7 +81,7 @@ public class ConnectionManager {
 	public void sendGetRequest(final String url, final HashMap<String, String>headers, final ConnectionCallback callback) {
 	    		
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
-		builder.setTimeoutMillis(CoreGlobals.CONNECTION_TIMEOUT);
+		builder.setTimeoutMillis(GuiConstants.CONNECTION_TIMEOUT);
 		
 		/*
 		 * Set header parameters
@@ -151,7 +151,7 @@ public class ConnectionManager {
 	public void sendPostRequest(final String url, final HashMap<String, String>headers, final String requestData, final ConnectionCallback callback) {
 	    
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, URL.encode(url));
-		builder.setTimeoutMillis(CoreGlobals.CONNECTION_TIMEOUT);
+		builder.setTimeoutMillis(GuiConstants.CONNECTION_TIMEOUT);
 		
 		/*
 		 * Set header parameters

@@ -44,7 +44,7 @@ import com.google.gwt.json.client.JSONValue;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.CoreAttrs;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.http.ConnectionCallback;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
@@ -55,7 +55,7 @@ import de.kp.ames.web.shared.constants.ServiceConstants;
 public class LoginService extends ServiceImpl {
 
 	public LoginService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.SECURITY_SERVICE_ID);
+		super(GuiConstants.REG_URL, ServiceConstants.SECURITY_SERVICE_ID);
 	}
 	
 	/* (non-Javadoc)

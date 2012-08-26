@@ -39,7 +39,7 @@ package de.kp.ames.web.client.fnc.product;
 import java.util.HashMap;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.globals.CoreGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
@@ -50,7 +50,7 @@ public class ProductService extends ServiceImpl {
 	 * Constructor
 	 */
 	public ProductService() {
-		super(CoreGlobals.REG_URL, ServiceConstants.PRODUCT_SERVICE_ID);
+		super(GuiConstants.REG_URL, ServiceConstants.PRODUCT_SERVICE_ID);
 	}
 
 	/**

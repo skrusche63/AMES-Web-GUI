@@ -59,8 +59,8 @@ import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
-import de.kp.ames.web.client.core.globals.CoreGlobals;
-import de.kp.ames.web.client.core.globals.GUIGlobals;
+import de.kp.ames.web.client.core.globals.GuiConstants;
+import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.core.method.RequestMethodImpl;
 import de.kp.ames.web.shared.constants.JsonConstants;
@@ -115,7 +115,7 @@ public class SearchWidget extends VLayout {
 		/*
 		 * Connection parameters
 		 */
-		this.base = CoreGlobals.REG_URL;
+		this.base = GuiConstants.REG_URL;
 		this.sid  = ServiceConstants.SEARCH_SERVICE_ID;
 
 		/*
@@ -255,7 +255,7 @@ public class SearchWidget extends VLayout {
 			/*
 			 * The selected application is not searchable
 			 */
-			SC.say(GUIGlobals.APP_TITLE + ": Search Error", "The current application is not searchable.");		
+			SC.say(GuiConstants.APP_TITLE + ": Search Error", "The current application is not searchable.");		
 
 		} else {
 			/*
