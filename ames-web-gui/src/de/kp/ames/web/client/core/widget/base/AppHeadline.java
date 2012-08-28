@@ -83,6 +83,7 @@ public class AppHeadline extends HLayout {
 		this.leftPane.setHeight100();
 		
 		this.rightPane = new Canvas();
+		this.rightPane.setMargin(5);
 		
 		/*
 		 * Right Pane dimensions
@@ -135,8 +136,6 @@ public class AppHeadline extends HLayout {
 
 		ImgButton logo = new ImgButton();
 		logo.setSrc(GuiStyles.LOGO_IMAGE);
-		
-		logo.setMargin(5);
 		
 		logo.setWidth(221);
 		logo.setHeight(58);

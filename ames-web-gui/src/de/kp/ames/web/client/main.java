@@ -71,8 +71,19 @@ public class main implements EntryPoint {
 			/*
 			 * Showcase use of ADF
 			 */
-			CustomAppsManager.getInstance().createShowCase();
-			
+//			CustomAppsManager.getInstance().createShowCase();
+
+			/*
+			 * Operational use of ADF
+			 */
+			AppsService service = new AppsService();
+
+			service.doGetCallersApps(new ActivityImpl() {
+				public void execute(JSONValue jValue) {
+					CustomAppsManager.getInstance().createShowCase(jValue);
+				}
+			});
+
 		} else {
 			
 			/*

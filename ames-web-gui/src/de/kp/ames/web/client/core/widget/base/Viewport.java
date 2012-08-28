@@ -48,6 +48,7 @@ import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
 import de.kp.ames.web.client.core.apps.CustomAppsManager;
+import de.kp.ames.web.client.core.apps.UserManager;
 import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.constants.ApplicationConstants;
@@ -140,7 +141,7 @@ public class Viewport extends VLayout {
 	     * User label
 	     */
 
-	    user = new Label(GuiConstants.ANONYMOUS_USER);
+	    user = new Label(UserManager.getInstance().getUserName());
 	    user.setStyleName(GuiStyles.X_USER);
 
 	    user.setWidth(160);

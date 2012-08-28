@@ -70,7 +70,42 @@ public class CustomAppsManager extends AppsManager {
 		createApp(ApplicationConstants.FNC_APP_ID_ShowCase);
 
 	}
-	
+
+	/**
+	 * Create showcase viewport
+	 */
+	public void createShowCase(JSONValue jValue) {
+
+		JSONObject jObject = jValue.isObject();
+		
+		/*
+		 * Retrieve User
+		 */
+		JSONObject jUser = jObject.get("user").isObject();
+		UserManager.getInstance().setUser(jUser);
+		
+		/*
+		 * Register callers apps
+		 */
+		this.jRegisteredApps = jObject.get("apps").isArray();
+		
+		/* 
+		 * Remove the initial splash screen
+		 */
+		removeSplash();
+
+		/*
+		 * Create viewport
+		 */
+		createViewport();
+
+		/*
+		 * Create ShowCase
+		 */
+		createApp(ApplicationConstants.FNC_APP_ID_ShowCase);
+
+	}
+
 	/**
 	 * Create operational viewport
 	 */
