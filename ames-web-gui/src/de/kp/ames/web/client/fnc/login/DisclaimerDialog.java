@@ -61,7 +61,7 @@ public class DisclaimerDialog extends BaseDialog {
 		this.setWidth(480);
 		this.setHeight(480);
 		
-		this.draw();
+		this.redraw();
 		
 	}
 

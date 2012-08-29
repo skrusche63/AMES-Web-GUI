@@ -20,6 +20,8 @@ package de.kp.ames.web.client.fnc.bulletin.data;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.util.SC;
+
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.CommentObject;
 import de.kp.ames.web.client.model.core.DataObject;
@@ -44,6 +46,8 @@ public class CommentGridImpl extends RemoteGridImpl {
 		attributes = new HashMap<String,String>();	
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Comment);
 
+		SC.logWarn("====> CommentGridImpl: posting: " + (posting == null));
+		
 		if (posting != null) attributes.put(MethodConstants.ATTR_TARGET, posting);
 
 		/*

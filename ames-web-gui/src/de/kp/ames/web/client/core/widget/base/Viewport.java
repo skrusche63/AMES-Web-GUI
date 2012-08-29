@@ -49,7 +49,6 @@ import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
 import de.kp.ames.web.client.core.apps.CustomAppsManager;
 import de.kp.ames.web.client.core.apps.UserManager;
-import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.shared.constants.ApplicationConstants;
 

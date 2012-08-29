@@ -81,7 +81,7 @@ public class DmsCreateDialog extends CreateFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

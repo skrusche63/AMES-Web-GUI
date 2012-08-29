@@ -62,7 +62,7 @@ public class ReasonerCreateDialog extends CreateFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

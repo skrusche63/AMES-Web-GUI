@@ -84,7 +84,7 @@ public class TransformCreateDialog extends CreateFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

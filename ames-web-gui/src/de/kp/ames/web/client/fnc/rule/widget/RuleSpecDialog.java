@@ -93,6 +93,8 @@ public class RuleSpecDialog extends CreateFormDialog implements RuleListener {
 		 * Register as rule listener
 		 */
 		RuleEventManager.getInstance().addRuleListener(this);
+		
+		this.redraw();
 
 	}
 

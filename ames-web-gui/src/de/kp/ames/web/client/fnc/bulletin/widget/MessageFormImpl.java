@@ -61,6 +61,7 @@ public class MessageFormImpl extends FormImpl {
 	
 	private static String RIM_ID   = JaxrConstants.RIM_ID;
 	private static String RIM_NAME = JaxrConstants.RIM_NAME;
+	private static String RIM_FROM = JaxrConstants.RIM_FROM;
 
 	private static String RIM_SUBJECT = JaxrConstants.RIM_SUBJECT;
 	private static String RIM_MESSAGE = JaxrConstants.RIM_MESSAGE;
@@ -119,7 +120,7 @@ public class MessageFormImpl extends FormImpl {
 		 * From field (this is a GUI field only)
 		 */
 		
-		from = GuiFormFactory.createScTextItem(LabelConstants.FORM_FROM_LABEL, JaxrConstants.RIM_FROM, LABEL_STYLE, 280);
+		from = GuiFormFactory.createScTextItem(LabelConstants.FORM_FROM_LABEL, RIM_FROM, LABEL_STYLE, 280);
 
 		UserManager uctrl = UserManager.getInstance();		
 		from.setValue(uctrl.getUserName());
@@ -127,12 +128,12 @@ public class MessageFormImpl extends FormImpl {
 		/*
 		 * To field (this is a GUI field only)
 		 */
-		to = GuiFormFactory.createScTextItem(LabelConstants.FORM_TO_LABEL, JaxrConstants.RIM_NAME, LABEL_STYLE, 280);
+		to = GuiFormFactory.createScTextItem(LabelConstants.FORM_TO_LABEL, RIM_NAME, LABEL_STYLE, 280);
 
 		/*
 		 * Subject field
 		 */
-		subject = GuiFormFactory.createScTextItem(LabelConstants.FORM_SUBJECT_LABEL, RIM_NAME, LABEL_STYLE, 450);
+		subject = GuiFormFactory.createScTextItem(LabelConstants.FORM_SUBJECT_LABEL, RIM_SUBJECT, LABEL_STYLE, 450);
 
 		/*
 		 * Space for rendering purpose only
@@ -218,6 +219,12 @@ public class MessageFormImpl extends FormImpl {
 		 */
 		String bodyValue = body.getValue();
 		jForm.put(RIM_MESSAGE, new JSONString(bodyValue));
+
+		/*
+		 * To field
+		 */
+		String toValue = to.getValueAsString();
+		jForm.put(RIM_NAME, new JSONString(toValue));
 
 		return jForm.toString();
 		

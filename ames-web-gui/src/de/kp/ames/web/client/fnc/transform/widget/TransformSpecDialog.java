@@ -91,6 +91,8 @@ public class TransformSpecDialog extends CreateFormDialog implements TransformLi
 		 * Register as transform listener
 		 */
 		TransformEventManager.getInstance().addTransformListener(this);
+		
+		this.redraw();
 
 	}
 

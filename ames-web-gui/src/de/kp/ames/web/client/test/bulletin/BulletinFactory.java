@@ -236,6 +236,7 @@ public class BulletinFactory extends FncFactory {
 				jContact.put(JaxrConstants.RIM_ID,   new JSONString(ScData.TEST_CONTACT));
 				jContact.put(JaxrConstants.RIM_NAME, new JSONString(ScData.TEST_NAME));
 
+				@SuppressWarnings("unused")
 				MessageImpl dialog = new MessageImpl(title, slogan, type, jContact);
 				
 			}			

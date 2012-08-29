@@ -81,7 +81,7 @@ public class AccessorCreateDialog extends CreateFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

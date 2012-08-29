@@ -272,9 +272,9 @@ public class ScData {
     /*
      * Bulletin-Layer
      */
-    public static String TEST_CONTACT = "";
+    public static String TEST_CONTACT = "urn:freebxml:registry:predefinedusers:registryoperator";
     public static String TEST_NAME    = "Test User";
-    public static String TEST_POSTING = "";
+    public static String TEST_POSTING = null;
     
     /*
      * Group-Layer

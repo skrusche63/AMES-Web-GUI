@@ -46,12 +46,11 @@ import de.kp.ames.map.client.MapConfig;
 import de.kp.ames.map.client.listener.MapListener;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GuiConstants;
-import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.map.data.LayerGridImpl;
-import de.kp.ames.web.client.fnc.map.event.MapEventManager;
 import de.kp.ames.web.client.fnc.map.event.LayerGridListener;
+import de.kp.ames.web.client.fnc.map.event.MapEventManager;
 import de.kp.ames.web.client.fnc.map.util.MapUtil;
 
 public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridListener {
@@ -82,6 +81,8 @@ public class LayerGridSelectDialog extends ApplyFormDialog implements LayerGridL
 		 * Context specific event handling
 		 */
 		MapEventManager.getInstance().addLayerGridListener(this);
+		
+		this.redraw();
 
 	}
 

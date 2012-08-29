@@ -39,7 +39,6 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
@@ -97,18 +96,9 @@ public class MessageImpl extends CreateFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		/*
-		 * Event handling
-		 */
-		final MessageImpl self = this;
+		this.form.addFormData(this.jValue);	
 		
-		this.addDrawHandler(new DrawHandler() {
-			public void onDraw(DrawEvent event) {
-				self.afterDraw(event);				
-			}			
-		});
-
-		this.draw();
+		this.redraw();
 
 	}
 
@@ -158,8 +148,8 @@ public class MessageImpl extends CreateFormDialog {
 	 * 
 	 * @param event
 	 */
+	@SuppressWarnings("unused")
 	private void afterDraw(DrawEvent event) {
-		this.form.addFormData(this.jValue);		
 	}
 
 }

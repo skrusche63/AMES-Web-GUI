@@ -233,7 +233,7 @@ public class RemoteGridImpl extends GridImpl {
 	 * @param event
 	 */
 	public void afterDraw(DrawEvent event) {		
-		//this.fetchData();
+		this.fetchData();
 	}
 
 	/* (non-Javadoc)

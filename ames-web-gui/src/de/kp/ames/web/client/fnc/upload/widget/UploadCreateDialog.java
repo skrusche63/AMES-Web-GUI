@@ -57,6 +57,8 @@ public class UploadCreateDialog extends CreateFormDialog implements UploadListen
 		 * Context specific event handling
 		 */
 		UploadEventManager.getInstance().addUploadListener(this);
+		
+		this.redraw();
 
 	}
 

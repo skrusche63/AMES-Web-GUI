@@ -85,7 +85,7 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

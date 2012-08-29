@@ -33,12 +33,11 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.form.FormAction;
-import de.kp.ames.web.client.fnc.product.data.ProductGridImpl;
-import de.kp.ames.web.client.fnc.product.widget.ProductorEditDialog;
 import de.kp.ames.web.client.fnc.rule.data.RuleGridImpl;
 import de.kp.ames.web.client.fnc.rule.widget.EvaluationEditDialog;
 import de.kp.ames.web.client.fnc.rule.widget.ReasonerApplyDialog;
 import de.kp.ames.web.client.fnc.rule.widget.ReasonerCreateDialog;
+import de.kp.ames.web.client.fnc.rule.widget.ReasonerEditDialog;
 import de.kp.ames.web.client.fnc.rule.widget.ReasonerFormImpl;
 import de.kp.ames.web.client.style.GuiStyles;
 import de.kp.ames.web.client.test.FncFactory;
@@ -162,10 +161,10 @@ public class RuleFactory extends FncFactory {
 			}
 		};
 
-		String message = "Click the button to open the ProductorEditDialog.";
+		String message = "Click the button to open the ReasonerEditDialog.";
 		return createDialog(message, new ScAction() {
 			public void execute() {
-				ProductorEditDialog.create(attributes, jValue, afterSendActivity);
+				ReasonerEditDialog.create(attributes, jValue, afterSendActivity);
 			}
 			
 		});

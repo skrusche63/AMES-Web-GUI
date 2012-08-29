@@ -66,7 +66,7 @@ public class GroupCategoryDialog extends ApplyGridDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

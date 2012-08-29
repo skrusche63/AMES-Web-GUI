@@ -73,7 +73,7 @@ public class UserRoleDialog extends ApplyGridDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 
