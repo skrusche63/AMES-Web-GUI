@@ -91,7 +91,7 @@ public class BoardImpl extends VLayout implements ContactListener, RemoveHandler
 		 * Assign context specific menu handler
 		 */
 		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Posting);
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Comment);
 		
 		PostGridMenuHandlerImpl menuHandler = new PostGridMenuHandlerImpl();
 		menuHandler.setParams(attributes);

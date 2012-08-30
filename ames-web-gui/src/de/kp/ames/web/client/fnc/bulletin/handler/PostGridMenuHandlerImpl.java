@@ -27,8 +27,8 @@ import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 import de.kp.ames.web.client.fnc.bulletin.action.CommentCreateImpl;
 import de.kp.ames.web.client.fnc.bulletin.action.CommentGetAllImpl;
 import de.kp.ames.web.client.handler.GridMenuHandlerImpl;
-import de.kp.ames.web.client.menu.CommentMenuItem;
 import de.kp.ames.web.client.menu.CommentAllMenuItem;
+import de.kp.ames.web.client.menu.CommentMenuItem;
 
 public class PostGridMenuHandlerImpl extends GridMenuHandlerImpl {
 
@@ -68,7 +68,7 @@ public class PostGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			createAction.setParams(this.getParams());
 			
 			CommentAllMenuItem commentAll = new CommentAllMenuItem();
-			comment.addAction(getAllAction);
+			commentAll.addAction(getAllAction);
 			
 			items.add(commentAll);
 

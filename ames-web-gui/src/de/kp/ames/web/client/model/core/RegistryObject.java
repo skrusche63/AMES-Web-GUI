@@ -41,6 +41,7 @@ import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.LabelConstants;
 
 public class RegistryObject extends ExtensibleObject {
@@ -62,7 +63,17 @@ public class RegistryObject extends ExtensibleObject {
 		/*
 		 * Identifier    	
 		 */
-	    fields.add(new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL));
+		DataSourceTextField id = new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL);
+		id.setPrimaryKey(true);
+		fields.add(id);
+		// fields.add(new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL));
+		
+		/*
+		 * Parent Identifier (without label) for hierarchical TreeGrids
+		 */
+		DataSourceTextField pid = new DataSourceTextField(JsonConstants.J_PID);
+		pid.setForeignKey(JaxrConstants.RIM_ID);
+		fields.add(pid);
 		
 		/* 
 		 * Name

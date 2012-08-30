@@ -36,6 +36,8 @@ package de.kp.ames.web.client.test.bulletin;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.util.Page;
@@ -49,6 +51,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.bulletin.data.CommentGridImpl;
 import de.kp.ames.web.client.fnc.bulletin.data.PostGridImpl;
+import de.kp.ames.web.client.fnc.bulletin.handler.PostGridMenuHandlerImpl;
 import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
 import de.kp.ames.web.client.fnc.bulletin.widget.CommentsViewer;
 import de.kp.ames.web.client.fnc.bulletin.widget.MessageFormImpl;
@@ -60,6 +63,7 @@ import de.kp.ames.web.client.test.ScAction;
 import de.kp.ames.web.client.test.data.ScData;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class BulletinFactory extends FncFactory {
 
@@ -113,6 +117,17 @@ public class BulletinFactory extends FncFactory {
 		grid.setHeight(480);
 
 		grid.setStyleName(GuiStyles.X_BD_STYLE_4);
+		
+		/*
+		 * Assign context specific menu handler
+		 */
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Comment);
+		
+		PostGridMenuHandlerImpl menuHandler = new PostGridMenuHandlerImpl();
+		menuHandler.setParams(attributes);
+		
+		grid.addMenuHandler(menuHandler);
 
 		layout.setMembers(pane, grid);
 		return layout;

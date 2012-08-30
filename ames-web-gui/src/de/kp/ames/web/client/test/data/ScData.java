@@ -272,14 +272,14 @@ public class ScData {
     /*
      * Bulletin-Layer
      */
-    public static String TEST_CONTACT = "urn:freebxml:registry:predefinedusers:registryoperator";
+    public static String TEST_CONTACT = "urn:uid:de:kp:samltest";
     public static String TEST_NAME    = "Test User";
-    public static String TEST_POSTING = null;
+    public static String TEST_POSTING = "urn:de:kp:ames:posting:84f7212b-933e-4f5a-b74f-e5417de30533";
     
     /*
      * Group-Layer
      */
-    public static String TEST_GROUP = "";
+    public static String TEST_GROUP = "urn:freebxml:registry:Organization:freebXMLRegistry";
     
     public static JSONObject getJsonTestGroup() {
 

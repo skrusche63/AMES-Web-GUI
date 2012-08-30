@@ -200,7 +200,10 @@ public class NsFormImpl extends FormImpl {
 		 * Classification
 		 */
 		JSONArray jClas = new JSONArray();
-		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Accessor));
+		
+		// which classification is the right one?
+//		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Namespace));
+//		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Accessor));
 		
 		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
 				
