@@ -96,6 +96,9 @@ public class MessageImpl extends CreateFormDialog {
 		 */
 		this.setCanDragResize(false);
 
+		/*
+		 * Set form data from externally provided JSON data
+		 */
 		this.form.addFormData(this.jValue);	
 		
 		this.redraw();

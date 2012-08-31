@@ -88,6 +88,8 @@ public class BaseDialog extends Window implements RemoveHandler {
 	private static String LABEL1 = GuiConstants.BTN_OK_LABEL;
 	private static String LABEL2 = GuiConstants.BTN_CAN_LABEL;
 	
+	private static String HEADER_ICON = "header_icon.png";
+	
 	/*
 	 * Border styles
 	 */
@@ -168,6 +170,11 @@ public class BaseDialog extends Window implements RemoveHandler {
 	 */
 	protected void setupDialog() {
 		
+		/*
+		 * Header icon
+		 */
+		this.setHeaderIcon(HEADER_ICON, 16, 16);
+	       		
 		/*
 		 * Layout & style
 		 */
