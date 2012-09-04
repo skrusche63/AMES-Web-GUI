@@ -21,6 +21,7 @@ package de.kp.ames.web.client.model.core;
 import java.util.ArrayList;
 
 import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.HiddenItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
@@ -85,6 +86,12 @@ public class RegistryPackage extends RegistryObject {
 		 */
 		TextAreaItem descItem = GuiFormFactory.createScTextAreaItem(LabelConstants.FORM_DESC_LABEL, JaxrConstants.RIM_DESC, LABEL_STYLE, 360);
 		items.add(descItem);
+
+		/*
+		 * Build hidden id
+		 */
+		HiddenItem idItem = new HiddenItem(JaxrConstants.RIM_ID);
+		items.add(idItem);
 
 		return items;
 		

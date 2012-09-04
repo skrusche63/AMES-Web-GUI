@@ -28,6 +28,7 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -39,7 +40,6 @@ import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.SlotObject;
-import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class NsFormImpl extends FormImpl {
@@ -136,7 +136,7 @@ public class NsFormImpl extends FormImpl {
 		
 		Set<String> keys = jForm.keySet();
 		for (String key:keys) {
-			
+						
 			if (key.equals(JaxrConstants.RIM_NAME)) {
 				/*
 				 * Form data
@@ -159,6 +159,13 @@ public class NsFormImpl extends FormImpl {
 				JSONObject jSlots = JSONParser.parseStrict(val).isObject();
 				
 				slotGrid.setSlots(jSlots);
+
+			} else if (key.equals(JaxrConstants.RIM_ID)) {
+				/*
+				 * Id data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
 				
 			}
 			
@@ -179,6 +186,7 @@ public class NsFormImpl extends FormImpl {
 		 */
 		String name = "";
 		String desc = "";
+		String id = null;
 		
 		FormItem[] items = scForm.getFields();
 		for (FormItem item:items) {
@@ -189,12 +197,22 @@ public class NsFormImpl extends FormImpl {
 			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
 				desc = (String)item.getValue();
 				
+			} else if (JaxrConstants.RIM_ID.equals(item.getName())) {
+				id = (String)item.getValue();
+				
 			}
 			
 		}
 		
 		jForm.put(JaxrConstants.RIM_NAME, new JSONString(name));
 		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
+		
+		/*
+		 * RIM-Id
+		 */
+		if (id != null)
+			jForm.put(JaxrConstants.RIM_ID, new JSONString(id));
+		
 		
 		/*
 		 * Classification
@@ -212,7 +230,7 @@ public class NsFormImpl extends FormImpl {
 		 */
 		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
 		jForm.put(JaxrConstants.RIM_SPEC, jSlot);
-				
+		
 		return jForm.toString();
 	
 	}
