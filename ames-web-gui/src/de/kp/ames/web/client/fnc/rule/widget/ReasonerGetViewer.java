@@ -63,7 +63,7 @@ public class ReasonerGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 	

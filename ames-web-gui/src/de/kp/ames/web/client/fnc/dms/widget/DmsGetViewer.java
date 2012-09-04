@@ -81,7 +81,7 @@ public class DmsGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 	
@@ -113,7 +113,7 @@ public class DmsGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

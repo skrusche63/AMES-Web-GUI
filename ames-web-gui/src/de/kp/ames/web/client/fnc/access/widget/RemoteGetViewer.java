@@ -82,7 +82,7 @@ public class RemoteGetViewer extends ViewerImpl {
 		this.setWidth(WIDTH);
 		this.setHeight(HEIGHT);
 
-		this.draw();
+		this.redraw();
 
 	}
 	
@@ -108,7 +108,7 @@ public class RemoteGetViewer extends ViewerImpl {
 		this.setWidth(WIDTH);
 		this.setHeight(HEIGHT);
 
-		this.draw();
+		this.redraw();
 
 	}
 

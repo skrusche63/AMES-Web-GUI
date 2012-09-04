@@ -63,7 +63,7 @@ public class ProductorGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 	

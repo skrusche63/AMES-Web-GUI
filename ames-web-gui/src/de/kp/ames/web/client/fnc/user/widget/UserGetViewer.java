@@ -80,7 +80,7 @@ public class UserGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 	
@@ -112,7 +112,7 @@ public class UserGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

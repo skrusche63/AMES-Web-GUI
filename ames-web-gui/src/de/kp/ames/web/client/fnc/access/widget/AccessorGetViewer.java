@@ -81,7 +81,7 @@ public class AccessorGetViewer extends ViewerImpl {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 	

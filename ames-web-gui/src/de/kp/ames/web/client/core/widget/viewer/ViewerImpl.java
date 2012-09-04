@@ -104,6 +104,15 @@ public class ViewerImpl extends Window {
 		});
 
 		this.centerInPage();
+		
+		/*
+		 * subclasses have to call
+		 * 	this.redraw();
+		 * if they need to
+		 * 
+		 * duplicated call of draw() will lead to
+		 * WARN: called on widget with current drawn state: complete, use redraw() instead. 
+		 */
 		this.draw();
 		
 	}
