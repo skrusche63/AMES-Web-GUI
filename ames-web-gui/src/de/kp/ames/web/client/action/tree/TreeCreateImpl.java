@@ -74,11 +74,12 @@ public class TreeCreateImpl extends ActionImpl {
 	public void doAfterCreate(JSONValue jValue) {
 
 		this.registerResponse(jValue);
-		if (this.isSuccess()) {					
+		if (this.isSuccess()) {
 			/*
-			 * Project specific business logic
+			 * Update tree
 			 */
-		
+			tree.reload();
+
 		} else {
 			/*
 			 * Fail message

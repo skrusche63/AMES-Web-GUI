@@ -101,8 +101,14 @@ public class NsCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
-		String data = this.form.getFormData();		
-		new NsService().doSubmit(data, this.sendActivity);
+		String data = this.form.getFormData();
+		
+		HashMap<String,String> attributes = this.getParams();
+		/*
+		 * Send attributes with optional parent explicit as parameters 
+		 */
+		new NsService().doSubmit(attributes, data, this.sendActivity);
+//		new NsService().doSubmit(data, this.sendActivity);
 
 	}	
 

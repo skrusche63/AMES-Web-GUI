@@ -36,6 +36,8 @@ package de.kp.ames.web.client.core.tree;
  *
  */
 
+import java.util.HashMap;
+
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -92,5 +94,10 @@ public interface Tree {
 	 * @param menu
 	 */
 	public void setMenu(Menu menu);
+
+	/**
+	 * Data Handling after tree content has changed
+	 */
+	public void reload();
 
 }

@@ -45,6 +45,7 @@ import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.events.RightMouseDownEvent;
@@ -167,6 +168,9 @@ public class TreeImpl extends TreeGrid implements Tree {
 	    this.addNodeContextClickHandler(new NodeContextClickHandler() {
 			public void onNodeContextClick(NodeContextClickEvent event) {
 				TreeNode node = event.getNode();
+				
+				SC.logWarn("====> TreeImpl.onNodeContextClick node? " + (node != null));
+				
 				self.openMenu(node);
 			}		
 	    });
@@ -190,6 +194,9 @@ public class TreeImpl extends TreeGrid implements Tree {
 			 */
 			public void onRightMouseDown(RightMouseDownEvent event) {
 				TreeNode node = null;
+				
+				SC.logWarn("====> TreeImpl.onRightMouseDown node? " + (node != null));
+
 				self.openMenu(node);
 			}
 		});
@@ -347,6 +354,24 @@ public class TreeImpl extends TreeGrid implements Tree {
 	public void afterDraw(DrawEvent event) {
 		this.fetchData();
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.tree.Tree#reload()
+	 */
+	public void reload() {
+		
+		/* 
+		 * REMARK:
+		 * 
+		 * To invalidate the cache is essential to 
+		 * retrieve data from the server again
+		 */
+		this.invalidateCache();
+		this.fetchData();
+
+	}
+
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.tree.Tree#setMenu(com.smartgwt.client.widgets.menu.Menu)
