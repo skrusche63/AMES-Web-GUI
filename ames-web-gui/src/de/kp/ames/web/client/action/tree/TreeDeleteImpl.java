@@ -77,6 +77,11 @@ public class TreeDeleteImpl extends ActionImpl {
 		this.registerResponse(jValue);
 		if (this.isSuccess()) {					
 			/*
+			 * Update tree
+			 */
+			tree.reload();
+
+			/*
 			 * Project specific business logic
 			 */		
 		} else {

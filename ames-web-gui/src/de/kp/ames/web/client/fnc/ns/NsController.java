@@ -70,7 +70,10 @@ public class NsController {
 		/*
 		 * The TreeNode references the parent node
 		 */
-		if (node != null) attributes.put(MethodConstants.ATTR_PARENT, node.getAttributeAsString(JaxrConstants.RIM_ID));
+
+		if (node != null) { 
+			attributes.put(MethodConstants.ATTR_PARENT, node.getAttributeAsString(JaxrConstants.RIM_ID));
+		}
 		NsCreateDialog.create(attributes, afterSendActivity);
 		
 	}

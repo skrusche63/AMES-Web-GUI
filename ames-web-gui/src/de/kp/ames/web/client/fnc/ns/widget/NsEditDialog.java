@@ -81,7 +81,7 @@ public class NsEditDialog extends EditFormDialog {
 		 */
 		this.setCanDragResize(false);
 
-		this.draw();
+		this.redraw();
 
 	}
 

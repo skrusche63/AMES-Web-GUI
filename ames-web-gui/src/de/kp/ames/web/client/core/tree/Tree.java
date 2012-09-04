@@ -100,4 +100,9 @@ public interface Tree {
 	 */
 	public void reload();
 
+	
+	/**
+	 * Remove a single attribute by key
+	 */
+	public void removeAttribute(String key);
 }

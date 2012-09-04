@@ -44,7 +44,9 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import de.kp.ames.web.client.action.tree.TreeDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.tree.Tree;
+import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.fnc.ns.NsController;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class NsDeleteImpl extends TreeDeleteImpl {
 
@@ -70,6 +72,12 @@ public class NsDeleteImpl extends TreeDeleteImpl {
 		
 		controller.doDelete(attributes, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
+				
+				/*
+				 * cleanup  "item" attribute before tree reload
+				 */
+				tree.removeAttribute(MethodConstants.ATTR_ITEM);
+				
 				self.doAfterDelete(jValue);				
 			}
 		});

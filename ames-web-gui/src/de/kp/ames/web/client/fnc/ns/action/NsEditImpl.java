@@ -44,7 +44,9 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import de.kp.ames.web.client.action.tree.TreeEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.tree.Tree;
+import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.fnc.ns.NsController;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class NsEditImpl extends TreeEditImpl {
 
@@ -70,6 +72,13 @@ public class NsEditImpl extends TreeEditImpl {
 		
 		controller.doEdit(attributes, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
+
+				/*
+				 * cleanup "parent" & "item" attribute before tree reload
+				 */
+				tree.removeAttribute(MethodConstants.ATTR_ITEM);
+				tree.removeAttribute(MethodConstants.ATTR_PARENT);
+
 				self.doAfterEdit(jValue);
 			}
 		});

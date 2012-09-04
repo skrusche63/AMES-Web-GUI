@@ -45,7 +45,6 @@ import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.events.RightMouseDownEvent;
@@ -167,10 +166,7 @@ public class TreeImpl extends TreeGrid implements Tree {
 	    
 	    this.addNodeContextClickHandler(new NodeContextClickHandler() {
 			public void onNodeContextClick(NodeContextClickEvent event) {
-				TreeNode node = event.getNode();
-				
-				SC.logWarn("====> TreeImpl.onNodeContextClick node? " + (node != null));
-				
+				TreeNode node = event.getNode();				
 				self.openMenu(node);
 			}		
 	    });
@@ -194,9 +190,6 @@ public class TreeImpl extends TreeGrid implements Tree {
 			 */
 			public void onRightMouseDown(RightMouseDownEvent event) {
 				TreeNode node = null;
-				
-				SC.logWarn("====> TreeImpl.onRightMouseDown node? " + (node != null));
-
 				self.openMenu(node);
 			}
 		});
@@ -380,4 +373,12 @@ public class TreeImpl extends TreeGrid implements Tree {
 		this.setContextMenu(menu);
 	}
 
+	/**
+	 * @param key
+	 */
+	public void removeAttribute(String key) {
+		if (this.attributes != null) this.attributes.remove(key);
+	}
+	
+	
 }  

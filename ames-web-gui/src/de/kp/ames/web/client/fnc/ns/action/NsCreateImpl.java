@@ -27,6 +27,7 @@ import de.kp.ames.web.client.action.tree.TreeCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.tree.Tree;
 import de.kp.ames.web.client.fnc.ns.NsController;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class NsCreateImpl extends TreeCreateImpl {
 	
@@ -51,6 +52,12 @@ public class NsCreateImpl extends TreeCreateImpl {
 		
 		controller.doCreate(attributes, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
+
+				/*
+				 * cleanup "parent" attribute before tree reload
+				 */
+				tree.removeAttribute(MethodConstants.ATTR_PARENT);
+
 				self.doAfterCreate(jValue);
 			}
 		});
