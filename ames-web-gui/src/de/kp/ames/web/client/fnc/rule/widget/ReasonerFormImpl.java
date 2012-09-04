@@ -233,8 +233,8 @@ public class ReasonerFormImpl extends FormImpl {
 		/*
 		 * Slots
 		 */
-		JSONObject jSlot = new SlotObject().toJObject(specGrid.getRecords());
-		jForm.put(JaxrConstants.RIM_SPEC, jSlot);
+		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
+		jForm.put(JaxrConstants.RIM_SLOT, jSlot);
 		
 		/*
 		 * Specifications

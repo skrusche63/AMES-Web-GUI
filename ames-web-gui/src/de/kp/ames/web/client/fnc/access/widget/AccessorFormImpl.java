@@ -252,7 +252,7 @@ public class AccessorFormImpl extends FormImpl {
 		 * Slots
 		 */
 		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
-		jForm.put(JaxrConstants.RIM_SPEC, jSlot);
+		jForm.put(JaxrConstants.RIM_SLOT, jSlot);
 		
 		/*
 		 * Specifications
