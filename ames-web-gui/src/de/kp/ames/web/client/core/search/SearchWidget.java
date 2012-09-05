@@ -55,6 +55,10 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
+import com.smartgwt.client.widgets.grid.CellFormatter;
+import com.smartgwt.client.widgets.grid.HoverCustomizer;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
@@ -191,9 +195,16 @@ public class SearchWidget extends VLayout {
 		 * The combobox is used to display the name field of
 		 * the respective data source
 		 */
-		searchBox = new ComboBoxItem();
+		searchBox = new ComboBoxItem(JsonConstants.J_TERM);
 		searchBox.setTitle("<b>search</b>:");
-		
+
+		/*
+		 * Display and Value field should not be set, if picklist formatter is used
+		 * 
+		 * searchBox.setDisplayField(JsonConstants.J_NAME);
+		 * searchBox.setValueField(JsonConstants.J_TERM);
+		 */
+
 		searchBox.setWidth(SEARCHBOX_WIDTH);
 		
 		createScComboBoxDS();
@@ -206,8 +217,6 @@ public class SearchWidget extends VLayout {
 		
 		searchBox.setOptionDataSource(dataSource);
 		
-		searchBox.setDisplayField(JsonConstants.J_NAME);
-		searchBox.setValueField(JsonConstants.J_TERM);
 		
 		searchBox.setShowPickerIcon(false);
 
@@ -238,13 +247,29 @@ public class SearchWidget extends VLayout {
 				 * and initiates the search request  
 				 */
 				Record record = item.getSelectedRecord();
-				if (record != null)
+				if (record != null) {
 					doSearch(record);
+				}
 
 			}
 			
 		});
 				
+		/*
+		 * Explicit formatter for picklist, to separate it from the ComboBox
+		 */
+        ListGrid pickListProperties = new ListGrid();  
+        pickListProperties.setCellFormatter(new CellFormatter() {  
+            @Override  
+            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {  
+                return record.getAttribute(JsonConstants.J_NAME);  
+            }  
+        });  
+  
+        searchBox.setPickListProperties(pickListProperties);  
+
+		
+		
 		/* 
 		 * A dynamic form is used as a wrapper to get 
 		 *  the search box centered in height
