@@ -46,16 +46,15 @@ import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
@@ -206,8 +205,12 @@ public class SearchWidget extends VLayout {
 		searchBox.setOptionCriteria(criteria);
 		
 		searchBox.setOptionDataSource(dataSource);
-
+		
+		searchBox.setDisplayField(JsonConstants.J_NAME);
+		searchBox.setValueField(JsonConstants.J_TERM);
+		
 		searchBox.setShowPickerIcon(false);
+
 		searchBox.addChangedHandler(new ChangedHandler() {
 			
 			/*
@@ -215,14 +218,29 @@ public class SearchWidget extends VLayout {
 			 * @see com.smartgwt.client.widgets.form.fields.events.ChangedHandler#onChanged(com.smartgwt.client.widgets.form.fields.events.ChangedEvent)
 			 */
 			public void onChanged(ChangedEvent event) {
+
 				/*
 				 * Live search feature
 				 */
 				ComboBoxItem item = (ComboBoxItem)event.getItem();
+				
+
 				String val = item.getValueAsString();
-				
+						
+				/*
+				 * Initiates the suggest request
+				 */
 				criteria.setAttribute(JsonConstants.J_QUERY, val);
-				
+
+				/*
+				 * If item has a selected record, 
+				 * this represents the user pick from the suggested terms
+				 * and initiates the search request  
+				 */
+				Record record = item.getSelectedRecord();
+				if (record != null)
+					doSearch(record);
+
 			}
 			
 		});
@@ -248,23 +266,14 @@ public class SearchWidget extends VLayout {
 	/**
 	 * @param record
 	 */
-	private void doSearch(ListGridRecord record) {		
+	private void doSearch(Record record) {		
 
-		if (this.searchHandler == null) {
-			/*
-			 * The selected application is not searchable
-			 */
-			SC.say(GuiConstants.APP_TITLE + ": Search Error", "The current application is not searchable.");		
+		/*
+		 * Initiate search request
+		 */
+		String query = record.getAttributeAsString(JsonConstants.J_TERM);
+		this.searchHandler.doSearch(query);
 
-		} else {
-			/*
-			 * Initiate search request
-			 */
-			String query = record.getAttributeAsString(JsonConstants.J_TERM);
-			this.searchHandler.doSearch(query);
-			
-		}
-		
 	}
 	
 	/**

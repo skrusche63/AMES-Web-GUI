@@ -36,9 +36,12 @@ package de.kp.ames.web.client.core.widget.base;
  *
  */
 
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.core.globals.GuiConstants;
+import de.kp.ames.web.client.core.search.SearchHandler;
 import de.kp.ames.web.client.handler.RemoveHandler;
 
 
@@ -46,7 +49,7 @@ import de.kp.ames.web.client.handler.RemoveHandler;
  * BaseApp is a vertical layout that holds
  * a common headline and a content area
  */
-public class BaseApp extends VLayout implements RemoveHandler {
+public class BaseApp extends VLayout implements RemoveHandler, SearchHandler {
 
 	private AppHeadline headline;
 	private BaseContent content;
@@ -110,6 +113,11 @@ public class BaseApp extends VLayout implements RemoveHandler {
 		/*
 		 * Must be overridden
 		 */
+	}
+
+	@Override
+	public void doSearch(String query) {
+		SC.say(GuiConstants.APP_TITLE + ": Search Error", "The current application is not searchable.");		
 	}
 	
 }

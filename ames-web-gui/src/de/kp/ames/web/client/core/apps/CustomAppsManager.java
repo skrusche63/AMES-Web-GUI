@@ -216,6 +216,11 @@ public class CustomAppsManager extends AppsManager {
 		if (app == null) return;
 
 		/*
+		 * Set app as SearchHandler
+		 */
+		this.setSearchHandler(app);
+		
+		/*
 		 * Append selected app
 		 */
 		replaceApp(app);
