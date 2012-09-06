@@ -159,7 +159,7 @@ public class ScData {
                 /*
                  * Symbol-Layer
                  */
-                new ScNode("<b>Smbol</b>",   PREFIX + "symbol:folder", "root", "silk/folder.png"),
+                new ScNode("<b>Symbol</b>",  PREFIX + "symbol:folder", "root", "silk/folder.png"),
                 new ScNode("Data",           PREFIX + "symbol:data:folder",              PREFIX + "symbol:folder", "silk/folder.png"),
                 new ScNode("SymbolGridImpl", PREFIX + "symbol:data:SymbolGridImpl:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
                 new ScNode("SymbolTreeImpl", PREFIX + "symbol:data:SymbolTreeImpl:leaf", PREFIX + "symbol:data:folder", "silk/table.png"),
