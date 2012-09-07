@@ -36,12 +36,11 @@ package de.kp.ames.web.client.core.tree;
  *
  */
 
-import java.util.HashMap;
-
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.widgets.menu.Menu;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 import com.smartgwt.client.widgets.tree.events.NodeClickEvent;
+
 import de.kp.ames.web.client.core.method.RequestMethod;
 import de.kp.ames.web.client.handler.TreeMenuHandler;
 import de.kp.ames.web.client.handler.TreeNodeHandler;

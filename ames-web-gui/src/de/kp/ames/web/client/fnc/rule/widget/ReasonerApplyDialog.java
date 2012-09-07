@@ -30,6 +30,7 @@ import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.rule.RuleService;
 import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class ReasonerApplyDialog extends ApplyFormDialog {
 	
@@ -45,7 +46,7 @@ public class ReasonerApplyDialog extends ApplyFormDialog {
 	 * Constructor
 	 */
 	public ReasonerApplyDialog() {
-		super(FncGlobals.REASONER_A_TITLE, FncGlobals.REASONER_C_SLOGAN);
+		super(FncGlobals.REASONER_A_TITLE, FncGlobals.REASONER_A_SLOGAN);
 		
 		/*
 		 * Button handling
@@ -103,13 +104,11 @@ public class ReasonerApplyDialog extends ApplyFormDialog {
 		
 		}
 		
-		HashMap<String,String> attributes = this.getParams();
-		attributes.put(MethodConstants.ATTR_SOURCE, source);
-		
 		String data = this.form.getFormData();
 		
 		this.setAutoClose(true);
-		new RuleService().doApply(attributes, data, this.sendActivity);
+		
+		new RuleService().doApply(source, ServiceConstants.RULE_SERVICE_ID, data, this.sendActivity);
 
 	}	
 

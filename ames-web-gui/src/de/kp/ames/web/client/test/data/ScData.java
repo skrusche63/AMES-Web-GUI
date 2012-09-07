@@ -218,7 +218,7 @@ public class ScData {
     /*
      * Access-Layer
      */
-    public static String TEST_ACCESSOR = "";
+    public static String TEST_ACCESSOR = "urn:uuid:d7b1b643-4b49-451b-a70b-e6586b4f02ec";
     
     public static JSONObject getJsonAccessor() {
 

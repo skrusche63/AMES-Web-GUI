@@ -203,7 +203,14 @@ public class AccessorFormImpl extends FormImpl {
 				JSONArray jSpecs = JSONParser.parseStrict(val).isArray();
 				
 				specGrid.setSpecifications(jSpecs);
-				
+
+			} else if (key.equals(JaxrConstants.RIM_ID)) {
+				/*
+				 * Id data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+
 			}
 			
 		}
@@ -223,7 +230,8 @@ public class AccessorFormImpl extends FormImpl {
 		 */
 		String name = "";
 		String desc = "";
-		
+		String id = null;
+
 		FormItem[] items = scForm.getFields();
 		for (FormItem item:items) {
 			
@@ -233,6 +241,9 @@ public class AccessorFormImpl extends FormImpl {
 			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
 				desc = (String)item.getValue();
 				
+			} else if (JaxrConstants.RIM_ID.equals(item.getName())) {
+				id = (String)item.getValue();
+
 			}
 			
 		}
@@ -240,6 +251,12 @@ public class AccessorFormImpl extends FormImpl {
 		jForm.put(JaxrConstants.RIM_NAME, new JSONString(name));
 		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
 		
+		/*
+		 * RIM-Id
+		 */
+		if (id != null)
+			jForm.put(JaxrConstants.RIM_ID, new JSONString(id));
+
 		/*
 		 * Classification
 		 */
@@ -252,7 +269,7 @@ public class AccessorFormImpl extends FormImpl {
 		 * Slots
 		 */
 		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
-		jForm.put(JaxrConstants.RIM_SLOT, jSlot);
+		jForm.put(JaxrConstants.RIM_SLOT, new JSONString(jSlot.toString()));
 		
 		/*
 		 * Specifications

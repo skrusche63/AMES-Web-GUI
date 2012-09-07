@@ -21,6 +21,7 @@ package de.kp.ames.web.client.model;
 import java.util.ArrayList;
 
 import com.smartgwt.client.widgets.form.fields.FormItem;
+import com.smartgwt.client.widgets.form.fields.HiddenItem;
 import com.smartgwt.client.widgets.form.fields.SpacerItem;
 import com.smartgwt.client.widgets.form.fields.TextAreaItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
@@ -99,6 +100,13 @@ public class EvaluationObject extends RegistryPackage {
 		 */
 		TextItem dateItem = GuiFormFactory.createScTextItem(LabelConstants.FORM_DATE_LABEL, JaxrConstants.RIM_DATE, LABEL_STYLE, 360);
 		items.add(dateItem);
+
+		/*
+		 * Build hidden id
+		 */
+		HiddenItem idItem = new HiddenItem(JaxrConstants.RIM_ID);
+		items.add(idItem);
+
 
 		return items;
 		

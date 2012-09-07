@@ -38,19 +38,23 @@ package de.kp.ames.web.client.fnc.ns;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.ns.widget.NsCreateDialog;
 import de.kp.ames.web.client.fnc.ns.widget.NsEditDialog;
 import de.kp.ames.web.client.fnc.ns.widget.NsGetViewer;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class NsController {
@@ -85,7 +89,7 @@ public class NsController {
 	 * @param node
 	 * @param activity
 	 */
-	public void doDelete(final HashMap<String,String> attributes, final TreeNode node, final Activity activity) {
+	public void doDelete(final HashMap<String,String> attributes, final TreeGrid tree, final TreeNode node, final Activity activity) {
 
 		SC.confirm(FncGlobals.CONFIRM_NS_DELETE, new BooleanCallback() {  
  
@@ -94,7 +98,7 @@ public class NsController {
                 	/*
                 	 * Delete confirmed
                 	 */
-                	doDeleteConfirmed(attributes, node, activity);
+                	doDeleteConfirmed(attributes, tree, node, activity);
  
                 }  
             }  
@@ -110,18 +114,14 @@ public class NsController {
 	 * @param node
 	 * @param afterSendActivity
 	 */
-	public void doDeleteConfirmed(HashMap<String,String> attributes, TreeNode node, final Activity afterSendActivity) {
+	public void doDeleteConfirmed(HashMap<String,String> attributes, TreeGrid tree, TreeNode node, final Activity afterSendActivity) {
 
 		/*
 		 * Prepare data for delete request
 		 */
 		attributes.put(MethodConstants.ATTR_ITEM, node.getAttributeAsString(JaxrConstants.RIM_ID));
-		
-		/*
-		 * Invoke delete request
-		 */
-		NsService service = new NsService();
-		service.doDelete(attributes, afterSendActivity);
+
+		tree.removeData(node);
 
 	}
 
@@ -134,21 +134,35 @@ public class NsController {
 	 */
 	public void doEdit(final HashMap<String,String> attributes, final TreeNode node, final Activity afterSendActivity) {
 
-		final NsController self = this;
+//		final NsController self = this;
 		
-		/*
-		 * Specify get activity
-		 */
-		ActivityImpl afterGetActivity = new ActivityImpl() {
-			public void execute(JSONValue jValue) {
-				self.buildEditDialog(attributes, jValue, afterSendActivity);
-			}			
+		SC.logWarn("====> NsController.doEdit");
+		
+		String[] keys = {
+			JaxrConstants.RIM_NAME,
+			JaxrConstants.RIM_DESC,
+			JaxrConstants.RIM_SLOT,
+			JaxrConstants.RIM_ID,
+			JsonConstants.J_ID
 		};
-
-		/*
-		 * Retrieve actual version of namespace
-		 */
-		doGet(attributes, node, afterGetActivity);
+		
+		JSONObject jValue = JsonConverter.recordToJson(node, keys);
+		
+		buildEditDialog(attributes, jValue, afterSendActivity);
+		
+//		/*
+//		 * Specify get activity
+//		 */
+//		ActivityImpl afterGetActivity = new ActivityImpl() {
+//			public void execute(JSONValue jValue) {
+//				self.buildEditDialog(attributes, jValue, afterSendActivity);
+//			}			
+//		};
+//
+//		/*
+//		 * Retrieve actual version of namespace
+//		 */
+//		doGet(attributes, node, afterGetActivity);
 		
 	}
 
@@ -160,21 +174,36 @@ public class NsController {
 	 */
 	public void doGet(final HashMap<String,String> attributes, final TreeNode node) {
 
-		final NsController self = this;
+		SC.logWarn("====> NsController.doGet");
 		
-		/*
-		 * Specify get activity
-		 */
-		ActivityImpl afterGetActivity = new ActivityImpl() {
-			public void execute(JSONValue jValue) {
-				self.buildGetViewer(attributes, jValue);
-			}			
+		String[] keys = {
+			JaxrConstants.RIM_NAME,
+			JaxrConstants.RIM_DESC,
+			JaxrConstants.RIM_SLOT,
+			JaxrConstants.RIM_ID,
+			JsonConstants.J_ID
 		};
+		
+		JSONObject jValue = JsonConverter.recordToJson(node, keys);
+		
+		buildGetViewer(attributes, jValue);
 
-		/*
-		 * Retrieve actual version of namespace
-		 */
-		doGet(attributes, node, afterGetActivity);
+		
+//		final NsController self = this;
+//		
+//		/*
+//		 * Specify get activity
+//		 */
+//		ActivityImpl afterGetActivity = new ActivityImpl() {
+//			public void execute(JSONValue jValue) {
+//				self.buildGetViewer(attributes, jValue);
+//			}			
+//		};
+//
+//		/*
+//		 * Retrieve actual version of namespace
+//		 */
+//		doGet(attributes, node, afterGetActivity);
 		
 	}
 

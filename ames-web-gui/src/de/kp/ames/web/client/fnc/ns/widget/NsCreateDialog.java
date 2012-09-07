@@ -38,6 +38,8 @@ package de.kp.ames.web.client.fnc.ns.widget;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONObject;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
@@ -101,13 +103,18 @@ public class NsCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
-		String data = this.form.getFormData();
+		SC.logWarn("====> NsCreateDialog.doSend");
+
+		// String data = this.form.getFormData();
+		JSONObject jValue = ((NsFormImpl)this.form).getJFormData();		
 		
-		HashMap<String,String> attributes = this.getParams();
+		//HashMap<String,String> attributes = this.getParams();
 		/*
 		 * Send attributes with optional parent explicit as parameters 
 		 */
-		new NsService().doSubmit(attributes, data, this.sendActivity);
+		this.sendActivity.execute(jValue);
+
+//		new NsService().doSubmit(attributes, data, this.sendActivity);
 //		new NsService().doSubmit(data, this.sendActivity);
 
 	}	

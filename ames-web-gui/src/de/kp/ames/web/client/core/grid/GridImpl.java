@@ -361,7 +361,8 @@ public class GridImpl extends ListGrid implements Grid {
 	 * @return
 	 */
 	public HashMap<String,String> getAttributes() {
-		if (this.attributes != null) this.attributes = new HashMap<String,String>();
+		//if (this.attributes != null) this.attributes = new HashMap<String,String>();
+		if (this.attributes == null) this.attributes = new HashMap<String,String>();
 		return this.attributes;
 	}
 	

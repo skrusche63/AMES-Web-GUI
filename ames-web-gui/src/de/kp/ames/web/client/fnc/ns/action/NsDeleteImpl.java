@@ -39,14 +39,13 @@ package de.kp.ames.web.client.fnc.ns.action;
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.tree.TreeDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.tree.Tree;
-import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.fnc.ns.NsController;
-import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class NsDeleteImpl extends TreeDeleteImpl {
 
@@ -70,15 +69,11 @@ public class NsDeleteImpl extends TreeDeleteImpl {
 		final NsDeleteImpl self = this;
 		NsController controller = new NsController();
 		
-		controller.doDelete(attributes, node, new ActivityImpl() {
+		controller.doDelete(attributes, (TreeGrid) tree, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				
-				/*
-				 * cleanup  "item" attribute before tree reload
-				 */
-				tree.removeAttribute(MethodConstants.ATTR_ITEM);
-				
-				self.doAfterDelete(jValue);				
+//				tree.removeAttribute(MethodConstants.ATTR_ITEM);
+//				self.doAfterDelete(jValue);				
 			}
 		});
 		

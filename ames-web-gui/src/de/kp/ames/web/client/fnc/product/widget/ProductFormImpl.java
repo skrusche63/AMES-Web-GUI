@@ -111,7 +111,14 @@ public class ProductFormImpl extends FormImpl {
 				 */
 				FormItem field = scForm.getField(key);
 				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
-				
+
+			} else if (key.equals(JaxrConstants.RIM_ID)) {
+				/*
+				 * Id data
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+
 			}
 			
 		}
@@ -131,7 +138,8 @@ public class ProductFormImpl extends FormImpl {
 		 */
 		String name = "";
 		String desc = "";
-		
+		String id = null;
+
 		FormItem[] items = scForm.getFields();
 		for (FormItem item:items) {
 			
@@ -140,6 +148,9 @@ public class ProductFormImpl extends FormImpl {
 				
 			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
 				desc = (String)item.getValue();
+
+			} else if (JaxrConstants.RIM_ID.equals(item.getName())) {
+				id = (String)item.getValue();
 				
 			}
 			
@@ -148,6 +159,12 @@ public class ProductFormImpl extends FormImpl {
 		jForm.put(JaxrConstants.RIM_NAME, new JSONString(name));
 		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
 		
+		/*
+		 * RIM-Id
+		 */
+		if (id != null)
+			jForm.put(JaxrConstants.RIM_ID, new JSONString(id));
+
 		/*
 		 * Classification
 		 */

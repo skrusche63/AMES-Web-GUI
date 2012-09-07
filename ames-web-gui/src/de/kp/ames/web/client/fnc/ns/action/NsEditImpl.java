@@ -38,15 +38,17 @@ package de.kp.ames.web.client.fnc.ns.action;
 
 import java.util.HashMap;
 
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.tree.TreeEditImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.tree.Tree;
-import de.kp.ames.web.client.core.tree.TreeImpl;
 import de.kp.ames.web.client.fnc.ns.NsController;
-import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.client.fnc.ns.data.NsTreeImpl;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class NsEditImpl extends TreeEditImpl {
 
@@ -72,16 +74,35 @@ public class NsEditImpl extends TreeEditImpl {
 		
 		controller.doEdit(attributes, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-
-				/*
-				 * cleanup "parent" & "item" attribute before tree reload
-				 */
-				tree.removeAttribute(MethodConstants.ATTR_ITEM);
-				tree.removeAttribute(MethodConstants.ATTR_PARENT);
-
 				self.doAfterEdit(jValue);
 			}
 		});
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.action.tree.TreeEditImpl#doAfterEdit(com.google.gwt.json.client.JSONValue)
+	 */
+	@Override
+	public void doAfterEdit(JSONValue jValue) {
+
+		String[] keys = {
+				JaxrConstants.RIM_NAME,
+				JaxrConstants.RIM_DESC,
+				JaxrConstants.RIM_SLOT
+				// JaxrConstants.RIM_ID
+			};
+		
+		SC.logWarn("====> NsEditImpl.doAfterEdit");
+		
+		JSONObject jNode = jValue.isObject();
+		for (String key: keys) {
+			SC.logWarn("======> NsEditImpl.doAfterEdit: attr: " + key);
+			node.setAttribute(key, jNode.get(key).isString().stringValue());
+		}
+		
+		((NsTreeImpl)tree).updateData(node);
 
 	}
 	

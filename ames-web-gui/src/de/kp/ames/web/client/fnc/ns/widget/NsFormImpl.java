@@ -41,6 +41,7 @@ import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class NsFormImpl extends FormImpl {
 
@@ -167,6 +168,9 @@ public class NsFormImpl extends FormImpl {
 				FormItem field = scForm.getField(key);
 				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
 				
+				SC.logWarn("====> addFormData: rimId: " + jForm.get(JaxrConstants.RIM_ID));
+				SC.logWarn("====> addFormData: id: " + (jForm.containsKey(JsonConstants.J_ID) ? jForm.get(JsonConstants.J_ID) : "--no id--"));
+				
 			}
 			
 		}
@@ -178,7 +182,10 @@ public class NsFormImpl extends FormImpl {
 	 * @see de.kp.ames.web.client.core.form.FormImpl#getFormData()
 	 */
 	public String getFormData() {
+		return getJFormData().toString();
+	}
 
+	public JSONObject getJFormData() {
 		JSONObject jForm = new JSONObject();
 		
 		/*
@@ -229,9 +236,9 @@ public class NsFormImpl extends FormImpl {
 		 * Slots
 		 */
 		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
-		jForm.put(JaxrConstants.RIM_SLOT, jSlot);
+		jForm.put(JaxrConstants.RIM_SLOT, new JSONString(jSlot.toString()));
 		
-		return jForm.toString();
+		return jForm;
 	
 	}
 
