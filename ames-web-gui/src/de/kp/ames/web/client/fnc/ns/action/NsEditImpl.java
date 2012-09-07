@@ -40,7 +40,6 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.tree.TreeEditImpl;
@@ -88,17 +87,14 @@ public class NsEditImpl extends TreeEditImpl {
 	public void doAfterEdit(JSONValue jValue) {
 
 		String[] keys = {
+				
 				JaxrConstants.RIM_NAME,
 				JaxrConstants.RIM_DESC,
 				JaxrConstants.RIM_SLOT
-				// JaxrConstants.RIM_ID
-			};
-		
-		SC.logWarn("====> NsEditImpl.doAfterEdit");
+		};
 		
 		JSONObject jNode = jValue.isObject();
 		for (String key: keys) {
-			SC.logWarn("======> NsEditImpl.doAfterEdit: attr: " + key);
 			node.setAttribute(key, jNode.get(key).isString().stringValue());
 		}
 		

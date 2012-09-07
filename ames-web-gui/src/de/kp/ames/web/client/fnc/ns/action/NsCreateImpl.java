@@ -17,7 +17,6 @@ package de.kp.ames.web.client.fnc.ns.action;
  *
  */
 
-
 import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
@@ -26,7 +25,6 @@ import com.smartgwt.client.data.DSCallback;
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.action.tree.TreeCreateImpl;
@@ -64,7 +62,6 @@ public class NsCreateImpl extends TreeCreateImpl {
 		
 		controller.doCreate(attributes, node, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
-
 				self.doAfterCreate(jValue);
 			}
 		});
@@ -78,15 +75,16 @@ public class NsCreateImpl extends TreeCreateImpl {
 	public void doAfterCreate(JSONValue jValue) {
 
 		String[] keys = {
+
 				JaxrConstants.RIM_NAME,
 				JaxrConstants.RIM_DESC,
 				JaxrConstants.RIM_SLOT
-				// JaxrConstants.RIM_ID <==== this will be constructed server side
-			};
-		
-		SC.logWarn("====> NsCreateImpl.doAfterCreate");
 
+		};
 
+		/*
+		 * Build record from JSON representation
+		 */
 		Record record = new Record();
 		
 		JSONObject jNode = jValue.isObject();
@@ -95,40 +93,42 @@ public class NsCreateImpl extends TreeCreateImpl {
 		}
 		
 		/*
-		 * if there is a parent node
+		 * If there is a parent node
 		 * 		add J_ID to record
 		 * 		add RIM_ID to parent SUBMIT parameter
 		 * 
-		 * if there is no parent node, do nothing
+		 * If there is no parent node, do nothing
 		 */
 		if (node != null) {
 			/*
-			 * primaryKey identifies parent
+			 * PrimaryKey identifies parent
 			 */
 			record.setAttribute(JsonConstants.J_PID, node.getAttributeAsString(JsonConstants.J_ID));
 			
 			/*
-			 * set parameter for submit request
+			 * Set parameter for submit request
 			 */
 			((NsTreeImpl)tree).setAttribute(MethodConstants.ATTR_PARENT, node.getAttributeAsString(JaxrConstants.RIM_ID));
 			
 		}
 		
 		/*
-		 * inject additional attributes
+		 * Inject additional attributes
 		 */
 		record.setAttribute(JsonConstants.J_IS_FOLDER, true);
 		record.setAttribute(JaxrConstants.RIM_ICON, GuiConstants.ICON_DIR + IconConstants.FOLDER + GuiConstants.ICON_SUFFIX);
 
-		// create separate primaryKey "id"
+		/* 
+		 * Create separate primaryKey "id"
+		 */
 		record.setAttribute(JsonConstants.J_ID, UUID.uuid());
 		
 		((NsTreeImpl)tree).addData(record, new DSCallback() {
-			
-			@Override
 			public void execute(DSResponse response, Object rawData, DSRequest request) {
 				/*
-				 * Open folder if closed
+				 * Make sure that the respective parent
+				 * folder is open to make changes directly
+				 * visible
 				 */
 				((NsTreeImpl)tree).openFolder(node);
 			}

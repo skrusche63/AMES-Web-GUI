@@ -189,7 +189,7 @@ public class UploadController {
 		/*
 		 * Build viewer
 		 */
-		String title  = GuiConstants.APP_TITLE + ": Cache Viewer";
+		String title  = "Cache Viewer";
 		String slogan = "Use this widget to view transient information objects.";
 		
 		ViewerFactory.createFrameViewer(title, slogan, uri);

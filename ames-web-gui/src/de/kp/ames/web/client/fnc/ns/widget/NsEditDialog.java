@@ -40,14 +40,12 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.client.fnc.ns.NsService;
 
 public class NsEditDialog extends EditFormDialog {
 	
@@ -107,11 +105,8 @@ public class NsEditDialog extends EditFormDialog {
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
 	 */
 	public void doSend() {
-
-		SC.logWarn("====> NsEditDialog.doSend");
 		
 		JSONObject jValue = ((NsFormImpl)this.form).getJFormData();		
-		//new NsService().doSubmit(data, this.sendActivity);
 		this.sendActivity.execute(jValue);
 
 	}	

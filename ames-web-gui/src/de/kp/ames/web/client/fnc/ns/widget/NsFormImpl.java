@@ -17,7 +17,6 @@ package de.kp.ames.web.client.fnc.ns.widget;
  *
  */
 
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -28,7 +27,6 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -41,7 +39,6 @@ import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
-import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class NsFormImpl extends FormImpl {
 
@@ -140,14 +137,21 @@ public class NsFormImpl extends FormImpl {
 						
 			if (key.equals(JaxrConstants.RIM_NAME)) {
 				/*
-				 * Form data
+				 * Form data (visible field)
 				 */
 				FormItem field = scForm.getField(key);
 				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
 				
 			} else if (key.equals(JaxrConstants.RIM_DESC)) {
 				/*
-				 * Form data
+				 * Form data (visible field)
+				 */
+				FormItem field = scForm.getField(key);
+				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
+
+			} else if (key.equals(JaxrConstants.RIM_ID)) {
+				/*
+				 * Form data (hidden field)
 				 */
 				FormItem field = scForm.getField(key);
 				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
@@ -160,16 +164,6 @@ public class NsFormImpl extends FormImpl {
 				JSONObject jSlots = JSONParser.parseStrict(val).isObject();
 				
 				slotGrid.setSlots(jSlots);
-
-			} else if (key.equals(JaxrConstants.RIM_ID)) {
-				/*
-				 * Id data
-				 */
-				FormItem field = scForm.getField(key);
-				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
-				
-				SC.logWarn("====> addFormData: rimId: " + jForm.get(JaxrConstants.RIM_ID));
-				SC.logWarn("====> addFormData: id: " + (jForm.containsKey(JsonConstants.J_ID) ? jForm.get(JsonConstants.J_ID) : "--no id--"));
 				
 			}
 			
@@ -186,23 +180,31 @@ public class NsFormImpl extends FormImpl {
 	}
 
 	public JSONObject getJFormData() {
+
 		JSONObject jForm = new JSONObject();
 		
 		/*
+		 * Hidden identifier
+		 */
+		String id = null;
+
+		/*
 		 * Name & description
 		 */
-		String name = "";
-		String desc = "";
-		String id = null;
+		String name = null;
+		String desc = null;
 		
 		FormItem[] items = scForm.getFields();
 		for (FormItem item:items) {
 			
 			if (JaxrConstants.RIM_NAME.equals(item.getName())) {
+
 				name = (String)item.getValue();
+				if (name == null) name = "(No name provided)";
 				
 			} else if (JaxrConstants.RIM_DESC.equals(item.getName())) {
 				desc = (String)item.getValue();
+				if (desc == null) desc = "(No description provided)";
 				
 			} else if (JaxrConstants.RIM_ID.equals(item.getName())) {
 				id = (String)item.getValue();
@@ -215,21 +217,16 @@ public class NsFormImpl extends FormImpl {
 		jForm.put(JaxrConstants.RIM_DESC, new JSONString(desc));
 		
 		/*
-		 * RIM-Id
+		 * Provide hidden identifier
 		 */
-		if (id != null)
-			jForm.put(JaxrConstants.RIM_ID, new JSONString(id));
+		if (id != null) jForm.put(JaxrConstants.RIM_ID, new JSONString(id));
 		
 		
 		/*
-		 * Classification
+		 * Add empty classification to enable
+		 * proper server processing
 		 */
 		JSONArray jClas = new JSONArray();
-		
-		// which classification is the right one?
-//		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Namespace));
-//		jClas.set(0, new JSONString(ClassificationConstants.FNC_ID_Accessor));
-		
 		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
 				
 		/*

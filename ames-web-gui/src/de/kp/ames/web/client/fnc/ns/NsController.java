@@ -38,7 +38,6 @@ package de.kp.ames.web.client.fnc.ns;
 
 import java.util.HashMap;
 
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
@@ -46,13 +45,11 @@ import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.util.JsonConverter;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.ns.widget.NsCreateDialog;
 import de.kp.ames.web.client.fnc.ns.widget.NsEditDialog;
 import de.kp.ames.web.client.fnc.ns.widget.NsGetViewer;
-import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
@@ -71,13 +68,13 @@ public class NsController {
 	 * @param afterSendActivity
 	 */
 	public void doCreate(HashMap<String,String> attributes, final TreeNode node, final Activity afterSendActivity) {
-		/*
-		 * The TreeNode references the parent node
-		 */
 
-		if (node != null) { 
-			attributes.put(MethodConstants.ATTR_PARENT, node.getAttributeAsString(JaxrConstants.RIM_ID));
-		}
+		/*
+		 * The TreeNode references the parent node; note, that the
+		 * attributes provided here are managed by the Tree itself
+		 * and used as parameters for server requests
+		 */
+		if (node != null) attributes.put(MethodConstants.ATTR_PARENT, node.getAttributeAsString(JaxrConstants.RIM_ID));
 		NsCreateDialog.create(attributes, afterSendActivity);
 		
 	}
@@ -89,7 +86,7 @@ public class NsController {
 	 * @param node
 	 * @param activity
 	 */
-	public void doDelete(final HashMap<String,String> attributes, final TreeGrid tree, final TreeNode node, final Activity activity) {
+	public void doDelete(final HashMap<String,String> attributes, final TreeGrid tree, final TreeNode node) {
 
 		SC.confirm(FncGlobals.CONFIRM_NS_DELETE, new BooleanCallback() {  
  
@@ -98,7 +95,7 @@ public class NsController {
                 	/*
                 	 * Delete confirmed
                 	 */
-                	doDeleteConfirmed(attributes, tree, node, activity);
+                	doDeleteConfirmed(attributes, tree, node);
  
                 }  
             }  
@@ -114,13 +111,12 @@ public class NsController {
 	 * @param node
 	 * @param afterSendActivity
 	 */
-	public void doDeleteConfirmed(HashMap<String,String> attributes, TreeGrid tree, TreeNode node, final Activity afterSendActivity) {
+	public void doDeleteConfirmed(HashMap<String,String> attributes, TreeGrid tree, TreeNode node) {
 
 		/*
 		 * Prepare data for delete request
 		 */
 		attributes.put(MethodConstants.ATTR_ITEM, node.getAttributeAsString(JaxrConstants.RIM_ID));
-
 		tree.removeData(node);
 
 	}
@@ -134,35 +130,11 @@ public class NsController {
 	 */
 	public void doEdit(final HashMap<String,String> attributes, final TreeNode node, final Activity afterSendActivity) {
 
-//		final NsController self = this;
-		
-		SC.logWarn("====> NsController.doEdit");
-		
-		String[] keys = {
-			JaxrConstants.RIM_NAME,
-			JaxrConstants.RIM_DESC,
-			JaxrConstants.RIM_SLOT,
-			JaxrConstants.RIM_ID,
-			JsonConstants.J_ID
-		};
-		
-		JSONObject jValue = JsonConverter.recordToJson(node, keys);
-		
-		buildEditDialog(attributes, jValue, afterSendActivity);
-		
-//		/*
-//		 * Specify get activity
-//		 */
-//		ActivityImpl afterGetActivity = new ActivityImpl() {
-//			public void execute(JSONValue jValue) {
-//				self.buildEditDialog(attributes, jValue, afterSendActivity);
-//			}			
-//		};
-//
-//		/*
-//		 * Retrieve actual version of namespace
-//		 */
-//		doGet(attributes, node, afterGetActivity);
+		/*
+		 * A namespace is directly modified the DataSource mechanism
+		 * of SmartGWT
+		 */
+		buildEditDialog(attributes, getJNode(node), afterSendActivity);
 		
 	}
 
@@ -174,63 +146,39 @@ public class NsController {
 	 */
 	public void doGet(final HashMap<String,String> attributes, final TreeNode node) {
 
-		SC.logWarn("====> NsController.doGet");
-		
-		String[] keys = {
-			JaxrConstants.RIM_NAME,
-			JaxrConstants.RIM_DESC,
-			JaxrConstants.RIM_SLOT,
-			JaxrConstants.RIM_ID,
-			JsonConstants.J_ID
-		};
-		
-		JSONObject jValue = JsonConverter.recordToJson(node, keys);
-		
-		buildGetViewer(attributes, jValue);
-
-		
-//		final NsController self = this;
-//		
-//		/*
-//		 * Specify get activity
-//		 */
-//		ActivityImpl afterGetActivity = new ActivityImpl() {
-//			public void execute(JSONValue jValue) {
-//				self.buildGetViewer(attributes, jValue);
-//			}			
-//		};
-//
-//		/*
-//		 * Retrieve actual version of namespace
-//		 */
-//		doGet(attributes, node, afterGetActivity);
+		/*
+		 * A namespace is directly viewed using the data
+		 * already present on the clinet side
+		 */
+		buildGetViewer(attributes, getJNode(node));
 		
 	}
 
 	/**
-	 * Get namespace
+	 * A helper method to retrieve selected data for
+	 * further processing from a Node representation
 	 * 
-	 * @param attributes
-	 * @param record
-	 * @param afterGetActivity
+	 * @param node
+	 * @return
 	 */
-	private void doGet(final HashMap<String,String> attributes, final TreeNode node, ActivityImpl afterGetActivity) {
+	private JSONValue getJNode(TreeNode node) {
 		/*
-		 * Prepare get request
+		 * Select data to be used
 		 */
-		String format = FormatConstants.FNC_FORMAT_ID_Object;
-		String item = node.getAttributeAsString(JaxrConstants.RIM_ID);
-
-		String parent = null;
+		String[] keys = {
+				
+				JaxrConstants.RIM_ID,
+				JaxrConstants.RIM_DESC,
+				JaxrConstants.RIM_NAME,
+				JaxrConstants.RIM_SLOT,
+				JsonConstants.J_ID
 		
-		/*
-		 * Invoke get request
-		 */
-		NsService service = new NsService();
-		service.doGet(format, item, parent, afterGetActivity);
+		};
+		
+		return JsonConverter.recordToJson(node, keys);
 		
 	}
-
+	
 	/**
 	 * Build Namespace Edit Dialog
 	 * 

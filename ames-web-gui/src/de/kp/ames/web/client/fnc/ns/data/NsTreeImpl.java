@@ -52,7 +52,6 @@ import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSOperationType;
 import com.smartgwt.client.types.DSProtocol;
 import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.FolderClosedEvent;
 import com.smartgwt.client.widgets.tree.events.FolderClosedHandler;
@@ -68,6 +67,7 @@ import de.kp.ames.web.client.model.core.DataObject;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
@@ -80,8 +80,6 @@ public class NsTreeImpl extends TreeImpl {
 	 */
 	public NsTreeImpl() {
 		super(ServiceConstants.NAMESPACE_SERVICE_ID);
-		
-		SC.logWarn("====> NsTreeImpl CTOR");
 		
 		/*
 		 * Register data
@@ -104,7 +102,28 @@ public class NsTreeImpl extends TreeImpl {
 		 */
 		this.setFields(createTreeGridFields());
 		
+		/*
+		 * Assign a custom data field for the 
+		 * respective icon description
+		 */
 		this.setCustomIconProperty(JaxrConstants.RIM_ICON);
+	    
+	    /*
+	     * Event handling for folder 'Open' & 'Close' events;
+	     * this information is used to access the respective
+	     * node for later processing
+	     */
+	    this.addFolderOpenedHandler(new FolderOpenedHandler() {
+			public void onFolderOpened(FolderOpenedEvent event) {
+				openedFolder = event.getNode();
+			}
+		});
+	    	    
+	    this.addFolderClosedHandler(new FolderClosedHandler() {
+			public void onFolderClosed(FolderClosedEvent event) {
+				openedFolder = null;
+			}
+		});
 		
 	    /*
 	     * Set menu handler
@@ -113,25 +132,7 @@ public class NsTreeImpl extends TreeImpl {
 	    menuHandler.setParams(attributes);
 	    
 	    this.addMenuHandler(menuHandler);
-	    
-	    
-	    this.addFolderOpenedHandler(new FolderOpenedHandler() {
-			
 
-			@Override
-			public void onFolderOpened(FolderOpenedEvent event) {
-				openedFolder = event.getNode();
-			}
-		});
-	    
-	    
-	    this.addFolderClosedHandler(new FolderClosedHandler() {
-			
-			@Override
-			public void onFolderClosed(FolderClosedEvent event) {
-				openedFolder = null;
-			}
-		});
 	}
 
 	public void openFolder(TreeNode node) {
@@ -155,66 +156,92 @@ public class NsTreeImpl extends TreeImpl {
 	public void createScTreeDS() {
 		
 		String requestUrl = getRequestUrl();
-
 		DataSourceField[] requestFields = createDataFields();
 
 		dataSource = new RestDataSource() {
 			  
 			protected Object transformRequest(DSRequest dsRequest) {  
-								
+				/*
+				 * Distinguish between different data operations
+				 * to ensure injection of appropriate request
+				 * parameters		
+				 */
 				DSOperationType operationType = dsRequest.getOperationType();
 				if (operationType == DSOperationType.ADD)
 					dsRequest.setParams(getAddRequestParams());
+				
 				else if (operationType == DSOperationType.UPDATE)
 					dsRequest.setParams(getUpdateRequestParams());
+				
 				else if (operationType == DSOperationType.REMOVE)
 					dsRequest.setParams(getRemoveRequestParams());
+				
 				else if (operationType == DSOperationType.FETCH)
 					dsRequest.setParams(getFetchRequestParams());
 				
 				return super.transformRequest(dsRequest);  
+			
 			}  
 
 			protected void transformResponse(DSResponse response, DSRequest request, Object data) {  
 				
+				/*
+				 * In case of an 'ADD' operation, the respective OASIS ebXML RegRep
+				 * identifier is unknown for the client side; the subsequent mechanismen
+				 * ensures injection of missing attributes
+				 */
 				DSOperationType operationType = request.getOperationType();
 				if (operationType == DSOperationType.ADD) {
 
-					SC.logWarn("====> NsTreeImpl.transformResponse");
 					/*
-					 * Get id from server response
+					 * Get id from server response: in case of a submit request,
+					 * the server especially returns the (created) identifier
+					 * for the processed data package
+					 * 
+					 * Object data: this is where the server response is held
 					 */
-					String rimId = JSOHelper.getAttribute((JavaScriptObject) data, "id");
-					SC.logWarn("====> NsTreeImpl.transformResponse: rimId: " + rimId);
+					String rimId = JSOHelper.getAttribute((JavaScriptObject) data, JsonConstants.J_ID);
 
-					JavaScriptObject jsRequest = request.getJsObj();
-					String strData = JSOHelper.getAttribute(jsRequest, "data");
-					
-					JSONObject jRequestRecord = JSONParser.parseStrict(strData).isObject().get("data").isObject();
-					
+					/*
+					 * Get request data in a JSON representation as these data are
+					 * directly returned to the TreeGrid after the missing server
+					 * 'id' has been injected
+					 */
+					String strData = JSOHelper.getAttribute(request.getJsObj(), "data");					
+					JSONObject jNode = JSONParser.parseStrict(strData).isObject().get("data").isObject();
 					
 					Record record = new Record();
-					for (String key: jRequestRecord.keySet()) {
-						SC.logWarn("====> key: " + key);
+					for (String key: jNode.keySet()) {
+						/*
+						 * Data type handling: actually null parameters
+						 * are not used
+						 */
+						if (jNode.get(key).isNull() != null) continue;
 						
-						// skip parent if null
-						if (jRequestRecord.get(key).isNull() != null) continue;
-						
-						// handle booleans
-						if (jRequestRecord.get(key).isBoolean() != null) {
-							record.setAttribute(key, jRequestRecord.get(key).isBoolean().booleanValue());
+						if (jNode.get(key).isBoolean() != null) {
+							record.setAttribute(key, jNode.get(key).isBoolean().booleanValue());
+
 						} else {
-							record.setAttribute(key, jRequestRecord.get(key).isString().stringValue());							
+							record.setAttribute(key, jNode.get(key).isString().stringValue());							
+
 						}
 					}
 					
+					/*
+					 * Inject missing identifier
+					 */
 					record.setAttribute(JaxrConstants.RIM_ID, rimId);
+					
+					/*
+					 * Manipulate response data to send enhanced request
+					 * data back to the TreeGrid
+					 */
 					response.setData(new Record[] {record});
-									
-					SC.logWarn("====> NsTreeImpl.transformResponse callback: END");
+
 				}
 
 				super.transformResponse(response, request, data);  
+			
 			}  
 			
 		};
@@ -271,9 +298,6 @@ public class NsTreeImpl extends TreeImpl {
 	 * @return
 	 */
 	private Map<String,String>  getAddRequestParams() {
-		
-		SC.logWarn("======> NsTreeImpl.Operation: ADD");
-
 		RequestMethod requestMethod = createAddMethod();
 		return requestMethod.toParams();	
 	}
@@ -284,9 +308,6 @@ public class NsTreeImpl extends TreeImpl {
 	 * @return
 	 */
 	private Map<String,String> getRemoveRequestParams() {
-		
-		SC.logWarn("======> NsTreeImpl.Operation: REMOVE");
-		
 		RequestMethod requestMethod = createRemoveMethod();
 		return requestMethod.toParams();	
 	}
@@ -297,13 +318,8 @@ public class NsTreeImpl extends TreeImpl {
 	 * @return
 	 */
 	private Map<String,String> getFetchRequestParams() {
-		
-		SC.logWarn("======> NsTreeImpl.Operation: FETCH");
-
-
 		RequestMethod requestMethod = createFetchMethod();
-		return requestMethod.toParams();
-	
+		return requestMethod.toParams();	
 	}
 
 	/**
@@ -312,84 +328,98 @@ public class NsTreeImpl extends TreeImpl {
 	 * @return
 	 */
 	private Map<String,String> getUpdateRequestParams() {
-		
-		SC.logWarn("======> NsTreeImpl.Operation: UPDATE");
-		
 		RequestMethod requestMethod = createUpdateMethod();
 		return requestMethod.toParams();
 	
 	}
-	
-	private RequestMethod createUpdateMethod() {
+
+	/**
+	 * A helper method to create a RequestMethod for an
+	 * ADD request: The required parameters are
+	 * 
+	 * MethodConstants.ATTR_TYPE
+	 * MethodConstants.ATTR_PARENT
+	 * 
+	 * @return
+	 */
+	private RequestMethod createAddMethod() {
+
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_SUBMIT);
 		
-		/*
-		 * no explicit filter of attributes
-		 */
-
+		requestMethod.addAttribute(MethodConstants.ATTR_TYPE, attributes.get(MethodConstants.ATTR_TYPE));
+		requestMethod.addAttribute(MethodConstants.ATTR_PARENT, attributes.get(MethodConstants.ATTR_PARENT));
+						
 		return requestMethod;
-	}
-	
 
+	}
+
+	/**
+	 * A helper method to create a RequestMethod for an
+	 * FETCH request: The required parameters are
+	 * 
+	 * MethodConstants.ATTR_FORMAT
+	 * MethodConstants.ATTR_PARENT
+	 * 
+	 * @return
+	 */
 	private RequestMethod createFetchMethod() {
 
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_GET);
 		
-		/*
-		 * explicit filter of attributes
-		 */
 		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Tree);
-
-		if (openedFolder != null) {
-			requestMethod.addAttribute(MethodConstants.ATTR_PARENT, openedFolder.getAttribute(JaxrConstants.RIM_ID));
-		}
+		if (openedFolder != null) requestMethod.addAttribute(MethodConstants.ATTR_PARENT, openedFolder.getAttribute(JaxrConstants.RIM_ID));
 
 		return requestMethod;
 		
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createRemoveMethod()
+	/**
+	 * A helper method to create a RequestMethod for an
+	 * REMOVE request: The required parameters are
+	 * 
+	 * MethodConstants.ATTR_TYPE
+	 * MethodConstants.ATTR_ITEM
+	 * 
+	 * @return
 	 */
 	private RequestMethod createRemoveMethod() {
+
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_DELETE);
-		
-		/*
-		 * explicit filter of attributes
-		 */
+
 		requestMethod.addAttribute(MethodConstants.ATTR_TYPE, attributes.get(MethodConstants.ATTR_TYPE));
 		requestMethod.addAttribute(MethodConstants.ATTR_ITEM, attributes.get(MethodConstants.ATTR_ITEM));
 						
 		return requestMethod;
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.tree.Tree#createAddMethod()
+
+	/**
+	 * A helper method to create a RequestMethod for an
+	 * UPDATED request
+	 * 
+	 * @return
 	 */
-	private RequestMethod createAddMethod() {
+
+	private RequestMethod createUpdateMethod() {
+
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_SUBMIT);
 		
-		/*
-		 * explicit filter of attributes
-		 */
-		requestMethod.addAttribute(MethodConstants.ATTR_TYPE, attributes.get(MethodConstants.ATTR_TYPE));
-		requestMethod.addAttribute(MethodConstants.ATTR_PARENT, attributes.get(MethodConstants.ATTR_PARENT));
-						
 		return requestMethod;
+
 	}
+	
 
+	/**
+	 * A helper method to set additional request parameters
+	 * 
+	 * @param key
+	 * @param value
+	 */
 	public void setAttribute(String key, String value) {
-
-		SC.logWarn("======> NsTreeImpl.setAttribute: key: " + key + " / value: " + value);
-
-		attributes.put(key, value);
-		
+		attributes.put(key, value);		
 	}
 	
 }

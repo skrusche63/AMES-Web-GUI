@@ -106,7 +106,7 @@ public class ResponsibilityGetViewer extends ViewerImpl {
 	 */
 	public static void create(HashMap<String,String> attributes) {
 
-		String type   = ClassificationConstants.FNC_ID_Responsibility;
+		String type = ClassificationConstants.FNC_ID_Responsibility;
 		
 		String source = attributes.get(MethodConstants.ATTR_SOURCE); 
 		String target = null;

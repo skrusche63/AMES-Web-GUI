@@ -116,7 +116,7 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 		if (source == null) {
 
 			String message = FncGlobals.NAMESPACE_ERROR;
-			SC.say(GuiConstants.APP_TITLE + ": Productor Error", message);		
+			SC.say("Productor Error", message);		
 
 			this.setAutoClose(false);
 			return;
