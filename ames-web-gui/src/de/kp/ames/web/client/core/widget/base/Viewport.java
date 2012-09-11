@@ -287,6 +287,7 @@ public class Viewport extends VLayout {
 	 * 
 	 * @param e
 	 */
+	@SuppressWarnings("unused")
 	private void doLogo(ClickEvent e) {
 		CustomAppsManager.getInstance().createApp(ApplicationConstants.FNC_APP_ID_Desktop);		
 	}

@@ -54,6 +54,15 @@ public class AppsService extends ServiceImpl {
 		super(GuiConstants.REG_URL, ServiceConstants.SECURITY_SERVICE_ID);
 	}
 
+	public void doGetCredentials(String service, Activity activity) {
+		
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_SECURITY_ID_Safe);
+		attributes.put(MethodConstants.ATTR_SERVICE, service);
+		
+		doGetJson(attributes, activity);
+	}
+	
 	/**
 	 * @param activityCallback
 	 */

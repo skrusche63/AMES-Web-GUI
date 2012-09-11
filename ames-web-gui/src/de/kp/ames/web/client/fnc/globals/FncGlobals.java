@@ -261,4 +261,10 @@ public class FncGlobals {
 	 */
 	public static String FORM_ERROR = "Please evaluate the provided form data.";
 	
+	/*
+	 * AMES SCM specific constants
+	 */
+	public static final String CHECKOUT_C_TITLE = "Checkout";
+	public static final String CHECKOUT_C_SLOGAN = "Add a comment for your checkout";
+
 }

@@ -59,14 +59,15 @@ public class MailImpl extends BaseApp {
 	/**
 	 * Constructor
 	 */
-	public MailImpl() {
+	public MailImpl(String alias, String keypass, String username, String password) {
 		super(FncGlobals.MAIL_TITLE, FncGlobals.MAIL_SLOGAN);
 		
 		/*
 		 * Build endpoint
 		 */
-		String endpoint = GuiConstants.COM_URL + "?service=mail&security=saml";
-		
+		String endpoint = GuiConstants.COM_URL + "?service=mail&alias=" + alias + "&keypass=" + keypass;
+		if ((username != null) && (password != null)) endpoint = endpoint + "&username=" + username + "&password=" + password;
+		 
 		/*
 		 * VLayout
 		 */
@@ -80,6 +81,9 @@ public class MailImpl extends BaseApp {
 		
 		frame = new Frame();
 		frame.setStyleName(GuiStyles.X_FRAME);
+		
+		frame.setWidth("100%");
+		frame.setHeight("100%");
 		
 		/*
 		 * Event handling

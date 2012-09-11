@@ -182,13 +182,6 @@ public class CustomAppsManager extends AppsManager {
 		app = createInitialApp(profile);
 		
 		/*
-		 * Create registered communication apps;
-		 * actually this is the bulletin board,
-		 * chat and mail application
-		 */
-		if (app == null) app = createCommApp(profile);
-		
-		/*
 		 * Create additional applications that refer to
 		 * the current project environment
 		 */		

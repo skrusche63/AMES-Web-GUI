@@ -17,6 +17,7 @@ package de.kp.ames.web.client.test;
  *
  */
 
+import com.google.gwt.json.client.JSONObject;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
@@ -39,7 +40,7 @@ import de.kp.ames.web.client.test.user.UserFactory;
 
 public class ScFactory {
 
-	private static String PREFIX = "function:";
+	public static String PREFIX = "function:";
 	
 	private static String TABLE_ICON  = "silk/table.png";
 	private static String WIDGET_ICON = "silk/widget.png";
@@ -52,8 +53,12 @@ public class ScFactory {
 		if (nid.equals(PREFIX + "access:data:AccessGridImpl:leaf")) {
 			return createAccessGridImpl(nid);
 
-		} else if (nid.equals(PREFIX + "access:data:DatabaseGridImpl:leaf")) {
-			return createDatabaseGridImpl(nid);
+		/*
+		 *  asynchronous handling in ShowCaseImpl
+		 */
+			
+//		} else if (nid.equals(PREFIX + "access:data:DatabaseGridImpl:leaf")) {
+//			return createDatabaseGridImpl(nid);
 
 		} else if (nid.equals(PREFIX + "access:widget:AccessorCreateDialog:leaf")) {
 			return createAccessorCreateDialog(nid);
@@ -306,9 +311,9 @@ public class ScFactory {
 	
 	}
 
-	private static Tab createDatabaseGridImpl(String nid) {
+	public static Tab createDatabaseGridImpl(String nid, JSONObject jDatabase) {
 
-		VLayout content = AccessFactory.getInstance().createDatabaseGridImpl();
+		VLayout content = AccessFactory.getInstance().createDatabaseGridImpl(jDatabase);
 		
 		Tab tab = createTab(nid, "DatabaseGridImpl", TABLE_ICON, content);	
 		return tab;

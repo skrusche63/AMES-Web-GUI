@@ -20,16 +20,16 @@ package de.kp.ames.web.client.core.service;
 /**
  *	Copyright 2012 Dr. Krusche & Partner PartG
  *
- *	AMES-Web-GUI is free software: you can redistribute it and/or 
- *	modify it under the terms of the GNU General Public License 
- *	as published by the Free Software Foundation, either version 3 of 
+ *	AMES-Web-GUI is free software: you can redistribute it and/or
+ *	modify it under the terms of the GNU General Public License
+ *	as published by the Free Software Foundation, either version 3 of
  *	the License, or (at your option) any later version.
  *
  *	AMES- Web-GUI is distributed in the hope that it will be useful,
  *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
- * 
- *  See the GNU General Public License for more details. 
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ *  See the GNU General Public License for more details.
  *
  *	You should have received a copy of the GNU General Public License
  *	along with this software. If not, see <http://www.gnu.org/licenses/>.
@@ -59,24 +59,24 @@ public class ServiceImpl implements Service {
 	 * The base url necessary to invoke the
 	 * web service that refers to this service
 	 */
-	
+
 	protected String base;
-	
+
 	/*
 	 * The unique service identifier
 	 */
 	protected String sid;
-	
+
 	/*
 	 * Reference to Connection Manager
 	 */
-	
+
 	protected static ConnectionManager cm = ConnectionManager.getInstance();
-	
+
 	/**
 	 * Constructor
 	 */
-	public ServiceImpl() {		
+	public ServiceImpl() {
 	}
 
 	/**
@@ -87,14 +87,14 @@ public class ServiceImpl implements Service {
 		this.base = base;
 		this.sid  = sid;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#setId(java.lang.String)
 	 */
 	public void setId(String sid) {
 		this.sid = sid;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#setBase(java.lang.String)
 	 */
@@ -111,7 +111,7 @@ public class ServiceImpl implements Service {
 		requestMethod.setName(MethodConstants.METH_APPLY);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		ApplyCallbackImpl callback = new ApplyCallbackImpl(activity, this);
 		sendGetRequest(requestMethod, callback);
 
@@ -126,7 +126,7 @@ public class ServiceImpl implements Service {
 		requestMethod.setName(MethodConstants.METH_APPLY);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		ApplyCallbackImpl callback = new ApplyCallbackImpl(activity, this);
 		sendPostRequest(requestMethod, data, callback);
 
@@ -141,7 +141,7 @@ public class ServiceImpl implements Service {
 		requestMethod.setName(MethodConstants.METH_DELETE);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		DeleteCallbackImpl callback = new DeleteCallbackImpl(activity, this);
 		sendGetRequest(requestMethod, callback);
 
@@ -156,15 +156,15 @@ public class ServiceImpl implements Service {
 		requestMethod.setName(MethodConstants.METH_DELETE);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		DeleteCallbackImpl callback = new DeleteCallbackImpl(activity, this);
 		sendPostRequest(requestMethod, data, callback);
 
 	}
-	
+
 	/**
 	 * A helper method to download a certain file
-	 * 
+	 *
 	 * @param attributes
 	 * @param activity
 	 */
@@ -177,19 +177,19 @@ public class ServiceImpl implements Service {
 
 		String requestUrl = getRequestUrl()  + requestMethod.toQuery();
 		new DownloadFrame(requestUrl, activity);
-		
+
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#doExtract(java.util.HashMap, de.kp.ames.web.client.core.activity.Activity)
 	 */
 	public void doExtract(HashMap<String,String> attributes, Activity activity) {
-		
+
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_EXTRACT);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		ExtractCallbackImpl callback = new ExtractCallbackImpl(activity, this);
 		sendGetRequest(requestMethod, callback);
 
@@ -199,20 +199,20 @@ public class ServiceImpl implements Service {
 	 * @see de.kp.ames.web.client.core.service.Service#doGetJson(java.util.HashMap, de.kp.ames.web.client.core.activity.Activity)
 	 */
 	public void doGetJson(HashMap<String,String> attributes, Activity activity) {
-	
+
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_GET);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		GetJsonCallbackImpl callback = new GetJsonCallbackImpl(activity, this);
 		sendGetRequest(requestMethod, callback);
-		
+
 	}
 
 	/**
 	 * A JSON based non-widget SUBMIT request
-	 * 
+	 *
 	 * @param data
 	 * @param activity
 	 */
@@ -220,7 +220,7 @@ public class ServiceImpl implements Service {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		doSubmit(attributes, data, activity);
-	
+
 	}
 
 	/* (non-Javadoc)
@@ -232,7 +232,7 @@ public class ServiceImpl implements Service {
 		requestMethod.setName(MethodConstants.METH_SUBMIT);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		SubmitCallbackImpl callback = new SubmitCallbackImpl(activity, this);
 		sendPostRequest(requestMethod, data, callback);
 
@@ -242,14 +242,14 @@ public class ServiceImpl implements Service {
 	 * @see de.kp.ames.web.client.core.service.Service#sendGetRequest(de.kp.ames.web.client.core.method.RequestMethodImpl, de.kp.ames.web.client.core.callback.Callback)
 	 */
 	public void sendGetRequest(RequestMethodImpl method, ConnectionCallback callback) {
-		
+
 		String requestUrl = getRequestUrl();
 		HashMap<String,String> requestHeaders = getHeaders();
-		
+
 		cm.sendGetRequest(requestUrl, method, requestHeaders, callback);
-	
+
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#sendPostRequest(de.kp.ames.web.client.core.method.RequestMethodImpl, java.lang.String, de.kp.ames.web.client.core.callback.Callback)
 	 */
@@ -257,16 +257,16 @@ public class ServiceImpl implements Service {
 
 		String requestUrl = getRequestUrl();
 		HashMap<String,String> requestHeaders = getHeaders();
-	
-		cm.sendPostRequest(requestUrl, method, requestHeaders, data, callback);		
-	
+
+		cm.sendPostRequest(requestUrl, method, requestHeaders, data, callback);
+
 	}
 
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.service.Service#getHeaders()
 	 */
 	public HashMap<String,String> getHeaders() {
-		
+
 		HashMap<String,String> headers = new HashMap<String,String>();
 		return headers;
 	}
@@ -284,31 +284,31 @@ public class ServiceImpl implements Service {
 		requestMethod.setName(MethodConstants.METH_GET);
 
 		requestMethod.setAttributes(attributes);
-		
+
 		/*
 		 * Build request uri
 		 */
 		return getRequestUrl() + requestMethod.toQuery();
-		
+
 	}
-	
+
 	/**
 	 * @return
 	 */
 	protected String getRequestUrl() {
-		
+
 		if ((this.sid == null) || (this.base == null)) return null;
 		return this.base + "/" + this.sid;
-		
+
 	}
 
 	/**
 	 * Message box to show the request error failure
-	 * 
+	 *
 	 * @param message
 	 */
 	public void doRequestError(String message) {
-		SC.say(GuiConstants.APP_TITLE + ": Request Error", message);		
+		SC.say(GuiConstants.APP_TITLE + ": Request Error", message);
 	}
 
 }

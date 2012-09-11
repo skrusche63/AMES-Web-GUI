@@ -36,6 +36,8 @@ package de.kp.ames.web.client.test;
  *
  */
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
@@ -47,9 +49,14 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.tree.events.LeafClickEvent;
 import com.smartgwt.client.widgets.tree.events.LeafClickHandler;
 
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
+import de.kp.ames.web.client.fnc.access.AccessService;
 import de.kp.ames.web.client.style.GuiStyles;
+import de.kp.ames.web.client.test.data.ScData;
 import de.kp.ames.web.client.test.data.ScNode;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.FormatConstants;
 
 public class ShowCaseImpl extends BaseApp {
 	
@@ -209,7 +216,7 @@ public class ShowCaseImpl extends BaseApp {
         /*
          * Retrieve node identifier
          */
-        String nid = scNode.getNodeID();
+        final String nid = scNode.getNodeID();
         
         /*
          * Tab
@@ -221,11 +228,36 @@ public class ShowCaseImpl extends BaseApp {
         	/*
         	 * Create new tab
         	 */
-        	tab = ScFactory.getTab(nid);
-        	tab.setWidth(80);
         	
-        	mainTabs.addTab(tab);
-        	mainTabs.selectTab(tab);
+        	if (nid.equals(ScFactory.PREFIX + "access:data:DatabaseGridImpl:leaf")) {
+        		/*
+        		 * Initialize Database Grid Example with
+        		 * a predefined Accessor
+        		 */
+        		final ShowCaseImpl self = this;
+        		ActivityImpl activity = new ActivityImpl() {
+        			public void execute(JSONValue jValue) {
+                		JSONObject jDatabase = jValue.isObject();
+                		Tab tab = ScFactory.createDatabaseGridImpl(nid, jDatabase);
+        	        	tab.setWidth(80);
+        	        	self.mainTabs.addTab(tab);
+        	        	self.mainTabs.selectTab(tab);
+        			}
+        		};
+        		
+        		String format = FormatConstants.FNC_FORMAT_ID_Json;
+        		String type = ClassificationConstants.FNC_ID_Database;
+        		
+        		String item = ScData.TEST_DATABASE_ACCESSOR;
+        		
+        		new AccessService().doGet(format, type, item, activity);
+
+        	} else {
+	        	tab = ScFactory.getTab(nid);
+	        	tab.setWidth(80);
+	        	mainTabs.addTab(tab);
+	        	mainTabs.selectTab(tab);
+        	}
         	
         } else {
         	mainTabs.selectTab(tab);

@@ -114,7 +114,7 @@ public class UserGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			if (item != null) {
 				
 				/*
-				 * Seperate roles from get
+				 * Separate roles from get
 				 */
 				items.add(separator);
 

@@ -218,8 +218,9 @@ public class ScData {
     /*
      * Access-Layer
      */
-    public static String TEST_ACCESSOR = "urn:uuid:d7b1b643-4b49-451b-a70b-e6586b4f02ec";
-    
+    public static String TEST_WEBDAV_ACCESSOR = "urn:uuid:d7b1b643-4b49-451b-a70b-e6586b4f02ec";
+    public static String TEST_DATABASE_ACCESSOR = "urn:uuid:06e9c056-9330-425c-960a-e90cd03647fe";
+
     public static JSONObject getJsonAccessor() {
 
     	JSONObject jAccessor = new JSONObject();

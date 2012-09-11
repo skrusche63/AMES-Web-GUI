@@ -60,14 +60,15 @@ public class ChatImpl extends BaseApp {
 	/**
 	 * Constructor
 	 */
-	public ChatImpl() {
+	public ChatImpl(String alias, String keypass, String username, String password) {
 		super(FncGlobals.CHAT_TITLE, FncGlobals.CHAT_SLOGAN);
 		
 		/*
 		 * Build endpoint
 		 */
-		String endpoint = GuiConstants.COM_URL + "?service=chat&security=saml";
-		
+		String endpoint = GuiConstants.COM_URL + "?service=chat&alias=" + alias + "&keypass=" + keypass;
+		if ((username != null) && (password != null)) endpoint = endpoint + "&username=" + username + "&password=" + password;
+ 		
 		/*
 		 * VLayout
 		 */

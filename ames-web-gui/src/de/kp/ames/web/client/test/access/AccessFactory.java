@@ -62,6 +62,9 @@ public class AccessFactory extends FncFactory {
 		return instance;
 	}
 
+	private AccessFactory() {
+	}
+	
 	public VLayout createAccessGridImpl() {
 
 		accessGridLayout = new VLayout();
@@ -105,7 +108,7 @@ public class AccessFactory extends FncFactory {
         return accessGridLayout;
  	}
 
-	public VLayout createDatabaseGridImpl() {
+	public VLayout createDatabaseGridImpl(JSONObject jDatabase) {
 
 		VLayout layout = new VLayout();
 		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
@@ -118,8 +121,7 @@ public class AccessFactory extends FncFactory {
         /*
          * Build grid
          */
-        JSONObject jDatabase = ScData.getJsonDatabase();
-
+ 
         DatabaseGridImpl grid = new DatabaseGridImpl(jDatabase);
 		grid.setMargin(24);
 		
@@ -144,7 +146,7 @@ public class AccessFactory extends FncFactory {
 		
 		String item = null;
 		if (type.equals(ClassificationConstants.FNC_ID_Accessor) == false)
-			item = ScData.TEST_ACCESSOR;
+			item = ScData.TEST_WEBDAV_ACCESSOR;
 		
 		AccessGridImpl grid = new AccessGridImpl(type, item);
 		grid.setMargin(24);

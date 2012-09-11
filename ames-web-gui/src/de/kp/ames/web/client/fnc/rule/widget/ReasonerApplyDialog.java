@@ -29,7 +29,6 @@ import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.widget.dialog.ApplyFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.rule.RuleService;
-import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class ReasonerApplyDialog extends ApplyFormDialog {

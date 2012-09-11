@@ -62,7 +62,11 @@ public class GridDialog extends BaseDialog implements DialogHandler {
 	 * @param slogan
 	 */
 	public GridDialog(String title, String slogan, GridImpl grid) {
-		super(title, slogan, grid);				
+		super(title, slogan, grid);	
+		/*
+		 * store explicit grid reference 
+		 */
+		this.grid = grid;
 	}
 	
 	/**

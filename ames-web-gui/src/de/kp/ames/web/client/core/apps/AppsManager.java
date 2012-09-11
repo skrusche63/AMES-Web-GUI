@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -31,6 +32,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.events.MenuItemClickEvent;
 
+import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.desktop.DesktopImpl;
 import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.portal.PortalImpl;
@@ -191,7 +193,7 @@ public class AppsManager {
 		
 		chatItem.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 			public void onClick(MenuItemClickEvent event) {
-				afterControlSelected(chatId, control);
+				afterCommControlSelected(chatId, control);
 			}				
 		});
 
@@ -207,7 +209,7 @@ public class AppsManager {
 		
 		mailItem.addClickHandler(new com.smartgwt.client.widgets.menu.events.ClickHandler() {
 			public void onClick(MenuItemClickEvent event) {
-				afterControlSelected(mailId, control);
+				afterCommControlSelected(mailId, control);
 			}				
 		});
 
@@ -230,6 +232,68 @@ public class AppsManager {
 	}
 
 	/**
+	 * A helper method to specify the action that is
+	 * invoked after a control label has been clicked
+	 * 
+	 * @param id
+	 * @param control
+	 */
+	public void afterCommControlSelected(final String id, final ControlLabel control) {
+
+		new AppsService().doGetCredentials("comm", new ActivityImpl() {
+			public void execute(JSONValue jValue) {
+				
+				JSONObject jCreds = jValue.isObject();
+				
+				final String alias;
+				final String keypass;
+				
+				/*
+				 * Data guard
+				 */
+				if (!jCreds.containsKey("alias")) return;
+				if (!jCreds.containsKey("keypass")) return;
+								
+				alias = jCreds.get("alias").isString().stringValue();
+				keypass = jCreds.get("keypass").isString().stringValue();
+					
+				if (id.equals(ApplicationConstants.FNC_APP_ID_Chat)) {
+					doStartComm(id, "chat", alias, keypass);
+					
+				} else if (id.equals(ApplicationConstants.FNC_APP_ID_Mail)) {
+					doStartComm(id, "mail", alias, keypass);
+					
+				}
+				
+			}
+		});
+
+	}
+
+	private void doStartComm(final String id, String service, final String alias, final String keypass) {
+
+		ActivityImpl activity = new ActivityImpl() {
+			
+			public void execute(JSONValue jValue) {
+				
+				JSONObject jCreds = jValue.isObject();
+				
+				String username = null;
+				String password = null;
+				
+				if (jCreds.containsKey("user")) username = jCreds.get("user").isString().stringValue();				
+				if (jCreds.containsKey("password")) password = jCreds.get("password").isString().stringValue();
+				
+				CustomAppsManager.getInstance().createCommApp(id, alias, keypass, username, password);
+			
+			}			
+			
+		};
+
+		new AppsService().doGetCredentials(service, activity);
+
+	}
+	/**
 	 * A helper method to append a selected application
 	 * to the viewport, depending on the specific profile
 	 * 
@@ -246,31 +310,38 @@ public class AppsManager {
 	 * chat and mai application from the respective profile
 	 * 
 	 * @param profile
-	 * @return
 	 */
-	public BaseApp createCommApp(String profile) {
+	public void createCommApp(String profile, String alias, String keypass, String username, String password) {
+
+		BaseApp app = null;		
 
 		if (profile.equals(ApplicationConstants.FNC_APP_ID_Bulletin)) {
 			/*
 			 * Create Bulletin Board application
 			 */
-			return new BulletinImpl();
+			app = new BulletinImpl();
 
 		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Chat)) {
 			/*
 			 * Create Chat Communicator application
 			 */
-			return new ChatImpl();
+			
+			app = new ChatImpl(alias, keypass, username, password);
 			
 		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Mail)) {
 			/*
 			 * Create Mail Communicator application
 			 */
-			return new MailImpl();
+			app = new MailImpl(alias, keypass, username, password);
 
 		}
 		
-		return null;
+		if (app == null) return;
+		
+		/*
+		 * Append selected app
+		 */
+		replaceApp(app);
 	
 	}
 	

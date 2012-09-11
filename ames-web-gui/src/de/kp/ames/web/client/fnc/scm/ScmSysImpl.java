@@ -25,7 +25,7 @@ import de.kp.ames.web.client.fnc.scm.event.ScmEventManager;
 /**
  * ScmSysImpl is a web application that provides access
  * to the source code of the AMES project; this class
- * manages all the eventa that are ncessary to communicate
+ * manages all the events that are necessary to communicate
  * between the different application components
  */
 public class ScmSysImpl extends BaseApp {
