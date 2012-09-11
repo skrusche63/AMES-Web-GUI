@@ -25,6 +25,13 @@
   <inherits name='de.kp.ames.web.shared.constants'/> 
   <inherits name='de.kp.ames.map.openlayers'/> 
   
+  <!-- Drawing 													  -->
+  <inherits name="com.smartgwt.Drawing" />
+  
+  <!-- thejit                                                     -->
+  <inherits name="de.kp.ames.thejit.thejit"/>
+  
+  
   <!-- Specify the app entry point class.                         -->
   <entry-point class='de.kp.ames.web.client.main'/>
  

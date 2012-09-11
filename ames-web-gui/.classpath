@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="smartgwt-skins.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ames-map-gui"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ames-web-shared"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ames-thejit"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
