@@ -27,6 +27,8 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.menu.MenuItem;
@@ -135,6 +137,10 @@ public class AppsManager {
 	
 	}
 
+	public Viewport getViewport() {
+		return this.viewport;
+	}
+	
 	/**
 	 * Populate the main application menu
 	 * with registered apps as items
@@ -381,6 +387,11 @@ public class AppsManager {
 	public void replaceApp(BaseApp newApp) {
 
 		/*
+		 * Remove search widget from viewport;
+		 */
+		closeSearch();
+
+		/*
 		 * Remove existing application from viewport;
 		 * take into account that apps are always
 		 * wrapped by vertical layouts
@@ -391,7 +402,15 @@ public class AppsManager {
 		 * before it is removed from the viewport
 		 */
 		if (selectedApp != null) selectedApp.beforeRemove();
-		viewport.removeMember(viewport.getMember(1));
+		
+		Canvas oldApp = viewport.getMember(1);
+		viewport.removeMember(oldApp);
+		
+		/*
+		 * Call destroy application explicit
+		 */
+		oldApp.destroy();
+		SC.logWarn("====> AppsManager.replaceApp: old app destroyed");
 		
 		/*
 		 * Register new application as selected app
@@ -408,7 +427,7 @@ public class AppsManager {
 		newWrapper.addMember(newApp);		
 		viewport.addMember(newWrapper);
 
-		container.draw();
+		container.redraw();
 
 	}
 
@@ -446,6 +465,8 @@ public class AppsManager {
 	 * root panel
 	 */
 	public void closeSearch() {
+		
+		if (searchWidget == null) return;
 		
 		RootPanel.get().remove(searchWidget);
 		

@@ -40,7 +40,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.layout.HLayout;
-import de.kp.ames.web.client.core.globals.GuiConstants;
+
 import de.kp.ames.web.client.style.GuiStyles;
 
 public class AppHeadline extends HLayout {
@@ -111,7 +111,7 @@ public class AppHeadline extends HLayout {
 		this.slogan = slogan;
 
 		this.leftPane.setContents(getHtml());
-		if (GuiConstants.SHOWCASE_FLAG) rightPane.addChild(createLogo());
+		rightPane.addChild(createLogo());
 		
 	}
 
@@ -125,7 +125,7 @@ public class AppHeadline extends HLayout {
 		this.title = title;
 
 		this.leftPane.setContents(getHtml());
-		if (GuiConstants.SHOWCASE_FLAG) rightPane.addChild(createLogo());
+		rightPane.addChild(createLogo());
 		
 	}
 
@@ -160,28 +160,11 @@ public class AppHeadline extends HLayout {
 
 		String html = "";
 		
-		if (GuiConstants.SHOWCASE_FLAG) {
-
-			/*
-			 * Showcase
-			 */
-			html = "<div class='x-topline'>";
-			html += "<div style='padding:8px 0px 0px 8px;font-size:22px;vertical-align:top;'><b>" + this.title + "</b><br/>";
-			html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
-			html += "</div";
+		html = "<div class='x-topline'>";
+		html += "<div style='padding:8px 0px 0px 8px;font-size:22px;vertical-align:top;'><b>" + this.title + "</b><br/>";
+		html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
+		html += "</div>";
 		
-		} else {
-			
-			/*
-			 * Operational use case
-			 */
-			html = "<div class='x-topline'>";
-			html += "<img src='" + GuiStyles.APP_ICON + "' height='48' width='48' style='display:block;float:left;margin:8px 4px 4px 4px;'>";
-			html += "<div style='padding:8px 0px 0px 8px;font-size:22px;vertical-align:top;'><b>" + this.title + "</b><br/>";
-			html += "<span style='padding:8px 0px 0px 2px;font-size:11px;'>" + this.slogan + "</span></div>";
-			html += "</div";
-		
-		}
 		
 		return html;
 

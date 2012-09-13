@@ -32,6 +32,7 @@ import de.kp.ames.web.client.core.widget.dialog.ApplyGridDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.group.GroupService;
 import de.kp.ames.web.client.fnc.group.data.CategoryGridImpl;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
@@ -101,9 +102,10 @@ public class GroupCategoryDialog extends ApplyGridDialog {
 		/*
 		 * Request specific parameters
 		 */
-		String type = this.getParam(MethodConstants.ATTR_TYPE);
-		String item = this.getParam(MethodConstants.ATTR_ITEM);;
+		// String type = this.getParam(MethodConstants.ATTR_TYPE);
 		
+		String item = this.getParam(MethodConstants.ATTR_ITEM);;
+		String type = ClassificationConstants.FNC_ID_Category;
 		new GroupService().doSubmit(type, item, data, this.sendActivity);
 		
 	}

@@ -58,4 +58,14 @@ public class SimilarityPortImpl extends RightportImpl implements SimilarityListe
 		 */
 		similarityFeedback.update(jValue);
 	}
+
+
+	@Override
+	public void beforeRemove() {
+		/*
+		 * unregister listener
+		 */
+		SearchEventManager.getInstance().removeSimilarityListener(this);
+		
+	}
 }

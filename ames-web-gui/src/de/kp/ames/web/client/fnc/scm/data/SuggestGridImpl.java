@@ -11,7 +11,6 @@ import com.smartgwt.client.widgets.events.KeyDownHandler;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
 import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 
-import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.fnc.scm.control.SuggestController;
 import de.kp.ames.web.client.fnc.scm.handler.SuggestRecordHandlerImpl;

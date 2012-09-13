@@ -24,7 +24,7 @@ import com.smartgwt.client.data.Record;
 
 import de.kp.ames.web.client.action.grid.GridGetImpl;
 import de.kp.ames.web.client.core.grid.Grid;
-import de.kp.ames.web.client.fnc.user.UserController;
+import de.kp.ames.web.client.fnc.role.RoleController;
 
 public class ResponsibilityGetImpl extends GridGetImpl {
 
@@ -45,7 +45,7 @@ public class ResponsibilityGetImpl extends GridGetImpl {
 
 		HashMap<String,String> attributes = this.getParams();
 		
-		UserController controller = new UserController();
+		RoleController controller = new RoleController();
 		controller.doGet(attributes, record);
 		
 	}

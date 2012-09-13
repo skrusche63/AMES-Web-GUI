@@ -22,6 +22,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.grid.GridImpl;
+import de.kp.ames.web.client.fnc.globals.FncGlobals;
 
 public class ApplyGridDialog extends GridDialog {
 
@@ -33,6 +34,12 @@ public class ApplyGridDialog extends GridDialog {
 
 	public ApplyGridDialog(String title, String slogan, GridImpl grid) {
 		super(title, slogan, grid);
+		
+		/*
+		 * Set Title
+		 */
+		this.setTitle(FncGlobals.ADF_EDITOR);
+		
 	}
 
 	/* (non-Javadoc)

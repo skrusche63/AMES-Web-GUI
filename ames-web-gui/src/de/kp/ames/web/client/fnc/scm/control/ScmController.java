@@ -68,13 +68,16 @@ public class ScmController implements SuggestListener {
 		/* 
 		 * Remove placeholder
 		 */
-		scm.removeMember(scm.getMember(1));
+		scm.getContent().removeMember(scm.getContent().getMember(0));
 		
 		VLayout newWrapper = new VLayout();
 		newWrapper.setOverflow(Overflow.AUTO);
 
-		newWrapper.addMember(new ResultFeedbackImpl(suggestRecord));
-		scm.addMember(newWrapper);
+		ResultFeedbackImpl resultFeedback = new ResultFeedbackImpl(suggestRecord);
+		scm.removables.add(resultFeedback);
+		
+		newWrapper.addMember(resultFeedback);
+		scm.getContent().addMember(newWrapper);
 
 		scm.redraw();
 
@@ -161,6 +164,11 @@ public class ScmController implements SuggestListener {
 	 */
 	public SearchWidget getSearchWidget() {
 		return searchWidget;
+	}
+
+	public void doClear() {
+		closeSearch();	
+		isResultLayoutCreated = false;
 	}
 
 

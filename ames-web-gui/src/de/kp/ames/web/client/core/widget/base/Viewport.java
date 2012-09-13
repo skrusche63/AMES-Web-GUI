@@ -67,8 +67,11 @@ public class Viewport extends VLayout {
 	 */
 	
 	private Label user;
+	private ImgButton search;
 	
 	private static int TOP_HEIGHT = 24;
+
+	private static String HEADER_ICON = "header_icon.png";
 	
 	public Viewport() {
 
@@ -97,6 +100,14 @@ public class Viewport extends VLayout {
 			
 		});
 
+	}
+	
+	public void enableSearch() {
+		this.search.setVisible(true);
+	}
+	
+	public void disableSearch() {
+		this.search.setVisible(false);
 	}
 	
 	/**
@@ -128,6 +139,32 @@ public class Viewport extends VLayout {
 		
 		ts.addSpacer(5);
 		
+	    ImgButton logo = new ImgButton();
+	    logo.setSrc(HEADER_ICON);
+	    
+	    logo.setWidth(16);
+	    logo.setHeight(16);
+	    
+	    logo.setShowRollOver(false);
+	    logo.setShowDownIcon(false);
+	    
+	    logo.setShowDisabledIcon(false);
+
+	    logo.setShowDown(false);
+
+	    logo.setShowFocused(false);
+	    logo.setShowFocusedIcon(false);
+
+	    logo.addClickHandler(new ClickHandler() {
+	        public void onClick(ClickEvent event) {
+	        	doLogo(event);
+	        }
+	    });
+
+	    ts.addMember(logo);	    
+
+		ts.addSpacer(5);
+		
 
 	    ts.addMember(createApplication());	    
 
@@ -154,7 +191,7 @@ public class Viewport extends VLayout {
 	     * Search image button
 	     */
 
-	    ImgButton search = new ImgButton();
+	    search = new ImgButton();
 	    search.setSrc(GuiStyles.SEARCH_IMAGE);
 	    
 	    search.setWidth(16);
@@ -162,6 +199,8 @@ public class Viewport extends VLayout {
 	    
 	    search.setShowRollOver(false);
 	    search.setShowDownIcon(false);
+	    
+	    search.setShowDisabledIcon(false);
 
 	    search.setShowDown(false);
 
@@ -287,7 +326,6 @@ public class Viewport extends VLayout {
 	 * 
 	 * @param e
 	 */
-	@SuppressWarnings("unused")
 	private void doLogo(ClickEvent e) {
 		CustomAppsManager.getInstance().createApp(ApplicationConstants.FNC_APP_ID_Desktop);		
 	}

@@ -44,8 +44,8 @@ public class RoleFactory extends FncFactory {
 		 */
 		String type = ClassificationConstants.FNC_ID_Role;
 		
-		String source = null;
-		String target = null;
+		String source = ScData.TEST_ROLE_SOURCE;
+		String target = ScData.TEST_ROLE_TARGET;
 		
         VLayout layout = new VLayout();
 		layout.setStyleName(GuiStyles.X_BD_STYLE_0);
@@ -74,12 +74,15 @@ public class RoleFactory extends FncFactory {
 	public static VLayout createResponsibilityCreateDialog() {
 
 		/*
-		 * Prepate data
+		 * Prepare data
 		 */
 		final HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Responsibility);
 
-		attributes.put(MethodConstants.ATTR_SOURCE, ScData.TEST_GROUP);
+		/*
+		 * SOURCE must be the logged in user to be able to confirm an association to a responsibilty
+		 */
+		attributes.put(MethodConstants.ATTR_SOURCE, ScData.TEST_USER);
 
 		final ActivityImpl afterSendActivity = new ActivityImpl() {
 			public void execute(JSONValue jValue) {

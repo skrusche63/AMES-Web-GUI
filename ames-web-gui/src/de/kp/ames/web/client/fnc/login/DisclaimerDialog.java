@@ -65,8 +65,12 @@ public class DisclaimerDialog extends BaseDialog {
 		
 	}
 
-	// Dialog::createBodyContent
-	public Canvas createBodyContent() {
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#createContent()
+	 */
+	@Override
+	public Canvas createContent() {
 		
 		flow = new HTMLFlow();
 		
@@ -77,7 +81,11 @@ public class DisclaimerDialog extends BaseDialog {
 		
 	}
 
-	// Dialog::createB1ClickHandler
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#createB1ClickHandler()
+	 */
+	@Override
 	public ClickHandler createB1ClickHandler() {
 		return new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -86,7 +94,11 @@ public class DisclaimerDialog extends BaseDialog {
 		};
 	}
 
-	// Dialog::createB2ClickHandler
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#createB2ClickHandler()
+	 */
+	@Override
 	public ClickHandler createB2ClickHandler() {
 		return new ClickHandler() {
 			public void onClick(ClickEvent event) {

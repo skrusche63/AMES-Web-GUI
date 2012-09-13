@@ -18,11 +18,12 @@ import de.kp.ames.web.client.fnc.scm.data.CartGridImpl;
 import de.kp.ames.web.client.fnc.scm.event.DownloadListener;
 import de.kp.ames.web.client.fnc.scm.event.SearchEventManager;
 import de.kp.ames.web.client.fnc.scm.style.GuiStyles;
+import de.kp.ames.web.client.handler.RemoveHandler;
 import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
-public class CartImpl extends HLayout implements DownloadListener {
+public class CartImpl extends HLayout implements DownloadListener, RemoveHandler {
 	
 	private CartGridImpl grid;
 	private DynamicForm form;
@@ -187,6 +188,15 @@ public class CartImpl extends HLayout implements DownloadListener {
 	 */
 	private String getRequestUrl() {
 		return GuiConstants.REG_URL + "/" + ServiceConstants.SCM_SERVICE_ID;
+		
+	}
+
+	@Override
+	public void beforeRemove() {
+		/*
+		 * unregister listener
+		 */
+		SearchEventManager.getInstance().removeDownloadListener(this);
 		
 	}
 

@@ -25,9 +25,11 @@ package de.kp.ames.web.client.core.apps;
 
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
+
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.core.widget.base.ControlLabel;
+import de.kp.ames.web.client.fnc.bulletin.widget.BulletinImpl;
 import de.kp.ames.web.client.fnc.help.HelpImpl;
 import de.kp.ames.web.client.fnc.login.DisclaimerDialog;
 import de.kp.ames.web.client.fnc.scm.ScmSysImpl;
@@ -38,6 +40,7 @@ import de.kp.ames.web.shared.constants.ApplicationConstants;
 public class CustomAppsManager extends AppsManager {
 
 	private static CustomAppsManager instance = new CustomAppsManager();
+	private String oldProfile = null;
 	
 	/**
 	 * Constructor
@@ -169,6 +172,17 @@ public class CustomAppsManager extends AppsManager {
 	
 	@Override
 	public void createApp(String profile) {
+
+		/*
+		 * If same app switch back to Desktop
+		 */
+		if (oldProfile.equals(profile)) {
+			return;
+		}
+
+		// remember chosen app
+		oldProfile = profile;
+
 		
 		/*
 		 * All apps are derived from an HLayout
@@ -190,6 +204,12 @@ public class CustomAppsManager extends AppsManager {
 			 * Create Online Help
 			 */
 			app = new HelpImpl();
+
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Bulletin)) {
+			/*
+			 * Create Bulletin Board application
+			 */
+			app = new BulletinImpl();
 
 		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_ScmSys)) {
 			/*

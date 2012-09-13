@@ -33,8 +33,10 @@ import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.model.party.GroupNameObject;
 import de.kp.ames.web.client.model.party.PostalObject;
 import de.kp.ames.web.client.model.party.TelephoneObject;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class GroupFormImpl extends FormImpl {
+
 	/*
 	 * Form dimensions for proper rendering
 	 */
@@ -44,7 +46,12 @@ public class GroupFormImpl extends FormImpl {
 	private static String GROUP_NAME       = "Name";
 	private static String POSTAL_ADDRESS   = "Address";
 	private static String TELEPHONE_NUMBER = "Telephone";
-	
+
+	/*
+	 * Reference to Group Identifier
+	 */
+	private String group;
+
 	/*
 	 * Reference to GroupName
 	 */
@@ -204,6 +211,11 @@ public class GroupFormImpl extends FormImpl {
 			
 		}
 		
+		/*
+		 * Assign the current group for later processing
+		 */
+		group = jForm.get(JaxrConstants.RIM_ID).isString().stringValue();
+
 	}
 
 	/* (non-Javadoc)
@@ -256,6 +268,11 @@ public class GroupFormImpl extends FormImpl {
 			jForm.put(key, new JSONString(val));
 			
 		}
+
+		/*
+		 * Group Identifier
+		 */
+		if (group != null) jForm.put(JaxrConstants.RIM_ID, new JSONString(group));
 
 		return jForm.toString();
 		

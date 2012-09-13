@@ -33,6 +33,7 @@ import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.model.party.PersonNameObject;
 import de.kp.ames.web.client.model.party.PostalObject;
 import de.kp.ames.web.client.model.party.TelephoneObject;
+import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class UserFormImpl extends FormImpl {
 
@@ -45,6 +46,11 @@ public class UserFormImpl extends FormImpl {
 	private static String PERSON_NAME      = "Name";
 	private static String POSTAL_ADDRESS   = "Address";
 	private static String TELEPHONE_NUMBER = "Telephone";
+	
+	/*
+	 * Reference to User Identifier
+	 */
+	private String user;
 	
 	/*
 	 * Reference to PersonName
@@ -205,6 +211,11 @@ public class UserFormImpl extends FormImpl {
 			
 		}
 		
+		/*
+		 * Assign the current user for later processing
+		 */
+		user = jForm.get(JaxrConstants.RIM_ID).isString().stringValue();
+		
 	}
 	
 	/* (non-Javadoc)
@@ -258,6 +269,10 @@ public class UserFormImpl extends FormImpl {
 			
 		}
 
+		/*
+		 * User Identifier
+		 */
+		if (user != null) jForm.put(JaxrConstants.RIM_ID, new JSONString(user));
 		return jForm.toString();
 		
 	}

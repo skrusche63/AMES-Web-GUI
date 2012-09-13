@@ -124,7 +124,9 @@ public class CheckoutViewerImpl extends Window implements CheckoutListener {
 
 		this.addCloseClickHandler(new CloseClickHandler() {
 			public void onCloseClick(CloseClickEvent event) {
-				self.destroy();				
+
+				SearchEventManager.getInstance().removeCheckoutListener(self);
+				self.destroy();
 			}			
 		});
 

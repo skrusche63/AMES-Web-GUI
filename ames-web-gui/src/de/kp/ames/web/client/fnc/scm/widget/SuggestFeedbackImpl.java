@@ -7,9 +7,10 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.fnc.scm.style.GuiStyles;
+import de.kp.ames.web.client.handler.RemoveHandler;
 import de.kp.ames.web.shared.constants.JsonConstants;
 
-public class SuggestFeedbackImpl extends VLayout {
+public class SuggestFeedbackImpl extends VLayout implements RemoveHandler {
 	private HTMLPane pane;
 
 	public SuggestFeedbackImpl(Record record) {
@@ -46,6 +47,11 @@ public class SuggestFeedbackImpl extends VLayout {
 
 	public void update(Record record) {
 		pane.setContents(recordToHtml(record));
+	}
+
+	@Override
+	public void beforeRemove() {
+		// nop
 	}
 	
 }

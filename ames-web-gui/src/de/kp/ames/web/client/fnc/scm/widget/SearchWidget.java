@@ -28,11 +28,6 @@ public class SearchWidget extends VLayout {
 	private String query;
 	
 	/*
-	 * Indicates centered positioning
-	 */
-	private boolean top = false;
-
-	/*
 	 * Absolute position of search widget
 	 */
 	private int x;
@@ -64,18 +59,18 @@ public class SearchWidget extends VLayout {
 		this.setWidth(WIDGET_WIDTH);
 		this.setHeight(WIDGET_HEIGHT);
 
-		this.setShowShadow(true);
-		this.setShadowSoftness(2);
-
-		this.setShadowOffset(1);
 
 		this.addMember(createToolStrip());
 
 		RootPanel root = RootPanel.get();
 		root.add(this);
+		/*
+		 * initial draw
+		 */
+		this.draw();
 
 		/*
-		 * Locate widget
+		 * Locate widget and redraw
 		 */
 		setWidget();
 		
@@ -92,8 +87,7 @@ public class SearchWidget extends VLayout {
 		RootPanel root = RootPanel.get();
 
 		x = (int) (0.5 * (root.getOffsetWidth() - WIDGET_WIDTH));
-		// y = (int) (0.5 * (root.getOffsetHeight() - WIDGET_HEIGHT));
-		y = 80; // for better debugging with FireBug
+		y = 34; 
 
 	}
 
@@ -135,22 +129,18 @@ public class SearchWidget extends VLayout {
 	
 	public void moveToTop() {
 		
-		this.top = true;
-		this.y = 3;
 		this.setWidget();
 	}
 	
 	/**
-	 * Locate widget
+	 * Locate widget, reposition and redraw
 	 */
 	private void setWidget() {
 
 		calculateCenterPosition();
 		
-		if (top == true) this.y = 3; 
-
 		this.moveTo(x, y);
-		this.draw();
+		this.redraw();
 
 	}
 	

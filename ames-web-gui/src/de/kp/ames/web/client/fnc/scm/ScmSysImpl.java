@@ -18,14 +18,16 @@ package de.kp.ames.web.client.fnc.scm;
  */
 
 
-import com.google.gwt.user.client.ui.RootPanel;
-import com.smartgwt.client.widgets.events.ResizedEvent;
+import java.util.ArrayList;
+
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.layout.VLayout;
 
+import de.kp.ames.web.client.core.apps.CustomAppsManager;
 import de.kp.ames.web.client.core.widget.base.BaseApp;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.scm.control.ScmController;
-import de.kp.ames.web.client.fnc.scm.widget.SearchWidget;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
 /**
  * ScmSysImpl is a web application that provides access
@@ -35,8 +37,19 @@ import de.kp.ames.web.client.fnc.scm.widget.SearchWidget;
  */
 public class ScmSysImpl extends BaseApp {
 
+	/*
+	 * Reference to removable members
+	 */
+	public ArrayList<RemoveHandler> removables;
+
 	public ScmSysImpl() {
 		super(FncGlobals.SCM_TITLE, FncGlobals.SCM_SLOGAN);
+		
+		SC.logWarn("====> ScmSysImpl CTOR");
+		
+		CustomAppsManager.getInstance().getViewport().disableSearch();
+
+		this.removables = new ArrayList<RemoveHandler>();
 
 		this.setWidth100();
 		this.setHeight100();
@@ -60,6 +73,7 @@ public class ScmSysImpl extends BaseApp {
 	}
 	
 	
+	
 	/**
 	 * Create Placeholder
 	 * 
@@ -76,5 +90,23 @@ public class ScmSysImpl extends BaseApp {
 		return placeHolder;
 
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.base.BaseApp#beforeRemove()
+	 */
+	@Override
+	public void beforeRemove() {
+		
+		CustomAppsManager.getInstance().getViewport().enableSearch();
+
+		ScmController.getInstance().doClear();
+		
+		for (RemoveHandler removable:removables) {
+			removable.beforeRemove();
+		}
+
+	}
+
 	
 }

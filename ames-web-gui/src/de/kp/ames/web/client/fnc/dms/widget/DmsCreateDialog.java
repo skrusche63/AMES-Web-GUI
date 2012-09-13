@@ -38,13 +38,14 @@ package de.kp.ames.web.client.fnc.dms.widget;
 
 import java.util.HashMap;
 
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
-import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.dms.DmsService;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsCreateDialog extends CreateFormDialog {
@@ -62,7 +63,7 @@ public class DmsCreateDialog extends CreateFormDialog {
 	 */
 	public DmsCreateDialog() {
 		super(FncGlobals.DMS_C_TITLE, FncGlobals.DMS_C_SLOGAN);
-		
+				
 		/*
 		 * Button handling
 		 */
@@ -89,15 +90,10 @@ public class DmsCreateDialog extends CreateFormDialog {
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#createContent()
 	 */
 	public Canvas createContent() {
-
 		/*
-		 * Register form and assign form handler
+		 * Must be overridden
 		 */
-		this.form = new DmsFormImpl(FormAction.CREATE);
-		this.form.addFormHandler(this);
-
-		return this.form;
-		
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -124,7 +120,15 @@ public class DmsCreateDialog extends CreateFormDialog {
 		/*
 		 * Create dialog
 		 */
-		DmsCreateDialog createDialog = new DmsCreateDialog();
+		String type  = attributes.get(MethodConstants.ATTR_TYPE);
+		SC.logWarn("====> DmsCreateDialog.create type: " + type);
+		
+		DmsCreateDialog createDialog = null;
+		if (type.equals(ClassificationConstants.FNC_ID_Document))
+			createDialog = new DmsCreateDocumentDialog();
+		
+		else if (type.equals(ClassificationConstants.FNC_ID_Image))
+			createDialog = new DmsCreateImageDialog();
 		
 		/*
 		 * Provide request specific information

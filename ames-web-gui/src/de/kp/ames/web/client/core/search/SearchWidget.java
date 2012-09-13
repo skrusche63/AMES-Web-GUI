@@ -99,13 +99,6 @@ public class SearchWidget extends VLayout {
 	private String query;
 	private SearchHandler searchHandler;
 	
-	/*
-	 * The offset position of the search widget
-	 * from the top right corner of the viewport
-	 */
-	private static int X_OFF = 392;
-	private static int Y_OFF = 24;
-	
 	private static int SEARCHBOX_WIDTH  = 320;
 	
 	private static int WIDGET_WIDTH  = 360;
@@ -125,10 +118,6 @@ public class SearchWidget extends VLayout {
 		this.setWidth(WIDGET_WIDTH);
 		this.setHeight(WIDGET_HEIGHT);
 				
-		this.setShowShadow(true);  
-		this.setShadowSoftness(2);  
-		
-		this.setShadowOffset(1);  
 		this.addMember(createToolStrip());
 		
 		/*
@@ -138,9 +127,9 @@ public class SearchWidget extends VLayout {
 		 */
 		RootPanel root = RootPanel.get();		
 		root.add(this);
-		
-		this.moveTo(root.getOffsetWidth() - X_OFF, Y_OFF);
+
 		this.draw();
+		this.centerPosition();
 
 	}
 	
@@ -168,12 +157,29 @@ public class SearchWidget extends VLayout {
 		this.searchHandler = searchHandler;
 	}
 	
+	
+	/**
+	 * Calculate center position
+	 */
+	private void centerPosition() {
+		/*
+		 * The search widget is applied to the root panel, i.e. it is position
+		 * on the viewport with respect to the offset position defined
+		 */
+		RootPanel root = RootPanel.get();
+
+		int x = (int) (0.5 * (root.getOffsetWidth() - WIDGET_WIDTH));
+		int y = 34; 
+		this.moveTo(x, y);	
+
+	}
+
 	/**
 	 * @param event
 	 */
 	public void afterResized(ResizedEvent event) {
-		this.moveTo(RootPanel.get().getOffsetWidth() - X_OFF, Y_OFF);	
-		this.draw();
+		this.centerPosition();
+		this.redraw();
 	}
 	
 	/**

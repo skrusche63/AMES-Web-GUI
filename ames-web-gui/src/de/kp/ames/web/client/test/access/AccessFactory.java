@@ -145,8 +145,10 @@ public class AccessFactory extends FncFactory {
 	private void replacePlaceHolder(String type) {
 		
 		String item = null;
-		if (type.equals(ClassificationConstants.FNC_ID_Accessor) == false)
+		if (type.equals(ClassificationConstants.FNC_ID_WebDav))
 			item = ScData.TEST_WEBDAV_ACCESSOR;
+		else if (type.equals(ClassificationConstants.FNC_ID_Mail))
+			item = ScData.TEST_MAIL_ACCESSOR;
 		
 		AccessGridImpl grid = new AccessGridImpl(type, item);
 		grid.setMargin(24);

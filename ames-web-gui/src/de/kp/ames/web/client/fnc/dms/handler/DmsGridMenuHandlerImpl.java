@@ -39,6 +39,7 @@ package de.kp.ames.web.client.fnc.dms.handler;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 
@@ -83,6 +84,8 @@ public class DmsGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		/*
 		 * Create Dms entry
 		 */
+		
+		SC.logWarn("====> DmsGridMenuHandler.createMenuItems");
 		DmsCreateImpl createAction = new DmsCreateImpl(grid);
 		createAction.setParams(this.getParams());
 

@@ -139,20 +139,17 @@ public class GroupController {
 
 		} else if (type.equals(ClassificationConstants.FNC_ID_Community)) {
 			/*
-			 * Prepare data for delete request
+			 * Prepare data for delete request; note, that a community
+			 * is a single registry object and deleted with a reference
+			 * to its uid; providing additional 'data' is deprecated
+			 * and will be removed in the next version
 			 */
-			String[] keys = {
-				JaxrConstants.RIM_ID
-			};
-			
-			JSONObject jRecord = JsonConverter.recordToJson(record, keys);
-			String data = jRecord.toString();
-	
+			attributes.put(MethodConstants.ATTR_ITEM, record.getAttributeAsString(JaxrConstants.RIM_ID));
 			/*
 			 * Invoke delete request
 			 */
 			GroupService service = new GroupService();
-			service.doDelete(attributes, data, activity);
+			service.doDelete(attributes, activity);
 			
 		}
 

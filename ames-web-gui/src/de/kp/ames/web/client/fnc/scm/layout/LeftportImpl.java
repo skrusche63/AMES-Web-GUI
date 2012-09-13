@@ -7,9 +7,10 @@ package de.kp.ames.web.client.fnc.scm.layout;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.fnc.scm.style.GuiStyles;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
 
-public class LeftportImpl extends VLayout {
+public class LeftportImpl extends VLayout implements RemoveHandler {
 
 	/**
 	 * Constructor
@@ -30,6 +31,11 @@ public class LeftportImpl extends VLayout {
 		this.setStyleName(GuiStyles.X_BD_STYLE_3);
 		this.setBackgroundColor(GuiStyles.LEFT_LINE_BG);
 		
+	}
+
+	@Override
+	public void beforeRemove() {
+		// nop
 	};
 	
 }

@@ -27,6 +27,7 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -36,14 +37,18 @@ import com.smartgwt.client.widgets.tab.TabSet;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
+import de.kp.ames.web.client.fnc.transform.handler.TransformGridRecordHandlerImpl;
+import de.kp.ames.web.client.fnc.upload.data.UploadGridImpl;
 import de.kp.ames.web.client.model.DmsObject;
 import de.kp.ames.web.client.model.SlotObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsFormImpl extends FormImpl {
 
 	private static String SLOTS = "Slots";
+	private static String CACHE = "Cache";
 	
 	/*
 	 * Form dimensions for proper rendering
@@ -56,13 +61,25 @@ public class DmsFormImpl extends FormImpl {
 	 */
 	private SlotGridImpl slotGrid;
 
+	/*
+	 * Reference to UploadGrid
+	 */
+	private UploadGridImpl uploadGrid;
+	
 	/**
 	 * Constructor
-	 * 
 	 * @param action
 	 */
 	public DmsFormImpl(FormAction action) {
-
+		this(action, null);
+	}
+	
+	/**
+	 * Constructor with explicit cache type
+	 * @param action
+	 */
+	public DmsFormImpl(FormAction action, String cacheType) {
+		
 		/*
 		 * Dimensions
 		 */
@@ -118,13 +135,24 @@ public class DmsFormImpl extends FormImpl {
 		 * Build SlotGrid
 		 */
 		tabSet.addTab(createSlotTab());
+		
+		/*
+		 * Build UploadGrid if action is create
+		 */
+		if (action.equals(FormAction.CREATE)) {
+			SC.logWarn("====> DmsFormImpl.CTOR type: " + cacheType);
+			tabSet.addTab(createUploadTab(cacheType));
+		}
+			
 		layout.addMember(tabSet);
+
 
 		wrapper.setMembers(scForm, layout);
 		this.setMembers(wrapper);
 		
 	}
 	
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.FormImpl#addFormData(com.google.gwt.json.client.JSONValue)
 	 */
@@ -228,7 +256,12 @@ public class DmsFormImpl extends FormImpl {
 		 */
 		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
 		jForm.put(JaxrConstants.RIM_SLOT, new JSONString(jSlot.toString()));
-		
+
+		/*
+		 * Upload key
+		 */
+		jForm.put(JsonConstants.J_KEY, new JSONString(uploadGrid.getSelectedRecord().getAttributeAsString(JsonConstants.J_KEY)));
+
 		return jForm.toString();
 	
 	}
@@ -263,6 +296,37 @@ public class DmsFormImpl extends FormImpl {
         tab.setPane(slotGrid);
 		return tab;
 		
+	}
+
+	/**
+	 * Create layout component for cache selection
+	 * 
+	 * @return
+	 */
+	private Tab createUploadTab(String cacheType) {
+
+		/*
+		 * Build UploadGrid
+		 */
+		uploadGrid = new UploadGridImpl(cacheType);
+				
+		/*
+		 * Add record handler
+		 */
+		TransformGridRecordHandlerImpl recordHandler = new TransformGridRecordHandlerImpl();
+		uploadGrid.addRecordHandler(recordHandler);
+
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(CACHE);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(uploadGrid);
+		return tab;
+
 	}
 
 }

@@ -1,5 +1,6 @@
 package de.kp.ames.web.client.fnc.scm.widget;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
@@ -17,8 +18,9 @@ import de.kp.ames.web.client.fnc.scm.event.SearchEventManager;
 import de.kp.ames.web.client.fnc.scm.event.SearchResultConfirmedListener;
 import de.kp.ames.web.client.fnc.scm.event.SearchUpdateListener;
 import de.kp.ames.web.client.fnc.scm.layout.CenterportImpl;
+import de.kp.ames.web.client.handler.RemoveHandler;
 
-public class ResultPortImpl extends CenterportImpl implements SearchUpdateListener, SearchResultConfirmedListener {
+public class ResultPortImpl extends CenterportImpl implements SearchUpdateListener, SearchResultConfirmedListener, RemoveHandler {
 
 	private final static String CART_TITLE = "Semantic Cart";
 	private SuggestFeedbackImpl suggestFeedback;
@@ -28,6 +30,11 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 	private Record suggestFeedbackRecord;
 	final private SectionStack sectionStack;
 	private ImgButton checkoutButton;
+	
+	/*
+	 * Reference to removable members
+	 */
+	private ArrayList<RemoveHandler> removables;
 
 	public ResultPortImpl(Record record) {
 		super();
@@ -35,16 +42,26 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 		SC.logWarn("======> ResultPortImpl.CTOR");
 
 		/*
+		 * instantiate removables list 
+		 */
+		removables = new ArrayList<RemoveHandler>();
+
+		/*
 		 * remember suggestion record
 		 */
 		this.suggestFeedbackRecord = record;
 
-		
 
 		suggestFeedback = new SuggestFeedbackImpl(record);
 		suggestFeedback.setHeight("120");
+		removables.add(suggestFeedback);
+
+		
 		searchResult = new ResultImpl(record);
+		removables.add(searchResult);
+		
 		resultCartResult = new CartImpl();
+		removables.add(resultCartResult);
 		
         checkoutButton = new ImgButton();  
         checkoutButton.setSize(16);  
@@ -148,6 +165,20 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 
 		suggestFeedback.update(suggestionRecord);
 		searchResult.update(suggestionRecord);
+	}
+
+	@Override
+	public void beforeRemove() {
+		/*
+		 * unregister listener
+		 */
+		SearchEventManager.getInstance().removeSearchResultConfirmedListener(this);
+		SearchEventManager.getInstance().removeSearchUpdateListener(this);
+
+		for (RemoveHandler removable:removables) {
+			removable.beforeRemove();
+		}
+
 	}
 
 

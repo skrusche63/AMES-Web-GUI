@@ -40,10 +40,10 @@ public class FncGlobals {
 	/*
 	 * Access-Layer
 	 */
-	public static String ACCESS_C_TITLE  = "Accessor Editor";;
+	public static String ACCESS_C_TITLE  = "Accessor Editor";
 	public static String ACCESS_C_SLOGAN = "Use this widget to create a new accessor.";
 
-	public static String ACCESS_E_TITLE  = "Accessor Editor";;
+	public static String ACCESS_E_TITLE  = "Accessor Editor";
 	public static String ACCESS_E_SLOGAN = "Use this widget to edit a certain accessor.";
 
 	public static String ACCESS_G_TITLE  = "Accessor Viewer";
@@ -129,10 +129,10 @@ public class FncGlobals {
 	/*
 	 * Ns-Layer
 	 */
-	public static String NS_C_TITLE  = "Ns Editor";;
+	public static String NS_C_TITLE  = "Ns Editor";
 	public static String NS_C_SLOGAN = "Use this widget to create a new namespace.";
 
-	public static String NS_E_TITLE  = "Ns Editor";;
+	public static String NS_E_TITLE  = "Ns Editor";
 	public static String NS_E_SLOGAN = "Use this widget to edit a certain namespace.";
 
 	public static String NS_G_TITLE  = "NS Viewer";
@@ -147,22 +147,22 @@ public class FncGlobals {
 	/*
 	 * Product-Layer
 	 */
-	public static String PRODUCT_E_TITLE  = "Product Editor";;
+	public static String PRODUCT_E_TITLE  = "Product Editor";
 	public static String PRODUCT_E_SLOGAN = "Use this widget to edit a certain product.";
 
 	public static String PRODUCT_V_TITLE  = "Product Viewer";
 	public static String PRODUCT_V_SLOGAN = "Use this widget to view a certain product.";
 
-	public static String PRODUCTOR_A_TITLE  = "Productor Engine";;
+	public static String PRODUCTOR_A_TITLE  = "Productor Engine";
 	public static String PRODUCTOR_A_SLOGAN = "Use this widget to apply a certain productor.";
 
-	public static String PRODUCTOR_C_TITLE  = "Productor Editor";;
+	public static String PRODUCTOR_C_TITLE  = "Productor Editor";
 	public static String PRODUCTOR_C_SLOGAN = "Use this widget to create a new productor.";
 
-	public static String PRODUCTOR_E_TITLE  = "Productor Editor";;
+	public static String PRODUCTOR_E_TITLE  = "Productor Editor";
 	public static String PRODUCTOR_E_SLOGAN = "Use this widget to edit a certain productor.";
 
-	public static String PRODUCTOR_G_TITLE  = "Productor Viewer";;
+	public static String PRODUCTOR_G_TITLE  = "Productor Viewer";
 	public static String PRODUCTOR_G_SLOGAN = "Use this widget to view a certain productor.";
 	
 	public static String NAMESPACE_ERROR = "Please select a certain namespace.";
@@ -170,10 +170,10 @@ public class FncGlobals {
 	/*
 	 * Role-Layer
 	 */
-	public static String RESPONSIBILITY_C_TITLE  = "Responsibility Editor";;
+	public static String RESPONSIBILITY_C_TITLE  = "Responsibility Editor";
 	public static String RESPONSIBILITY_C_SLOGAN = "Use this widget to create a new responsibility.";
 
-	public static String RESPONSIBILITY_G_TITLE  = "Responsibility Viewer";;
+	public static String RESPONSIBILITY_G_TITLE  = "Responsibility Viewer";
 	public static String RESPONSIBILITY_G_SLOGAN = "Use this widget to view assigned namespaces.";
 	
 	public static String RESPONSIBILITY_ERROR = "Please select a certain namespace.";
@@ -182,27 +182,24 @@ public class FncGlobals {
 	 * Source Code Management System
 	 */
 	public static String SCM_TITLE  = "Source Code Management";
-	public static String SCM_SLOGAN = "Use the SCM System to discover the source code of this information system.";
-
-	public static String SCM_EXPLORER = "Package Explorer";
-	public static String SCM_MODULE   = "Module Viewer";
+	public static String SCM_SLOGAN = "Use the SCM System to discover the source code.";
 
 	/*
 	 * Rule-Layer
 	 */
-	public static String EVALUATION_E_TITLE  = "Evaluation Editor";;
+	public static String EVALUATION_E_TITLE  = "Evaluation Editor";
 	public static String EVALUATION_E_SLOGAN = "Use this widget to edit a certain evaluation.";
 
-	public static String REASONER_A_TITLE  = "Reasoner Engine";;
+	public static String REASONER_A_TITLE  = "Reasoner Engine";
 	public static String REASONER_A_SLOGAN = "Use this widget to apply a certain reasoner.";
 
-	public static String REASONER_C_TITLE  = "Reasoner Editor";;
+	public static String REASONER_C_TITLE  = "Reasoner Editor";
 	public static String REASONER_C_SLOGAN = "Use this widget to create a new reasoner.";
 
-	public static String REASONER_E_TITLE  = "Reasoner Editor";;
+	public static String REASONER_E_TITLE  = "Reasoner Editor";
 	public static String REASONER_E_SLOGAN = "Use this widget to edit a certain reasoner.";
 
-	public static String REASONER_G_TITLE  = "Reasoner Viewer";;
+	public static String REASONER_G_TITLE  = "Reasoner Viewer";
 	public static String REASONER_G_SLOGAN = "Use this widget to view a certain reasoner.";
 
 	/*
@@ -214,10 +211,10 @@ public class FncGlobals {
 	/*
 	 * Transform-Layer
 	 */
-	public static String SPEC_C_TITLE  = "Specification Editor";;
+	public static String SPEC_C_TITLE  = "Specification Editor";
 	public static String SPEC_C_SLOGAN = "Use this widget to add a new specification.";
 
-	public static String TRANSFORM_C_TITLE  = "Transformator Editor";;
+	public static String TRANSFORM_C_TITLE  = "Transformator Editor";
 	public static String TRANSFORM_C_SLOGAN = "Use this widget to create a new transformator.";
 
 	/*
@@ -236,7 +233,7 @@ public class FncGlobals {
 	public static String ROLE_E_TITLE  = "Role Editor";
 	public static String ROLE_E_SLOGAN = "Use this widget to assign roles to a certain affiliate.";
 
-	public static String USER_E_TITLE  = "User Editor";;
+	public static String USER_E_TITLE  = "User Editor";
 	public static String USER_E_SLOGAN = "Use this widget to edit a certain user.";
 
 	public static String USER_G_TITLE  = "User Viewer";

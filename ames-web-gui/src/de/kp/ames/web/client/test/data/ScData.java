@@ -27,6 +27,7 @@ import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class ScData {
 
+
 	private static String PREFIX = "function:";
 	
     private ScNode[] data;
@@ -218,7 +219,8 @@ public class ScData {
     /*
      * Access-Layer
      */
-    public static String TEST_WEBDAV_ACCESSOR = "urn:uuid:d7b1b643-4b49-451b-a70b-e6586b4f02ec";
+	public static String TEST_MAIL_ACCESSOR 	= "urn:uuid:a36418de-e197-498e-b354-d9054f3a5c70";
+    public static String TEST_WEBDAV_ACCESSOR 	= "urn:uuid:d7b1b643-4b49-451b-a70b-e6586b4f02ec";
     public static String TEST_DATABASE_ACCESSOR = "urn:uuid:06e9c056-9330-425c-960a-e90cd03647fe";
 
     public static JSONObject getJsonAccessor() {
@@ -280,12 +282,17 @@ public class ScData {
     /*
      * Group-Layer
      */
+    public static String TEST_USER = "urn:uid:de:kp:samltest";
     public static String TEST_GROUP = "urn:freebxml:registry:Organization:freebXMLRegistry";
     
     public static JSONObject getJsonTestGroup() {
 
     	JSONObject jGroup = new JSONObject();
     	
+    	/*
+    	 * Id
+    	 */
+    	jGroup.put(JaxrConstants.RIM_ID,  new JSONString("urn:de:kp:ames:community:test1"));
     	/*
     	 * Group Name
     	 */
@@ -362,12 +369,20 @@ public class ScData {
     }
 
     /*
+     * Role-Layer
+     */
+	public static final String TEST_ROLE_SOURCE = "urn:uid:de:kp:samltest";
+	public static final String TEST_ROLE_TARGET = "urn:de:kp:ames:community:7df3f455-0ca7-4bc5-b458-8b13bfe60b4f";
+
+    
+    /*
      * Rule-Layer
      */
     public static String TEST_REASONER = "";
     
     public static String TEST_REASONER_NAME = "Reasoner name";
     public static String TEST_REASONER_DESC = "Reasoner description";
+
 
     public static JSONObject getJsonEvaluation() {
 
