@@ -84,8 +84,6 @@ public class DmsGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		/*
 		 * Create Dms entry
 		 */
-		
-		SC.logWarn("====> DmsGridMenuHandler.createMenuItems");
 		DmsCreateImpl createAction = new DmsCreateImpl(grid);
 		createAction.setParams(this.getParams());
 

@@ -96,6 +96,10 @@ public class FormDialog extends BaseDialog implements DialogHandler {
 		super(title, slogan, jValue);
 	}
 	
+	public FormDialog(String title, String slogan, Canvas canvas) {
+		super(title, slogan, canvas);
+	}
+
 	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.widget.dialog.BaseDialog#createContent()
 	 */

@@ -133,6 +133,12 @@ public class GuiConstants {
 	public static String WMS_URL = DOM.getElementById(WMS_ID).getAttribute("content");
 
 	/*
+	 * Property (in index.html) that describes the PATH to the client
+	 */
+	public static String CLIENT_PATH_ID  = "urn:de:kp:path";
+	public static String CLIENT_PATH = DOM.getElementById(CLIENT_PATH_ID).getAttribute("content");
+
+	/*
 	 * Property (in index.html) to distinguish between showcase or operational use
 	 */
 	public static String SHOWCASE_FLAG_ID  = "urn:de:kp:showcase";

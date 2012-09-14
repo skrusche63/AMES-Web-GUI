@@ -42,10 +42,11 @@ import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
+import de.kp.ames.web.client.core.form.FormAction;
+import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.dms.DmsService;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
-import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class DmsCreateDialog extends CreateFormDialog {
@@ -61,9 +62,14 @@ public class DmsCreateDialog extends CreateFormDialog {
 	/**
 	 * Constructor
 	 */
-	public DmsCreateDialog() {
-		super(FncGlobals.DMS_C_TITLE, FncGlobals.DMS_C_SLOGAN);
+	public DmsCreateDialog(Canvas canvas) {
+		super(FncGlobals.DMS_C_TITLE, FncGlobals.DMS_C_SLOGAN, canvas);
 				
+		/*
+		 * Form content was added explicit with constructor
+		 */
+		this.form = (FormImpl)canvas;
+		
 		/*
 		 * Button handling
 		 */
@@ -87,20 +93,12 @@ public class DmsCreateDialog extends CreateFormDialog {
 	}
 
 	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#createContent()
-	 */
-	public Canvas createContent() {
-		/*
-		 * Must be overridden
-		 */
-		return null;
-	}
-
-	/* (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
 	 */
 	public void doSend() {
 
+		SC.logWarn("====> DmcCreateDialog.doSend");
+		
 		String data = this.form.getFormData();
 
 		/*
@@ -122,13 +120,11 @@ public class DmsCreateDialog extends CreateFormDialog {
 		 */
 		String type  = attributes.get(MethodConstants.ATTR_TYPE);
 		SC.logWarn("====> DmsCreateDialog.create type: " + type);
+
+		DmsFormImpl dmsForm = new DmsFormImpl(FormAction.CREATE, type);
 		
-		DmsCreateDialog createDialog = null;
-		if (type.equals(ClassificationConstants.FNC_ID_Document))
-			createDialog = new DmsCreateDocumentDialog();
-		
-		else if (type.equals(ClassificationConstants.FNC_ID_Image))
-			createDialog = new DmsCreateImageDialog();
+		DmsCreateDialog createDialog = new DmsCreateDialog(dmsForm);
+		dmsForm.addFormHandler(createDialog);
 		
 		/*
 		 * Provide request specific information

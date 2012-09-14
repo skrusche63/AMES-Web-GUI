@@ -15,6 +15,10 @@
     
     <!-- indicator to switch between showcase or main application -->
     <meta name="gwt:property" id="urn:de:kp:showcase" content="false"/>
+
+    <!-- indicator which path this client is running on -->
+    <meta name="gwt:property" id="urn:de:kp:path" content="/ames/adf_client/" />
+
 	
 	<style type="text/css">
 		#x-splash {position:absolute;left:0;top:0;z-index: 20001; width:360px;height:116px;}
@@ -30,6 +34,10 @@
 	
   </head>
   <body id="main" style="background-color:#f2f2f2;">
+  
+    <!-- anchor for Download functionality -->
+    <div id="__gwt_downloadFrame" ></div>
+  
 	<div id="x-splash">
 		<div class="x-splash-indicator">
 			<p style="margin-top:8px;text-align:center;" id="x-splash-msg">Loading Core...</p>

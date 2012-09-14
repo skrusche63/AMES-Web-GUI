@@ -36,6 +36,7 @@ package de.kp.ames.web.client.core.widget.dialog;
  *
  */
 
+import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.globals.GuiConstants;
@@ -57,6 +58,22 @@ public class CreateFormDialog extends FormDialog implements DialogHandler {
 	 */
 	public CreateFormDialog(String title, String slogan) {
 		super(title, slogan);
+		/*
+		 * Overall editor title
+		 */
+		this.setTitle(FncGlobals.ADF_EDITOR);
+		
+	}
+
+	/**
+	 * Constructor
+	 * 
+	 * @param title
+	 * @param slogan
+	 * @param canvas
+	 */
+	public CreateFormDialog(String title, String slogan, Canvas canvas) {
+		super(title, slogan, canvas);
 		/*
 		 * Overall editor title
 		 */

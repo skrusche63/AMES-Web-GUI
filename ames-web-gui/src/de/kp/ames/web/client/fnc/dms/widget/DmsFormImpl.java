@@ -37,7 +37,6 @@ import com.smartgwt.client.widgets.tab.TabSet;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
-import de.kp.ames.web.client.fnc.transform.handler.TransformGridRecordHandlerImpl;
 import de.kp.ames.web.client.fnc.upload.data.UploadGridImpl;
 import de.kp.ames.web.client.model.DmsObject;
 import de.kp.ames.web.client.model.SlotObject;
@@ -66,6 +65,11 @@ public class DmsFormImpl extends FormImpl {
 	 */
 	private UploadGridImpl uploadGrid;
 	
+	/*
+	 * Reference to action
+	 */
+	private FormAction action;
+
 	/**
 	 * Constructor
 	 * @param action
@@ -79,6 +83,8 @@ public class DmsFormImpl extends FormImpl {
 	 * @param action
 	 */
 	public DmsFormImpl(FormAction action, String cacheType) {
+		
+		this.action = action;
 		
 		/*
 		 * Dimensions
@@ -257,10 +263,13 @@ public class DmsFormImpl extends FormImpl {
 		JSONObject jSlot = new SlotObject().toJObject(slotGrid.getRecords());
 		jForm.put(JaxrConstants.RIM_SLOT, new JSONString(jSlot.toString()));
 
-		/*
-		 * Upload key
-		 */
-		jForm.put(JsonConstants.J_KEY, new JSONString(uploadGrid.getSelectedRecord().getAttributeAsString(JsonConstants.J_KEY)));
+		
+		if (action.equals(FormAction.CREATE)) {			
+			/*
+			 * Upload key
+			 */
+			jForm.put(JsonConstants.J_KEY, new JSONString(uploadGrid.getSelectedRecord().getAttributeAsString(JsonConstants.J_KEY)));
+		}
 
 		return jForm.toString();
 	
@@ -310,12 +319,6 @@ public class DmsFormImpl extends FormImpl {
 		 */
 		uploadGrid = new UploadGridImpl(cacheType);
 				
-		/*
-		 * Add record handler
-		 */
-		TransformGridRecordHandlerImpl recordHandler = new TransformGridRecordHandlerImpl();
-		uploadGrid.addRecordHandler(recordHandler);
-
         Tab tab = new Tab();   	
         tab.setWidth(80);
 
