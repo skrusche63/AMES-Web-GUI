@@ -39,7 +39,6 @@ package de.kp.ames.web.client.fnc.dms.action;
 import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.action.grid.GridDownloadImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
@@ -88,7 +87,6 @@ public class DmsDownloadImpl extends GridDownloadImpl {
 		/*
 		 * Reset action indicator
 		 */
-		SC.logWarn("====> DmsDownloadImpl.doAfterDownload");
 		ActionIndicator.getInstance().reset();
 		
 	}

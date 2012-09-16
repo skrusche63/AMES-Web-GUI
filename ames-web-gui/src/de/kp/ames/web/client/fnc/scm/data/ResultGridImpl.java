@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.SelectionStyle;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.grid.events.CellClickEvent;
 import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
 import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
@@ -42,8 +41,6 @@ public class ResultGridImpl extends RemoteGridImpl {
 
 	private void initialize() {
 		
-		SC.logWarn("======> ResultGridImpl.initialize");
-
 		/*
 		 * No border style
 		 */
@@ -134,8 +131,6 @@ public class ResultGridImpl extends RemoteGridImpl {
 	@Override
 	public void afterDataArrived(DataArrivedEvent event) {
 
-		SC.logWarn("====> ResultGridImpl.afterDataArrived -> focus");
-		
 		this.focus();
 		
 		if ((this.getRecords().length>0) && (this.getSelectedRecords().length == 0)) {
@@ -144,7 +139,6 @@ public class ResultGridImpl extends RemoteGridImpl {
 			 * available there must be a group header first because of this we
 			 * select second record, which contains first suggestion
 			 */
-			SC.logWarn("======> ResultGridImpl.afterDataArrived 2");
 			this.selectSingleRecord(0);
 			// force similarity
 			new SimilarityController().doGetSimilarity(this.getSelectedRecord());

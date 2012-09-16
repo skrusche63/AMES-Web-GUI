@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GuiConstants;
@@ -18,16 +17,12 @@ public class SimilarityController {
 
 	public void doGetSimilarity(Record record) {
 		
-		SC.logWarn("======> SimilarityController.doGetSimilarity");
-
 		/*
 		 * Build request data
 		 */
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, "similar");
 		attributes.put(MethodConstants.ATTR_QUERY, record.getAttribute(JsonConstants.J_ID));
-		
-		SC.logWarn("======> doGetSimilarity name attribute:" + record.getAttribute(JsonConstants.J_NAME));
 		
 		attributes.put("name", record.getAttribute(JsonConstants.J_NAME));
 		
@@ -38,7 +33,6 @@ public class SimilarityController {
 		service.doGetJson(attributes, new ActivityImpl() {
 
 			public void execute(JSONValue jValue) {
-				SC.logWarn("======> SimilarityController.execute on JSONCallback");
 
 				doAfterDataArrived(jValue);				
 			}
@@ -48,7 +42,6 @@ public class SimilarityController {
 	}
 
 	private void doAfterDataArrived(JSONValue jValue) {
-		SC.logWarn("======> SimilarityController.doAfterDataArrived");
 		SearchEventManager.getInstance().doShowSimilarity(jValue);
 		
 	}

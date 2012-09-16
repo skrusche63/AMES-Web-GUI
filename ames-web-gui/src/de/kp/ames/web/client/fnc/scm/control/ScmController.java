@@ -7,7 +7,6 @@ package de.kp.ames.web.client.fnc.scm.control;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
 
@@ -55,15 +54,12 @@ public class ScmController implements SuggestListener {
 	}
 
 	private void updateResult(Record suggestRecord) {
-		SC.logWarn("======> ScmController.updateResult");
 
 		// send message to all listeners for update
 		SearchEventManager.getInstance().doAfterSearchUpdate(suggestRecord);
 	}
 	
 	private void createFirstTimeResult(Record suggestRecord) {
-
-		SC.logWarn("======> ScmController.createFirstTimeResult");
 
 		/* 
 		 * Remove placeholder
@@ -81,7 +77,6 @@ public class ScmController implements SuggestListener {
 
 		scm.redraw();
 
-		SC.logWarn("======> ScmController.createFirstTimeResult END");
 	}
 
 	
@@ -144,8 +139,6 @@ public class ScmController implements SuggestListener {
 	 */
 	@Override
 	public void doAfterSuggest(Record record) {
-
-		SC.logWarn("======> ScmController.doAfterSuggest");
 
 		SuggestController.getInstance().removeSuggestor();
 		getSearchWidget().moveToTop();

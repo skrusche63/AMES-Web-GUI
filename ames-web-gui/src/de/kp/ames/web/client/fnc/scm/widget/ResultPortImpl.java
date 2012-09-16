@@ -6,7 +6,6 @@ import java.util.HashMap;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.SelectionType;
 import com.smartgwt.client.types.VisibilityMode;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.ImgButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
@@ -38,8 +37,6 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 
 	public ResultPortImpl(Record record) {
 		super();
-
-		SC.logWarn("======> ResultPortImpl.CTOR");
 
 		/*
 		 * instantiate removables list 
@@ -80,7 +77,6 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				SC.logWarn("====> ResultPortImpl.checkoutButton.onClick");
 
 				HashMap<String,String> attributes = new HashMap<String,String>();
 				new CheckoutController().doView(attributes, resultCartResult.getGridData());
@@ -118,20 +114,11 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 		/*
 		 * register listener
 		 */
-//		SearchEventManager.getInstance().addSearchResultSelectedListener(this);
 		SearchEventManager.getInstance().addSearchResultConfirmedListener(this);
 		SearchEventManager.getInstance().addSearchUpdateListener(this);
 
-		SC.logWarn("======> ResultPortImpl.CTOR end");
-
 	};
 	
-
-//	@Override
-//	public void doAfterSearchResultSelected(Record resultRecord) {
-//		SC.logWarn("======> ResultPortImpl.doAfterSearchResultSelected");
-//		// TODO: update HyperTree
-//	}
 
 	@Override
 	public void doAfterResultRecordConfirmed(Record resultRecord) {
@@ -139,11 +126,10 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 		// get SectionStackSection (field does not work)
 		SectionStackSection sectionResultCart = sectionStack.getSection(2);
 		
-		SC.logWarn("======> ResultPortImpl.doAfterSearchResultConfirmed: isExpanded? " + sectionResultCart.getAttributeAsBoolean("expanded"));
 		resultCartResult.addChoice(suggestFeedbackRecord, resultRecord);
 
 		int cartCount = resultCartResult.getCartCount();
-		SC.logWarn("======> ResultPortImpl.doAfterSearchResultConfirmed: cartCount? " + cartCount);
+
 		// update section title
 		sectionResultCart.setTitle(CART_TITLE + " (" + cartCount + ")");
 		
@@ -157,7 +143,7 @@ public class ResultPortImpl extends CenterportImpl implements SearchUpdateListen
 
 	@Override
 	public void doAfterSearchUpdate(Record suggestionRecord) {
-		SC.logWarn("======> ResultPortImpl.doAfterSearchUpdate");
+
 		/*
 		 * update suggestion record
 		 */

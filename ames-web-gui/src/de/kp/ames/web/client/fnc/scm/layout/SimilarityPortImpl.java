@@ -5,7 +5,6 @@ package de.kp.ames.web.client.fnc.scm.layout;
  */
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.fnc.scm.event.SearchEventManager;
 import de.kp.ames.web.client.fnc.scm.event.SimilarityListener;
@@ -21,8 +20,6 @@ public class SimilarityPortImpl extends RightportImpl implements SimilarityListe
 	 * Constructor
 	 */
 	public SimilarityPortImpl() {
-
-		SC.logWarn("======> ResultPortImpl.CTOR");
 
 		/*
 		 * Dimensions
@@ -52,7 +49,6 @@ public class SimilarityPortImpl extends RightportImpl implements SimilarityListe
 
 	@Override
 	public void doShowSimilarity(JSONValue jValue) {
-		SC.logWarn("======> SimilarityPortImpl.doShowSimilarity");
 		/*
 		 * update suggestion record
 		 */

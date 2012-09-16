@@ -27,7 +27,6 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.TitleOrientation;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -146,7 +145,6 @@ public class DmsFormImpl extends FormImpl {
 		 * Build UploadGrid if action is create
 		 */
 		if (action.equals(FormAction.CREATE)) {
-			SC.logWarn("====> DmsFormImpl.CTOR type: " + cacheType);
 			tabSet.addTab(createUploadTab(cacheType));
 		}
 			

@@ -1,7 +1,6 @@
 package de.kp.ames.web.client.fnc.scm.widget;
 
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.thejit.client.HyperTreeExplorer;
@@ -21,13 +20,12 @@ public class SimilarityFeedbackImpl extends VLayout {
 	}
 
 	public void update(JSONValue jValue) {
-		SC.logWarn("======> SimilarityFeedbackImpl.update> width: " + hyperTreeExplorer.getWidth());
 
 		hyperTreeExplorer.loadJTree(jValue.toString());
 	}
 
 	public void update(String jValue) {
-		SC.logWarn("======> SimilarityFeedbackImpl.update> width: " + hyperTreeExplorer.getWidth());
+
 		hyperTreeExplorer.loadJTree(jValue);
 		hyperTreeExplorer.resizeTree();
 	}

@@ -20,7 +20,6 @@ package de.kp.ames.web.client.fnc.scm;
 
 import java.util.ArrayList;
 
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 import de.kp.ames.web.client.core.apps.CustomAppsManager;
@@ -44,9 +43,7 @@ public class ScmSysImpl extends BaseApp {
 
 	public ScmSysImpl() {
 		super(FncGlobals.SCM_TITLE, FncGlobals.SCM_SLOGAN);
-		
-		SC.logWarn("====> ScmSysImpl CTOR");
-		
+				
 		CustomAppsManager.getInstance().getViewport().disableSearch();
 
 		this.removables = new ArrayList<RemoveHandler>();

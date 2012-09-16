@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
 
 public class SearchEventManager implements SearchResultConfirmedListener,
 		SearchUpdateListener, SuggestListener, SimilarityListener, CheckoutListener, DownloadListener {
@@ -165,8 +164,6 @@ public class SearchEventManager implements SearchResultConfirmedListener,
 	@Override
 	public void doAfterSuggest(Record record) {
 
-		SC.logWarn("======> SearchEventManager.doAfterSuggest # " + suggestListener.size());
-
 		for (SuggestListener listener : suggestListener) {
 			listener.doAfterSuggest(record);
 		}
@@ -179,7 +176,7 @@ public class SearchEventManager implements SearchResultConfirmedListener,
 	 */
 	@Override
 	public void doAfterSearchUpdate(Record record) {
-		SC.logWarn("======> SearchEventManager.doAfterSearchResultSelected # " + searchUpdateListener.size());
+
 		for (SearchUpdateListener listener : searchUpdateListener) {
 			listener.doAfterSearchUpdate(record);
 		}
@@ -192,7 +189,7 @@ public class SearchEventManager implements SearchResultConfirmedListener,
 	 */
 	@Override
 	public void doAfterResultRecordConfirmed(Record record) {
-		SC.logWarn("======> SearchEventManager.doAfterResultRecordConfirmed # " + searchResultConfirmedListener.size());
+
 		for (SearchResultConfirmedListener listener : searchResultConfirmedListener) {
 			listener.doAfterResultRecordConfirmed(record);
 		}
@@ -205,7 +202,7 @@ public class SearchEventManager implements SearchResultConfirmedListener,
 	 */
 	@Override
 	public void doShowSimilarity(JSONValue jValue) {
-		SC.logWarn("======> SearchEventManager.doShowSimilarity # " + similarityListener.size());
+
 		for (SimilarityListener listener : similarityListener) {
 			listener.doShowSimilarity(jValue);
 		}
@@ -218,7 +215,7 @@ public class SearchEventManager implements SearchResultConfirmedListener,
 	 */
 	@Override
 	public void doAfterUpdate(JSONObject jObject) {
-		SC.logWarn("======> SearchEventManager.doAfterUpdate # " + checkoutListener.size());
+
 		for (CheckoutListener listener : checkoutListener) {
 			listener.doAfterUpdate(jObject);
 		}
@@ -231,7 +228,7 @@ public class SearchEventManager implements SearchResultConfirmedListener,
 	 */
 	@Override
 	public void doTriggerDownload() {
-		SC.logWarn("======> SearchEventManager.doTriggerDownload # " + downloadListener.size());
+
 		for (DownloadListener listener : downloadListener) {
 			listener.doTriggerDownload();
 		}

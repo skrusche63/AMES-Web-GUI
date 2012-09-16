@@ -5,7 +5,6 @@ import java.util.HashMap;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.globals.GuiConstants;
@@ -47,8 +46,6 @@ public class CheckoutController {
 			@Override
 			public void execute(JSONValue jValue) {
 				
-				SC.logWarn("======> CheckoutController.execute on JSONCallback");
-
 				doAfterDataArrived((JSONObject)jValue);		
 			}
 		});
@@ -59,7 +56,6 @@ public class CheckoutController {
 	 * this callback is replaced by form download
 	 */
 	private void doAfterDataArrived(JSONObject jObject) {
-		SC.logWarn("======> CheckoutController.doAfterDataArrived");
 		SearchEventManager.getInstance().doAfterUpdate(jObject);
 		
 	}

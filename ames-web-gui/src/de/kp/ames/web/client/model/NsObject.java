@@ -40,7 +40,6 @@ import java.util.ArrayList;
 
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.tree.TreeGridField;
 
 import de.kp.ames.web.client.core.tree.TreeFieldFactory;
@@ -65,7 +64,6 @@ public class NsObject extends RegistryPackage {
 		
 		ArrayList<DataSourceField> fields = new ArrayList<DataSourceField>();
 
-		SC.logWarn("====> NsObject.createDataFieldsAsList");
 		/*
 		 * Separated Identifier from RIM_ID    	
 		 */

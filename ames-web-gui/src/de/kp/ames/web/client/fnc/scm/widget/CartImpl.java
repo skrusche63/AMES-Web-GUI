@@ -6,7 +6,6 @@ import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.user.client.ui.NamedFrame;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.HiddenItem;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -36,8 +35,6 @@ public class CartImpl extends HLayout implements DownloadListener, RemoveHandler
 		this.setWidth100();
 		this.setHeight100();
 		
-		SC.logWarn("========> CartImpl.CTOR 1");
-
 		VLayout wrapper = new VLayout();
 		wrapper.setWidth100();
 		wrapper.setHeight100();
@@ -47,8 +44,6 @@ public class CartImpl extends HLayout implements DownloadListener, RemoveHandler
 		 */
 		grid = new CartGridImpl();
 
-		SC.logWarn("========> CartImpl.CTOR 2");
-		
 		/*
 		 * A dynamic form is used to submit a Post request 
 		 * with response target set to NamedFrame 
@@ -101,8 +96,6 @@ public class CartImpl extends HLayout implements DownloadListener, RemoveHandler
 		Record record = new Record();
 		record.setAttribute(JsonConstants.J_CID, combinedId);
 		
-		SC.logWarn("========> CartImpl.addChoice combId: " + record.getAttribute(JsonConstants.J_ID));
-
 		/*
 		 * add suggest fields (with context term)
 		 */
@@ -144,7 +137,6 @@ public class CartImpl extends HLayout implements DownloadListener, RemoveHandler
 	 */
 	@Override
 	public void doTriggerDownload() {
-		SC.logWarn("====> CartImpl.doTriggerDownload");
 
 	    form.setValue("hiddenField", getGridData().toString());
 	    form.setAction(getUri());
@@ -172,8 +164,6 @@ public class CartImpl extends HLayout implements DownloadListener, RemoveHandler
 
 		requestMethod.setAttributes(attributes);
 		
-		
-		SC.logWarn("====> CartImpl.getUri: " + getRequestUrl() + requestMethod.toQuery());
 		/*
 		 * Build request uri
 		 */

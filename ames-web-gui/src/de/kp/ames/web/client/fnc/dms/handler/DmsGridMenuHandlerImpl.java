@@ -39,7 +39,6 @@ package de.kp.ames.web.client.fnc.dms.handler;
 import java.util.ArrayList;
 
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.menu.MenuItem;
 import com.smartgwt.client.widgets.menu.MenuItemSeparator;
 

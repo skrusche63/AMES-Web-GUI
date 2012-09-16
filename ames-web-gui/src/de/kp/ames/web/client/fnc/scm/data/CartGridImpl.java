@@ -7,8 +7,6 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
-import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.grid.events.RecordDoubleClickEvent;
 
 import de.kp.ames.web.client.core.grid.LocalGridImpl;
 import de.kp.ames.web.client.fnc.scm.model.CartObject;
@@ -19,8 +17,6 @@ public class CartGridImpl extends LocalGridImpl {
 
 	public CartGridImpl() {
 		super();
-
-		SC.logWarn("==========> CartGridImpl.CTOR");
 
         /*
 		 * Register data
@@ -44,20 +40,6 @@ public class CartGridImpl extends LocalGridImpl {
 		return null;
 	}
 
-	@Override
-	public void afterRecordDoubleClick(RecordDoubleClickEvent event) {
-		
-		/*
-		 * Retrieve affected grid record
-		 */
-		//Record record = event.getRecord();
-
-		// test getGridData
-//		HashMap<String,String> checkoutAttributes = new HashMap<String,String>();
-//		new CheckoutController().doView(checkoutAttributes, getGridData());
-
-	}
-
 	
 	@Override
 	public JSONArray getGridData() {
@@ -65,24 +47,20 @@ public class CartGridImpl extends LocalGridImpl {
 		String[] attributes = null;
 		
 		RecordList recordList = this.getDataAsRecordList();
-		SC.logWarn("====> RCG.getGriddata: recordList.length: " + recordList.getLength());
 		for (int i = 0; i < recordList.getLength(); i++) {
 			Record record = recordList.get(i);
 			JSONObject jRecord = new JSONObject();
 			if (attributes == null)
 				attributes = record.getAttributes();
 
-			// SC.logWarn("======> RCG.getGriddata: attributes.length: " + attributes.length);
-
 			for (int j = 0; j < attributes.length; j++) {
 				String attribute = attributes[j];
-				//SC.logWarn("====> RCG.getGriddata: attribute value: " + attribute +" :: "+ record.getAttributeAsString(attribute)); 
+			
 				jRecord.put(attribute, new JSONString(record.getAttributeAsString(attribute)));
 			}
 			jData.set(i, jRecord);
 		}
 		
-		//SC.logWarn("====> RCG.getGridData: " + jData.toString());
 		return jData;
 	}
 

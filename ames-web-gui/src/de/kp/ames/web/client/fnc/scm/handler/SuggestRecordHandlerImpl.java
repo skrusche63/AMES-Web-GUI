@@ -5,7 +5,6 @@ package de.kp.ames.web.client.fnc.scm.handler;
  */
 
 import com.smartgwt.client.data.Record;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.scm.event.SearchEventManager;
@@ -26,7 +25,6 @@ public class SuggestRecordHandlerImpl extends GridRecordHandlerImpl {
 	 * @see de.kp.ames.search.client.handler.GridRecordHandlerImpl#doSelect(com.smartgwt.client.widgets.grid.ListGridRecord)
 	 */
 	public void doSelect(Record record) {
-		SC.logWarn("======> SuggestRecordHandlerImpl.doSelect");
 		SearchEventManager.getInstance().doAfterSuggest(record);
 	}
 	

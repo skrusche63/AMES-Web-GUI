@@ -27,7 +27,6 @@ import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GuiConstants;
@@ -55,8 +54,6 @@ public class DownloadFrame extends Frame implements LoadHandler, HasLoadHandlers
 		 */
 		this.setSize("1px", "1px");
 		this.setVisible(true);
-
-		SC.logWarn("====> DownloadFrame CTOR");
 
 		RootPanel.get(DOWNLOAD_FRAME).add(this);
 		startDownloadMonitor();
@@ -129,7 +126,6 @@ public class DownloadFrame extends Frame implements LoadHandler, HasLoadHandlers
 	 */
 	@Override
 	public void onLoad(LoadEvent event) {
-		SC.logWarn("======> DownloadFrame.onLoad");
 
 		if (this.afterDownloadActivity != null)
 			this.afterDownloadActivity.execute();

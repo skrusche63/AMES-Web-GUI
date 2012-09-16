@@ -38,7 +38,6 @@ package de.kp.ames.web.client.fnc.dms.widget;
 
 import java.util.HashMap;
 
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 
 import de.kp.ames.web.client.core.activity.Activity;
@@ -97,8 +96,6 @@ public class DmsCreateDialog extends CreateFormDialog {
 	 */
 	public void doSend() {
 
-		SC.logWarn("====> DmcCreateDialog.doSend");
-		
 		String data = this.form.getFormData();
 
 		/*
@@ -119,7 +116,6 @@ public class DmsCreateDialog extends CreateFormDialog {
 		 * Create dialog
 		 */
 		String type  = attributes.get(MethodConstants.ATTR_TYPE);
-		SC.logWarn("====> DmsCreateDialog.create type: " + type);
 
 		DmsFormImpl dmsForm = new DmsFormImpl(FormAction.CREATE, type);
 		

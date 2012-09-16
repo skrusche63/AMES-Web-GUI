@@ -27,7 +27,6 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.types.Overflow;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.layout.VLayout;
@@ -410,7 +409,6 @@ public class AppsManager {
 		 * Call destroy application explicit
 		 */
 		oldApp.destroy();
-		SC.logWarn("====> AppsManager.replaceApp: old app destroyed");
 		
 		/*
 		 * Register new application as selected app

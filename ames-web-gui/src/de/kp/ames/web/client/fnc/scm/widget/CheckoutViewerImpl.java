@@ -21,7 +21,6 @@ package de.kp.ames.web.client.fnc.scm.widget;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.types.HeaderControls;
-import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.HeaderControl;
@@ -88,7 +87,6 @@ public class CheckoutViewerImpl extends Window implements CheckoutListener {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				SC.logWarn("====> downloadButton.onClick");
 
 				SearchEventManager.getInstance().doTriggerDownload();
 
@@ -177,7 +175,7 @@ public class CheckoutViewerImpl extends Window implements CheckoutListener {
 	 */
 	@Override
 	public void doAfterUpdate(JSONObject jObject) {
-		SC.logWarn("======> CheckoutViewerImpl.doAfterCheckoutUpdate");
+
 		/*
 		 * update HTML pane
 		 */

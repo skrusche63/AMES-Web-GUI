@@ -1,7 +1,6 @@
 package de.kp.ames.web.client.fnc.scm.control;
 
 import com.google.gwt.user.client.ui.RootPanel;
-import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.fnc.scm.widget.SearchWidget;
 import de.kp.ames.web.client.fnc.scm.widget.SuggestImpl;
@@ -30,8 +29,6 @@ public class SuggestController {
 	}
 	
 	public void focusToSuggestGrid() {
-
-		SC.logWarn("====> SuggestController.focusToSuggestGrid");
 
 		if (suggestor != null) suggestor.focusToSuggestGrid();
 		
