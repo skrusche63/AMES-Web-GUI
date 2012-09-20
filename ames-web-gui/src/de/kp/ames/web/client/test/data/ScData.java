@@ -24,6 +24,7 @@ import com.google.gwt.json.client.JSONString;
 import com.smartgwt.client.data.Record;
 
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.JsonConstants;
 
 public class ScData {
 
@@ -219,8 +220,11 @@ public class ScData {
     /*
      * Access-Layer
      */
+    // name:"IMAP Accessor" alias:"arwanitis@app6.org"
 	public static String TEST_MAIL_ACCESSOR 	= "urn:uuid:a36418de-e197-498e-b354-d9054f3a5c70";
+    // name:"Plone WebDAV" uri:"http://localhost:1980/Plone/adf-davshare/"
     public static String TEST_WEBDAV_ACCESSOR 	= "urn:uuid:d7b1b643-4b49-451b-a70b-e6586b4f02ec";
+    // name:"Postgres Test" sql:"select personname_lastname from user_"
     public static String TEST_DATABASE_ACCESSOR = "urn:uuid:06e9c056-9330-425c-960a-e90cd03647fe";
 
     public static JSONObject getJsonAccessor() {
@@ -236,7 +240,13 @@ public class ScData {
     
     public static Record getRecordMail() {
     	
-    	return new Record();
+    	Record record = new Record();
+    	// first mail in its folder
+    	record.setAttribute(JsonConstants.J_ID, 0);
+    	// this mail has no attachment
+    	record.setAttribute(JsonConstants.J_ATTACHMENT, false);
+    	
+    	return record;
     	
     }
     
@@ -309,7 +319,7 @@ public class ScData {
     	jGroup.put(JaxrConstants.RIM_POSTAL_CODE,       new JSONString("Postal code"));
     	jGroup.put(JaxrConstants.RIM_CITY, 		       new JSONString("City"));
     	jGroup.put(JaxrConstants.RIM_STREET,            new JSONString("Street"));
-    	jGroup.put(JaxrConstants.RIM_STREET_NUMBER,     new JSONString("Stree Number"));
+    	jGroup.put(JaxrConstants.RIM_STREET_NUMBER,     new JSONString("Street Number"));
 
     	/*
     	 * Telephone Number
@@ -371,8 +381,10 @@ public class ScData {
     /*
      * Role-Layer
      */
+    // Arwanitis (PKCS#12)
 	public static final String TEST_ROLE_SOURCE = "urn:uid:de:kp:samltest";
-	public static final String TEST_ROLE_TARGET = "urn:de:kp:ames:community:7df3f455-0ca7-4bc5-b458-8b13bfe60b4f";
+	// Disaster Management
+	public static final String TEST_ROLE_TARGET = "urn:de:kp:ames:community:7df3f455-0ca7-4bc5-b458-8b13bfe60b4f"; 
 
     
     /*

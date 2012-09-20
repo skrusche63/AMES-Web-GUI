@@ -266,6 +266,7 @@ public class AccessFactory extends FncFactory {
 		 */
 		final HashMap<String,String> attributes = new HashMap<String,String>();
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Mail);
+		attributes.put(MethodConstants.ATTR_ITEM, ScData.TEST_MAIL_ACCESSOR);
 				
 		final Record record = ScData.getRecordMail();
 

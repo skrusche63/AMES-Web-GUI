@@ -53,7 +53,7 @@ public class RoleFactory extends FncFactory {
 		/*
          * Label
          */
-        HTMLPane pane = getTeaser("View all registered roles in the RoleGrid.", 40);
+        HTMLPane pane = getTeaser("View all registered roles in the RoleGrid for a pre-configured user and community.", 40);
         
         /*
          * Grid
@@ -90,7 +90,7 @@ public class RoleFactory extends FncFactory {
 			}
 		};
 
-		String message = "Click the button to open the ResponsibilityCreateDialog.";
+		String message = "Click the button to open the ResponsibilityCreateDialog for a pre-configured user.";
 		return createDialog(message, new ScAction() {
 			public void execute() {
 				ResponsibilityCreateDialog.create(attributes, afterSendActivity);
