@@ -71,7 +71,6 @@ public class main implements EntryPoint {
 			/*
 			 * Showcase use of ADF
 			 */
-//			CustomAppsManager.getInstance().createShowCase();
 
 			/*
 			 * Operational use of ADF
