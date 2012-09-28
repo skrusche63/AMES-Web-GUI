@@ -69,8 +69,8 @@ public class ProductEditImpl extends GridEditImpl {
 		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Product);
 		
 		final ProductEditImpl self = this;
+		
 		ProductController controller = new ProductController();
-
 		controller.doEdit(attributes, record, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				self.doAfterEdit(jValue);

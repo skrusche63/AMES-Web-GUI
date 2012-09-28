@@ -32,6 +32,9 @@ public class ResultGridImpl extends RemoteGridImpl {
 
 	}
 
+	/*
+	 * Alternative constructor
+	 */
 	public ResultGridImpl(String query) {
 		super(ServiceConstants.SCM_SERVICE_ID);
 		initialize();

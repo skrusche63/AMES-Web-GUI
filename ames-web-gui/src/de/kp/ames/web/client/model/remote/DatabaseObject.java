@@ -74,7 +74,6 @@ public class DatabaseObject extends RemoteObject {
 		for (int i=0; i < jRows.size(); i++) {
 			
 			JSONObject jRow = jRows.get(i).isObject();
-			//JSONObject jRow = jRows.isObject();
 			ListGridRecord record = new ListGridRecord();
 			
 			Set<String> cols = jRow.keySet();

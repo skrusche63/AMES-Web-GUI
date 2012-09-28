@@ -1,18 +1,18 @@
-package de.kp.ames.web.client.fnc.product;
+package de.kp.ames.web.client.fnc.workshop;
 /**
  * This Java module is part of the
  *  Application Developer Framework
  *
  *  Project: AMES-Web-GUI
- *  Package: de.kp.ames.web.client.fnc.product
- *  Module: ProductService
+ *  Package: de.kp.ames.web.client.fnc.workshop
+ *  Module: WorkshopService
  *  @author krusche@dr-kruscheundpartner.de
  *
  * Add your semantic annotations within the SemanticAssist tags and
  * mark them with a leading hashtag #:
  *
  * <SemanticAssist>
- *     #client #fnc #product #service #web
+ *     #client #fnc #service #workshop #web
  * </SemanticAssist>
  *
  */
@@ -36,58 +36,36 @@ package de.kp.ames.web.client.fnc.product;
  *
  */
 
-import java.util.HashMap;
-
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.globals.GuiConstants;
+import de.kp.ames.web.client.core.method.RequestMethodImpl;
+import de.kp.ames.web.client.core.service.GetTextCallbackImpl;
 import de.kp.ames.web.client.core.service.ServiceImpl;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
-public class ProductService extends ServiceImpl {
+public class WorkshopService extends ServiceImpl {
 
 	/**
 	 * Constructor
 	 */
-	public ProductService() {
-		super(GuiConstants.REG_URL, ServiceConstants.PRODUCT_SERVICE_ID);
+	public WorkshopService() {
+		super(GuiConstants.REG_URL, ServiceConstants.WORKSHOP_SERVICE_ID);
 	}
 
 	/**
 	 * A JSON based non-widget GET request
 	 * 
-	 * @param format
-	 * @param type
-	 * @param item
-	 * @param target
 	 * @param activity
 	 */
-	public void doGet(String format, String type, String item, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
+	public void doGetRequest(Activity activity) {
 		
-		attributes.put(MethodConstants.ATTR_FORMAT, format);
-		attributes.put(MethodConstants.ATTR_TYPE, type);
+		RequestMethodImpl requestMethod = new RequestMethodImpl();
+		requestMethod.setName(MethodConstants.METH_GET);
 
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		GetTextCallbackImpl callback = new GetTextCallbackImpl(activity, this);
+		sendGetRequest(requestMethod, callback);
 
-		doGetJson(attributes, activity);
-		
 	}
-	
-	/**
-	 * SUBMIT request
-	 * 
-	 * @param type
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmit(String type, String data, Activity activity) {
-		
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-		
-		doSubmit(attributes, data, activity);
-		
-	}
+
 }

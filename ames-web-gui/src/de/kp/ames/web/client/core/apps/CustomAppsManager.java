@@ -34,6 +34,7 @@ import de.kp.ames.web.client.fnc.help.HelpImpl;
 import de.kp.ames.web.client.fnc.login.DisclaimerDialog;
 import de.kp.ames.web.client.fnc.scm.ScmSysImpl;
 import de.kp.ames.web.client.fnc.service.DisclaimerService;
+import de.kp.ames.web.client.fnc.workshop.widget.WorkshopImpl;
 import de.kp.ames.web.client.test.ShowCaseImpl;
 import de.kp.ames.web.shared.constants.ApplicationConstants;
 
@@ -223,6 +224,13 @@ public class CustomAppsManager extends AppsManager {
 			 * and presentation purpose
 			 */
 			app = new ShowCaseImpl();
+
+		} else if (profile.equals(ApplicationConstants.FNC_APP_ID_Workshop)) {
+			/*
+			 * Create Workshop application for testing
+			 * and presentation purpose
+			 */
+			app = new WorkshopImpl();
 
 		}
 		

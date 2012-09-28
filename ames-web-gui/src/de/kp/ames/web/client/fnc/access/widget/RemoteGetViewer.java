@@ -191,7 +191,7 @@ public class RemoteGetViewer extends ViewerImpl {
 				/*
 				 * A WebDAV folder is actually not supported
 				 */
-				String html = "<div style=\"padding:16px;font-size:14px;\">A WebDAV folder is no supported by this wigdet.</div>";
+				String html = "<div style=\"padding:16px;font-size:14px;\">A WebDAV folder is not supported by this wigdet.</div>";
 				
 				/*
 				 * Build Html Pane

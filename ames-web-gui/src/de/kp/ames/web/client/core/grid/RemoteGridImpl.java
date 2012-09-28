@@ -44,6 +44,7 @@ import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.RestDataSource;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.DSProtocol;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.grid.events.DataArrivedEvent;
@@ -151,12 +152,24 @@ public class RemoteGridImpl extends GridImpl {
 	 */
 	public RequestMethod createMethod() {
 
+		SC.logWarn("====> RemoteGridImpl.createMethod");
+		
 		RequestMethodImpl requestMethod = new RequestMethodImpl();
 		requestMethod.setName(MethodConstants.METH_GET);
 		
-		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Grid);
-
+		/*
+		 * Attribute guard:
+		 * 	remove ITEM from attributes for grids 
+		 */
+		attributes.remove(MethodConstants.ATTR_ITEM);
+		
 		requestMethod.setAttributes(attributes);
+
+		/*
+		 * Set FORMAT 
+		 */
+		requestMethod.addAttribute(MethodConstants.ATTR_FORMAT, FormatConstants.FNC_FORMAT_ID_Grid);
+		
 		return requestMethod;
 		
 	}
