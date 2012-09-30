@@ -52,6 +52,7 @@ import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.FormatConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
 public class TransformController extends ControllerImpl {
 
@@ -134,8 +135,14 @@ public class TransformController extends ControllerImpl {
 	public void doView(HashMap<String,String> attributes, Record record) {
 
 		/*
+		 * Redirect service
+		 */
+		attributes.put(MethodConstants.ATTR_SERVICE, ServiceConstants.TRANSFORM_SERVICE_ID);
+
+		/*
 		 * View transformator either from cache or from the registry
 		 */
+		
 		String format = FormatConstants.FNC_FORMAT_ID_File;
 		attributes.put(MethodConstants.ATTR_FORMAT, format);
 			

@@ -77,7 +77,6 @@ public class RuleFactory extends FncFactory {
         
         valueMap.put(ClassificationConstants.FNC_ID_Evaluation,   "Evaluation");  
         valueMap.put(ClassificationConstants.FNC_ID_Reasoner,     "Reasoner");  
-//        valueMap.put(ClassificationConstants.FNC_ID_Rule,         "Rule");  
 
         SelectItem selectItem = createSelectItem(valueMap);
         selectItem.addChangedHandler(new ChangedHandler() {
