@@ -94,23 +94,4 @@ public class DomainService extends ServiceImpl {
 		
 	}
 
-	/**
-	 * SUBMIT request
-	 * 
-	 * @param type
-	 * @param parent
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmitRequest(String type, String parent, String data, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-
-		attributes.put(MethodConstants.ATTR_TYPE,   type);
-		attributes.put(MethodConstants.ATTR_PARENT, parent);
-
-		doSubmit(attributes, data, activity);
-		
-	}
-
 }

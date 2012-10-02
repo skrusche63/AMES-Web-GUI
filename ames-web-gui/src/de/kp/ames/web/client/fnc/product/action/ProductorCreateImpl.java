@@ -26,6 +26,8 @@ import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.grid.Grid;
 import de.kp.ames.web.client.fnc.product.ProductController;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class ProductorCreateImpl extends GridCreateImpl {
 
@@ -44,6 +46,7 @@ public class ProductorCreateImpl extends GridCreateImpl {
 	public void execute() {
 
 		HashMap<String,String> attributes = this.getParams();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID_Productor);
 
 		final ProductorCreateImpl self = this;
 		ProductController controller = new ProductController();

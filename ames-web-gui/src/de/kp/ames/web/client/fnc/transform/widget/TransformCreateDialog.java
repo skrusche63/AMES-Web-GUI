@@ -108,8 +108,9 @@ public class TransformCreateDialog extends CreateFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 
@@ -125,8 +126,10 @@ public class TransformCreateDialog extends CreateFormDialog {
 			return;
 
 		}
+		HashMap<String,String> attributes = new HashMap<String,String>();
 
-		new TransformService().doSubmit(data, this.sendActivity);
+		TransformService service = new TransformService();
+		service.doSubmit(attributes, data, this.sendActivity);
 
 	}
 

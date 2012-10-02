@@ -74,23 +74,4 @@ public class BulletinService extends ServiceImpl {
 		
 	}
 
-	/**
-	 * SUBMIT request
-	 * 
-	 * @param type
-	 * @param target
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmit(String type, String target, String data, Activity activity) {
-		
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		
-		attributes.put(MethodConstants.ATTR_TYPE,   type);
-		attributes.put(MethodConstants.ATTR_TARGET, target);
-
-		doSubmit(attributes, data, activity);
-
-	}
-
 }

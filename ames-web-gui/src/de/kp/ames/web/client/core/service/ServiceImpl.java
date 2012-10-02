@@ -216,7 +216,7 @@ public class ServiceImpl implements Service {
 	 * @param data
 	 * @param activity
 	 */
-	public void doSubmit(String data, Activity activity) {
+	public void __doSubmit(String data, Activity activity) {
 
 		HashMap<String,String> attributes = new HashMap<String,String>();
 		doSubmit(attributes, data, activity);

@@ -89,23 +89,5 @@ public class GroupService extends ServiceImpl {
 		
 	}
 	
-	/**
-	 * A JSON based non-widget SUBMIT request
-	 * 
-	 * @param type
-	 * @param item
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmit(String type, String item, String data, Activity activity) {
-
-		HashMap<String,String> attributes = new HashMap<String,String>();
-
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
-		
-		doSubmit(attributes, data, activity);
-
-	}
 
 }

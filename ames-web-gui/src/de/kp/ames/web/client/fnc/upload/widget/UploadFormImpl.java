@@ -105,7 +105,8 @@ public class UploadFormImpl extends FormImpl {
 		
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.FormImpl#doSubmit(de.kp.ames.web.client.core.activity.Activity)
 	 */
 	public void doSubmit(Activity sendActivity) {

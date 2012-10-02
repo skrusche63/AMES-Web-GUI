@@ -149,7 +149,8 @@ public class FormImpl extends VLayout implements Form {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see de.kp.ames.web.client.core.form.Form#doSubmit(de.kp.ames.web.client.core.activity.Activity)
 	 */
 	public void doSubmit(Activity afterSubmitActivity) {

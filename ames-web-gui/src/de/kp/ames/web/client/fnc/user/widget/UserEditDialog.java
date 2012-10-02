@@ -36,6 +36,8 @@ package de.kp.ames.web.client.fnc.user.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 
@@ -105,9 +107,10 @@ public class UserEditDialog extends EditFormDialog {
 	public void doSend() {
 
 		String data = this.form.getFormData();
-		
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
 		UserService service = new UserService();
-		service.doSubmit(data, this.sendActivity);
+		service.doSubmit(attributes, data, this.sendActivity);
 
 	}
 

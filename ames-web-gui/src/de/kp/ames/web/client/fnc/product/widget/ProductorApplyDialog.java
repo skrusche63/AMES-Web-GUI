@@ -103,8 +103,9 @@ public class ProductorApplyDialog extends ApplyFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 

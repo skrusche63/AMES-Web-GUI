@@ -103,15 +103,17 @@ public class ReasonerEditDialog extends EditFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 
 		String data = this.form.getFormData();
-		
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
 		RuleService service = new RuleService();
-		service.doSubmit(data, this.sendActivity);
+		service.doSubmit(attributes, data, this.sendActivity);
 
 	}	
 

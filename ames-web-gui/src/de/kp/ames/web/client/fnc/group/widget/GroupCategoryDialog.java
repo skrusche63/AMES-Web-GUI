@@ -102,11 +102,17 @@ public class GroupCategoryDialog extends ApplyGridDialog {
 		/*
 		 * Request specific parameters
 		 */
-		// String type = this.getParam(MethodConstants.ATTR_TYPE);
 		
-		String item = this.getParam(MethodConstants.ATTR_ITEM);;
+		String item = this.getParam(MethodConstants.ATTR_ITEM);
 		String type = ClassificationConstants.FNC_ID_Category;
-		new GroupService().doSubmit(type, item, data, this.sendActivity);
+		
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+		if (item != null) attributes.put(MethodConstants.ATTR_ITEM, item);
+		
+		GroupService service = new GroupService();
+		service.doSubmit(attributes, data, this.sendActivity);
 		
 	}
 

@@ -99,8 +99,9 @@ public class GroupCreateDialog extends CreateFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 
@@ -110,9 +111,13 @@ public class GroupCreateDialog extends CreateFormDialog {
 		 * Request specific parameters
 		 */
 		String type = this.form.getParam(MethodConstants.ATTR_TYPE);
-		String item = null;
 		
-		new GroupService().doSubmit(type, item, data, this.sendActivity);
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
+		GroupService service = new GroupService();
+		service.doSubmit(attributes, data, this.sendActivity);
 
 	}
 

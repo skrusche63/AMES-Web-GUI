@@ -36,6 +36,8 @@ package de.kp.ames.web.client.fnc.bulletin.widget;
  *
  */
 
+import java.util.HashMap;
+
 import com.google.gwt.json.client.JSONValue;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.DrawEvent;
@@ -44,6 +46,7 @@ import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.widget.dialog.CreateFormDialog;
 import de.kp.ames.web.client.fnc.bulletin.BulletinService;
 import de.kp.ames.web.client.fnc.bulletin.event.BulletinEventManager;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 /**
  * This class provides a mail-like user interface to send
@@ -125,13 +128,18 @@ public class MessageImpl extends CreateFormDialog {
 	 */
 	public void doSend() {
 		
-		String target = ((MessageFormImpl)this.form).getTarget();
-		
 		String data = this.form.getFormData();
+
+		String target = ((MessageFormImpl)this.form).getTarget();
 		String type = this.type;
 
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		
+		attributes.put(MethodConstants.ATTR_TYPE,   type);
+		attributes.put(MethodConstants.ATTR_TARGET, target);
+		
 		BulletinService service = new BulletinService();
-		service.doSubmit(type, target, data, new ActivityImpl() {
+		service.doSubmit(attributes, data, new ActivityImpl() {
 			public void execute(JSONValue jValue) {
 				/*
 				 * The Bulletin Event Manager informs registered

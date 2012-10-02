@@ -58,8 +58,9 @@ public class ResponsibilityCreateDialog extends CreateGridDialog {
 		super(FncGlobals.RESPONSIBILITY_C_TITLE, FncGlobals.RESPONSIBILITY_C_SLOGAN, grid);
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.GridDialog#doSend()
 	 */
 	public void doSend() {
 
@@ -93,8 +94,11 @@ public class ResponsibilityCreateDialog extends CreateGridDialog {
 		
 		String data = jData.toString();
 		
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.putAll(this.getParams());
+				
 		RoleService service = new RoleService();
-		service.doSubmit(this.getParams(), data, this.sendActivity);
+		service.doSubmit(attributes, data, this.sendActivity);
 		
 	}	
 	

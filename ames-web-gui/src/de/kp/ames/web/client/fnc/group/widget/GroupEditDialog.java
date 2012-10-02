@@ -101,8 +101,9 @@ public class GroupEditDialog extends EditFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 
@@ -114,7 +115,13 @@ public class GroupEditDialog extends EditFormDialog {
 		String type = this.form.getParam(MethodConstants.ATTR_TYPE);
 		String item = this.form.getParam(MethodConstants.ATTR_ITEM);
 		
-		new GroupService().doSubmit(type, item, data, this.sendActivity);
+		HashMap<String,String> attributes = new HashMap<String,String>();
+
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+		attributes.put(MethodConstants.ATTR_ITEM, item);
+
+		GroupService service = new GroupService();
+		service.doSubmit(attributes, data, this.sendActivity);
 
 	}
 

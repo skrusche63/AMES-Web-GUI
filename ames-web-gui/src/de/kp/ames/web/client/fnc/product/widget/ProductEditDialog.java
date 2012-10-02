@@ -46,6 +46,7 @@ import de.kp.ames.web.client.core.widget.dialog.EditFormDialog;
 import de.kp.ames.web.client.fnc.globals.FncGlobals;
 import de.kp.ames.web.client.fnc.product.ProductService;
 import de.kp.ames.web.shared.constants.ClassificationConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
 
 public class ProductEditDialog extends EditFormDialog {
 	
@@ -103,16 +104,20 @@ public class ProductEditDialog extends EditFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 
 		String data = this.form.getFormData();
 		String type = ClassificationConstants.FNC_ID_Product;
 
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, type);
+
 		ProductService service = new ProductService();
-		service.doSubmit(type, data, this.sendActivity);
+		service.doSubmit(attributes, data, this.sendActivity);
 
 	}	
 

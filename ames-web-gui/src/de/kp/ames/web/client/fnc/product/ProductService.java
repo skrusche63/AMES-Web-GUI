@@ -75,19 +75,4 @@ public class ProductService extends ServiceImpl {
 		
 	}
 	
-	/**
-	 * SUBMIT request
-	 * 
-	 * @param type
-	 * @param data
-	 * @param activity
-	 */
-	public void doSubmit(String type, String data, Activity activity) {
-		
-		HashMap<String,String> attributes = new HashMap<String,String>();
-		attributes.put(MethodConstants.ATTR_TYPE, type);
-		
-		doSubmit(attributes, data, activity);
-		
-	}
 }

@@ -104,15 +104,19 @@ public class DmsEditDialog extends EditFormDialog {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSubmit()
+	/*
+	 * (non-Javadoc)
+	 * @see de.kp.ames.web.client.core.widget.dialog.FormDialog#doSend()
 	 */
 	public void doSend() {
 
 		String data = this.form.getFormData();
 		String type = this.getParam(MethodConstants.ATTR_TYPE);
 		
-		new DmsService().doSubmit(type, data, this.sendActivity);
+		HashMap<String,String> attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE,   type);
+		
+		new DmsService().doSubmit(attributes, data, this.sendActivity);
 
 	}
 	
