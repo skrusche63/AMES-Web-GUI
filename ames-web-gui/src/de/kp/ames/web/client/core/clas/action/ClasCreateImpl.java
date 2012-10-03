@@ -36,8 +36,6 @@ package de.kp.ames.web.client.core.clas.action;
  *
  */
 
-import com.smartgwt.client.util.SC;
-
 import de.kp.ames.web.client.action.grid.GridCreateImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
 import de.kp.ames.web.client.core.clas.ClasController;
