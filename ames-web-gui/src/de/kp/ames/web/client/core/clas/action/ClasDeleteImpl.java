@@ -6,13 +6,13 @@ package de.kp.ames.web.client.core.clas.action;
  *  Project: AMES-Web-GUI
  *  Package: de.kp.ames.web.client.core.clas.action
  *  Module: ClasDeleteImpl
- *  @author krusche@dr-kruscheundpartner.de
+ *  @author spex66@gmx.net
  *
  * Add your semantic annotations within the SemanticAssist tags and
  * mark them with a leading hashtag #:
  *
  * <SemanticAssist>
- *     #action #client #core #delete #classification #clas #web
+ *     #action #client #core #delete #clas #classification #web
  * </SemanticAssist>
  *
  */
@@ -37,8 +37,10 @@ package de.kp.ames.web.client.core.clas.action;
  */
 
 import com.smartgwt.client.data.Record;
+
 import de.kp.ames.web.client.action.grid.GridDeleteImpl;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.clas.ClasController;
 import de.kp.ames.web.client.core.grid.Grid;
 
 public class ClasDeleteImpl extends GridDeleteImpl {
@@ -58,7 +60,8 @@ public class ClasDeleteImpl extends GridDeleteImpl {
 	 */
 	public void execute() {
 
-		this.controller.doDelete(this.params, grid, record, new ActivityImpl() {
+		ClasController controller = new ClasController();	
+		controller.doDelete(this.params, grid, record, new ActivityImpl() {
 			public void execute() {
 				/*
 				 * No action invoked for local delete			

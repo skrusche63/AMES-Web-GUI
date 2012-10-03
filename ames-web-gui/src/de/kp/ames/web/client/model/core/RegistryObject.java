@@ -66,7 +66,6 @@ public class RegistryObject extends ExtensibleObject {
 		DataSourceTextField id = new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL);
 		id.setPrimaryKey(true);
 		fields.add(id);
-		// fields.add(new DataSourceTextField(JaxrConstants.RIM_ID, LabelConstants.ID_LABEL));
 		
 		/*
 		 * Parent Identifier (without label) for hierarchical TreeGrids

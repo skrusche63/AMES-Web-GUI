@@ -33,12 +33,14 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
+import de.kp.ames.web.client.core.clas.data.ClasGridImpl;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.fnc.upload.data.UploadGridImpl;
 import de.kp.ames.web.client.model.DmsObject;
 import de.kp.ames.web.client.model.SlotObject;
+import de.kp.ames.web.client.model.core.ConceptObject;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.JsonConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
@@ -47,6 +49,7 @@ public class DmsFormImpl extends FormImpl {
 
 	private static String SLOTS = "Slots";
 	private static String CACHE = "Cache";
+	private static String CLAS  = "Concepts";
 	
 	/*
 	 * Form dimensions for proper rendering
@@ -58,6 +61,11 @@ public class DmsFormImpl extends FormImpl {
 	 * Reference to SlotGrid
 	 */
 	private SlotGridImpl slotGrid;
+
+	/*
+	 * Reference to ClasGrid
+	 */
+	private ClasGridImpl clasGrid;
 
 	/*
 	 * Reference to UploadGrid
@@ -140,6 +148,11 @@ public class DmsFormImpl extends FormImpl {
 		 * Build SlotGrid
 		 */
 		tabSet.addTab(createSlotTab());
+
+		/*
+		 * Build ClasGrid
+		 */
+		tabSet.addTab(createClasTab());
 		
 		/*
 		 * Build UploadGrid if action is create
@@ -192,6 +205,15 @@ public class DmsFormImpl extends FormImpl {
 				JSONObject jSlots = JSONParser.parseStrict(val).isObject();
 				
 				slotGrid.setSlots(jSlots);
+
+			} else if (key.equals(JaxrConstants.RIM_CLAS)) {
+				/*
+				 * Classification (concept) data
+				 */
+				String val = jForm.get(key).isString().stringValue();
+				JSONObject jClas = JSONParser.parseStrict(val).isObject();
+				
+				clasGrid.setClas(jClas);
 
 			} else if (key.equals(JaxrConstants.RIM_ID)) {
 				/*
@@ -248,13 +270,16 @@ public class DmsFormImpl extends FormImpl {
 		/*
 		 * Classification
 		 */
+		JSONArray jClas = new ConceptObject().toJArray(clasGrid.getRecords());
+
+		/*
+		 * force add mandatory classification
+		 */
 		String type = this.params.get(MethodConstants.ATTR_TYPE);
-		
-		JSONArray jClas = new JSONArray();
-		jClas.set(0, new JSONString(type));
+		jClas.set(jClas.size(), new JSONString(type));
 		
 		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
-				
+
 		/*
 		 * Slots
 		 */
@@ -301,6 +326,31 @@ public class DmsFormImpl extends FormImpl {
          * Tab content
          */
         tab.setPane(slotGrid);
+		return tab;
+		
+	}
+
+	/**
+	 * Create layout component for concepts
+	 * 
+	 * @return
+	 */
+	private Tab createClasTab() {
+		
+		/*
+		 * Build ConceptGrid
+		 */
+		clasGrid = new ClasGridImpl();
+
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(CLAS);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(clasGrid);
 		return tab;
 		
 	}

@@ -73,6 +73,13 @@ public class FncGlobals {
 	public static String POSTINGS_LABEL = "<b>Postings</b>";
 	
 	/*
+	 * Clas-Layer
+	 */
+	public static String CLAS_C_TITLE = "Classification Editor";
+	public static String CLAS_C_SLOGAN = "Use this widget to add a new classification.";
+
+
+	/*
 	 * Comm-Layer
 	 */
 	public static String CHAT_TITLE  = "Chat Communicator";
@@ -213,7 +220,7 @@ public class FncGlobals {
 	 */
 	public static String SPEC_C_TITLE  = "Specification Editor";
 	public static String SPEC_C_SLOGAN = "Use this widget to add a new specification.";
-
+	
 	public static String TRANSFORM_C_TITLE  = "Transformator Editor";
 	public static String TRANSFORM_C_SLOGAN = "Use this widget to create a new transformator.";
 

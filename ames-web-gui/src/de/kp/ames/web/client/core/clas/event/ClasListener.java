@@ -1,18 +1,18 @@
-package de.kp.ames.web.client.core.clas.action;
+package de.kp.ames.web.client.core.clas.event;
 /**
  * This Java module is part of the
  *  Application Developer Framework
  *
  *  Project: AMES-Web-GUI
- *  Package: de.kp.ames.web.client.core.clas.action
- *  Module: ClasCreateImpl
+ *  Package: de.kp.ames.web.client.core.clas.event
+ *  Module: ClasListener
  *  @author spex66@gmx.net
  *  
  * Add your semantic annotations within the SemanticAssist tags and
  * mark them with a leading hashtag #:
  *
  * <SemanticAssist>
- *     #action #client #core #create #clas #classification  #web
+ *     #client #event #core #listener #clas #classification #web
  * </SemanticAssist>
  *
  */
@@ -36,39 +36,13 @@ package de.kp.ames.web.client.core.clas.action;
  *
  */
 
-import com.smartgwt.client.util.SC;
+import com.smartgwt.client.data.Record;
 
-import de.kp.ames.web.client.action.grid.GridCreateImpl;
-import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.clas.ClasController;
-import de.kp.ames.web.client.core.grid.Grid;
+public interface ClasListener {
 
-public class ClasCreateImpl extends GridCreateImpl {
-	
 	/**
-	 * Constructor
-	 * 
-	 * @param grid
+	 * @param record
 	 */
-	public ClasCreateImpl(Grid grid) {	
-		super(grid);
-	}
+	public void onClasSelected(Record record);
 	
-	
-	/*
-	 * (non-Javadoc)
-	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
-	 */
-	public void execute() {
-		
-		ClasController controller = new ClasController();	
-		controller.doCreate(this.params, this.grid, new ActivityImpl() {
-			public void execute() {
-				/*
-				 * No action invoked for local create
-				 */
-			}			
-		});
-	}
-
 }

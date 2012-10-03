@@ -1,18 +1,18 @@
-package de.kp.ames.web.client.core.clas.action;
+package de.kp.ames.web.client.core.clas.handler;
 /**
  * This Java module is part of the
  *  Application Developer Framework
  *
  *  Project: AMES-Web-GUI
- *  Package: de.kp.ames.web.client.core.clas.action
- *  Module: ClasCreateImpl
+ *  Package: de.kp.ames.web.client.core.clas.handler
+ *  Module: ClasGridRecordHandlerImpl
  *  @author spex66@gmx.net
  *  
  * Add your semantic annotations within the SemanticAssist tags and
  * mark them with a leading hashtag #:
  *
  * <SemanticAssist>
- *     #action #client #core #create #clas #classification  #web
+ *     #client #core #grid #handler #record #clas #classification #web
  * </SemanticAssist>
  *
  */
@@ -36,39 +36,25 @@ package de.kp.ames.web.client.core.clas.action;
  *
  */
 
-import com.smartgwt.client.util.SC;
+import com.smartgwt.client.data.Record;
 
-import de.kp.ames.web.client.action.grid.GridCreateImpl;
-import de.kp.ames.web.client.core.activity.ActivityImpl;
-import de.kp.ames.web.client.core.clas.ClasController;
-import de.kp.ames.web.client.core.grid.Grid;
+import de.kp.ames.web.client.core.clas.event.ClasEventManager;
+import de.kp.ames.web.client.handler.GridRecordHandlerImpl;
 
-public class ClasCreateImpl extends GridCreateImpl {
-	
+public class ClasGridRecordHandlerImpl extends GridRecordHandlerImpl {
+
 	/**
 	 * Constructor
-	 * 
-	 * @param grid
 	 */
-	public ClasCreateImpl(Grid grid) {	
-		super(grid);
+	public ClasGridRecordHandlerImpl() {
+		super();
 	}
 	
-	
-	/*
-	 * (non-Javadoc)
-	 * @see de.kp.ames.web.client.action.ActionImpl#execute()
+	/* (non-Javadoc)
+	 * @see de.kp.ames.web.client.handler.GridRecordHandlerImpl#doSelect(com.smartgwt.client.data.Record)
 	 */
-	public void execute() {
-		
-		ClasController controller = new ClasController();	
-		controller.doCreate(this.params, this.grid, new ActivityImpl() {
-			public void execute() {
-				/*
-				 * No action invoked for local create
-				 */
-			}			
-		});
+	public void doSelect(Record record) {
+		ClasEventManager.getInstance().onClasSelected(record);
 	}
 
 }

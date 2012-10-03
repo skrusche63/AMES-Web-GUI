@@ -33,17 +33,21 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 
+import de.kp.ames.web.client.core.clas.data.ClasGridImpl;
 import de.kp.ames.web.client.core.form.FormAction;
 import de.kp.ames.web.client.core.form.FormImpl;
 import de.kp.ames.web.client.core.slot.data.SlotGridImpl;
 import de.kp.ames.web.client.model.NsObject;
 import de.kp.ames.web.client.model.SlotObject;
+import de.kp.ames.web.client.model.core.ConceptObject;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
 
 public class NsFormImpl extends FormImpl {
 
 	private static String SLOTS = "Slots";
-	
+	private static String CLAS  = "Concepts";
+
 	/*
 	 * Form dimensions for proper rendering
 	 */
@@ -54,6 +58,11 @@ public class NsFormImpl extends FormImpl {
 	 * Reference to SlotGrid
 	 */
 	private SlotGridImpl slotGrid;
+
+	/*
+	 * Reference to ClasGrid
+	 */
+	private ClasGridImpl clasGrid;
 
 	/**
 	 * Constructor
@@ -115,6 +124,12 @@ public class NsFormImpl extends FormImpl {
 		 * Build SlotGrid
 		 */
 		tabSet.addTab(createSlotTab());
+		
+		/*
+		 * Build ClasGrid
+		 */
+		tabSet.addTab(createClasTab());
+
 		layout.addMember(tabSet);
 		
 		wrapper.setMembers(scForm, layout);
@@ -155,7 +170,7 @@ public class NsFormImpl extends FormImpl {
 				 */
 				FormItem field = scForm.getField(key);
 				if (field != null) field.setValue(jForm.get(key).isString().stringValue());
-				
+			
 			} else if (key.equals(JaxrConstants.RIM_SLOT)) {
 				/*
 				 * Slot data
@@ -165,11 +180,17 @@ public class NsFormImpl extends FormImpl {
 				
 				slotGrid.setSlots(jSlots);
 				
+			} else if (key.equals(JaxrConstants.RIM_CLAS)) {
+				/*
+				 * Classification (concept) data
+				 */
+				String val = jForm.get(key).isString().stringValue();
+				JSONObject jClas = JSONParser.parseStrict(val).isObject();
+				
+				clasGrid.setClas(jClas);
+				
 			}
-			
 		}
-		
-		
 	}
 
 	/* (non-Javadoc)
@@ -221,14 +242,19 @@ public class NsFormImpl extends FormImpl {
 		 */
 		if (id != null) jForm.put(JaxrConstants.RIM_ID, new JSONString(id));
 		
-		
+					
 		/*
-		 * Add empty classification to enable
-		 * proper server processing
+		 * Classification
 		 */
-		JSONArray jClas = new JSONArray();
+		JSONArray jClas = new ConceptObject().toJArray(clasGrid.getRecords());
+
+		/*
+		 * force add mandatory classification
+		 */
+		jClas.set(jClas.size(), new JSONString(ClassificationConstants.FNC_ID_Folder));
+		
 		jForm.put(JaxrConstants.RIM_CLAS, new JSONString(jClas.toString()));		
-				
+
 		/*
 		 * Slots
 		 */
@@ -270,5 +296,29 @@ public class NsFormImpl extends FormImpl {
 		return tab;
 		
 	}
-	
+
+	/**
+	 * Create layout component for concepts
+	 * 
+	 * @return
+	 */
+	private Tab createClasTab() {
+		
+		/*
+		 * Build ConceptGrid
+		 */
+		clasGrid = new ClasGridImpl();
+		
+        Tab tab = new Tab();   	
+        tab.setWidth(80);
+
+        tab.setTitle(CLAS);
+ 
+        /*
+         * Tab content
+         */
+        tab.setPane(clasGrid);
+		return tab;
+		
+	}
 }

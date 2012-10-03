@@ -45,6 +45,7 @@ import com.smartgwt.client.util.SC;
 
 import de.kp.ames.web.client.core.activity.Activity;
 import de.kp.ames.web.client.core.activity.ActivityImpl;
+import de.kp.ames.web.client.core.controller.ControllerImpl;
 import de.kp.ames.web.client.core.globals.GuiConstants;
 import de.kp.ames.web.client.core.service.FrameService;
 import de.kp.ames.web.client.core.widget.viewer.ViewerFactory;
@@ -58,7 +59,7 @@ import de.kp.ames.web.shared.constants.JaxrConstants;
 import de.kp.ames.web.shared.constants.MethodConstants;
 import de.kp.ames.web.shared.constants.ServiceConstants;
 
-public class DmsController {
+public class DmsController extends ControllerImpl {
 	
 	/**
 	 * Constructor
@@ -66,10 +67,7 @@ public class DmsController {
 	public DmsController() {
 	}
 
-	/**
-	 * @param attributes
-	 * @param afterSendActivity
-	 */
+
 	public void doCreate(HashMap<String,String> attributes, Activity afterSendActivity) {
 		DmsCreateDialog.create(attributes, afterSendActivity);
 	}

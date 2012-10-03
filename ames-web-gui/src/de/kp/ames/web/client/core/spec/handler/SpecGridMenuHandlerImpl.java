@@ -87,7 +87,7 @@ public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
 		SpecCreateImpl createAction = new SpecCreateImpl(this.grid);
 		
 		/*
-		 * Delegate Controller & Paramts
+		 * Delegate Controller & Params
 		 */
 		createAction.setParams(this.params);
 		createAction.setController(this.controller);
@@ -109,7 +109,7 @@ public class SpecGridMenuHandlerImpl extends GridMenuHandlerImpl {
 			 */
 			SpecDeleteImpl deleteAction = new SpecDeleteImpl(grid, record);
 			/*
-			 * Delegate Controller & Paramts
+			 * Delegate Controller & Params
 			 */
 			deleteAction.setParams(this.params);
 			deleteAction.setController(this.controller);

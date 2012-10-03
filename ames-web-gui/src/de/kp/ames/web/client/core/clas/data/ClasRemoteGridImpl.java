@@ -4,15 +4,15 @@ package de.kp.ames.web.client.core.clas.data;
  *  Application Developer Framework
  *
  *  Project: AMES-Web-GUI
- *  Package: de.kp.ames.web.client.core.concept.data
- *  Module: ConceptGridImpl
+ *  Package: de.kp.ames.web.client.core.clas.data
+ *  Module: ClasRemoteGridImpl
  *  @author spex66@gmx.net
  *  
  * Add your semantic annotations within the SemanticAssist tags and
  * mark them with a leading hashtag #:
  *
  * <SemanticAssist>
- *     #client #core #data #grid #concept #classification #web
+ *     #client #data #core #grid #clas #classification #remote #web
  * </SemanticAssist>
  *
  */
@@ -37,43 +37,40 @@ package de.kp.ames.web.client.core.clas.data;
  */
 
 import java.util.HashMap;
-import java.util.Set;
 
-import com.google.gwt.json.client.JSONObject;
-import com.smartgwt.client.widgets.grid.ListGridRecord;
-
-import de.kp.ames.web.client.core.clas.handler.ClasGridMenuHandlerImpl;
-import de.kp.ames.web.client.core.grid.LocalGridImpl;
+import de.kp.ames.web.client.core.grid.RemoteGridImpl;
 import de.kp.ames.web.client.model.core.ConceptObject;
 import de.kp.ames.web.client.model.core.DataObject;
+import de.kp.ames.web.shared.constants.ClassificationConstants;
 import de.kp.ames.web.shared.constants.JaxrConstants;
+import de.kp.ames.web.shared.constants.MethodConstants;
+import de.kp.ames.web.shared.constants.ServiceConstants;
 
-/*
- * A ClasGrid is a predefined key, value
- * list (or) grid that supports  handling
- */
-public class ClasGridImpl extends LocalGridImpl {
+public class ClasRemoteGridImpl extends RemoteGridImpl {
 
 	/**
 	 * Constructor
+	 * 
+	 * @param type
 	 */
-	public ClasGridImpl() {
-		super();
+	public ClasRemoteGridImpl() {
+		super(ServiceConstants.CLAS_SERVICE_ID);
 
-		/*
-		 * Set row numbering
-		 */
-		this.setShowRowNumbers(true);  
-		
 		/*
 		 * Register data
 		 */
 		attributes = new HashMap<String,String>();
+		attributes.put(MethodConstants.ATTR_TYPE, ClassificationConstants.FNC_ID);
 
 		/*
 		 * Create data object
 		 */
 		this.dataObject = createDataObject();
+		
+		/*
+		 * Create data source
+		 */
+		this.createScGridDS();
 
 		/*
 		 * Create grid fields
@@ -81,50 +78,19 @@ public class ClasGridImpl extends LocalGridImpl {
 		this.setFields(createGridFields());
 
 		/*
-		 * Create Grid Data
+		 * Menu & record handler must be set
+		 * context specific
 		 */
-		this.setData(createGridRecords());
-	
-		/*
-		 * Add Menu Handler
-		 */
-		ClasGridMenuHandlerImpl menuHandler = new ClasGridMenuHandlerImpl(this);
-		this.addMenuHandler(menuHandler);
-
 		
 	}
-	
-	
-	/**
-	 * A helper method to set the data of the concept grid
-	 * 
-	 * @param jClas
-	 */
-	public void setClas(JSONObject jClas) {
 
-		Set<String> keys = jClas.keySet();
-		for (String key:keys) {
-			
-			String val = jClas.get(key).isString().stringValue();
-			
-			final String id    = key;
-			final String name  = val;
-			
-			ListGridRecord newClas = new ListGridRecord();
-			
-			newClas.setAttribute(JaxrConstants.RIM_ID, id);
-			newClas.setAttribute(JaxrConstants.RIM_NAME, name);
-
-			this.addData(newClas);
-		}
-		
-	}
-	
 	/**
 	 * @return
 	 */
 	private DataObject createDataObject() {
+		
 		return new ConceptObject();
+		
 	}
 
 	/* (non-Javadoc)
@@ -134,5 +100,5 @@ public class ClasGridImpl extends LocalGridImpl {
 		return JaxrConstants.RIM_ID;
 	}
 
-	
 }
+
